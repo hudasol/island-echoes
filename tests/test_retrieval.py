@@ -79,3 +79,19 @@ def test_accents_and_plurals_normalise():
 def test_evidence_is_capped(retriever):
     res = retriever.search("galapagos", "Tell me everything about the climate history threats and species records")
     assert len(res.evidence) <= 24
+
+
+def test_ice_and_glaciated_are_the_same_idea(retriever):
+    ids = {e.id for e in retriever.search("bouvet", "How much of Bouvet is covered by ice?").evidence}
+    assert {"BOU-012", "BOU-013"} <= ids  # "ice" (Norwegian sources) and "glaciated" (Wikipedia)
+
+
+def test_nationality_adjectives_match_country_names(retriever):
+    ids = {e.id for e in retriever.search("cocos-keeling", "What did residents vote about becoming Australian?").evidence}
+    assert "COC-020" in ids  # fact says "integration with Australia"
+    assert "australia" in expand("Australian") and "australian" in expand("Australia")
+
+
+def test_how_many_left_means_population_estimate(retriever):
+    ids = {e.id for e in retriever.search("pitcairn", "How many of you are left?").evidence}
+    assert "PIT-036" in ids
