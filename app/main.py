@@ -156,8 +156,8 @@ def create_app(settings: Settings | None = None, service: ChatService | None = N
                 status_code=503,
                 content={"detail": "Chat is not configured on this server (missing ANTHROPIC_API_KEY)."},
             )
-        except LLMError:
-            return JSONResponse(status_code=502, content={"detail": "The language model is unavailable right now."})
+        except LLMError as exc:
+            return JSONResponse(status_code=502, content={"detail": str(exc) or "The language model is unavailable right now."})
         return _chat_response(result)
 
     if settings.web_dir.exists():

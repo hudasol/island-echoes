@@ -119,3 +119,33 @@ def test_climate_answer_can_cite_nasa_power_numbers(store, retriever):
     wrong = reply(fact("NASA POWER puts my annual mean air temperature at 99.9 C.", "POWER-SOC-TEMP"))
     r2 = svc(store, retriever, ScriptedLLM(wrong, wrong)).respond("socotra", "How hot is it?")
     assert not r2.answered and "99.9" in r2.rejected[0]["issues"][0]
+
+
+def test_anthropic_client_never_sends_sampling_params_and_maps_billing_errors():
+    from app.chat.llm import AnthropicAnswerLLM, LLMError
+
+    class FakeClient:
+        class messages:  # noqa: N801
+            seen: dict = {}
+
+            @classmethod
+            def create(cls, **kw):  # a strict signature like the real SDK's for newer models
+                cls.seen = kw
+                raise FakeAnthropic.BadRequestError("Your credit balance is too low to access the Anthropic API")
+
+    class FakeAnthropic:
+        class APIError(Exception):
+            pass
+
+        class BadRequestError(APIError):
+            pass
+
+    llm = AnthropicAnswerLLM.__new__(AnthropicAnswerLLM)
+    llm._anthropic, llm.client, llm.model, llm.max_tokens = FakeAnthropic, FakeClient, "m", 10
+    try:
+        llm.answer("s", "u")
+    except LLMError as exc:
+        assert "no credit" in str(exc)
+    else:
+        raise AssertionError("expected LLMError")
+    assert "temperature" not in FakeClient.messages.seen

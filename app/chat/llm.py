@@ -1,6 +1,9 @@
 from __future__ import annotations
 
+import logging
 from typing import Protocol
+
+log = logging.getLogger(__name__)
 
 ANSWER_TOOL = {
     "name": "answer",
@@ -63,13 +66,11 @@ class AnthropicAnswerLLM:
             tool_choice={"type": "tool", "name": "answer"},
         )
         try:
-            try:
-                resp = self.client.messages.create(temperature=0, **kwargs)
-            except self._anthropic.BadRequestError as exc:  # some models reject sampling params
-                if "temperature" not in str(exc).lower():
-                    raise
-                resp = self.client.messages.create(**kwargs)
+            resp = self.client.messages.create(**kwargs)
         except self._anthropic.APIError as exc:
+            log.warning("Anthropic API error: %s", exc)
+            if "credit balance" in str(exc).lower():
+                raise LLMError("The Anthropic account has no credit left. Add credit under Plans & Billing.") from exc
             raise LLMError(f"Anthropic API error: {exc.__class__.__name__}") from exc
         for block in resp.content:
             if getattr(block, "type", None) == "tool_use" and block.name == "answer":
