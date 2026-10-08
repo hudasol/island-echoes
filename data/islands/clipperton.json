@@ -1,0 +1,572 @@
+{
+  "slug": "clipperton",
+  "name": "Clipperton Island",
+  "alt_names": [
+    "Île de la Passion",
+    "La Passion-Clipperton"
+  ],
+  "pin": {
+    "lat": 10.3,
+    "lon": -109.22,
+    "note": "Approximate centre of the atoll (about 10 deg 18 min N, 109 deg 13 min W)"
+  },
+  "territory": "France (state-owned overseas island under the Minister of Overseas France)",
+  "creatures": [
+    {
+      "slug": "silvertip-shark",
+      "common_name": "Silvertip shark",
+      "scientific_name": "Carcharhinus albimarginatus",
+      "creature_type": "marine",
+      "iucn_status": "Vulnerable (VU); FishBase cites a 2023 assessment, Wikipedia cites 2016",
+      "gbif_search_name": "Carcharhinus albimarginatus",
+      "status_note": "Clipperton is an Important Shark and Ray Area partly because it is a silvertip nursery. The Clipperton angelfish is endemic but was Near Threatened (2010), so it was not chosen."
+    }
+  ],
+  "facts": [
+    {
+      "id": "CLI-001",
+      "category": "location",
+      "statement": "Clipperton lies in the eastern Pacific at roughly 10 deg 18 min N, 109 deg 13 min W.",
+      "source_url": "https://en.wikipedia.org/wiki/Clipperton_Island",
+      "source_title": "Clipperton Island",
+      "publisher": "Wikipedia (Wikimedia Foundation)",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Coordinates in the geography section.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "CLI-002",
+      "category": "location",
+      "statement": "The nearest land is Socorro Island in Mexico's Revillagigedo group, about 945 km to the northwest.",
+      "source_url": "https://en.wikipedia.org/wiki/Clipperton_Island",
+      "source_title": "Clipperton Island",
+      "publisher": "Wikipedia (Wikimedia Foundation)",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Distance statement in geography section.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "CLI-003",
+      "category": "location",
+      "statement": "The atoll is about 1,080 km southwest of mainland Mexico and about 2,390 km northwest of the Galapagos.",
+      "source_url": "https://en.wikipedia.org/wiki/Clipperton_Island",
+      "source_title": "Clipperton Island",
+      "publisher": "Wikipedia (Wikimedia Foundation)",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Distances listed in the geography section.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "CLI-004",
+      "category": "location",
+      "statement": "Roughly 1,300 km separates Clipperton from the Mexican coast, and it is more than 6,000 km from Tahiti.",
+      "source_url": "https://www.globalsecurity.org/military/world/oceania/cp-geography.htm",
+      "source_title": "Clipperton / Ile de la Passion - Geography",
+      "publisher": "GlobalSecurity.org",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Location paragraph of the geography page.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "CLI-005",
+      "category": "climate",
+      "statement": "Clipperton has a tropical oceanic climate with typical temperatures of 20-32 C, and peaks reported up to about 37.8 C.",
+      "source_url": "https://en.wikipedia.org/wiki/Clipperton_Island",
+      "source_title": "Clipperton Island",
+      "publisher": "Wikipedia (Wikimedia Foundation)",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Climate section.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "CLI-006",
+      "category": "climate",
+      "statement": "Annual rainfall is reported as 3,000-5,000 mm, with relative humidity usually 85-95%.",
+      "source_url": "https://en.wikipedia.org/wiki/Clipperton_Island",
+      "source_title": "Clipperton Island",
+      "publisher": "Wikipedia (Wikimedia Foundation)",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Climate section.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "CLI-007",
+      "category": "climate",
+      "statement": "The wet season runs from May to October, while December to March is drier; southeast trade winds prevail.",
+      "source_url": "https://en.wikipedia.org/wiki/Clipperton_Island",
+      "source_title": "Clipperton Island",
+      "publisher": "Wikipedia (Wikimedia Foundation)",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Climate section.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "CLI-008",
+      "category": "climate",
+      "statement": "Storm season (May to October) brings strong swells and hurricanes, and the North Equatorial Current dominates January-May before the Counter Current takes over June-December.",
+      "source_url": "https://sharkrayareas.org/wp-content/uploads/isra-factsheets/12CentralSouthPacific/Clipperton-12CentralSouthPacific.pdf",
+      "source_title": "Clipperton ISRA Factsheet",
+      "publisher": "IUCN SSC Shark Specialist Group (Important Shark and Ray Areas)",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Area description in the ISRA factsheet.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "CLI-009",
+      "category": "terrain",
+      "statement": "The island covers about 8.9 km2 including lagoon, and its emerged land ring is only about 1.7 km2 with an average height near 2 m.",
+      "source_url": "https://en.wikipedia.org/wiki/Clipperton_Island",
+      "source_title": "Clipperton Island",
+      "publisher": "Wikipedia (Wikimedia Foundation)",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Geography section figures.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "CLI-010",
+      "category": "terrain",
+      "statement": "The lagoon spans roughly 720 hectares, with deep basins of about 43-72 m, and has no fish.",
+      "source_url": "https://en.wikipedia.org/wiki/Clipperton_Island",
+      "source_title": "Clipperton Island",
+      "publisher": "Wikipedia (Wikimedia Foundation)",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Lagoon subsection.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "CLI-011",
+      "category": "terrain",
+      "statement": "The lagoon sealed off from the open sea roughly 170 years ago and is now stratified: oxygenated brackish water above and oxygen-free sulfurous water below around 15 m.",
+      "source_url": "https://en.wikipedia.org/wiki/Clipperton_Island",
+      "source_title": "Clipperton Island",
+      "publisher": "Wikipedia (Wikimedia Foundation)",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Lagoon subsection describing meromictic layering.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "CLI-012",
+      "category": "geology",
+      "statement": "Clipperton Rock, the island's high point at 29 m on the southeast side, is made of trachyandesite and is about 100 m long.",
+      "source_url": "https://en.wikipedia.org/wiki/Clipperton_Rock",
+      "source_title": "Clipperton Rock",
+      "publisher": "Wikipedia (Wikimedia Foundation)",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Height and geology sections of the rock article.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "CLI-013",
+      "category": "geology",
+      "statement": "Clipperton is the only emerged part of the East Pacific Rise, and the rock is the remnant of an extinct volcano's rim, hence the term near-atoll.",
+      "source_url": "https://en.wikipedia.org/wiki/Clipperton_Island",
+      "source_title": "Clipperton Island",
+      "publisher": "Wikipedia (Wikimedia Foundation)",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Geography section.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "CLI-014",
+      "category": "geology",
+      "statement": "Fringing coral reefs surround the lagoon; reefs shallower than 20 m are dominated by Porites and branching Pocillopora, with large Porites, Pavona and Leptoseris at 20-70 m.",
+      "source_url": "https://sharkrayareas.org/wp-content/uploads/isra-factsheets/12CentralSouthPacific/Clipperton-12CentralSouthPacific.pdf",
+      "source_title": "Clipperton ISRA Factsheet",
+      "publisher": "IUCN SSC Shark Specialist Group (Important Shark and Ray Areas)",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Area description in the ISRA factsheet.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "CLI-015",
+      "category": "history",
+      "statement": "Michel Dubocage reached the island on Good Friday, 3 April 1711 and named it Ile de la Passion; the English name comes from the pirate John Clipperton.",
+      "source_url": "https://en.wikipedia.org/wiki/Clipperton_Island",
+      "source_title": "Clipperton Island",
+      "publisher": "Wikipedia (Wikimedia Foundation)",
+      "retrieved": "2026-10-08",
+      "evidence_note": "History section.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "CLI-016",
+      "category": "history",
+      "statement": "France annexed Clipperton on 17 November 1858 as part of the Tahiti protectorate, and in 1892 a US claim under the Guano Islands Act was rejected.",
+      "source_url": "https://en.wikipedia.org/wiki/Clipperton_Island",
+      "source_title": "Clipperton Island",
+      "publisher": "Wikipedia (Wikimedia Foundation)",
+      "retrieved": "2026-10-08",
+      "evidence_note": "History section.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "CLI-017",
+      "category": "history",
+      "statement": "Guano and phosphate extraction began in 1895 by a phosphate company, and Mexico removed American workers on 13 December 1897.",
+      "source_url": "https://en.wikipedia.org/wiki/Clipperton_Island",
+      "source_title": "Clipperton Island",
+      "publisher": "Wikipedia (Wikimedia Foundation)",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Guano era in history section.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "CLI-018",
+      "category": "history",
+      "statement": "Mexico garrisoned the island from 1906, but resupply broke down during the Mexican Revolution and survivors (eleven people) were evacuated by USS Yorktown on 18 July 1917.",
+      "source_url": "https://en.wikipedia.org/wiki/Clipperton_Island",
+      "source_title": "Clipperton Island",
+      "publisher": "Wikipedia (Wikimedia Foundation)",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Mexican settlement subsection.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "CLI-019",
+      "category": "history",
+      "statement": "A 1909 treaty sent the French-Mexican dispute to Victor Emmanuel III of Italy, who ruled for France in 1931; France took formal possession on 26 January 1935.",
+      "source_url": "https://en.wikipedia.org/wiki/Clipperton_Island",
+      "source_title": "Clipperton Island",
+      "publisher": "Wikipedia (Wikimedia Foundation)",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Arbitration subsection.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "CLI-020",
+      "category": "history",
+      "statement": "A US Navy weather station with 24 sailors operated on Clipperton from late 1944 until 21 October 1945.",
+      "source_url": "https://en.wikipedia.org/wiki/Clipperton_Island",
+      "source_title": "Clipperton Island",
+      "publisher": "Wikipedia (Wikimedia Foundation)",
+      "retrieved": "2026-10-08",
+      "evidence_note": "World War II subsection.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "CLI-021",
+      "category": "people_governance",
+      "statement": "Clipperton is uninhabited, and France administered it from French Polynesia until 2007, when it was placed under the Minister of Overseas France.",
+      "source_url": "https://www.britannica.com/place/Clipperton-Island",
+      "source_title": "Clipperton Island",
+      "publisher": "Encyclopaedia Britannica",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Governance paragraph.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "CLI-022",
+      "category": "people_governance",
+      "statement": "A bill adopted by France's National Assembly on 24 November 2016 gave the island its own legal status, direct state authority, and the alternative name La Passion-Clipperton.",
+      "source_url": "https://www.senat.fr/leg/ppl16-150.html",
+      "source_title": "Proposition de loi n 150 (2016-2017) on the status of Clipperton",
+      "publisher": "Senat (French Parliament)",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Summary and articles 9-10.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "CLI-023",
+      "category": "people_governance",
+      "statement": "Under that bill, landing or any activity on the island needs authorization, with penalties up to one year in prison and a 300,000 euro fine.",
+      "source_url": "https://www.senat.fr/leg/ppl16-150.html",
+      "source_title": "Proposition de loi n 150 (2016-2017) on the status of Clipperton",
+      "publisher": "Senat (French Parliament)",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Articles 13-14.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "CLI-024",
+      "category": "ecology",
+      "statement": "Fieldwork in 2005 estimated about 100,000 masked boobies (around 20,000 breeding pairs), described as the world's largest colony of the species.",
+      "source_url": "https://storage.googleapis.com/nmfs_odp_swfsc/Publications/Files/CR/2009/2009Weimerskirch.pdf",
+      "source_title": "Seabird chapter in Clipperton, environnement et biodiversite d'un microcosme oceanique (Weimerskirch et al., 2009)",
+      "publisher": "NOAA Fisheries SWFSC repository (hosting MNHN/IRD publication)",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Seabird counts section.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "CLI-025",
+      "category": "ecology",
+      "statement": "The 2005 surveys also found about 7,000 brown boobies, fewer than 500 red-footed boobies, and over 1,300 great frigatebirds, whose first breeding on the atoll was recorded.",
+      "source_url": "https://storage.googleapis.com/nmfs_odp_swfsc/Publications/Files/CR/2009/2009Weimerskirch.pdf",
+      "source_title": "Seabird chapter in Clipperton, environnement et biodiversite d'un microcosme oceanique (Weimerskirch et al., 2009)",
+      "publisher": "NOAA Fisheries SWFSC repository (hosting MNHN/IRD publication)",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Seabird counts section.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "CLI-026",
+      "category": "ecology",
+      "statement": "Bright orange land crabs (Johngarthia oceanica) swarm the island; pigs introduced in the 1890s suppressed them, and after the pigs were removed in 1958 the crabs recovered and cleared much vegetation.",
+      "source_url": "https://en.wikipedia.org/wiki/Clipperton_Island",
+      "source_title": "Clipperton Island",
+      "publisher": "Wikipedia (Wikimedia Foundation)",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Ecology section on crabs.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "CLI-027",
+      "category": "ecology",
+      "statement": "The reefs hold more than 115 endemic species, including the Clipperton angelfish, Clipperton grouper and Clipperton damselfish.",
+      "source_url": "https://en.wikipedia.org/wiki/Clipperton_Island",
+      "source_title": "Clipperton Island",
+      "publisher": "Wikipedia (Wikimedia Foundation)",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Marine life subsection.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "CLI-028",
+      "category": "ecology",
+      "statement": "A 2016 baited-video survey recorded Galapagos sharks on 83% of deployments and silvertip sharks on 33% at Clipperton.",
+      "source_url": "https://sharkrayareas.org/wp-content/uploads/isra-factsheets/12CentralSouthPacific/Clipperton-12CentralSouthPacific.pdf",
+      "source_title": "Clipperton ISRA Factsheet",
+      "publisher": "IUCN SSC Shark Specialist Group (Important Shark and Ray Areas)",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Statements on sharks in the factsheet.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "CLI-029",
+      "category": "threats",
+      "statement": "Black rats were absent in 1987 but spread across the island by 2003-2005, threatening ground-nesting seabirds; the authors called eradication urgent.",
+      "source_url": "https://storage.googleapis.com/nmfs_odp_swfsc/Publications/Files/CR/2009/2009Weimerskirch.pdf",
+      "source_title": "Seabird chapter in Clipperton, environnement et biodiversite d'un microcosme oceanique (Weimerskirch et al., 2009)",
+      "publisher": "NOAA Fisheries SWFSC repository (hosting MNHN/IRD publication)",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Rats section.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "CLI-030",
+      "category": "threats",
+      "statement": "Industrial tuna fishing in the foraging area removes about 21,600 tonnes yearly, a risk for masked boobies that follow tuna schools.",
+      "source_url": "https://storage.googleapis.com/nmfs_odp_swfsc/Publications/Files/CR/2009/2009Weimerskirch.pdf",
+      "source_title": "Seabird chapter in Clipperton, environnement et biodiversite d'un microcosme oceanique (Weimerskirch et al., 2009)",
+      "publisher": "NOAA Fisheries SWFSC repository (hosting MNHN/IRD publication)",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Threats section.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "CLI-031",
+      "category": "threats",
+      "statement": "Marine debris accumulates on the beaches, and a 2023 mission reportedly removed more than 200 kg of plastic waste.",
+      "source_url": "https://en.wikipedia.org/wiki/Clipperton_Island",
+      "source_title": "Clipperton Island",
+      "publisher": "Wikipedia (Wikimedia Foundation)",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Threats section.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "CLI-032",
+      "category": "conservation",
+      "statement": "As of the 2009 report the authors stated that Clipperton had no legal protection status and urged rat eradication and tighter control of landings.",
+      "source_url": "https://storage.googleapis.com/nmfs_odp_swfsc/Publications/Files/CR/2009/2009Weimerskirch.pdf",
+      "source_title": "Seabird chapter in Clipperton, environnement et biodiversite d'un microcosme oceanique (Weimerskirch et al., 2009)",
+      "publisher": "NOAA Fisheries SWFSC repository (hosting MNHN/IRD publication)",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Conservation recommendations.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "CLI-033",
+      "category": "conservation",
+      "statement": "Clipperton is designated an Important Shark and Ray Area covering about 9.35 km2 from the surface to 100 m depth, based on silvertip and Galapagos shark nursery use.",
+      "source_url": "https://sharkrayareas.org/wp-content/uploads/isra-factsheets/12CentralSouthPacific/Clipperton-12CentralSouthPacific.pdf",
+      "source_title": "Clipperton ISRA Factsheet",
+      "publisher": "IUCN SSC Shark Specialist Group (Important Shark and Ray Areas)",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Factsheet summary.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "CLI-034",
+      "category": "creature",
+      "statement": "The silvertip shark (Carcharhinus albimarginatus) is listed as Vulnerable and is a qualifying species for the Clipperton shark and ray area.",
+      "source_url": "https://sharkrayareas.org/wp-content/uploads/isra-factsheets/12CentralSouthPacific/Clipperton-12CentralSouthPacific.pdf",
+      "source_title": "Clipperton ISRA Factsheet",
+      "publisher": "IUCN SSC Shark Specialist Group (Important Shark and Ray Areas)",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Qualifying species table.",
+      "confidence": "high",
+      "subject": "silvertip-shark"
+    },
+    {
+      "id": "CLI-035",
+      "category": "creature",
+      "statement": "In a 2005 expedition 29 silvertip sharks were sampled, mostly pregnant females with near-term embryos plus neonates, marking Clipperton as a nursery.",
+      "source_url": "https://sharkrayareas.org/wp-content/uploads/isra-factsheets/12CentralSouthPacific/Clipperton-12CentralSouthPacific.pdf",
+      "source_title": "Clipperton ISRA Factsheet",
+      "publisher": "IUCN SSC Shark Specialist Group (Important Shark and Ray Areas)",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Silvertip nursery statement.",
+      "confidence": "high",
+      "subject": "silvertip-shark"
+    },
+    {
+      "id": "CLI-036",
+      "category": "creature",
+      "statement": "Silvertips recorded in the 2016 survey averaged only about 65 cm fork length, and the survey authors judged most sharks of both species to be young-of-the-year.",
+      "source_url": "https://sharkrayareas.org/wp-content/uploads/isra-factsheets/12CentralSouthPacific/Clipperton-12CentralSouthPacific.pdf",
+      "source_title": "Clipperton ISRA Factsheet",
+      "publisher": "IUCN SSC Shark Specialist Group (Important Shark and Ray Areas)",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Sizes statement.",
+      "confidence": "high",
+      "subject": "silvertip-shark"
+    },
+    {
+      "id": "CLI-037",
+      "category": "creature",
+      "statement": "Tagged silvertip sharks have moved between Clipperton and the Galapagos, indicating regional connectivity.",
+      "source_url": "https://sharkrayareas.org/wp-content/uploads/isra-factsheets/12CentralSouthPacific/Clipperton-12CentralSouthPacific.pdf",
+      "source_title": "Clipperton ISRA Factsheet",
+      "publisher": "IUCN SSC Shark Specialist Group (Important Shark and Ray Areas)",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Connectivity statement.",
+      "confidence": "medium",
+      "subject": "silvertip-shark"
+    },
+    {
+      "id": "CLI-038",
+      "category": "creature",
+      "statement": "GBIF holds occurrence records of silvertip sharks at Clipperton, including 2005 specimens at the Paris natural history museum and a 2018 iNaturalist observation.",
+      "source_url": "https://api.gbif.org/v1/occurrence/search?scientificName=Carcharhinus%20albimarginatus&country=FR&limit=5",
+      "source_title": "GBIF occurrence search: Carcharhinus albimarginatus, France",
+      "publisher": "GBIF",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Occurrence search results.",
+      "confidence": "high",
+      "subject": "silvertip-shark"
+    },
+    {
+      "id": "CLI-039",
+      "category": "creature",
+      "statement": "FishBase lists the silvertip shark as Vulnerable (criteria A2bd), reaching about 300 cm total length and living from the surface down to 800 m.",
+      "source_url": "https://www.fishbase.se/summary/SpeciesSummary.php?id=858",
+      "source_title": "Carcharhinus albimarginatus, Silvertip shark",
+      "publisher": "FishBase",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Summary page.",
+      "confidence": "medium",
+      "subject": "silvertip-shark"
+    },
+    {
+      "id": "CLI-040",
+      "category": "creature",
+      "statement": "Silvertip females carry litters of 1-11 pups after about a year of gestation, and the species is vulnerable to overfishing for fins and meat.",
+      "source_url": "https://en.wikipedia.org/wiki/Silvertip_shark",
+      "source_title": "Silvertip shark",
+      "publisher": "Wikipedia (Wikimedia Foundation)",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Reproduction and threats sections.",
+      "confidence": "medium",
+      "subject": "silvertip-shark"
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Clipperton_Island",
+      "title": "Clipperton Island",
+      "publisher": "Wikipedia (Wikimedia Foundation)"
+    },
+    {
+      "url": "https://www.globalsecurity.org/military/world/oceania/cp-geography.htm",
+      "title": "Clipperton / Ile de la Passion - Geography",
+      "publisher": "GlobalSecurity.org"
+    },
+    {
+      "url": "https://sharkrayareas.org/wp-content/uploads/isra-factsheets/12CentralSouthPacific/Clipperton-12CentralSouthPacific.pdf",
+      "title": "Clipperton ISRA Factsheet",
+      "publisher": "IUCN SSC Shark Specialist Group (Important Shark and Ray Areas)"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Clipperton_Rock",
+      "title": "Clipperton Rock",
+      "publisher": "Wikipedia (Wikimedia Foundation)"
+    },
+    {
+      "url": "https://www.britannica.com/place/Clipperton-Island",
+      "title": "Clipperton Island",
+      "publisher": "Encyclopaedia Britannica"
+    },
+    {
+      "url": "https://www.senat.fr/leg/ppl16-150.html",
+      "title": "Proposition de loi n 150 (2016-2017) on the status of Clipperton",
+      "publisher": "Senat (French Parliament)"
+    },
+    {
+      "url": "https://storage.googleapis.com/nmfs_odp_swfsc/Publications/Files/CR/2009/2009Weimerskirch.pdf",
+      "title": "Seabird chapter in Clipperton, environnement et biodiversite d'un microcosme oceanique (Weimerskirch et al., 2009)",
+      "publisher": "NOAA Fisheries SWFSC repository (hosting MNHN/IRD publication)"
+    },
+    {
+      "url": "https://api.gbif.org/v1/occurrence/search?scientificName=Carcharhinus%20albimarginatus&country=FR&limit=5",
+      "title": "GBIF occurrence search: Carcharhinus albimarginatus, France",
+      "publisher": "GBIF"
+    },
+    {
+      "url": "https://www.fishbase.se/summary/SpeciesSummary.php?id=858",
+      "title": "Carcharhinus albimarginatus, Silvertip shark",
+      "publisher": "FishBase"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Silvertip_shark",
+      "title": "Silvertip shark",
+      "publisher": "Wikipedia (Wikimedia Foundation)"
+    }
+  ],
+  "gaps": [
+    "Official IUCN Red List page could not be fetched (robots block), so the assessment year was not confirmed from IUCN directly",
+    "No NASA Earth Observatory page on Clipperton found",
+    "Formal 2022 renaming law and any nature-reserve decree not confirmed from primary French government text",
+    "Land crab census numbers not verified"
+  ],
+  "conflicts": [
+    "Area: Wikipedia 8.9 km2 (including lagoon), Britannica about 5 km2, GlobalSecurity about 6 km2",
+    "Annexation: Wikipedia says 1858, Britannica says 1855",
+    "Arbitration ruling: Wikipedia says 1931, Britannica says 1930",
+    "Silvertip assessment year: FishBase says 8 June 2023, Wikipedia cites 2016",
+    "Clipperton Rock height: 29 m (Wikipedia, GlobalSecurity), Britannica says a promontory of 21 m"
+  ]
+}

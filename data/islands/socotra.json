@@ -1,0 +1,589 @@
+{
+  "slug": "socotra",
+  "name": "Socotra",
+  "alt_names": [
+    "Soqotra",
+    "Suqutra"
+  ],
+  "pin": {
+    "lat": 12.51,
+    "lon": 53.92,
+    "note": "Approximate centre of Socotra main island"
+  },
+  "territory": "Yemen (Socotra Governorate)",
+  "creatures": [
+    {
+      "slug": "socotra-buzzard",
+      "common_name": "Socotra buzzard",
+      "scientific_name": "Buteo socotraensis",
+      "creature_type": "bird",
+      "iucn_status": "Vulnerable (VU); 2022 assessment per Wikipedia; GBIF confirms VU",
+      "gbif_search_name": "Buteo socotraensis",
+      "status_note": "Endemic to Socotra; about 250-500 mature individuals, declining; described in 2010."
+    }
+  ],
+  "facts": [
+    {
+      "id": "SOC-001",
+      "category": "location",
+      "statement": "Socotra lies south of the Arabian Peninsula and east of the Horn of Africa, centred at roughly 12.51 N, 53.92 E.",
+      "source_url": "https://en.wikipedia.org/wiki/Socotra",
+      "source_title": "Socotra - Wikipedia",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Geography section gives position and coordinates.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "SOC-002",
+      "category": "location",
+      "statement": "NASA describes Socotra as an archipelago at the eastern end of the Gulf of Aden, about 320 km (200 mi) south of the Yemeni mainland.",
+      "source_url": "https://science.nasa.gov/earth/earth-observatory/socotra-yemen-9090/",
+      "source_title": "Socotra, Yemen - Earth Observatory",
+      "publisher": "NASA Earth Observatory",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Location paragraph of the Earth Observatory image caption.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "SOC-003",
+      "category": "location",
+      "statement": "Britannica puts Socotra roughly 340 km (210 mi) southeast of Yemen and calls it the largest of several islands stretching east from the Horn of Africa.",
+      "source_url": "https://www.britannica.com/place/Socotra",
+      "source_title": "Socotra - Britannica",
+      "publisher": "Encyclopaedia Britannica",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Opening description of the island.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "SOC-004",
+      "category": "location",
+      "statement": "UNESCO describes the World Heritage property as four main islands plus two rocky islets, forming an archipelago about 250 km long in the northwest Indian Ocean.",
+      "source_url": "https://whc.unesco.org/en/list/1263",
+      "source_title": "Socotra Archipelago - UNESCO World Heritage Centre",
+      "publisher": "UNESCO World Heritage Centre",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Property description on the listing page.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "SOC-005",
+      "category": "climate",
+      "statement": "The island has a tropical desert climate with generally sparse rain, and long droughts can occur.",
+      "source_url": "https://science.nasa.gov/earth/earth-observatory/socotra-yemen-9090/",
+      "source_title": "Socotra, Yemen - Earth Observatory",
+      "publisher": "NASA Earth Observatory",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Climate remark in the NASA caption.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "SOC-006",
+      "category": "climate",
+      "statement": "At Socotra airport the mean annual temperature is about 28 C, with a recorded high of 40.6 C and low of 17.0 C.",
+      "source_url": "https://en.wikipedia.org/wiki/Socotra",
+      "source_title": "Socotra - Wikipedia",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Climate summary figures in the article.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "SOC-007",
+      "category": "climate",
+      "statement": "Rainfall at the airport averages about 193 mm per year, while upland areas can receive around 800 mm annually.",
+      "source_url": "https://en.wikipedia.org/wiki/Socotra",
+      "source_title": "Socotra - Wikipedia",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Climate section rainfall figures.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "SOC-008",
+      "category": "climate",
+      "statement": "The northeast monsoon (October-December) delivers most of the island's rain, whereas the southwest monsoon (June-September) brings strong winds and rough seas.",
+      "source_url": "https://en.wikipedia.org/wiki/Socotra",
+      "source_title": "Socotra - Wikipedia",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Climate section describing monsoon seasons.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "SOC-009",
+      "category": "climate",
+      "statement": "Cyclone Chapala passed just north of Socotra on 1 November 2015, the island's first hurricane-force impact since 1922, destroying about 237 homes and displacing roughly 18,000 people.",
+      "source_url": "https://en.wikipedia.org/wiki/Cyclone_Chapala",
+      "source_title": "Cyclone Chapala - Wikipedia",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Impact section of the Chapala article.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "SOC-010",
+      "category": "terrain",
+      "statement": "The main island of Socotra covers about 3,665 km2 and measures roughly 125-132 km long by 42-50 km wide, depending on the figure cited.",
+      "source_url": "https://en.wikipedia.org/wiki/Socotra",
+      "source_title": "Socotra - Wikipedia",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Geography section dimensions.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "SOC-011",
+      "category": "terrain",
+      "statement": "Socotra's highest point is Mashanig in the Hajhir Mountains at about 1,503 m.",
+      "source_url": "https://en.wikipedia.org/wiki/Socotra",
+      "source_title": "Socotra - Wikipedia",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Geography section.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "SOC-012",
+      "category": "terrain",
+      "statement": "A tourism-sector geology page names Jebel Skand, above 1,550 m, as the archipelago's highest point, which differs from the 1,503 m figure for Mashanig.",
+      "source_url": "https://www.welcometosocotra.com/geology/",
+      "source_title": "Geological History - Welcome to Socotra",
+      "publisher": "Welcome to Socotra",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Description of the igneous highlands.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "SOC-013",
+      "category": "terrain",
+      "statement": "Limestone plateaus covering much of the island sit mostly at about 300-700 m and show karst features such as pavements, gullies and many caves, with few surface streams.",
+      "source_url": "https://www.welcometosocotra.com/geology/",
+      "source_title": "Geological History - Welcome to Socotra",
+      "publisher": "Welcome to Socotra",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Limestone plateau section.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "SOC-014",
+      "category": "geology",
+      "statement": "Socotra is continental in origin rather than volcanic, having split from the ancient supercontinent Gondwana.",
+      "source_url": "https://science.nasa.gov/earth/earth-observatory/socotra-yemen-9090/",
+      "source_title": "Socotra, Yemen - Earth Observatory",
+      "publisher": "NASA Earth Observatory",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Geology remark in the NASA caption.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "SOC-015",
+      "category": "geology",
+      "statement": "Arabia separated from Africa roughly 20-15 million years ago, opening the Gulf of Aden, with Socotra remaining on the African plate.",
+      "source_url": "https://www.welcometosocotra.com/geology/",
+      "source_title": "Geological History - Welcome to Socotra",
+      "publisher": "Welcome to Socotra",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Separation section.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "SOC-016",
+      "category": "history",
+      "statement": "Hoq Cave, about 1.5 km inland on the northeast coast, holds inscriptions in six scripts, including Brahmi, Greek and Ethiopic Ge'ez, dating from the 1st to 6th centuries CE.",
+      "source_url": "https://en.wikipedia.org/wiki/Hoq_Cave",
+      "source_title": "Hoq Cave - Wikipedia",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Inscriptions and dates sections.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "SOC-017",
+      "category": "history",
+      "statement": "Portuguese forces took the port of Suq in 1507 and left in 1511 because of famine and disease.",
+      "source_url": "https://en.wikipedia.org/wiki/Socotra",
+      "source_title": "Socotra - Wikipedia",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "History section, Portuguese period.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "SOC-018",
+      "category": "history",
+      "statement": "The Mahra Sultanate was abolished in 1967 and Socotra joined South Yemen on 30 November 1967; it became part of unified Yemen in 1990.",
+      "source_url": "https://en.wikipedia.org/wiki/Socotra",
+      "source_title": "Socotra - Wikipedia",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "History section.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "SOC-019",
+      "category": "history",
+      "statement": "The Socotra Archipelago Biosphere Reserve was designated in 2003, Detwah Lagoon became a Ramsar site in 2007, and the archipelago became a World Heritage Site in 2008.",
+      "source_url": "https://unesdoc.unesco.org/ark:/48223/pf0000381003",
+      "source_title": "Nature and people in the Socotra Archipelago",
+      "publisher": "UNESCO",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Biosphere Reserve section.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "SOC-020",
+      "category": "people_governance",
+      "statement": "Socotra was separated from Hadhramaut Governorate to become its own Yemeni governorate in December 2013, with Hadibu as capital.",
+      "source_url": "https://en.wikipedia.org/wiki/Socotra_Governorate",
+      "source_title": "Socotra Governorate - Wikipedia",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Creation and status paragraph.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "SOC-021",
+      "category": "people_governance",
+      "statement": "The most recent census cited by UNESCO estimated about 100,000 people across the archipelago, and the island holds roughly 480,000 domestic goats.",
+      "source_url": "https://unesdoc.unesco.org/ark:/48223/pf0000381003",
+      "source_title": "Nature and people in the Socotra Archipelago",
+      "publisher": "UNESCO",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Population and livelihoods sections.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "SOC-022",
+      "category": "people_governance",
+      "statement": "Soqotri, an unwritten Modern South Arabian Semitic language, is spoken mainly on the Socotra archipelago and is classified by UNESCO as severely endangered.",
+      "source_url": "https://en.wikipedia.org/wiki/Soqotri_language",
+      "source_title": "Soqotri language - Wikipedia",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Language family and status paragraphs.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "SOC-023",
+      "category": "people_governance",
+      "statement": "According to Wikipedia, the UAE took control of the airport and seaport in April 2018, returned them to Yemen in a May 2018 deal, and the Southern Transitional Council seized the archipelago in June 2020, holding it until January 2026.",
+      "source_url": "https://en.wikipedia.org/wiki/Socotra_Governorate",
+      "source_title": "Socotra Governorate - Wikipedia",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Recent political situation section.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "SOC-024",
+      "category": "ecology",
+      "statement": "UNESCO records 825 plant species on the archipelago, about 37% endemic, plus 34 reptile species (about 90% endemic) and 96 land snail species (about 95% endemic).",
+      "source_url": "https://whc.unesco.org/en/list/1263",
+      "source_title": "Socotra Archipelago - UNESCO World Heritage Centre",
+      "publisher": "UNESCO World Heritage Centre",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Biodiversity description.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "SOC-025",
+      "category": "ecology",
+      "statement": "UNESCO lists 192 bird species for the archipelago, of which 44 breed and 85 are regular migrants, with 22 BirdLife Important Bird Areas.",
+      "source_url": "https://whc.unesco.org/en/list/1263",
+      "source_title": "Socotra Archipelago - UNESCO World Heritage Centre",
+      "publisher": "UNESCO World Heritage Centre",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Bird figures.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "SOC-026",
+      "category": "ecology",
+      "statement": "The surrounding waters hold 253 reef-building coral species and 730 coastal fish species.",
+      "source_url": "https://whc.unesco.org/en/list/1263",
+      "source_title": "Socotra Archipelago - UNESCO World Heritage Centre",
+      "publisher": "UNESCO World Heritage Centre",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Marine biodiversity figures.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "SOC-027",
+      "category": "ecology",
+      "statement": "The largest remaining stands of dragon's blood trees (Dracaena cinnabari) are on Socotra, though goats threaten them.",
+      "source_url": "https://science.nasa.gov/earth/earth-observatory/socotra-yemen-9090/",
+      "source_title": "Socotra, Yemen - Earth Observatory",
+      "publisher": "NASA Earth Observatory",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Vegetation paragraph.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "SOC-028",
+      "category": "threats",
+      "statement": "UNESCO lists current pressures as road building, overgrazing and overharvesting of land and marine resources, with tourism and invasive species as future risks.",
+      "source_url": "https://whc.unesco.org/en/list/1263",
+      "source_title": "Socotra Archipelago - UNESCO World Heritage Centre",
+      "publisher": "UNESCO World Heritage Centre",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Threats section.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "SOC-029",
+      "category": "threats",
+      "statement": "Projections cited for the dragon's blood tree suggest a 45 percent habitat loss by 2080, while goats browse seedlings; the tree is rated Vulnerable.",
+      "source_url": "https://en.wikipedia.org/wiki/Dracaena_cinnabari",
+      "source_title": "Dracaena cinnabari - Wikipedia",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Threats and status sections.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "SOC-030",
+      "category": "threats",
+      "statement": "Invasive rats and cats are increasing on Socotra and threaten native plants and animals.",
+      "source_url": "https://en.wikipedia.org/wiki/Fauna_of_Socotra",
+      "source_title": "Fauna of Socotra - Wikipedia",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Introduced species section.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "SOC-031",
+      "category": "conservation",
+      "statement": "UNESCO says all component areas have legal protection and about 75% of the land is protected, but legislation, management capacity and enforcement need strengthening.",
+      "source_url": "https://whc.unesco.org/en/list/1263",
+      "source_title": "Socotra Archipelago - UNESCO World Heritage Centre",
+      "publisher": "UNESCO World Heritage Centre",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Conservation and management section.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "SOC-032",
+      "category": "creature",
+      "statement": "The Socotra buzzard (Buteo socotraensis) occurs only on Socotra, Yemen.",
+      "source_url": "https://en.wikipedia.org/wiki/Socotra_buzzard",
+      "source_title": "Socotra buzzard - Wikipedia",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Endemism line.",
+      "confidence": "medium",
+      "subject": "socotra-buzzard"
+    },
+    {
+      "id": "SOC-033",
+      "category": "creature",
+      "statement": "GBIF's Backbone lists Buteo socotraensis with an IUCN Red List category of Vulnerable (VU); the response gives no year.",
+      "source_url": "https://api.gbif.org/v1/species/6066254/iucnRedListCategory",
+      "source_title": "GBIF IUCN Red List category: Buteo socotraensis",
+      "publisher": "GBIF",
+      "retrieved": "2026-10-08",
+      "evidence_note": "IUCN category field.",
+      "confidence": "high",
+      "subject": "socotra-buzzard"
+    },
+    {
+      "id": "SOC-034",
+      "category": "creature",
+      "statement": "The 2022 IUCN Red List assessment, as reported by Wikipedia, rates the Socotra buzzard Vulnerable with about 250-500 mature individuals and a declining population.",
+      "source_url": "https://en.wikipedia.org/wiki/Socotra_buzzard",
+      "source_title": "Socotra buzzard - Wikipedia",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Conservation status section.",
+      "confidence": "medium",
+      "subject": "socotra-buzzard"
+    },
+    {
+      "id": "SOC-035",
+      "category": "creature",
+      "statement": "The Socotra buzzard was formally described as a new species in 2010 by R. F. Porter and G. M. Kirwan in the Bulletin of the British Ornithologists' Club.",
+      "source_url": "https://www.birdguides.com/articles/socotra-buzzard-declared-separate-species-from-common/",
+      "source_title": "Socotra Buzzard declared separate species from Common",
+      "publisher": "BirdGuides",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Article on the formal description.",
+      "confidence": "high",
+      "subject": "socotra-buzzard"
+    },
+    {
+      "id": "SOC-036",
+      "category": "creature",
+      "statement": "Socotra buzzards live in foothills, plateaus and deep ravines, usually at 150-800 m, and need cliffs for nesting.",
+      "source_url": "https://en.wikipedia.org/wiki/Socotra_buzzard",
+      "source_title": "Socotra buzzard - Wikipedia",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Habitat description.",
+      "confidence": "medium",
+      "subject": "socotra-buzzard"
+    },
+    {
+      "id": "SOC-037",
+      "category": "creature",
+      "statement": "With few mammals on the island, the buzzard feeds mainly on reptiles and invertebrates, hunting opportunistically.",
+      "source_url": "https://en.wikipedia.org/wiki/Socotra_buzzard",
+      "source_title": "Socotra buzzard - Wikipedia",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Diet description.",
+      "confidence": "medium",
+      "subject": "socotra-buzzard"
+    },
+    {
+      "id": "SOC-038",
+      "category": "creature",
+      "statement": "The buzzard may compete with vultures, ravens and falcons for nesting cliffs.",
+      "source_url": "https://en.wikipedia.org/wiki/Socotra_buzzard",
+      "source_title": "Socotra buzzard - Wikipedia",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Threats and competition remark.",
+      "confidence": "medium",
+      "subject": "socotra-buzzard"
+    },
+    {
+      "id": "SOC-039",
+      "category": "creature",
+      "statement": "GBIF holds 185 occurrence records for Buteo socotraensis, 181 of them from Yemen.",
+      "source_url": "https://api.gbif.org/v1/occurrence/search?scientificName=Buteo%20socotraensis&limit=0&facet=country",
+      "source_title": "GBIF occurrence search: Buteo socotraensis by country",
+      "publisher": "GBIF",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Country facet counts.",
+      "confidence": "high",
+      "subject": "socotra-buzzard"
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Socotra",
+      "title": "Socotra - Wikipedia",
+      "publisher": "Wikipedia"
+    },
+    {
+      "url": "https://science.nasa.gov/earth/earth-observatory/socotra-yemen-9090/",
+      "title": "Socotra, Yemen - Earth Observatory",
+      "publisher": "NASA Earth Observatory"
+    },
+    {
+      "url": "https://www.britannica.com/place/Socotra",
+      "title": "Socotra - Britannica",
+      "publisher": "Encyclopaedia Britannica"
+    },
+    {
+      "url": "https://whc.unesco.org/en/list/1263",
+      "title": "Socotra Archipelago - UNESCO World Heritage Centre",
+      "publisher": "UNESCO World Heritage Centre"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Cyclone_Chapala",
+      "title": "Cyclone Chapala - Wikipedia",
+      "publisher": "Wikipedia"
+    },
+    {
+      "url": "https://www.welcometosocotra.com/geology/",
+      "title": "Geological History - Welcome to Socotra",
+      "publisher": "Welcome to Socotra"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Hoq_Cave",
+      "title": "Hoq Cave - Wikipedia",
+      "publisher": "Wikipedia"
+    },
+    {
+      "url": "https://unesdoc.unesco.org/ark:/48223/pf0000381003",
+      "title": "Nature and people in the Socotra Archipelago",
+      "publisher": "UNESCO"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Socotra_Governorate",
+      "title": "Socotra Governorate - Wikipedia",
+      "publisher": "Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Soqotri_language",
+      "title": "Soqotri language - Wikipedia",
+      "publisher": "Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Dracaena_cinnabari",
+      "title": "Dracaena cinnabari - Wikipedia",
+      "publisher": "Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Fauna_of_Socotra",
+      "title": "Fauna of Socotra - Wikipedia",
+      "publisher": "Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Socotra_buzzard",
+      "title": "Socotra buzzard - Wikipedia",
+      "publisher": "Wikipedia"
+    },
+    {
+      "url": "https://api.gbif.org/v1/species/6066254/iucnRedListCategory",
+      "title": "GBIF IUCN Red List category: Buteo socotraensis",
+      "publisher": "GBIF"
+    },
+    {
+      "url": "https://www.birdguides.com/articles/socotra-buzzard-declared-separate-species-from-common/",
+      "title": "Socotra Buzzard declared separate species from Common",
+      "publisher": "BirdGuides"
+    },
+    {
+      "url": "https://api.gbif.org/v1/occurrence/search?scientificName=Buteo%20socotraensis&limit=0&facet=country",
+      "title": "GBIF occurrence search: Buteo socotraensis by country",
+      "publisher": "GBIF"
+    }
+  ],
+  "gaps": [
+    "IUCN Red List and BirdLife pages could not be fetched, so the 2022 assessment year rests on Wikipedia; GBIF confirms category only",
+    "No authoritative coordinates for the island on UNESCO page",
+    "Official recent population figure for the main island not verified",
+    "History coverage is thinner than targeted (4 facts); Periplus, Hoq Cave discovery and 1834 British episode were fetched but not retained"
+  ],
+  "conflicts": [
+    "Highest peak: 1,503 m Mashanig (Wikipedia) vs over 1,550 m Jebel Skand (welcometosocotra.com)",
+    "Distance from Yemen mainland: about 320 km (NASA) vs about 340 km (Britannica)",
+    "Plant species count: 825 (UNESCO) vs 835 (Wikipedia Flora of Socotra; not used)",
+    "Population: about 100,000 archipelago (UNESCO) vs 50,000-60,000 main island (Wikipedia, not used)"
+  ]
+}

@@ -1,0 +1,39 @@
+{
+ "fetched_at": "2026-10-08T11:51:39+00:00",
+ "creatures": {
+  "tristan-albatross": {
+   "match": {
+    "usageKey": 5722866,
+    "scientificName": "Diomedea dabbenena Mathews, 1929",
+    "canonicalName": "Diomedea dabbenena",
+    "rank": "SPECIES",
+    "status": "ACCEPTED",
+    "confidence": 99,
+    "matchType": "EXACT",
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "order": "Procellariiformes",
+    "family": "Diomedeidae",
+    "genus": "Diomedea",
+    "species": "Diomedea dabbenena",
+    "kingdomKey": 1,
+    "phylumKey": 44,
+    "classKey": 212,
+    "orderKey": 7192755,
+    "familyKey": 5238,
+    "genusKey": 2481387,
+    "speciesKey": 5722866,
+    "class": "Aves"
+   },
+   "global_count": 3094,
+   "local_count": 501,
+   "box": {
+    "min_lat": -41.1,
+    "max_lat": -33.1,
+    "min_lon": -16.3,
+    "max_lon": -8.3,
+    "half_width_deg": 4.0
+   }
+  }
+ }
+}

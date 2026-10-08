@@ -1,0 +1,155 @@
+{
+ "fetched_at": "2026-10-08T11:51:22+00:00",
+ "raw": {
+  "type": "Feature",
+  "geometry": {
+   "type": "Point",
+   "coordinates": [
+    3.333,
+    -54.417,
+    2.4
+   ]
+  },
+  "properties": {
+   "parameter": {
+    "PRECTOTCORR": {
+     "JAN": 2.41,
+     "FEB": 2.79,
+     "MAR": 3.4,
+     "APR": 3.74,
+     "MAY": 2.92,
+     "JUN": 2.86,
+     "JUL": 2.68,
+     "AUG": 3.22,
+     "SEP": 2.59,
+     "OCT": 2.81,
+     "NOV": 2.35,
+     "DEC": 2.55,
+     "ANN": 2.86
+    },
+    "RH2M": {
+     "JAN": 90.82,
+     "FEB": 90.15,
+     "MAR": 88.86,
+     "APR": 88.32,
+     "MAY": 86.33,
+     "JUN": 86.2,
+     "JUL": 86.22,
+     "AUG": 87.46,
+     "SEP": 87.51,
+     "OCT": 88.37,
+     "NOV": 90.11,
+     "DEC": 90.86,
+     "ANN": 88.43
+    },
+    "T2M": {
+     "JAN": 0.6,
+     "FEB": 1.06,
+     "MAR": 0.95,
+     "APR": 0.54,
+     "MAY": -0.37,
+     "JUN": -1.18,
+     "JUL": -2.13,
+     "AUG": -3.01,
+     "SEP": -3.34,
+     "OCT": -1.96,
+     "NOV": -0.9,
+     "DEC": -0.11,
+     "ANN": -0.83
+    },
+    "T2M_MAX": {
+     "JAN": 4.28,
+     "FEB": 5.2,
+     "MAR": 4.89,
+     "APR": 4.55,
+     "MAY": 3.93,
+     "JUN": 2.7,
+     "JUL": 3.34,
+     "AUG": 2.09,
+     "SEP": 2.8,
+     "OCT": 2.81,
+     "NOV": 2.77,
+     "DEC": 2.97,
+     "ANN": 5.2
+    },
+    "T2M_MIN": {
+     "JAN": -2.27,
+     "FEB": -2.08,
+     "MAR": -2.44,
+     "APR": -3.12,
+     "MAY": -5.6,
+     "JUN": -7.86,
+     "JUL": -12.38,
+     "AUG": -14.07,
+     "SEP": -17.47,
+     "OCT": -11.19,
+     "NOV": -5.01,
+     "DEC": -3.2,
+     "ANN": -17.47
+    },
+    "WS10M": {
+     "JAN": 9.36,
+     "FEB": 10.18,
+     "MAR": 10.47,
+     "APR": 10.41,
+     "MAY": 10.59,
+     "JUN": 10.67,
+     "JUL": 11.21,
+     "AUG": 11.03,
+     "SEP": 10.69,
+     "OCT": 10.62,
+     "NOV": 10.11,
+     "DEC": 9.54,
+     "ANN": 10.41
+    }
+   }
+  },
+  "header": {
+   "title": "NASA/POWER Source Native Resolution Climatology Climatologies",
+   "api": {
+    "version": "v2.10.0",
+    "name": "POWER Climatology API"
+   },
+   "sources": [
+    "MERRA2",
+    "POWER"
+   ],
+   "fill_value": -999.0,
+   "time_standard": "LST",
+   "range": "20-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2020)"
+  },
+  "messages": [
+   "The requested parameters are retrieved from a pre-computed climatological period (January 2001 - December 2020)"
+  ],
+  "parameters": {
+   "PRECTOTCORR": {
+    "units": "mm/day",
+    "longname": "Precipitation Corrected"
+   },
+   "RH2M": {
+    "units": "%",
+    "longname": "Relative Humidity at 2 Meters"
+   },
+   "T2M": {
+    "units": "C",
+    "longname": "Temperature at 2 Meters"
+   },
+   "T2M_MAX": {
+    "units": "C",
+    "longname": "Temperature at 2 Meters Maximum"
+   },
+   "T2M_MIN": {
+    "units": "C",
+    "longname": "Temperature at 2 Meters Minimum"
+   },
+   "WS10M": {
+    "units": "m/s",
+    "longname": "Wind Speed at 10 Meters"
+   }
+  },
+  "times": {
+   "data": 0.416,
+   "process": 0.03
+  }
+ }
+}

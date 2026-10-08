@@ -1,0 +1,27 @@
+# secrets — never commit
+.env
+.env.*
+!.env.example
+
+# python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+
+# runtime cache (committed snapshots live in data/snapshots/)
+data/cache/
+
+# eval scratch (committed results live in eval/results/)
+eval/.scratch/
+
+# os / editor
+.DS_Store
+.idea/
+.vscode/
+
+# demo video working files
+brag-output/
+*.mp4

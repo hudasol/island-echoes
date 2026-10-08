@@ -1,0 +1,741 @@
+{
+  "slug": "galapagos",
+  "name": "Galápagos Islands",
+  "alt_names": [
+    "Archipiélago de Colón",
+    "Islas Galápagos",
+    "Columbus Archipelago"
+  ],
+  "pin": {
+    "lat": -0.5,
+    "lon": -90.5,
+    "note": "Approximate centre of the archipelago (0°30′S 90°30′W), as given in the Wikipedia article infobox; it is not any single island. UNESCO's own coordinate string is malformed so was not used."
+  },
+  "territory": "Ecuador (Galápagos Province)",
+  "creatures": [
+    {
+      "slug": "pinta-island-tortoise",
+      "common_name": "Pinta Island tortoise",
+      "scientific_name": "Chelonoidis abingdonii",
+      "creature_type": "reptile",
+      "iucn_status": "Extinct (IUCN Red List; assessment Cayot et al., 2016 per two secondary sources; Wikipedia says the assessment was amended in 2022)",
+      "gbif_search_name": "Chelonoidis abingdonii",
+      "status_note": "The last known pure individual, Lonesome George, died 24 June 2012. Hybrids with Pinta ancestry were found on Volcano Wolf, Isabela, so purebred relatives may survive. The IUCN Red List site could not be fetched directly."
+    },
+    {
+      "slug": "galapagos-sea-lion",
+      "common_name": "Galápagos sea lion",
+      "scientific_name": "Zalophus wollebaeki",
+      "creature_type": "mammal",
+      "iucn_status": "Endangered",
+      "gbif_search_name": "Zalophus wollebaeki",
+      "gbif_usage_key": 2433460,
+      "status_note": "GBIF match returned ACCEPTED species, EXACT match, confidence 99, usageKey 2433460 (Zalophus wollebaeki Sivertsen, 1953). IUCN site blocked WebFetch (robots), so Endangered is verified from two secondary sources (Wikipedia, citing a 2015 assessment; Animal Diversity Web). Not confirmed on iucnredlist.org."
+    }
+  ],
+  "facts": [
+    {
+      "id": "GAL-001",
+      "category": "location",
+      "statement": "The archipelago lies in the Pacific Ocean roughly 1,000 km from mainland Ecuador.",
+      "source_url": "https://whc.unesco.org/en/list/1",
+      "source_title": "Galápagos Islands - UNESCO World Heritage Centre",
+      "publisher": "UNESCO World Heritage Centre",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Location line of the property description.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "GAL-002",
+      "category": "location",
+      "statement": "Wikipedia gives the group's coordinates as 0°30′S 90°30′W, i.e. just south of the equator in the eastern Pacific.",
+      "source_url": "https://en.wikipedia.org/wiki/Galápagos_Islands",
+      "source_title": "Galápagos Islands",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Infobox coordinates.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "GAL-003",
+      "category": "location",
+      "statement": "The group comprises 127 islands, islets and rocks, of which 19 are large and 4 are inhabited.",
+      "source_url": "https://whc.unesco.org/en/list/1",
+      "source_title": "Galápagos Islands - UNESCO World Heritage Centre",
+      "publisher": "UNESCO World Heritage Centre",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Description of the property's islands.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "GAL-004",
+      "category": "location",
+      "statement": "Wolf volcano, the archipelago's highest, sits at the north end of Isabela and straddles the equator, at about 0.02°N, 91.35°W.",
+      "source_url": "https://volcano.si.edu/volcano.cfm?vn=353020",
+      "source_title": "Wolf - Global Volcanism Program",
+      "publisher": "Smithsonian Institution Global Volcanism Program",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Coordinates and location text on the volcano page.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "GAL-005",
+      "category": "climate",
+      "statement": "The cooler garúa season runs June to November, with sea and air near 22 °C, steady wind, drizzle and heavy fog or mist.",
+      "source_url": "https://en.wikipedia.org/wiki/Galápagos_Islands",
+      "source_title": "Galápagos Islands",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Climate section season description.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "GAL-006",
+      "category": "climate",
+      "statement": "The warm season, December to May, has average sea and air temperatures of about 25 °C, little wind, and sunshine broken by occasional heavy downpours.",
+      "source_url": "https://en.wikipedia.org/wiki/Galápagos_Islands",
+      "source_title": "Galápagos Islands",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Climate section season description.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "GAL-007",
+      "category": "climate",
+      "statement": "San Cristóbal's 1981-2010 normals show an annual mean temperature of 24.8 °C and annual precipitation of about 578 mm over 119 days.",
+      "source_url": "https://en.wikipedia.org/wiki/Galápagos_Islands",
+      "source_title": "Galápagos Islands",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Climate table/normals for San Cristóbal.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "GAL-008",
+      "category": "climate",
+      "statement": "Rainfall on Santa Cruz in 1969 ranged from 469.7 mm at the Charles Darwin Station on the coast to 2,656.4 mm at the highland Media Luna site.",
+      "source_url": "https://en.wikipedia.org/wiki/Galápagos_Islands",
+      "source_title": "Galápagos Islands",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Santa Cruz rainfall paragraph.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "GAL-009",
+      "category": "climate",
+      "statement": "Five major ocean currents converge on the islands, including the cold Humboldt Current and the eastward Cromwell Current, which wells up nutrient-rich water.",
+      "source_url": "https://www.livingoceansfoundation.org/?p=39300",
+      "source_title": "Galapagos ocean currents",
+      "publisher": "Living Oceans Foundation",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Ocean currents article text.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "GAL-010",
+      "category": "terrain",
+      "statement": "The highest point in the archipelago is Volcán Wolf on Isabela, at 1,707 m.",
+      "source_url": "https://en.wikipedia.org/wiki/Galápagos_Islands",
+      "source_title": "Galápagos Islands",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Geography section / infobox.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "GAL-011",
+      "category": "geology",
+      "statement": "The Smithsonian lists Wolf as a shield volcano of 1,710 m whose most recent eruption ran from 6 January to 14 April 2022.",
+      "source_url": "https://volcano.si.edu/volcano.cfm?vn=353020",
+      "source_title": "Wolf - Global Volcanism Program",
+      "publisher": "Smithsonian Institution Global Volcanism Program",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Elevation and eruptive history fields.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "GAL-012",
+      "category": "geology",
+      "statement": "Isabela formed from six merged shield volcanoes: Alcedo, Cerro Azul, Darwin, Ecuador, Sierra Negra and Wolf.",
+      "source_url": "https://en.wikipedia.org/wiki/Isabela_Island_(Galápagos)",
+      "source_title": "Isabela Island (Galápagos)",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Geology paragraph.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "GAL-013",
+      "category": "geology",
+      "statement": "The islands sit over a mantle plume (hotspot) beneath the Nazca Plate, which drifts east-southeast at about 6.4 cm per year.",
+      "source_url": "https://en.wikipedia.org/wiki/Galápagos_Islands",
+      "source_title": "Galápagos Islands",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Geology section.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "GAL-014",
+      "category": "geology",
+      "statement": "Island ages increase to the east, from Fernandina at about 0.05 million years to San Cristóbal at about 3.2 million years.",
+      "source_url": "https://en.wikipedia.org/wiki/Galápagos_Islands",
+      "source_title": "Galápagos Islands",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Geology table of island ages.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "GAL-015",
+      "category": "history",
+      "statement": "Bishop Tomás de Berlanga, whose ship drifted off course, reached the islands on 10 March 1535.",
+      "source_url": "https://en.wikipedia.org/wiki/Galápagos_Islands",
+      "source_title": "Galápagos Islands",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "History section on discovery.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "GAL-016",
+      "category": "history",
+      "statement": "Charles Darwin arrived aboard HMS Beagle on 15 September 1835.",
+      "source_url": "https://en.wikipedia.org/wiki/Galápagos_Islands",
+      "source_title": "Galápagos Islands",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "History section.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "GAL-017",
+      "category": "history",
+      "statement": "Ecuador annexed the archipelago on 12 February 1832 in a ceremony on Floreana.",
+      "source_url": "https://en.wikipedia.org/wiki/Galápagos_Islands",
+      "source_title": "Galápagos Islands",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "History section.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "GAL-018",
+      "category": "history",
+      "statement": "The Galápagos National Park was established on 4 July 1959.",
+      "source_url": "https://en.wikipedia.org/wiki/Galápagos_National_Park",
+      "source_title": "Galápagos National Park",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Establishment details in lead.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "GAL-019",
+      "category": "history",
+      "statement": "The islands were inscribed as a UNESCO World Heritage Site in 1978, the Marine Reserve was created in 1986 and extended in 1998.",
+      "source_url": "https://whc.unesco.org/en/list/1",
+      "source_title": "Galápagos Islands - UNESCO World Heritage Centre",
+      "publisher": "UNESCO World Heritage Centre",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Inscription and extension history.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "GAL-020",
+      "category": "history",
+      "statement": "UNESCO's World Heritage Committee put the Galápagos on its 'in danger' list on 26 June 2007 citing invasive species, tourism and immigration.",
+      "source_url": "https://www.aljazeera.com/news/2007/6/27/un-declares-galapagos-endangered",
+      "source_title": "UN declares Galapagos endangered",
+      "publisher": "Al Jazeera",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Article text on the Christchurch committee decision.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "GAL-021",
+      "category": "people_governance",
+      "statement": "The islands form Ecuador's Galápagos Province, with Puerto Baquerizo Moreno as capital and three cantons: Isabela, San Cristóbal and Santa Cruz.",
+      "source_url": "https://en.wikipedia.org/wiki/Galápagos_Province",
+      "source_title": "Galápagos Province",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Infobox and lead.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "GAL-022",
+      "category": "people_governance",
+      "statement": "The 2022 census counted 28,583 residents, 22,741 of them urban.",
+      "source_url": "https://en.wikipedia.org/wiki/Galápagos_Province",
+      "source_title": "Galápagos Province",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Population line.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "GAL-023",
+      "category": "people_governance",
+      "statement": "Ecuador's constitution sets a special regime (régimen especial) for the islands, and draft legislation defined four migration categories, with only permanent residents free of time limits.",
+      "source_url": "https://www.asambleanacional.gob.ec/es/node/35892",
+      "source_title": "Proyecto de Ley de Galápagos responde a construcción participativa",
+      "publisher": "Asamblea Nacional del Ecuador",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Press summary of the draft special law.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "GAL-024",
+      "category": "ecology",
+      "statement": "The property holds about 500 vascular plant species (about 180 endemic) and 36 reptile species, all endemic.",
+      "source_url": "https://whc.unesco.org/en/list/1",
+      "source_title": "Galápagos Islands - UNESCO World Heritage Centre",
+      "publisher": "UNESCO World Heritage Centre",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Ecology paragraph.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "GAL-025",
+      "category": "ecology",
+      "statement": "Around 2,909 marine species are recorded, with 18.2% endemism.",
+      "source_url": "https://whc.unesco.org/en/list/1",
+      "source_title": "Galápagos Islands - UNESCO World Heritage Centre",
+      "publisher": "UNESCO World Heritage Centre",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Ecology paragraph.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "GAL-026",
+      "category": "ecology",
+      "statement": "About 43% of land plants, 56% of insects and roughly 80% of land birds are found only on the islands.",
+      "source_url": "https://www.kfw.de/stories/environment/nature-conservation/galapagos-invasive-species/",
+      "source_title": "Galapagos invasive species (KfW Stories)",
+      "publisher": "KfW Development Bank",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Endemism passage.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "GAL-027",
+      "category": "ecology",
+      "statement": "The Galápagos Marine Reserve covers 133,000 km2, and the site's convergence of three currents drives rich marine ecosystems.",
+      "source_url": "https://whc.unesco.org/en/list/1",
+      "source_title": "Galápagos Islands - UNESCO World Heritage Centre",
+      "publisher": "UNESCO World Heritage Centre",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Property area and description.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "GAL-028",
+      "category": "threats",
+      "statement": "Over 500 non-native plant species have been recorded, and rats, feral goats and cats and introduced insects harm native wildlife.",
+      "source_url": "https://www.kfw.de/stories/environment/nature-conservation/galapagos-invasive-species/",
+      "source_title": "Galapagos invasive species (KfW Stories)",
+      "publisher": "KfW Development Bank",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Invasive species passage.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "GAL-029",
+      "category": "threats",
+      "statement": "Reporting on the 2007 listing says goats compete with tortoises for food and up to 80,000 were removed over three years.",
+      "source_url": "https://www.aljazeera.com/news/2007/6/27/un-declares-galapagos-endangered",
+      "source_title": "UN declares Galapagos endangered",
+      "publisher": "Al Jazeera",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Article body.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "GAL-030",
+      "category": "conservation",
+      "statement": "Roughly 97% of the land and 99% of marine areas are protected, and a USD 20 million invasive species fund (FEIG) was set up in 2011.",
+      "source_url": "https://www.kfw.de/stories/environment/nature-conservation/galapagos-invasive-species/",
+      "source_title": "Galapagos invasive species (KfW Stories)",
+      "publisher": "KfW Development Bank",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Protected area and funding passages.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "GAL-031",
+      "category": "conservation",
+      "statement": "UNESCO lists the site as removed from the danger list in 2010 after being on it from 2007.",
+      "source_url": "https://whc.unesco.org/en/list/1",
+      "source_title": "Galápagos Islands - UNESCO World Heritage Centre",
+      "publisher": "UNESCO World Heritage Centre",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Danger listing history.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "GAL-032",
+      "category": "creature",
+      "statement": "Chelonoidis abingdonii, the Pinta Island tortoise, is listed as Extinct on the IUCN Red List (assessment Cayot et al., 2016, as cited).",
+      "source_url": "https://recentlyextinctspecies.com/testudines/chelonoidis-abingdonii",
+      "source_title": "Chelonoidis abingdonii (Günther, 1877:85)",
+      "publisher": "Recently Extinct Species",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Status line citing the IUCN assessment.",
+      "confidence": "medium",
+      "subject": "pinta-island-tortoise"
+    },
+    {
+      "id": "GAL-033",
+      "category": "creature",
+      "statement": "Lonesome George was found dead on 24 June 2012 by his caretaker Fausto Llerena after about 40 years of care.",
+      "source_url": "https://en.wikipedia.org/wiki/Lonesome_George",
+      "source_title": "Lonesome George",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Death section.",
+      "confidence": "medium",
+      "subject": "pinta-island-tortoise"
+    },
+    {
+      "id": "GAL-034",
+      "category": "creature",
+      "statement": "Wikipedia reports that goats introduced to Pinta in 1958 stripped vegetation and Pinta was declared goat-free in 2003.",
+      "source_url": "https://en.wikipedia.org/wiki/Pinta_Island_tortoise",
+      "source_title": "Pinta Island tortoise",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Threats section.",
+      "confidence": "medium",
+      "subject": "pinta-island-tortoise"
+    },
+    {
+      "id": "GAL-035",
+      "category": "creature",
+      "statement": "Pinta Island is about 60 km2 and reaches 650 m; whalers took an estimated 455 tortoises there between 1831 and 1868.",
+      "source_url": "https://reptilesofecuador.com/chelonoidis_abingdonii.html",
+      "source_title": "Pinta Giant-Tortoise (Chelonoidis abingdonii)",
+      "publisher": "Reptiles of Ecuador (Pontificia Universidad Católica del Ecuador)",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Distribution and threats.",
+      "confidence": "medium",
+      "subject": "pinta-island-tortoise"
+    },
+    {
+      "id": "GAL-036",
+      "category": "creature",
+      "statement": "A 2013 study found 17 tortoises with Pinta ancestry among over 1,600 sampled on Volcano Wolf, Isabela.",
+      "source_url": "https://researchconnect.suny.edu/en/publications/the-genetic-legacy-of-lonesome-george-survives-giant-tortoises-wi/",
+      "source_title": "The genetic legacy of Lonesome George survives (Edwards et al. 2013, Biological Conservation)",
+      "publisher": "SUNY Research Connect / Biological Conservation",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Abstract summary.",
+      "confidence": "high",
+      "subject": "pinta-island-tortoise"
+    },
+    {
+      "id": "GAL-037",
+      "category": "creature",
+      "statement": "A 2012 Yale expedition found 17 first-generation-type hybrids at Wolf Volcano, and in 2020 a young female with direct Pinta ancestry was reported.",
+      "source_url": "https://en.wikipedia.org/wiki/Pinta_Island_tortoise",
+      "source_title": "Pinta Island tortoise",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Hybrids section.",
+      "confidence": "medium",
+      "subject": "pinta-island-tortoise"
+    },
+    {
+      "id": "GAL-038",
+      "category": "creature",
+      "statement": "GBIF's backbone matches Chelonoidis abingdonii (Günther, 1877) as an accepted species in family Testudinidae (usageKey 7451150).",
+      "source_url": "https://api.gbif.org/v1/species/match?name=Chelonoidis%20abingdonii",
+      "source_title": "GBIF Backbone Taxonomy species match: Chelonoidis abingdonii",
+      "publisher": "GBIF",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Match result.",
+      "confidence": "high",
+      "subject": "pinta-island-tortoise"
+    },
+    {
+      "id": "GAL-101",
+      "category": "creature",
+      "statement": "The Galápagos sea lion is listed as Endangered on the IUCN Red List, and the assessment cited for this listing dates from 2015.",
+      "source_url": "https://en.wikipedia.org/wiki/Gal%C3%A1pagos_sea_lion",
+      "source_title": "Galápagos sea lion",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Conservation status section cites a 2015 IUCN assessment with Endangered category.",
+      "confidence": "medium",
+      "subject": "galapagos-sea-lion"
+    },
+    {
+      "id": "GAL-102",
+      "category": "creature",
+      "statement": "Population estimates for the Galápagos sea lion fluctuate between roughly 20,000 and 50,000 animals; the source gives no year for this range.",
+      "source_url": "https://en.wikipedia.org/wiki/Gal%C3%A1pagos_sea_lion",
+      "source_title": "Galápagos sea lion",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Population section gives the 20,000-50,000 range without a date.",
+      "confidence": "medium",
+      "subject": "galapagos-sea-lion"
+    },
+    {
+      "id": "GAL-103",
+      "category": "creature",
+      "statement": "A 2024 census cruise reported 3,601 Galápagos sea lions counted across breeding sites, alongside 2,162 Galápagos fur seals.",
+      "source_url": "https://primicias.ec/noticias/sociedad/resultados-censo-iguanas-lobos-marinos-galapagos-ecuador",
+      "source_title": "Más de 23.000 iguanas y 5.800 lobos marinos viven en Galápagos, revela censo de especies",
+      "publisher": "Primicias",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Census results article breaks down the roughly 5,800 pinnipeds counted by species; this is a count at breeding sites, not a total population estimate.",
+      "confidence": "medium",
+      "subject": "galapagos-sea-lion"
+    },
+    {
+      "id": "GAL-104",
+      "category": "creature",
+      "statement": "Galápagos sea lions live and breed on all the main Galápagos islands and several smaller ones, have colonised Isla de la Plata, and have been sighted from mainland Ecuador north to Isla Gorgona, Colombia.",
+      "source_url": "https://en.wikipedia.org/wiki/Gal%C3%A1pagos_sea_lion",
+      "source_title": "Galápagos sea lion",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Distribution section lists main islands, Isla de la Plata and sightings to Gorgona.",
+      "confidence": "medium",
+      "subject": "galapagos-sea-lion"
+    },
+    {
+      "id": "GAL-105",
+      "category": "creature",
+      "statement": "Galápagos sea lions feed mainly on sardines plus crustaceans, squid, lanternfish and octopus, and foraging trips can reach 10-15 km from shore and last several days.",
+      "source_url": "https://en.wikipedia.org/wiki/Gal%C3%A1pagos_sea_lion",
+      "source_title": "Galápagos sea lion",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Diet and foraging section gives prey list and trip distance.",
+      "confidence": "medium",
+      "subject": "galapagos-sea-lion"
+    },
+    {
+      "id": "GAL-106",
+      "category": "creature",
+      "statement": "Breeding runs from May to January, a female bears a single pup after about 11 months of gestation, and pups are weaned at roughly 11 months, though some mothers nurse a pup for up to three years.",
+      "source_url": "https://en.wikipedia.org/wiki/Gal%C3%A1pagos_sea_lion",
+      "source_title": "Galápagos sea lion",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Reproduction section describes season, single pup, weaning age and extended nursing.",
+      "confidence": "medium",
+      "subject": "galapagos-sea-lion"
+    },
+    {
+      "id": "GAL-107",
+      "category": "creature",
+      "statement": "El Niño warming reduces the sea lions' food supply and can cause population declines and die-offs; the early-1980s El Niño killed many yearlings and lowered pup production the next year.",
+      "source_url": "https://animaldiversity.org/accounts/Zalophus_wollebaeki/",
+      "source_title": "Zalophus wollebaeki (Galapagos sea lion) - Animal Diversity Web",
+      "publisher": "Animal Diversity Web (University of Michigan Museum of Zoology)",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Conservation and threats discussion links the 1980s El Niño to yearling deaths and reduced pup production.",
+      "confidence": "medium",
+      "subject": "galapagos-sea-lion"
+    },
+    {
+      "id": "GAL-108",
+      "category": "creature",
+      "statement": "Feral dogs threaten sea lion pups and can pass diseases to the population, and fishing gear and nets cause entanglement and injuries.",
+      "source_url": "https://en.wikipedia.org/wiki/Gal%C3%A1pagos_sea_lion",
+      "source_title": "Galápagos sea lion",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Threats section covers stray dog packs, disease and fishing entanglement; Animal Diversity Web also names feral dogs as a threat.",
+      "confidence": "high",
+      "subject": "galapagos-sea-lion"
+    },
+    {
+      "id": "GAL-109",
+      "category": "creature",
+      "statement": "An annual monitoring cruise run by the Galápagos National Park Directorate with Universidad San Francisco de Quito and the biosecurity agency surveys sea lions and fur seals at 30 breeding sites on 14 islands and samples animals to assess health.",
+      "source_url": "https://www.galapagos.org/?p=22719",
+      "source_title": "Galápagos sea lion and fur seal monitoring cruise",
+      "publisher": "Galápagos Conservancy",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Article describes the cruise partners, site count and health sampling funded through Galápagos Conservancy grants.",
+      "confidence": "medium",
+      "subject": "galapagos-sea-lion"
+    },
+    {
+      "id": "GAL-110",
+      "category": "creature",
+      "statement": "A mother sea lion can pick out her own pup's bark from among 30 or more barking sea lions, and territorial males bark more often than non-territorial males.",
+      "source_url": "https://en.wikipedia.org/wiki/Gal%C3%A1pagos_sea_lion",
+      "source_title": "Galápagos sea lion",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Behaviour section describes pup-bark recognition and male barking frequency.",
+      "confidence": "medium",
+      "subject": "galapagos-sea-lion"
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://whc.unesco.org/en/list/1",
+      "title": "Galápagos Islands - UNESCO World Heritage Centre",
+      "publisher": "UNESCO World Heritage Centre"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Galápagos_Islands",
+      "title": "Galápagos Islands",
+      "publisher": "Wikipedia"
+    },
+    {
+      "url": "https://volcano.si.edu/volcano.cfm?vn=353020",
+      "title": "Wolf - Global Volcanism Program",
+      "publisher": "Smithsonian Institution Global Volcanism Program"
+    },
+    {
+      "url": "https://www.livingoceansfoundation.org/?p=39300",
+      "title": "Galapagos ocean currents",
+      "publisher": "Living Oceans Foundation"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Isabela_Island_(Galápagos)",
+      "title": "Isabela Island (Galápagos)",
+      "publisher": "Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Galápagos_National_Park",
+      "title": "Galápagos National Park",
+      "publisher": "Wikipedia"
+    },
+    {
+      "url": "https://www.aljazeera.com/news/2007/6/27/un-declares-galapagos-endangered",
+      "title": "UN declares Galapagos endangered",
+      "publisher": "Al Jazeera"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Galápagos_Province",
+      "title": "Galápagos Province",
+      "publisher": "Wikipedia"
+    },
+    {
+      "url": "https://www.asambleanacional.gob.ec/es/node/35892",
+      "title": "Proyecto de Ley de Galápagos responde a construcción participativa",
+      "publisher": "Asamblea Nacional del Ecuador"
+    },
+    {
+      "url": "https://www.kfw.de/stories/environment/nature-conservation/galapagos-invasive-species/",
+      "title": "Galapagos invasive species (KfW Stories)",
+      "publisher": "KfW Development Bank"
+    },
+    {
+      "url": "https://recentlyextinctspecies.com/testudines/chelonoidis-abingdonii",
+      "title": "Chelonoidis abingdonii (Günther, 1877:85)",
+      "publisher": "Recently Extinct Species"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Lonesome_George",
+      "title": "Lonesome George",
+      "publisher": "Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Pinta_Island_tortoise",
+      "title": "Pinta Island tortoise",
+      "publisher": "Wikipedia"
+    },
+    {
+      "url": "https://reptilesofecuador.com/chelonoidis_abingdonii.html",
+      "title": "Pinta Giant-Tortoise (Chelonoidis abingdonii)",
+      "publisher": "Reptiles of Ecuador (Pontificia Universidad Católica del Ecuador)"
+    },
+    {
+      "url": "https://researchconnect.suny.edu/en/publications/the-genetic-legacy-of-lonesome-george-survives-giant-tortoises-wi/",
+      "title": "The genetic legacy of Lonesome George survives (Edwards et al. 2013, Biological Conservation)",
+      "publisher": "SUNY Research Connect / Biological Conservation"
+    },
+    {
+      "url": "https://api.gbif.org/v1/species/match?name=Chelonoidis%20abingdonii",
+      "title": "GBIF Backbone Taxonomy species match: Chelonoidis abingdonii",
+      "publisher": "GBIF"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Gal%C3%A1pagos_sea_lion",
+      "title": "Galápagos sea lion",
+      "publisher": "Wikipedia"
+    },
+    {
+      "url": "https://animaldiversity.org/accounts/Zalophus_wollebaeki/",
+      "title": "Zalophus wollebaeki (Galapagos sea lion) - Animal Diversity Web",
+      "publisher": "Animal Diversity Web (University of Michigan Museum of Zoology)"
+    },
+    {
+      "url": "https://primicias.ec/noticias/sociedad/resultados-censo-iguanas-lobos-marinos-galapagos-ecuador",
+      "title": "Más de 23.000 iguanas y 5.800 lobos marinos viven en Galápagos, revela censo de especies",
+      "publisher": "Primicias"
+    },
+    {
+      "url": "https://www.galapagos.org/?p=22719",
+      "title": "Galápagos sea lion and fur seal monitoring cruise",
+      "publisher": "Galápagos Conservancy"
+    },
+    {
+      "url": "https://api.gbif.org/v1/species/match?name=Zalophus%20wollebaeki",
+      "title": "GBIF species match: Zalophus wollebaeki",
+      "publisher": "GBIF"
+    }
+  ],
+  "gaps": [
+    "IUCN Red List page itself was blocked by robots/403; status taken from secondary sites and Wikipedia",
+    "Official Galápagos National Park Directorate and NOAA/NASA pages not retrieved",
+    "Current visitor numbers (sources disagree) not included",
+    "Lonesome George age and carapace measurements not firmly sourced",
+    "[sea lion] IUCN Red List page not fetchable (robots disallowed); category and 2015 year are secondary-sourced.",
+    "[sea lion] No peer-reviewed paper could be fetched (PMC returned reCAPTCHA; Europe PMC rate limited); NOAA fetch not approved; Darwin Foundation datazone had no record.",
+    "[sea lion] Population estimate (20,000-50,000) has no stated year in the source."
+  ],
+  "conflicts": [
+    "Land area: Wikipedia gives 8,010 km2 in the infobox but 7,880 km2 in the body; province page gives 7,882 km2 land.",
+    "Garúa season: Wikipedia says June-November; MIT course page says July-December. Facts use the Wikipedia dates.",
+    "Population: Wikipedia gives 33,042 (2020) and 28,583 (2022 census); UNESCO says about 30,000.",
+    "Lonesome George's discovery: Wikipedia says 1 Dec 1971, another Wikipedia page says 1 Nov 1971, Galápagos Conservancy says 1971, a species database cites 1974. Not used as a fact.",
+    "Goats on Pinta: introduced 1958 (Wikipedia) vs 1959 (Galápagos Conservancy).",
+    "IUCN assessment year: 2016 (Cayot et al., via secondary sites) vs 'amended 2022' (Wikipedia).",
+    "World Heritage inscription: UNESCO says 1978; Wikipedia national park page says 1979.",
+    "Al Jazeera cited 'invertebrate' figures internally inconsistent (53 vs 55); not used.",
+    "[sea lion] GAL-102 (20,000-50,000 population estimate, undated) versus GAL-103 (3,601 counted at breeding sites in 2024) are different measures, not a true contradiction; do not present 3,601 as total population."
+  ]
+}

@@ -1,0 +1,39 @@
+{
+ "fetched_at": "2026-10-08T11:51:24+00:00",
+ "creatures": {
+  "macaroni-penguin": {
+   "match": {
+    "usageKey": 2481643,
+    "scientificName": "Eudyptes chrysolophus (Brandt, 1837)",
+    "canonicalName": "Eudyptes chrysolophus",
+    "rank": "SPECIES",
+    "status": "ACCEPTED",
+    "confidence": 99,
+    "matchType": "EXACT",
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "order": "Sphenisciformes",
+    "family": "Spheniscidae",
+    "genus": "Eudyptes",
+    "species": "Eudyptes chrysolophus",
+    "kingdomKey": 1,
+    "phylumKey": 44,
+    "classKey": 212,
+    "orderKey": 7190978,
+    "familyKey": 5284,
+    "genusKey": 2481633,
+    "speciesKey": 2481643,
+    "class": "Aves"
+   },
+   "global_count": 87566,
+   "local_count": 13,
+   "box": {
+    "min_lat": -55.4167,
+    "max_lat": -53.4167,
+    "min_lon": 2.3333,
+    "max_lon": 4.3333,
+    "half_width_deg": 1.0
+   }
+  }
+ }
+}

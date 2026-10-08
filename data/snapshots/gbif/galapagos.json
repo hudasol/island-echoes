@@ -1,0 +1,71 @@
+{
+ "fetched_at": "2026-10-08T11:51:32+00:00",
+ "creatures": {
+  "pinta-island-tortoise": {
+   "match": {
+    "usageKey": 7451150,
+    "scientificName": "Chelonoidis abingdonii (Günther, 1877)",
+    "canonicalName": "Chelonoidis abingdonii",
+    "rank": "SPECIES",
+    "status": "ACCEPTED",
+    "confidence": 99,
+    "matchType": "EXACT",
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "family": "Testudinidae",
+    "genus": "Chelonoidis",
+    "species": "Chelonoidis abingdonii",
+    "kingdomKey": 1,
+    "phylumKey": 44,
+    "classKey": 11418114,
+    "familyKey": 9618,
+    "genusKey": 5220265,
+    "speciesKey": 7451150,
+    "class": "Testudines"
+   },
+   "global_count": 57,
+   "local_count": 27,
+   "box": {
+    "min_lat": -3.5,
+    "max_lat": 2.5,
+    "min_lon": -93.5,
+    "max_lon": -87.5,
+    "half_width_deg": 3.0
+   }
+  },
+  "galapagos-sea-lion": {
+   "match": {
+    "usageKey": 2433460,
+    "scientificName": "Zalophus wollebaeki Sivertsen, 1953",
+    "canonicalName": "Zalophus wollebaeki",
+    "rank": "SPECIES",
+    "status": "ACCEPTED",
+    "confidence": 99,
+    "matchType": "EXACT",
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "order": "Carnivora",
+    "family": "Otariidae",
+    "genus": "Zalophus",
+    "species": "Zalophus wollebaeki",
+    "kingdomKey": 1,
+    "phylumKey": 44,
+    "classKey": 359,
+    "orderKey": 732,
+    "familyKey": 5309,
+    "genusKey": 2433457,
+    "speciesKey": 2433460,
+    "class": "Mammalia"
+   },
+   "global_count": 8306,
+   "local_count": 8169,
+   "box": {
+    "min_lat": -3.5,
+    "max_lat": 2.5,
+    "min_lon": -93.5,
+    "max_lon": -87.5,
+    "half_width_deg": 3.0
+   }
+  }
+ }
+}

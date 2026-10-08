@@ -1,0 +1,591 @@
+{
+  "slug": "pitcairn",
+  "name": "Pitcairn Island",
+  "alt_names": [],
+  "pin": {
+    "lat": -25.0667,
+    "lon": -130.1067,
+    "note": "Approximate centre of Pitcairn Island, near Adamstown (25°04′S 130°06′W)"
+  },
+  "territory": "Pitcairn, Henderson, Ducie and Oeno Islands - a British Overseas Territory (United Kingdom)",
+  "creatures": [
+    {
+      "slug": "pitcairn-reed-warbler",
+      "common_name": "Pitcairn reed warbler",
+      "scientific_name": "Acrocephalus vaughani",
+      "creature_type": "bird",
+      "iucn_status": "Endangered (uplisted from Vulnerable in 2008; Vulnerable D1+2 proposed in the 2026.1 Red List update, not yet confirmed as final)",
+      "gbif_search_name": "Acrocephalus vaughani",
+      "status_note": "Endemic to Pitcairn Island, estimated at about 1,568 birds in 2022/23; recent work suggests a stable population but a very small range."
+    }
+  ],
+  "facts": [
+    {
+      "id": "PIT-001",
+      "category": "location",
+      "statement": "Pitcairn Island is centred at roughly 25.07 degrees south, 130.11 degrees west (25°04′S, 130°06′W) in the South Pacific.",
+      "source_url": "https://en.wikipedia.org/wiki/Pitcairn_Island",
+      "source_title": "Pitcairn Island",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Infobox coordinates.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "PIT-002",
+      "category": "location",
+      "statement": "Pitcairn lies in the isolated south-central Pacific, about 2,170 km southeast of Tahiti.",
+      "source_url": "https://www.britannica.com/place/Pitcairn-Island",
+      "source_title": "Pitcairn Island",
+      "publisher": "Encyclopaedia Britannica",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Opening summary gives the distance and direction from Tahiti.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "PIT-003",
+      "category": "location",
+      "statement": "Pitcairn is the only inhabited island of its territory, and the UNESCO listing places it about 200 km southwest of uninhabited Henderson Island.",
+      "source_url": "https://whc.unesco.org/en/list/487",
+      "source_title": "Henderson Island - UNESCO World Heritage Centre",
+      "publisher": "UNESCO World Heritage Centre",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Site description states Pitcairn lies roughly 200 km to the southwest of Henderson.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "PIT-004",
+      "category": "location",
+      "statement": "The Pitcairn group has four islands (Pitcairn, Henderson, Ducie and Oeno) with about 47 km2 of land in total, of which Henderson accounts for about 86%.",
+      "source_url": "https://en.wikipedia.org/wiki/Pitcairn_Islands",
+      "source_title": "Pitcairn Islands",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Territory overview and area figures.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "PIT-005",
+      "category": "climate",
+      "statement": "Pitcairn lies just south of the Tropic of Capricorn and is warm all year; one source gives an average temperature range of 19-24 °C.",
+      "source_url": "https://en.wikipedia.org/wiki/Pitcairn_Island",
+      "source_title": "Pitcairn Island",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Climate line in infobox/section plus territory page note on the Tropic of Capricorn.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "PIT-006",
+      "category": "climate",
+      "statement": "Adamstown's climate is classed as tropical rainforest (Köppen Af) with no dry season; February is warmest (mean 23.8 °C) and August coolest (mean 18.5 °C).",
+      "source_url": "https://en.wikipedia.org/wiki/Geography_of_the_Pitcairn_Islands",
+      "source_title": "Geography of the Pitcairn Islands",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Climate section and its table.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "PIT-007",
+      "category": "climate",
+      "statement": "Annual rainfall on Pitcairn is about 1,543 mm, spread fairly evenly through the year, with southeast trade winds moderating the climate.",
+      "source_url": "https://en.wikipedia.org/wiki/Geography_of_the_Pitcairn_Islands",
+      "source_title": "Geography of the Pitcairn Islands",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Climate section; the territory article independently gives about 1,540 mm.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "PIT-008",
+      "category": "climate",
+      "statement": "The Pacific Union College Pitcairn Islands Study Center reports average rainfall near 2,000 mm, with 2,170 mm measured on Pitcairn in 1991/92, and monthly mean temperatures from about 24 °C (January) to 19 °C (July).",
+      "source_url": "https://library.puc.edu/pitcairn/pitcairn/wetlands.shtml",
+      "source_title": "Pitcairn Islands Study Center: wetlands and environment",
+      "publisher": "Pacific Union College Pitcairn Islands Study Center",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Climate paragraph of the environment page.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "PIT-009",
+      "category": "climate",
+      "statement": "Recorded extremes at Pitcairn include a high of 33.3 °C in March, and temperatures have not fallen below 10 °C; tropical cyclones are a hazard mainly from November to May.",
+      "source_url": "https://en.wikipedia.org/wiki/Geography_of_the_Pitcairn_Islands",
+      "source_title": "Geography of the Pitcairn Islands",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Climate and hazards sections.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "PIT-010",
+      "category": "terrain",
+      "statement": "Pitcairn is a volcanic island with a rugged cliff-lined coast and no protective coral reefs around it.",
+      "source_url": "https://en.wikipedia.org/wiki/Pitcairn_Island",
+      "source_title": "Pitcairn Island",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Geology/terrain description in the article.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "PIT-011",
+      "category": "terrain",
+      "statement": "The highest point is the Pawala Valley Ridge, given as 346 m above sea level by one source and 347 m by another.",
+      "source_url": "https://en.wikipedia.org/wiki/Pitcairn_Island",
+      "source_title": "Pitcairn Island",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Infobox elevation (346 m); geography article gives 347 m.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "PIT-012",
+      "category": "terrain",
+      "statement": "Pitcairn is small: about 4.5 km2, roughly 3.5 km long and 1.8 km wide according to one source (others give 5 km2 or 450 ha).",
+      "source_url": "https://en.wikipedia.org/wiki/Pitcairn_Island",
+      "source_title": "Pitcairn Island",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Infobox area and dimensions.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "PIT-013",
+      "category": "terrain",
+      "statement": "Adamstown is the island's only settlement, and the only landing is a small pier at Bounty Bay, linked to the town by a steep road called the Hill of Difficulty.",
+      "source_url": "https://en.wikipedia.org/wiki/Adamstown,_Pitcairn_Islands",
+      "source_title": "Adamstown, Pitcairn Islands",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Settlement description; the Pitcairn Island article also notes the Bounty Bay pier as sole access.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "PIT-014",
+      "category": "geology",
+      "statement": "Within the group Pitcairn is volcanic, Henderson is an uplifted coral island, and Oeno and Ducie are coral atolls.",
+      "source_url": "https://en.wikipedia.org/wiki/Geography_of_the_Pitcairn_Islands",
+      "source_title": "Geography of the Pitcairn Islands",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Geology list of the four islands.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "PIT-015",
+      "category": "history",
+      "statement": "Polynesians settled Pitcairn and Henderson around the 11th century, and contact with other islands such as Mangareva faded by the mid-1400s; both islands were later found uninhabited.",
+      "source_url": "https://en.wikipedia.org/wiki/History_of_the_Pitcairn_Islands",
+      "source_title": "History of the Pitcairn Islands",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Early-history timeline entries.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "PIT-016",
+      "category": "history",
+      "statement": "Captain Philip Carteret's crew sighted Pitcairn on 3 July 1767, though his recorded longitude was about 3 degrees off.",
+      "source_url": "https://en.wikipedia.org/wiki/History_of_the_Pitcairn_Islands",
+      "source_title": "History of the Pitcairn Islands",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "1767 timeline entry.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "PIT-017",
+      "category": "history",
+      "statement": "Mutineers from HMS Bounty reached Pitcairn on 15 January 1790 and burned the ship on 23 January, settling with 18 Tahitians (6 men, 12 women) and an infant girl.",
+      "source_url": "https://en.wikipedia.org/wiki/History_of_the_Pitcairn_Islands",
+      "source_title": "History of the Pitcairn Islands",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "1790 timeline entries.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "PIT-018",
+      "category": "history",
+      "statement": "On 20 September 1793 violence killed most of the remaining English settlers, including Fletcher Christian; John Adams later became the community's leader.",
+      "source_url": "https://en.wikipedia.org/wiki/History_of_the_Pitcairn_Islands",
+      "source_title": "History of the Pitcairn Islands",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "1793 and 1800 timeline entries (attributed account).",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "PIT-019",
+      "category": "history",
+      "statement": "The American sealer Topaz found the settlement in February 1808, and a 1814 visit by two Royal Navy ships counted 46 islanders.",
+      "source_url": "https://en.wikipedia.org/wiki/History_of_the_Pitcairn_Islands",
+      "source_title": "History of the Pitcairn Islands",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "1808 and 1814 timeline entries.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "PIT-020",
+      "category": "history",
+      "statement": "Islanders traditionally date British colony status to 30 November 1838; on 8 June 1856 163 residents moved to Norfolk Island, and some later returned.",
+      "source_url": "https://en.wikipedia.org/wiki/History_of_the_Pitcairn_Islands",
+      "source_title": "History of the Pitcairn Islands",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "1838 and 1856 timeline entries.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "PIT-021",
+      "category": "people_governance",
+      "statement": "Pitcairn is a British Overseas Territory, the only one in the Pacific, under a 2010 constitution; the UK keeps responsibility for defence and foreign affairs.",
+      "source_url": "https://en.wikipedia.org/wiki/Pitcairn_Islands",
+      "source_title": "Pitcairn Islands",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Territory status and government paragraphs.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "PIT-022",
+      "category": "people_governance",
+      "statement": "Local government is led by an elected Island Council that acts as the legislature, with a Mayor customarily heading day-to-day administration and a King's Governor appointed from the UK.",
+      "source_url": "https://en.wikipedia.org/wiki/Pitcairn_Islands",
+      "source_title": "Pitcairn Islands",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Governor and government section.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "PIT-023",
+      "category": "people_governance",
+      "statement": "Population is tiny: 35 permanent residents were estimated in 2023, down from a peak of 233 in 1937, mostly through emigration to Australia and New Zealand.",
+      "source_url": "https://en.wikipedia.org/wiki/Pitcairn_Islands",
+      "source_title": "Pitcairn Islands",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Population section; the Adamstown article also gives 35 for 2023.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "PIT-024",
+      "category": "ecology",
+      "statement": "Native land animals on Pitcairn are insects and lizards, large numbers of seabirds nest on its steep shores, and humpback whales pass or breed in surrounding waters.",
+      "source_url": "https://en.wikipedia.org/wiki/Pitcairn_Island",
+      "source_title": "Pitcairn Island",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Fauna paragraph; territory article mentions humpbacks breeding.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "PIT-025",
+      "category": "ecology",
+      "statement": "Of the territory's 20 breeding bird species, 16 breed on Henderson Island, which is also home to the flightless Henderson crake.",
+      "source_url": "https://en.wikipedia.org/wiki/Pitcairn_Islands",
+      "source_title": "Pitcairn Islands",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Ecology paragraph.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "PIT-026",
+      "category": "ecology",
+      "statement": "Henderson Island has four endemic land birds, ten endemic vascular plant taxa out of about 57 native, and roughly one-third of collected insects and snails are endemic; it is the only known breeding site of the Henderson petrel.",
+      "source_url": "https://whc.unesco.org/en/list/487",
+      "source_title": "Henderson Island - UNESCO World Heritage Centre",
+      "publisher": "UNESCO World Heritage Centre",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Species/endemism paragraph of the inscription text.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "PIT-027",
+      "category": "ecology",
+      "statement": "Pitcairn's waters hold at least 1,249 species of marine mammals, seabirds and fish, and the reserve includes a coralline alga living 382 m below the surface.",
+      "source_url": "https://www.pew.org/en/about/news-room/press-releases-and-statements/2015/03/18/pew-national-geographic-applaud-creation-of-pitcairn-islands-marine-reserve",
+      "source_title": "Pew, National Geographic Applaud Creation of Pitcairn Islands Marine Reserve",
+      "publisher": "The Pew Charitable Trusts",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Species and ecosystem bullet points.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "PIT-028",
+      "category": "ecology",
+      "statement": "The plant Abutilon pitcairnense, once native to Pitcairn, is now extinct in the wild, and about 16 plant species are thought endemic to Pitcairn.",
+      "source_url": "https://en.wikipedia.org/wiki/Pitcairn_Island",
+      "source_title": "Pitcairn Island",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Flora note; endemic count from the territory article.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "PIT-029",
+      "category": "threats",
+      "statement": "UNESCO lists three threats on Henderson Island: invasive rats (Polynesian rat) that deplete bird populations, unguarded landings by visitors, and marine plastic debris washing ashore.",
+      "source_url": "https://whc.unesco.org/en/list/487",
+      "source_title": "Henderson Island - UNESCO World Heritage Centre",
+      "publisher": "UNESCO World Heritage Centre",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Threats paragraph.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "PIT-030",
+      "category": "threats",
+      "statement": "A 2011 poison-baiting campaign against Pacific rats on Henderson failed: 60-80 survivors out of an estimated 50,000-100,000 rats allowed full recovery.",
+      "source_url": "https://en.wikipedia.org/wiki/Henderson_Island_(Pitcairn_Islands)",
+      "source_title": "Henderson Island (Pitcairn Islands)",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Rat eradication section.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "PIT-031",
+      "category": "conservation",
+      "statement": "The UK government announced a marine reserve of about 834,334 km2 around the islands on 18 March 2015, monitored with satellite surveillance against illegal fishing.",
+      "source_url": "https://www.pew.org/en/about/news-room/press-releases-and-statements/2015/03/18/pew-national-geographic-applaud-creation-of-pitcairn-islands-marine-reserve",
+      "source_title": "Pew, National Geographic Applaud Creation of Pitcairn Islands Marine Reserve",
+      "publisher": "The Pew Charitable Trusts",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Size, date and protections; Visit Pitcairn gives ~834,000 km2 and a September 2016 legal designation.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "PIT-032",
+      "category": "conservation",
+      "statement": "Henderson Island was inscribed as a UNESCO World Heritage Site in 1988 under natural criteria (vii) and (x).",
+      "source_url": "https://whc.unesco.org/en/list/487",
+      "source_title": "Henderson Island - UNESCO World Heritage Centre",
+      "publisher": "UNESCO World Heritage Centre",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Inscription year and criteria fields.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "PIT-033",
+      "category": "creature",
+      "statement": "The Pitcairn reed warbler (Acrocephalus vaughani) is found only on Pitcairn Island; it was formally described by Sharpe in 1900 and locals call it the sparrow.",
+      "source_url": "https://en.wikipedia.org/wiki/Pitcairn_reed_warbler",
+      "source_title": "Pitcairn reed warbler",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Taxonomy and distribution sections.",
+      "confidence": "high",
+      "subject": "pitcairn-reed-warbler"
+    },
+    {
+      "id": "PIT-034",
+      "category": "creature",
+      "statement": "The IUCN Red List category of the Pitcairn reed warbler has been Endangered since it was raised from Vulnerable in 2008 after surveys showed it was rarer than believed.",
+      "source_url": "https://en.wikipedia.org/wiki/Pitcairn_reed_warbler",
+      "source_title": "Pitcairn reed warbler",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Status section; the territory article also notes the 2008 listing.",
+      "confidence": "high",
+      "subject": "pitcairn-reed-warbler"
+    },
+    {
+      "id": "PIT-035",
+      "category": "creature",
+      "statement": "The warbler is a habitat generalist, most abundant in stands of introduced rose apple and garden scrub, and avoids pandanus monocultures and bare ground.",
+      "source_url": "https://en.wikipedia.org/wiki/Pitcairn_reed_warbler",
+      "source_title": "Pitcairn reed warbler",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Habitat paragraph; the Cambridge paper also reports highest abundance in rose apple.",
+      "confidence": "high",
+      "subject": "pitcairn-reed-warbler"
+    },
+    {
+      "id": "PIT-036",
+      "category": "creature",
+      "statement": "A 2022/23 survey estimated about 1,568 Pitcairn reed warblers (95% confidence interval 812-3,237).",
+      "source_url": "https://www.cambridge.org/core/journals/bird-conservation-international/article/population-status-of-the-endemic-pitcairn-reed-warbler-acrocephalus-vaughani-on-pitcairn-island-south-pacific/F9A398D8017673E499DA0B397993FEA4",
+      "source_title": "Population status of the endemic Pitcairn Reed Warbler Acrocephalus vaughani on Pitcairn Island, South Pacific",
+      "publisher": "Bird Conservation International (Cambridge University Press)",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Abstract population estimate.",
+      "confidence": "high",
+      "subject": "pitcairn-reed-warbler"
+    },
+    {
+      "id": "PIT-037",
+      "category": "creature",
+      "statement": "Of 49 monitored nests, only four failed to fledge young; productivity was 1.07 fledglings per nest, which the authors judge enough to maintain the population.",
+      "source_url": "https://www.cambridge.org/core/journals/bird-conservation-international/article/population-status-of-the-endemic-pitcairn-reed-warbler-acrocephalus-vaughani-on-pitcairn-island-south-pacific/F9A398D8017673E499DA0B397993FEA4",
+      "source_title": "Population status of the endemic Pitcairn Reed Warbler Acrocephalus vaughani on Pitcairn Island, South Pacific",
+      "publisher": "Bird Conservation International (Cambridge University Press)",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Abstract nest-monitoring results.",
+      "confidence": "high",
+      "subject": "pitcairn-reed-warbler"
+    },
+    {
+      "id": "PIT-038",
+      "category": "creature",
+      "statement": "The 2024 study's authors recommended downlisting the warbler from Endangered to Vulnerable, and a February 2026 Red List discussion proposed Vulnerable under criteria D1+2; final publication was pending.",
+      "source_url": "https://forums.birdlife.org/2026-1-pitcairn-reed-warbler-acrocephalus-vaughani/",
+      "source_title": "Pitcairn Reed-warbler (Acrocephalus vaughani) - 2026.1 Red List discussion",
+      "publisher": "BirdLife International Forums",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Proposed status paragraph; Cambridge abstract gives the recommendation.",
+      "confidence": "medium",
+      "subject": "pitcairn-reed-warbler"
+    },
+    {
+      "id": "PIT-039",
+      "category": "creature",
+      "statement": "Threats to the warbler include a possible arrival of other rat species or cats, past habitat loss, and some soil erosion; it currently coexists with Pacific rats.",
+      "source_url": "https://forums.birdlife.org/2026-1-pitcairn-reed-warbler-acrocephalus-vaughani/",
+      "source_title": "Pitcairn Reed-warbler (Acrocephalus vaughani) - 2026.1 Red List discussion",
+      "publisher": "BirdLife International Forums",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Threats list in the discussion thread.",
+      "confidence": "medium",
+      "subject": "pitcairn-reed-warbler"
+    },
+    {
+      "id": "PIT-040",
+      "category": "creature",
+      "statement": "GBIF's backbone resolves Acrocephalus vaughani (Sharpe, 1900) as an accepted species in family Acrocephalidae with usage key 5231321.",
+      "source_url": "https://api.gbif.org/v1/species/match?name=Acrocephalus%20vaughani",
+      "source_title": "GBIF species match: Acrocephalus vaughani",
+      "publisher": "GBIF",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Exact species match result.",
+      "confidence": "high",
+      "subject": "pitcairn-reed-warbler"
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Pitcairn_Island",
+      "title": "Pitcairn Island",
+      "publisher": "Wikipedia"
+    },
+    {
+      "url": "https://www.britannica.com/place/Pitcairn-Island",
+      "title": "Pitcairn Island",
+      "publisher": "Encyclopaedia Britannica"
+    },
+    {
+      "url": "https://whc.unesco.org/en/list/487",
+      "title": "Henderson Island - UNESCO World Heritage Centre",
+      "publisher": "UNESCO World Heritage Centre"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Pitcairn_Islands",
+      "title": "Pitcairn Islands",
+      "publisher": "Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Geography_of_the_Pitcairn_Islands",
+      "title": "Geography of the Pitcairn Islands",
+      "publisher": "Wikipedia"
+    },
+    {
+      "url": "https://library.puc.edu/pitcairn/pitcairn/wetlands.shtml",
+      "title": "Pitcairn Islands Study Center: wetlands and environment",
+      "publisher": "Pacific Union College Pitcairn Islands Study Center"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Adamstown,_Pitcairn_Islands",
+      "title": "Adamstown, Pitcairn Islands",
+      "publisher": "Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_the_Pitcairn_Islands",
+      "title": "History of the Pitcairn Islands",
+      "publisher": "Wikipedia"
+    },
+    {
+      "url": "https://www.pew.org/en/about/news-room/press-releases-and-statements/2015/03/18/pew-national-geographic-applaud-creation-of-pitcairn-islands-marine-reserve",
+      "title": "Pew, National Geographic Applaud Creation of Pitcairn Islands Marine Reserve",
+      "publisher": "The Pew Charitable Trusts"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Henderson_Island_(Pitcairn_Islands)",
+      "title": "Henderson Island (Pitcairn Islands)",
+      "publisher": "Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Pitcairn_reed_warbler",
+      "title": "Pitcairn reed warbler",
+      "publisher": "Wikipedia"
+    },
+    {
+      "url": "https://www.cambridge.org/core/journals/bird-conservation-international/article/population-status-of-the-endemic-pitcairn-reed-warbler-acrocephalus-vaughani-on-pitcairn-island-south-pacific/F9A398D8017673E499DA0B397993FEA4",
+      "title": "Population status of the endemic Pitcairn Reed Warbler Acrocephalus vaughani on Pitcairn Island, South Pacific",
+      "publisher": "Bird Conservation International (Cambridge University Press)"
+    },
+    {
+      "url": "https://forums.birdlife.org/2026-1-pitcairn-reed-warbler-acrocephalus-vaughani/",
+      "title": "Pitcairn Reed-warbler (Acrocephalus vaughani) - 2026.1 Red List discussion",
+      "publisher": "BirdLife International Forums"
+    },
+    {
+      "url": "https://api.gbif.org/v1/species/match?name=Acrocephalus%20vaughani",
+      "title": "GBIF species match: Acrocephalus vaughani",
+      "publisher": "GBIF"
+    }
+  ],
+  "gaps": [
+    "Hawksbill turtle (Eretmochelys imbricata) presence in Pitcairn waters could not be verified, so a bird was chosen",
+    "IUCN Red List and BirdLife DataZone pages did not render, so the IUCN assessment year was not read directly from IUCN",
+    "Age and hotspot origin of Pitcairn's volcano not found",
+    "Pitcairn government (gov.pn) page unreachable; official sources limited to the tourism site"
+  ],
+  "conflicts": [
+    "Area of Pitcairn: 4.5 km2 (Wikipedia) vs 5 km2 (Geography article) vs 450 ha (PUC)",
+    "Highest point: 346 m vs 347 m vs 335 m (PUC)",
+    "Annual rainfall: ~1,800 mm vs ~1,540 mm vs ~2,000 mm (PUC)",
+    "Population: 40 (2024) vs 35 (2023) vs 47 (2021)",
+    "Henderson distance from Pitcairn: ~200 km SW (UNESCO) vs 193 km NE (Wikipedia)",
+    "Polynesian departure: mid-1400s cut-off (History article) vs abandoned in the 17th or early 18th century (territory article)",
+    "Warbler status: Endangered (current) vs Vulnerable (recommended/proposed)"
+  ]
+}
