@@ -45,6 +45,17 @@ SYNONYM_PATTERNS: list[tuple[str, list[str]]] = [
     (r"\bnest|\bbreed|\bpup|\bchick|\begg|\bmat(e|ing)", ["breeding", "nest", "pups", "eggs"]),
     (r"\bweigh|\bmass\b|\bheavy", ["weight", "mass", "kg"]),
     (r"\bbirth|\bborn\b|\bpopulation", ["population", "individuals", "estimate"]),
+    (r"\bice\b|\bicy\b|\bglaci|\bsnow|\bfrozen", ["ice", "glacier", "glaciated", "covered"]),
+    (r"\bhow many\b.*\b(left|remain|survive|alive|exist)|\b(left|remain\w*|surviv\w*)\b.*\bhow many\b|\bhow many (of you|are there)|\bnumber of (you|your)", ["population", "estimated", "individuals", "survey", "mature"]),
+]
+
+# country <-> adjective pairs: "Australian" in a question should find "Australia" in a fact, and back
+DEMONYMS: list[tuple[str, str]] = [
+    ("australia", "australian"), ("norway", "norwegian"), ("ecuador", "ecuadorian"), ("yemen", "yemeni"),
+    ("mexico", "mexican"), ("portugal", "portuguese"), ("france", "french"), ("netherlands", "dutch"),
+    ("britain", "british"), ("england", "english"), ("germany", "german"), ("italy", "italian"),
+    ("tahiti", "tahitian"), ("polynesia", "polynesian"), ("america", "american"), ("africa", "african"),
+    ("india", "indian"), ("japan", "japanese"), ("spain", "spanish"),
 ]
 
 CATEGORY_PATTERNS: dict[str, str] = {
@@ -114,6 +125,10 @@ def expand(query: str, vocab: set[str] | None = None) -> list[str]:
         if re.search(pat, q):
             for w in words:
                 toks.extend(tokenize(w))
+    words = set(re.findall(r"[a-z]+", q))
+    for country, adjective in DEMONYMS:
+        if country in words or adjective in words:
+            toks.extend(tokenize(f"{country} {adjective}"))
     # "1500s" / "1990s": match any indexed year in that range
     if vocab:
         for m in re.finditer(r"\b(\d{4})s\b", q):

@@ -16,7 +16,10 @@ class Settings(BaseSettings):
     anthropic_model: str = "claude-sonnet-5-5"
     judge_model: str = "claude-sonnet-5-5"
     source_ttl_days: int = 30
+    chat_rate_per_min: int = 10
+    chat_daily_cap: int = 400
 
+    narrations_path: Path = ROOT / "data" / "narrations.json"
     islands_dir: Path = ROOT / "data" / "islands"
     snapshots_dir: Path = ROOT / "data" / "snapshots"
     cache_dir: Path = ROOT / "data" / "cache"
