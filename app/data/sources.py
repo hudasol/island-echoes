@@ -150,6 +150,47 @@ class SourceStore:
             )
         return out
 
+    def power_summary(self, island: Island) -> dict:
+        """Annual value and 12 monthly values per sensor, straight from the POWER climatology."""
+        doc = self._resolve("power", island, self.fetch_power_doc)
+        raw = doc["raw"]
+        table, meta = raw["properties"]["parameter"], raw.get("parameters", {})
+        spec = [
+            ("temp", "Air temperature", "T2M", "TEMP"),
+            ("rain", "Rainfall", "PRECTOTCORR", "PRECIP"),
+            ("wind", "Wind speed", "WS10M", "WIND"),
+            ("humidity", "Humidity", "RH2M", "HUMID"),
+        ]
+
+        def clean(v):
+            return None if v is None or v == power_mod.FILL_VALUE else v
+
+        items = []
+        for key, label, param, topic in spec:
+            series = table.get(param)
+            if not series:
+                continue
+            unit = meta.get(param, {}).get("units", "")
+            items.append(
+                {
+                    "key": key,
+                    "label": label,
+                    "unit": "°C" if unit == "C" else unit,
+                    "value": clean(series.get("ANN")),
+                    "monthly": [clean(series.get(m)) for m in power_mod.MONTHS],
+                    "evidence_id": f"POWER-{island.prefix}-{topic}",
+                }
+            )
+        cell = raw.get("geometry", {}).get("coordinates", [island.pin.lon, island.pin.lat])
+        return {
+            "island": island.slug,
+            "as_of": doc["fetched_at"][:10],
+            "period": raw.get("header", {}).get("range", ""),
+            "cell_lat": cell[1],
+            "cell_lon": cell[0],
+            "items": items,
+        }
+
     def gbif_evidence(self, island: Island, creature_slug: str | None) -> list[Evidence]:
         creature = island.creature(creature_slug)
         doc = self._resolve("gbif", island, self.fetch_gbif_doc)

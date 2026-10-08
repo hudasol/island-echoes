@@ -97,6 +97,24 @@ class IslandDetail(IslandSummary):
     facts: list[FactOut]
 
 
+class SensorOut(BaseModel):
+    key: str
+    label: str
+    unit: str
+    value: float | None
+    monthly: list[float | None]
+    evidence_id: str
+
+
+class SensorsOut(BaseModel):
+    island: str
+    as_of: str
+    period: str
+    cell_lat: float
+    cell_lon: float
+    items: list[SensorOut]
+
+
 class NarrationOut(BaseModel):
     island: str
     creature: str

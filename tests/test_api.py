@@ -110,3 +110,22 @@ def test_rate_limit_per_minute_and_daily_cap():
 def test_security_headers_present(settings, store, retriever):
     r = client_with(settings, store, retriever, None).get("/api/health")
     assert r.headers["x-content-type-options"] == "nosniff"
+
+
+def test_sensors_come_from_nasa_power_snapshot(settings, store, retriever):
+    c = client_with(settings, store, retriever, None)
+    body = c.get("/api/islands/socotra/sensors").json()
+    assert body["island"] == "socotra" and "2001" in body["period"] and body["as_of"]
+    by = {i["key"]: i for i in body["items"]}
+    assert set(by) == {"temp", "rain", "wind", "humidity"}
+    assert by["temp"]["unit"] == "°C" and by["temp"]["value"] == 26.28
+    assert by["rain"]["unit"] == "mm/day" and by["rain"]["evidence_id"] == "POWER-SOC-PRECIP"
+    assert all(len(i["monthly"]) == 12 for i in body["items"])
+    assert c.get("/api/islands/atlantis/sensors").status_code == 404
+
+
+def test_every_island_has_all_four_sensors(settings, store, retriever):
+    c = client_with(settings, store, retriever, None)
+    for slug in store.islands:
+        items = c.get(f"/api/islands/{slug}/sensors").json()["items"]
+        assert len(items) == 4 and all(i["value"] is not None for i in items), slug
