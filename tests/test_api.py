@@ -96,7 +96,8 @@ def test_llm_failure_is_502(settings, store, retriever):
 def test_rate_limit_per_minute_and_daily_cap():
     t = [0.0]
     rl = RateLimiter(per_minute=2, daily_cap=3, clock=lambda: t[0], wall=lambda: 1_000_000.0)
-    rl.check("a"); rl.check("a")
+    rl.check("a")
+    rl.check("a")
     with pytest.raises(Exception) as e:
         rl.check("a")
     assert e.value.status_code == 429

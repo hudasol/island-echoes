@@ -13,7 +13,7 @@ import subprocess
 import sys
 import time
 from concurrent.futures import ThreadPoolExecutor
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -47,7 +47,7 @@ def git_sha() -> str:
 
 def answer_one(service: ChatService, q: dict) -> dict:
     last: Exception | None = None
-    for attempt in range(2):
+    for _attempt in range(2):
         t0 = time.time()
         try:
             r = service.respond(q["island"], q["question"], q.get("creature"))
@@ -193,7 +193,7 @@ def main(argv: list[str] | None = None) -> int:
             results = list(pool.map(lambda q: answer_one(service, q), questions.values()))
         recs = {r["id"]: r for r in results}
         meta = {
-            "timestamp": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+            "timestamp": datetime.now(UTC).isoformat(timespec="seconds"),
             "commit": git_sha(),
             "answer_model": settings.anthropic_model,
             "judge_model": None,
@@ -206,7 +206,7 @@ def main(argv: list[str] | None = None) -> int:
         judge = AnthropicJudge(settings.anthropic_api_key, settings.judge_model)
         todo = [(q, recs[q["id"]]) for q in questions.values() if "error" not in recs.get(q["id"], {"error": 1})]
         with ThreadPoolExecutor(max_workers=args.workers) as pool:
-            for (q, rec), j in zip(todo, pool.map(lambda t: judge_one(judge, service, *t), todo)):
+            for (_q, rec), j in zip(todo, pool.map(lambda t: judge_one(judge, service, *t), todo), strict=True):
                 rec["judge"] = j
         meta["judge_model"] = settings.judge_model
 

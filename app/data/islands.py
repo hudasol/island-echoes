@@ -19,7 +19,7 @@ class IslandStore:
                 self._facts[f.id] = f
 
     @classmethod
-    def load(cls, directory: Path) -> "IslandStore":
+    def load(cls, directory: Path) -> IslandStore:
         islands: dict[str, Island] = {}
         for path in sorted(Path(directory).glob("*.json")):
             raw = json.loads(path.read_text(encoding="utf-8"))
