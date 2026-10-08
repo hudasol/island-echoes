@@ -1,0 +1,579 @@
+{
+  "slug": "bouvet",
+  "name": "Bouvet Island",
+  "alt_names": [
+    "Bouvetøya"
+  ],
+  "pin": {
+    "lat": -54.4167,
+    "lon": 3.3333,
+    "note": "Approximate centre of the island, from the 54°25′S, 3°20′E coordinates given by the Norwegian Polar Institute"
+  },
+  "territory": "Norway (Norwegian dependency, not part of the Kingdom proper; island and territorial waters are a nature reserve since 1971)",
+  "creatures": [
+    {
+      "slug": "macaroni-penguin",
+      "common_name": "Macaroni penguin",
+      "scientific_name": "Eudyptes chrysolophus",
+      "creature_type": "bird",
+      "iucn_status": "Vulnerable (2020 assessment)",
+      "gbif_search_name": "Eudyptes chrysolophus",
+      "status_note": "Chosen as the best-verified threatened species with a documented Bouvet breeding population. A mammal was not chosen: the Antarctic fur seal and southern elephant seal occur on Bouvet, but a threatened status was not verified in the fetched sources. The IUCN site could not be fetched; status comes from BirdLife South Africa and Wikipedia."
+    }
+  ],
+  "facts": [
+    {
+      "id": "BOU-001",
+      "category": "location",
+      "statement": "The island lies at roughly 54°25′S, 3°20′E in the South Atlantic Ocean.",
+      "source_url": "https://www.npolar.no/en/bouvetoya/",
+      "source_title": "Bouvetøya",
+      "publisher": "Norwegian Polar Institute",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Coordinates listed in the location section of the page.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "BOU-002",
+      "category": "location",
+      "statement": "Bouvet Island covers about 49 km² and measures roughly 9.5 km by 7 km.",
+      "source_url": "https://en.wikipedia.org/wiki/Bouvet_Island",
+      "source_title": "Bouvet Island",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Size figures in the geography summary.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "BOU-003",
+      "category": "location",
+      "statement": "The Norwegian Polar Institute puts Gough Island, about 1,600 km away, as the island's nearest land, and the national encyclopedia agrees.",
+      "source_url": "https://www.npolar.no/en/bouvetoya/",
+      "source_title": "Bouvetøya",
+      "publisher": "Norwegian Polar Institute",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Distances given in the location section; SNL gives the same Gough figure.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "BOU-004",
+      "category": "location",
+      "statement": "NASA's Earth Observatory describes Bouvet as the world's most remote island, with Antarctica, the nearest land, more than 1,600 km to the south.",
+      "source_url": "https://science.nasa.gov/earth/earth-observatory/bouvet-island-south-atlantic-ocean-35526/",
+      "source_title": "Bouvet Island, South Atlantic Ocean",
+      "publisher": "NASA Earth Observatory",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Remoteness statement in the image caption text.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "BOU-005",
+      "category": "climate",
+      "statement": "The average sea-level temperature on Bouvetøya is about -1 °C, in a maritime Antarctic climate.",
+      "source_url": "https://www.npolar.no/en/bouvetoya/",
+      "source_title": "Bouvetøya",
+      "publisher": "Norwegian Polar Institute",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Climate paragraph of the page.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "BOU-006",
+      "category": "climate",
+      "statement": "Monthly mean temperatures run from about 1 °C in January to about -3 °C in September.",
+      "source_url": "https://www.npolar.no/en/bouvetoya/",
+      "source_title": "Bouvetøya",
+      "publisher": "Norwegian Polar Institute",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Monthly averages cited in the climate paragraph.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "BOU-007",
+      "category": "climate",
+      "statement": "The island is usually wrapped in fog, so helicopter landings often involve waiting, and ocean swell makes boat landings hazardous.",
+      "source_url": "https://npolar.no/en/?p=16055",
+      "source_title": "Bouvetøya: nature reserve rules and visitor advice",
+      "publisher": "Norwegian Polar Institute",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Weather notes in the visitor advice section.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "BOU-008",
+      "category": "climate",
+      "statement": "Wikipedia gives a February mean near 2 °C, an August mean near -4 °C, and a record low of -18.7 °C.",
+      "source_url": "https://en.wikipedia.org/wiki/Bouvet_Island",
+      "source_title": "Bouvet Island",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Climate section figures.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "BOU-009",
+      "category": "climate",
+      "statement": "Wikipedia's text reports a peak temperature of 14 °C in March 1980, while its own climate table lists 10.6 °C as the highest value.",
+      "source_url": "https://en.wikipedia.org/wiki/Bouvet_Island",
+      "source_title": "Bouvet Island",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Internal inconsistency noted between the climate text and table.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "BOU-010",
+      "category": "terrain",
+      "statement": "The highest point is Olavtoppen, 780 m above sea level.",
+      "source_url": "https://www.npolar.no/en/bouvetoya/",
+      "source_title": "Bouvetøya",
+      "publisher": "Norwegian Polar Institute",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Highest peak given in the area and ice section; SNL and Wikipedia agree.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "BOU-011",
+      "category": "terrain",
+      "statement": "Britannica gives the island's maximum elevation as 935 m (3,068 ft) and its area as about 59 km², figures that differ from the Norwegian sources (780 m, 49 km²).",
+      "source_url": "https://www.britannica.com/place/Bouvet-Island",
+      "source_title": "Bouvet Island",
+      "publisher": "Encyclopaedia Britannica",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Quick-facts style summary at the top of the entry.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "BOU-012",
+      "category": "terrain",
+      "statement": "Norwegian sources state that about 89% of the island is covered by glaciers or ice.",
+      "source_url": "https://www.npolar.no/en/bouvetoya/",
+      "source_title": "Bouvetøya",
+      "publisher": "Norwegian Polar Institute",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Ice cover figure in the area section; SNL gives the same percentage.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "BOU-013",
+      "category": "terrain",
+      "statement": "Wikipedia states that 93% of the island is glaciated, differing from the Norwegian 89% figure.",
+      "source_url": "https://en.wikipedia.org/wiki/Bouvet_Island",
+      "source_title": "Bouvet Island",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Ice cover figure in the geography section.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "BOU-014",
+      "category": "geology",
+      "statement": "The island is the exposed top of a basaltic volcano rising from the deep ocean floor, and it is the southernmost island on the Mid-Atlantic Ridge.",
+      "source_url": "https://snl.no/Bouvet%C3%B8ya",
+      "source_title": "Bouvetøya",
+      "publisher": "Store norske leksikon",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Geology paragraph.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "BOU-015",
+      "category": "geology",
+      "statement": "Wikipedia reports the last eruption was around 2000 BCE, producing a lava flow at Cape Meteor.",
+      "source_url": "https://en.wikipedia.org/wiki/Bouvet_Island",
+      "source_title": "Bouvet Island",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Geology section.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "BOU-016",
+      "category": "geology",
+      "statement": "The national encyclopedia says volcanic activity continues above and below water, though the central crater has probably not erupted for several hundred thousand years; this differs from the eruption date in Wikipedia.",
+      "source_url": "https://snl.no/Bouvet%C3%B8ya",
+      "source_title": "Bouvetøya",
+      "publisher": "Store norske leksikon",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Geology paragraph.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "BOU-017",
+      "category": "history",
+      "statement": "Frenchman Jean-Baptiste Charles Bouvet de Lozier sighted the island on 1 January 1739 but did not land.",
+      "source_url": "https://en.wikipedia.org/wiki/Bouvet_Island",
+      "source_title": "Bouvet Island",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Discovery section; SNL and Britannica also give 1739.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "BOU-018",
+      "category": "history",
+      "statement": "Norwegian sources say the first landing was in 1822, while Wikipedia credits a British landing by Norris in 1825 and calls an earlier American landing claim disputed.",
+      "source_url": "https://snl.no/Bouvet%C3%B8ya",
+      "source_title": "Bouvetøya",
+      "publisher": "Store norske leksikon",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Discovery paragraph; compared with Wikipedia's discovery section.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "BOU-019",
+      "category": "history",
+      "statement": "A Norwegian expedition led by Harald Horntvedt claimed the island on 1 December 1927, and a royal resolution of 23 January 1928 placed it under Norwegian sovereignty.",
+      "source_url": "https://snl.no/Bouvet%C3%B8ya",
+      "source_title": "Bouvetøya",
+      "publisher": "Store norske leksikon",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Annexation paragraph; Wikipedia gives the same dates.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "BOU-020",
+      "category": "history",
+      "statement": "A 1930 law made Bouvetøya a Norwegian dependency, and the annexation was motivated by whaling interests.",
+      "source_url": "https://snl.no/Bouvet%C3%B8ya",
+      "source_title": "Bouvetøya",
+      "publisher": "Store norske leksikon",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Annexation paragraph.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "BOU-021",
+      "category": "history",
+      "statement": "A CCAMLR ecosystem-monitoring site was established at Nyrøysa on an expedition running from 9 December 1996 to 22 February 1997.",
+      "source_url": "https://meetings.ccamlr.org/en/node/16289",
+      "source_title": "Bouvet Island (Bouvetøya) CEMP monitoring, WG-EMM-97/20",
+      "publisher": "CCAMLR",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Opening description of the monitoring programme.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "BOU-022",
+      "category": "history",
+      "statement": "The Norvegia field station was set up in January 2014, and Norwegian Polar Institute monitoring has run since 1976; Wikipedia instead dates a new station to December 2012.",
+      "source_url": "https://snl.no/Bouvet%C3%B8ya",
+      "source_title": "Bouvetøya",
+      "publisher": "Store norske leksikon",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Station sentence; conflicts with Wikipedia's date.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "BOU-023",
+      "category": "people_governance",
+      "statement": "Bouvet Island is uninhabited; Britannica notes the Norwegian government declared it a nature reserve in 1971.",
+      "source_url": "https://www.britannica.com/place/Bouvet-Island",
+      "source_title": "Bouvet Island",
+      "publisher": "Encyclopaedia Britannica",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Status line of the entry.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "BOU-024",
+      "category": "people_governance",
+      "statement": "The island and its territorial waters were designated a nature reserve on 17 December 1971.",
+      "source_url": "https://sparc.utas.edu.au/index.php/regulations-for-the-protection-of-bouvet-island-with-adjacent-territorial-waters-as-a-nature-reserve",
+      "source_title": "Regulations for the protection of Bouvet Island with adjacent territorial waters as a nature reserve (BB-NO-55)",
+      "publisher": "SPARC, University of Tasmania",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Catalogue record gives the creation date of the regulations.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "BOU-025",
+      "category": "people_governance",
+      "statement": "Reserve rules protect animals, nests and eggs year-round and bar dogs ashore; helicopter landings need a special Norwegian Polar Institute permit.",
+      "source_url": "https://npolar.no/en/?p=16055",
+      "source_title": "Bouvetøya: nature reserve rules and visitor advice",
+      "publisher": "Norwegian Polar Institute",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Nature reserve rules section.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "BOU-026",
+      "category": "ecology",
+      "statement": "Vegetation is limited to mosses, lichens, fungi and algae; Norwegian sources count 12 moss species and about 40 lichen species, with no grasses or higher plants.",
+      "source_url": "https://snl.no/Bouvet%C3%B8ya",
+      "source_title": "Bouvetøya",
+      "publisher": "Store norske leksikon",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Wildlife paragraph.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "BOU-027",
+      "category": "ecology",
+      "statement": "At least 12 bird species breed on the island, including macaroni and chinstrap penguins.",
+      "source_url": "https://snl.no/Bouvet%C3%B8ya",
+      "source_title": "Bouvetøya",
+      "publisher": "Store norske leksikon",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Wildlife paragraph; NPI also gives 12.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "BOU-028",
+      "category": "ecology",
+      "statement": "The Nyrøysa area hosts a colony of about 64,000 Antarctic fur seals, described as the world's second largest, and elephant seals also breed there.",
+      "source_url": "https://snl.no/Bouvet%C3%B8ya",
+      "source_title": "Bouvetøya",
+      "publisher": "Store norske leksikon",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Wildlife paragraph.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "BOU-029",
+      "category": "ecology",
+      "statement": "Chinstrap penguin counts at Nyrøysa fell from 2,700 in 1990 to 422 in 1997, probably because fur seals took over penguin territory.",
+      "source_url": "https://www.npolar.no/en/bouvetoya/",
+      "source_title": "Bouvetøya",
+      "publisher": "Norwegian Polar Institute",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Wildlife section.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "BOU-030",
+      "category": "ecology",
+      "statement": "Bouvet is one of few places where no introduced species have been recorded.",
+      "source_url": "https://npolar.no/en/?p=16055",
+      "source_title": "Bouvetøya: nature reserve rules and visitor advice",
+      "publisher": "Norwegian Polar Institute",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Wildlife and ecosystem section.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "BOU-031",
+      "category": "threats",
+      "statement": "Non-native species brought on gear, footwear, soil, food or rodents could outcompete native life, and warming may make conditions more suitable for them.",
+      "source_url": "https://npolar.no/en/?p=16055",
+      "source_title": "Bouvetøya: nature reserve rules and visitor advice",
+      "publisher": "Norwegian Polar Institute",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Threats discussion on introduced species.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "BOU-032",
+      "category": "threats",
+      "statement": "Growing fur seal numbers appear to be displacing penguins from breeding space at Nyrøysa.",
+      "source_url": "https://www.npolar.no/en/bouvetoya/",
+      "source_title": "Bouvetøya",
+      "publisher": "Norwegian Polar Institute",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Wildlife section.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "BOU-033",
+      "category": "conservation",
+      "statement": "Norwegian authorities call Bouvetøya the world's most remote nature reserve, protected since 1971.",
+      "source_url": "https://npolar.no/en/?p=16055",
+      "source_title": "Bouvetøya: nature reserve rules and visitor advice",
+      "publisher": "Norwegian Polar Institute",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Legal protection section.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "BOU-034",
+      "category": "conservation",
+      "statement": "Nyrøysa is a CCAMLR environmental monitoring site, and visits from 1 November to 15 March are limited to approved monitoring.",
+      "source_url": "https://npolar.no/en/?p=16055",
+      "source_title": "Bouvetøya: nature reserve rules and visitor advice",
+      "publisher": "Norwegian Polar Institute",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Wildlife and ecosystem section.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "BOU-035",
+      "category": "creature",
+      "statement": "The macaroni penguin (Eudyptes chrysolophus) is listed as Vulnerable on the IUCN Red List, based on a 2020 assessment.",
+      "source_url": "https://en.wikipedia.org/wiki/Macaroni_penguin",
+      "source_title": "Macaroni penguin",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Conservation status section.",
+      "confidence": "medium",
+      "subject": "macaroni-penguin"
+    },
+    {
+      "id": "BOU-036",
+      "category": "creature",
+      "statement": "BirdLife South Africa lists the global status as Vulnerable and names Bouvet among the South Atlantic islands where the species breeds.",
+      "source_url": "https://www.birdlife.org.za/red-list/macaroni-penguin/",
+      "source_title": "Macaroni Penguin",
+      "publisher": "BirdLife South Africa",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Global breeding locations paragraph.",
+      "confidence": "high",
+      "subject": "macaroni-penguin"
+    },
+    {
+      "id": "BOU-037",
+      "category": "creature",
+      "statement": "Macaroni penguins on Bouvet declined from 5,900 in 1990 to 4,700 in 1997 at Nyrøysa.",
+      "source_url": "https://www.npolar.no/en/bouvetoya/",
+      "source_title": "Bouvetøya",
+      "publisher": "Norwegian Polar Institute",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Wildlife section.",
+      "confidence": "high",
+      "subject": "macaroni-penguin"
+    },
+    {
+      "id": "BOU-038",
+      "category": "creature",
+      "statement": "CCAMLR monitoring at Nyrøysa tracks macaroni penguins, reporting a moderate decline since 1989/90.",
+      "source_url": "https://meetings.ccamlr.org/en/node/16289",
+      "source_title": "Bouvet Island (Bouvetøya) CEMP monitoring, WG-EMM-97/20",
+      "publisher": "CCAMLR",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Population trends section.",
+      "confidence": "high",
+      "subject": "macaroni-penguin"
+    },
+    {
+      "id": "BOU-039",
+      "category": "creature",
+      "statement": "The global population is about 6.3 million breeding pairs, and numbers are decreasing.",
+      "source_url": "https://www.birdlife.org.za/red-list/macaroni-penguin/",
+      "source_title": "Macaroni Penguin",
+      "publisher": "BirdLife South Africa",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Population and trend sections.",
+      "confidence": "high",
+      "subject": "macaroni-penguin"
+    },
+    {
+      "id": "BOU-040",
+      "category": "creature",
+      "statement": "GBIF's backbone matches Eudyptes chrysolophus as an accepted species with usage key 2481643.",
+      "source_url": "https://api.gbif.org/v1/species/match?name=Eudyptes%20chrysolophus",
+      "source_title": "GBIF species match: Eudyptes chrysolophus",
+      "publisher": "GBIF",
+      "retrieved": "2026-10-08",
+      "evidence_note": "API match result.",
+      "confidence": "high",
+      "subject": "macaroni-penguin"
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://www.npolar.no/en/bouvetoya/",
+      "title": "Bouvetøya",
+      "publisher": "Norwegian Polar Institute"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Bouvet_Island",
+      "title": "Bouvet Island",
+      "publisher": "Wikipedia"
+    },
+    {
+      "url": "https://science.nasa.gov/earth/earth-observatory/bouvet-island-south-atlantic-ocean-35526/",
+      "title": "Bouvet Island, South Atlantic Ocean",
+      "publisher": "NASA Earth Observatory"
+    },
+    {
+      "url": "https://npolar.no/en/?p=16055",
+      "title": "Bouvetøya: nature reserve rules and visitor advice",
+      "publisher": "Norwegian Polar Institute"
+    },
+    {
+      "url": "https://www.britannica.com/place/Bouvet-Island",
+      "title": "Bouvet Island",
+      "publisher": "Encyclopaedia Britannica"
+    },
+    {
+      "url": "https://snl.no/Bouvet%C3%B8ya",
+      "title": "Bouvetøya",
+      "publisher": "Store norske leksikon"
+    },
+    {
+      "url": "https://meetings.ccamlr.org/en/node/16289",
+      "title": "Bouvet Island (Bouvetøya) CEMP monitoring, WG-EMM-97/20",
+      "publisher": "CCAMLR"
+    },
+    {
+      "url": "https://sparc.utas.edu.au/index.php/regulations-for-the-protection-of-bouvet-island-with-adjacent-territorial-waters-as-a-nature-reserve",
+      "title": "Regulations for the protection of Bouvet Island with adjacent territorial waters as a nature reserve (BB-NO-55)",
+      "publisher": "SPARC, University of Tasmania"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Macaroni_penguin",
+      "title": "Macaroni penguin",
+      "publisher": "Wikipedia"
+    },
+    {
+      "url": "https://www.birdlife.org.za/red-list/macaroni-penguin/",
+      "title": "Macaroni Penguin",
+      "publisher": "BirdLife South Africa"
+    },
+    {
+      "url": "https://api.gbif.org/v1/species/match?name=Eudyptes%20chrysolophus",
+      "title": "GBIF species match: Eudyptes chrysolophus",
+      "publisher": "GBIF"
+    }
+  ],
+  "gaps": [
+    "Smithsonian GVP page was unavailable (site error), so no eruption record from GVP",
+    "IUCN Red List and BirdLife DataZone pages could not be fetched",
+    "No verified threatened mammal for Bouvet",
+    "No GBIF occurrence count for Bouvet",
+    "Recent seal or penguin counts after 1999 were not found"
+  ],
+  "conflicts": [
+    "Ice cover: 89% (NPI, SNL) vs 93% (Wikipedia)",
+    "Area: 49 km² (NPI, SNL, Wikipedia) vs 59 km² (Britannica)",
+    "Highest elevation: 780 m (NPI, SNL, Wikipedia) vs 935 m (Britannica)",
+    "Last eruption: about 2000 BCE (Wikipedia) vs central crater quiet for several hundred thousand years (SNL)",
+    "First landing: 1822 (SNL) vs 1825 Norris (Wikipedia)",
+    "Peak temperature: 14 °C in text vs 10.6 °C in table (both Wikipedia)",
+    "Station dates: December 2012 (Wikipedia, noted in the fact text) vs January 2014 (SNL)"
+  ]
+}

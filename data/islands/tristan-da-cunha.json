@@ -1,0 +1,584 @@
+{
+  "slug": "tristan-da-cunha",
+  "name": "Tristan da Cunha",
+  "alt_names": [],
+  "pin": {
+    "lat": -37.1,
+    "lon": -12.3,
+    "note": "Approximate centre of the main island of Tristan da Cunha (NASA JPL gives about 37.1 S, 12.3 W)"
+  },
+  "territory": "British Overseas Territory of Saint Helena, Ascension and Tristan da Cunha",
+  "creatures": [
+    {
+      "slug": "tristan-albatross",
+      "common_name": "Tristan albatross",
+      "scientific_name": "Diomedea dabbenena",
+      "creature_type": "bird",
+      "iucn_status": "Critically Endangered (uplisted 2008; later assessment year not verified)",
+      "gbif_search_name": "Diomedea dabbenena",
+      "status_note": "Breeds almost entirely on Gough Island; threatened by house mouse predation of chicks and longline bycatch; breeding success improved after the 2021 mouse eradication attempt but mice persist at low numbers."
+    }
+  ],
+  "facts": [
+    {
+      "id": "TDC-001",
+      "category": "location",
+      "statement": "Tristan da Cunha's main settlement, Edinburgh of the Seven Seas, sits at about 37 degrees 4 minutes S, 12 degrees 18 minutes W in the South Atlantic.",
+      "source_url": "https://en.wikipedia.org/wiki/Tristan_da_Cunha",
+      "source_title": "Tristan da Cunha",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Coordinates in the infobox/lead.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "TDC-002",
+      "category": "location",
+      "statement": "Tristan da Cunha lies roughly 2,800 km from the southern tip of Africa and over 3,000 km from South America's east coast, with St Helena (about 2,173 km to the northeast) the nearest neighbour.",
+      "source_url": "https://science.nasa.gov/earth/earth-observatory/tristan-da-cunha-south-atlantic-ocean-80456/",
+      "source_title": "Tristan da Cunha, South Atlantic Ocean",
+      "publisher": "NASA Earth Observatory",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Location paragraph of the NASA caption.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "TDC-003",
+      "category": "location",
+      "statement": "A 2012 UK Ministry of Defence article called Tristan da Cunha the most remote inhabited archipelago in the world, about 2,816 km from South Africa and 3,360 km from South America.",
+      "source_url": "https://www.gov.uk/government/news/royal-navy-surveys-remote-volcanic-archipelago",
+      "source_title": "Royal Navy surveys remote volcanic archipelago",
+      "publisher": "GOV.UK (Ministry of Defence)",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Opening description in the article.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "TDC-004",
+      "category": "location",
+      "statement": "The territory has a total land area of about 207 km2, of which the main island accounts for about 98 km2.",
+      "source_url": "https://en.wikipedia.org/wiki/Tristan_da_Cunha",
+      "source_title": "Tristan da Cunha",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Area figures in the infobox.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "TDC-005",
+      "category": "climate",
+      "statement": "Tristan da Cunha has a cool oceanic climate with mild temperatures and persistent westerly winds.",
+      "source_url": "https://en.wikipedia.org/wiki/Tristan_da_Cunha",
+      "source_title": "Tristan da Cunha",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Climate section opening.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "TDC-006",
+      "category": "climate",
+      "statement": "The annual mean daily maximum temperature is about 17.3 C and the mean daily minimum about 12.4 C.",
+      "source_url": "https://en.wikipedia.org/wiki/Tristan_da_Cunha",
+      "source_title": "Tristan da Cunha",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Climate table/text.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "TDC-007",
+      "category": "climate",
+      "statement": "Summer temperatures on Tristan do not reach 25 C, and frost does not occur below about 500 m elevation.",
+      "source_url": "https://en.wikipedia.org/wiki/Tristan_da_Cunha",
+      "source_title": "Tristan da Cunha",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Climate section.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "TDC-008",
+      "category": "climate",
+      "statement": "Tristan da Cunha receives about 1,681 mm of rain a year spread over roughly 252 rainy days.",
+      "source_url": "https://en.wikipedia.org/wiki/Tristan_da_Cunha",
+      "source_title": "Tristan da Cunha",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Climate data table.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "TDC-009",
+      "category": "climate",
+      "statement": "The island gets about 1,498 hours of sunshine a year, around 34 percent of the possible total.",
+      "source_url": "https://en.wikipedia.org/wiki/Tristan_da_Cunha",
+      "source_title": "Tristan da Cunha",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Climate data table.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "TDC-010",
+      "category": "terrain",
+      "statement": "The main island is roughly 13 km wide and mostly ringed by steep cliffs, with lower beaches on its southern and north-northwestern sides.",
+      "source_url": "https://science.nasa.gov/earth/earth-observatory/tristan-da-cunha-south-atlantic-ocean-80456/",
+      "source_title": "Tristan da Cunha, South Atlantic Ocean",
+      "publisher": "NASA Earth Observatory",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Size and shape description in the NASA caption.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "TDC-011",
+      "category": "terrain",
+      "statement": "Queen Mary's Peak, the summit of the island's volcano, rises to about 2,060 m (6,760 ft).",
+      "source_url": "https://science.nasa.gov/earth/earth-observatory/tristan-da-cunha-south-atlantic-ocean-80456/",
+      "source_title": "Tristan da Cunha, South Atlantic Ocean",
+      "publisher": "NASA Earth Observatory",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Volcano description in the NASA caption.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "TDC-012",
+      "category": "geology",
+      "statement": "The island is a shield volcano built from silica-poor lava such as basalt, with eruptions from the summit crater, flank vents and small cinder cones.",
+      "source_url": "https://science.nasa.gov/earth/earth-observatory/tristan-da-cunha-south-atlantic-ocean-80456/",
+      "source_title": "Tristan da Cunha, South Atlantic Ocean",
+      "publisher": "NASA Earth Observatory",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Volcano paragraph of the NASA caption.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "TDC-013",
+      "category": "geology",
+      "statement": "The Tristan group was built by a hotspot lying about 400 km east of the Mid-Atlantic Ridge, and the main island's flanks carry more than 30 cinder cones.",
+      "source_url": "https://en.wikipedia.org/wiki/Tristan_da_Cunha",
+      "source_title": "Tristan da Cunha",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Geology section.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "TDC-014",
+      "category": "geology",
+      "statement": "Earth tremors from August 1961 preceded a lava dome that formed on 10 October 1961 a few hundred feet east of the village; a 1962 Royal Society team found lava had flowed north and east into the sea.",
+      "source_url": "https://royalsociety.org/blog/2021/08/volcanic-venture",
+      "source_title": "Volcanic venture",
+      "publisher": "The Royal Society",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Account of eruption and expedition findings.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "TDC-015",
+      "category": "history",
+      "statement": "The Portuguese explorer Tristao da Cunha first recorded sighting the islands in 1506, and the main island carries his name.",
+      "source_url": "https://en.wikipedia.org/wiki/Tristan_da_Cunha",
+      "source_title": "Tristan da Cunha",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "History section.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "TDC-016",
+      "category": "history",
+      "statement": "The first undisputed landing was in 1643 by a Dutch East India Company crew, and the first permanent settler, Jonathan Lambert, arrived in December 1810.",
+      "source_url": "https://en.wikipedia.org/wiki/Tristan_da_Cunha",
+      "source_title": "Tristan da Cunha",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "History section.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "TDC-017",
+      "category": "history",
+      "statement": "Britain annexed the islands on 14 August 1816 as a dependency of the Cape Colony.",
+      "source_url": "https://en.wikipedia.org/wiki/Tristan_da_Cunha",
+      "source_title": "Tristan da Cunha",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "History timeline.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "TDC-018",
+      "category": "history",
+      "statement": "The settlement was founded in 1816 by Sergeant William Glass and renamed Edinburgh of the Seven Seas to honour Prince Alfred, Duke of Edinburgh, who visited in 1867.",
+      "source_url": "https://en.wikipedia.org/wiki/Edinburgh_of_the_Seven_Seas",
+      "source_title": "Edinburgh of the Seven Seas",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Founding and naming section.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "TDC-019",
+      "category": "history",
+      "statement": "When the volcano threatened in October 1961, all 264 islanders left, spent a night on Nightingale Island, and were carried by the Dutch liner Tjisadane to Cape Town, then on to England.",
+      "source_url": "https://www.historytoday.com/archive/evacuation-tristan-da-cunha",
+      "source_title": "The Evacuation of Tristan da Cunha",
+      "publisher": "History Today",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Account of the evacuation.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "TDC-020",
+      "category": "history",
+      "statement": "The 1961 evacuees were taken to England; after the 1962 Royal Society expedition judged the settlement largely intact, most islanders returned in 1963, the first group in April and the rest in November.",
+      "source_url": "https://royalsociety.org/blog/2021/08/volcanic-venture",
+      "source_title": "Volcanic venture",
+      "publisher": "The Royal Society",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Return section.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "TDC-021",
+      "category": "people_governance",
+      "statement": "Tristan da Cunha is part of the British Overseas Territory of Saint Helena, Ascension and Tristan da Cunha under a constitution in force since 1 September 2009.",
+      "source_url": "https://en.wikipedia.org/wiki/Tristan_da_Cunha",
+      "source_title": "Tristan da Cunha",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Governance section.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "TDC-022",
+      "category": "people_governance",
+      "statement": "Local government is led by an appointed administrator advised by an Island Council of eight elected and three appointed members; Ian Lavarello became Chief Islander in March 2025.",
+      "source_url": "https://en.wikipedia.org/wiki/Tristan_da_Cunha",
+      "source_title": "Tristan da Cunha",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Governance section.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "TDC-023",
+      "category": "people_governance",
+      "statement": "The 2021 census counted 243 residents; the article gives 221-222 for 2026, about 1.3 people per km2.",
+      "source_url": "https://en.wikipedia.org/wiki/Tristan_da_Cunha",
+      "source_title": "Tristan da Cunha",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Population paragraph.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "TDC-024",
+      "category": "ecology",
+      "statement": "Gough and Inaccessible Islands, part of Tristan da Cunha, were inscribed as a World Heritage Site in 1995 (extended in 2004) under criteria vii and x, covering 397,900 ha including marine areas.",
+      "source_url": "https://whc.unesco.org/en/list/740/",
+      "source_title": "Gough and Inaccessible Islands",
+      "publisher": "UNESCO World Heritage Centre",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Inscription, criteria and area.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "TDC-025",
+      "category": "ecology",
+      "statement": "Cliffs on these islands host about 22 seabird species, including albatrosses, petrels and penguins.",
+      "source_url": "https://whc.unesco.org/en/list/740/",
+      "source_title": "Gough and Inaccessible Islands",
+      "publisher": "UNESCO World Heritage Centre",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Description paragraph.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "TDC-026",
+      "category": "ecology",
+      "statement": "Gough Island has two endemic land birds, the Gough moorhen and Gough bunting, plus 12 endemic plant species; Inaccessible Island holds the Inaccessible Rail, the world's smallest flightless bird.",
+      "source_url": "https://whc.unesco.org/en/list/740/",
+      "source_title": "Gough and Inaccessible Islands",
+      "publisher": "UNESCO World Heritage Centre",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Endemic species section.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "TDC-027",
+      "category": "ecology",
+      "statement": "Tristan da Cunha has important breeding grounds for petrels, albatrosses, penguins and shearwaters.",
+      "source_url": "https://science.nasa.gov/earth/earth-observatory/tristan-da-cunha-south-atlantic-ocean-80456/",
+      "source_title": "Tristan da Cunha, South Atlantic Ocean",
+      "publisher": "NASA Earth Observatory",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Wildlife sentence in the NASA caption.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "TDC-028",
+      "category": "ecology",
+      "statement": "The Tristan Marine Protection Zone, designated in November 2020, covers 687,247 km2 and is described as the largest no-take zone in the Atlantic.",
+      "source_url": "https://en.wikipedia.org/wiki/Tristan_da_Cunha",
+      "source_title": "Tristan da Cunha",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Ecology/conservation section.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "TDC-029",
+      "category": "threats",
+      "statement": "House mice, probably brought by 19th-century sailors, now eat seabird chicks on Gough Island and have begun attacking adult birds.",
+      "source_url": "https://www.goughisland.com/the-project",
+      "source_title": "The project",
+      "publisher": "Gough Island Restoration Programme (RSPB-led)",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Why section.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "TDC-030",
+      "category": "threats",
+      "statement": "Besides mice on Gough, invasive plants such as Sagina procumbens and New Zealand flax threaten the sites, while Inaccessible Island has no introduced mammals.",
+      "source_url": "https://whc.unesco.org/en/list/740/",
+      "source_title": "Gough and Inaccessible Islands",
+      "publisher": "UNESCO World Heritage Centre",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Threats paragraph.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "TDC-031",
+      "category": "conservation",
+      "statement": "In austral summer 2021 helicopters spread rodenticide bait across Gough Island in an RSPB-led programme with the Tristan government and community.",
+      "source_url": "https://www.goughisland.com/the-project",
+      "source_title": "The project",
+      "publisher": "Gough Island Restoration Programme (RSPB-led)",
+      "retrieved": "2026-10-08",
+      "evidence_note": "2021 baiting section.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "TDC-032",
+      "category": "conservation",
+      "statement": "Gough and Inaccessible are a Nature Reserve under a 2006 ordinance and Ramsar sites, managed so that only research and weather monitoring are allowed.",
+      "source_url": "https://whc.unesco.org/en/list/740/",
+      "source_title": "Gough and Inaccessible Islands",
+      "publisher": "UNESCO World Heritage Centre",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Protection paragraph.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "TDC-033",
+      "category": "creature",
+      "statement": "The Tristan albatross (Diomedea dabbenena) is listed as Critically Endangered, a status reached in 2008 after earlier being Endangered.",
+      "source_url": "https://en.wikipedia.org/wiki/Tristan_albatross",
+      "source_title": "Tristan albatross",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "IUCN status paragraph.",
+      "confidence": "medium",
+      "subject": "tristan-albatross"
+    },
+    {
+      "id": "TDC-034",
+      "category": "creature",
+      "statement": "In May 2008 the Tristan albatross was recategorised Critically Endangered by BirdLife International on behalf of IUCN because of mouse predation of chicks on Gough Island and longline fishing mortality.",
+      "source_url": "https://acap.aq/news/news-archive/2008-news-archive/tristan-albatross-now-critically-endangered-but-help-on-the-horizon",
+      "source_title": "Tristan Albatross now Critically Endangered - but help on the horizon?",
+      "publisher": "Agreement on the Conservation of Albatrosses and Petrels (ACAP)",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Article text.",
+      "confidence": "high",
+      "subject": "tristan-albatross"
+    },
+    {
+      "id": "TDC-035",
+      "category": "creature",
+      "statement": "The Tristan albatross breeds almost entirely on Gough Island, part of the Tristan da Cunha group.",
+      "source_url": "https://whc.unesco.org/en/list/740/",
+      "source_title": "Gough and Inaccessible Islands",
+      "publisher": "UNESCO World Heritage Centre",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Tristan albatross entry in the description.",
+      "confidence": "high",
+      "subject": "tristan-albatross"
+    },
+    {
+      "id": "TDC-036",
+      "category": "creature",
+      "statement": "Gough holds about 1,500 breeding pairs of Tristan albatross, with a pair breeding on Inaccessible Island in some years.",
+      "source_url": "https://en.wikipedia.org/wiki/Tristan_albatross",
+      "source_title": "Tristan albatross",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Population/breeding sites section.",
+      "confidence": "medium",
+      "subject": "tristan-albatross"
+    },
+    {
+      "id": "TDC-037",
+      "category": "creature",
+      "statement": "The Tristan albatross breeds every second year, is monogamous, typically starts breeding around age 10, and has a wingspan up to about 3.05 m.",
+      "source_url": "https://en.wikipedia.org/wiki/Tristan_albatross",
+      "source_title": "Tristan albatross",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Biology section.",
+      "confidence": "medium",
+      "subject": "tristan-albatross"
+    },
+    {
+      "id": "TDC-038",
+      "category": "creature",
+      "statement": "After the 2021 mouse operation, Tristan albatross breeding success on Gough reached 76 percent in 2022, up from a mouse-affected average of 32 percent, with over 1,000 chicks fledged.",
+      "source_url": "https://www.birdguides.com/news/gough-islands-seabirds-bounce-back-after-rodent-eradication/",
+      "source_title": "Gough Island's seabirds bounce back after rodent eradication",
+      "publisher": "BirdGuides",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Albatross breeding success paragraph.",
+      "confidence": "high",
+      "subject": "tristan-albatross"
+    },
+    {
+      "id": "TDC-039",
+      "category": "creature",
+      "statement": "A survey reported in October 2021 gave island-wide Tristan albatross chick survival of 39.7 percent versus 37.2 percent the year before, with the RSPB noting mice still caused heavy losses.",
+      "source_url": "https://www.birdguides.com/news/annual-tristan-albatross-survey-reveals-mixed-results/",
+      "source_title": "Annual Tristan albatross survey reveals mixed results",
+      "publisher": "BirdGuides",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Survey figures.",
+      "confidence": "high",
+      "subject": "tristan-albatross"
+    },
+    {
+      "id": "TDC-040",
+      "category": "creature",
+      "statement": "GBIF accepts Diomedea dabbenena Mathews, 1929 as a species, with taxon key 5722866.",
+      "source_url": "https://api.gbif.org/v1/species/match?name=Diomedea%20dabbenena",
+      "source_title": "GBIF species match: Diomedea dabbenena",
+      "publisher": "GBIF",
+      "retrieved": "2026-10-08",
+      "evidence_note": "GBIF match response.",
+      "confidence": "high",
+      "subject": "tristan-albatross"
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Tristan_da_Cunha",
+      "title": "Tristan da Cunha",
+      "publisher": "Wikipedia"
+    },
+    {
+      "url": "https://science.nasa.gov/earth/earth-observatory/tristan-da-cunha-south-atlantic-ocean-80456/",
+      "title": "Tristan da Cunha, South Atlantic Ocean",
+      "publisher": "NASA Earth Observatory"
+    },
+    {
+      "url": "https://www.gov.uk/government/news/royal-navy-surveys-remote-volcanic-archipelago",
+      "title": "Royal Navy surveys remote volcanic archipelago",
+      "publisher": "GOV.UK (Ministry of Defence)"
+    },
+    {
+      "url": "https://royalsociety.org/blog/2021/08/volcanic-venture",
+      "title": "Volcanic venture",
+      "publisher": "The Royal Society"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Edinburgh_of_the_Seven_Seas",
+      "title": "Edinburgh of the Seven Seas",
+      "publisher": "Wikipedia"
+    },
+    {
+      "url": "https://www.historytoday.com/archive/evacuation-tristan-da-cunha",
+      "title": "The Evacuation of Tristan da Cunha",
+      "publisher": "History Today"
+    },
+    {
+      "url": "https://whc.unesco.org/en/list/740/",
+      "title": "Gough and Inaccessible Islands",
+      "publisher": "UNESCO World Heritage Centre"
+    },
+    {
+      "url": "https://www.goughisland.com/the-project",
+      "title": "The project",
+      "publisher": "Gough Island Restoration Programme (RSPB-led)"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Tristan_albatross",
+      "title": "Tristan albatross",
+      "publisher": "Wikipedia"
+    },
+    {
+      "url": "https://acap.aq/news/news-archive/2008-news-archive/tristan-albatross-now-critically-endangered-but-help-on-the-horizon",
+      "title": "Tristan Albatross now Critically Endangered - but help on the horizon?",
+      "publisher": "Agreement on the Conservation of Albatrosses and Petrels (ACAP)"
+    },
+    {
+      "url": "https://www.birdguides.com/news/gough-islands-seabirds-bounce-back-after-rodent-eradication/",
+      "title": "Gough Island's seabirds bounce back after rodent eradication",
+      "publisher": "BirdGuides"
+    },
+    {
+      "url": "https://www.birdguides.com/news/annual-tristan-albatross-survey-reveals-mixed-results/",
+      "title": "Annual Tristan albatross survey reveals mixed results",
+      "publisher": "BirdGuides"
+    },
+    {
+      "url": "https://api.gbif.org/v1/species/match?name=Diomedea%20dabbenena",
+      "title": "GBIF species match: Diomedea dabbenena",
+      "publisher": "GBIF"
+    }
+  ],
+  "gaps": [
+    "IUCN Red List and BirdLife DataZone pages could not be read (robots/blocked/unloaded), so the current assessment year and population estimate are unverified",
+    "Tristan government site (tristandc.com) blocked by robots.txt",
+    "Britannica fetch returned 404; no independent meteorological source (e.g. Met Office) for climate, climate figures rely on Wikipedia",
+    "Nightingale Island breeding link for the albatross not confirmed"
+  ],
+  "conflicts": [
+    "Population: 243 (2021 census), 246 (2023, settlement article), 221/222 (2026, Wikipedia), 275 (2012 MoD), about 250 (NASA JPL) differ by date",
+    "Distance to St Helena: about 2,170-2,173 km (Wikipedia, NASA) vs 2,434 km to Jamestown (settlement article)",
+    "Queen Mary's Peak: 2,060 m (NASA) vs 2,062 m (Wikipedia)",
+    "Mouse operation timing: Gough project page says baiting 2021 but also contains a stale 'eradicate in 2019' line",
+    "Albatross sites: UNESCO says breeds almost entirely on Gough; Wikipedia adds occasional Inaccessible pair"
+  ]
+}

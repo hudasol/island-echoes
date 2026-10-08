@@ -1,0 +1,39 @@
+{
+ "fetched_at": "2026-10-08T11:51:35+00:00",
+ "creatures": {
+  "pitcairn-reed-warbler": {
+   "match": {
+    "usageKey": 5231321,
+    "scientificName": "Acrocephalus vaughani (Sharpe, 1900)",
+    "canonicalName": "Acrocephalus vaughani",
+    "rank": "SPECIES",
+    "status": "ACCEPTED",
+    "confidence": 99,
+    "matchType": "EXACT",
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "order": "Passeriformes",
+    "family": "Acrocephalidae",
+    "genus": "Acrocephalus",
+    "species": "Acrocephalus vaughani",
+    "kingdomKey": 1,
+    "phylumKey": 44,
+    "classKey": 212,
+    "orderKey": 729,
+    "familyKey": 6101019,
+    "genusKey": 2493112,
+    "speciesKey": 5231321,
+    "class": "Aves"
+   },
+   "global_count": 153,
+   "local_count": 98,
+   "box": {
+    "min_lat": -27.0667,
+    "max_lat": -23.0667,
+    "min_lon": -132.1067,
+    "max_lon": -128.1067,
+    "half_width_deg": 2.0
+   }
+  }
+ }
+}

@@ -1,0 +1,39 @@
+{
+ "fetched_at": "2026-10-08T11:51:37+00:00",
+ "creatures": {
+  "socotra-buzzard": {
+   "match": {
+    "usageKey": 6066254,
+    "scientificName": "Buteo socotraensis Porter & Kirwan, 2010",
+    "canonicalName": "Buteo socotraensis",
+    "rank": "SPECIES",
+    "status": "ACCEPTED",
+    "confidence": 99,
+    "matchType": "EXACT",
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "order": "Accipitriformes",
+    "family": "Accipitridae",
+    "genus": "Buteo",
+    "species": "Buteo socotraensis",
+    "kingdomKey": 1,
+    "phylumKey": 44,
+    "classKey": 212,
+    "orderKey": 7191147,
+    "familyKey": 2877,
+    "genusKey": 2480517,
+    "speciesKey": 6066254,
+    "class": "Aves"
+   },
+   "global_count": 185,
+   "local_count": 181,
+   "box": {
+    "min_lat": 11.01,
+    "max_lat": 14.01,
+    "min_lon": 52.42,
+    "max_lon": 55.42,
+    "half_width_deg": 1.5
+   }
+  }
+ }
+}

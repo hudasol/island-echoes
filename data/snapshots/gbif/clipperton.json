@@ -1,0 +1,39 @@
+{
+ "fetched_at": "2026-10-08T11:51:27+00:00",
+ "creatures": {
+  "silvertip-shark": {
+   "match": {
+    "usageKey": 2418003,
+    "scientificName": "Carcharhinus albimarginatus (Rüppell, 1837)",
+    "canonicalName": "Carcharhinus albimarginatus",
+    "rank": "SPECIES",
+    "status": "ACCEPTED",
+    "confidence": 99,
+    "matchType": "EXACT",
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "order": "Carcharhiniformes",
+    "family": "Carcharhinidae",
+    "genus": "Carcharhinus",
+    "species": "Carcharhinus albimarginatus",
+    "kingdomKey": 1,
+    "phylumKey": 44,
+    "classKey": 121,
+    "orderKey": 887,
+    "familyKey": 2211,
+    "genusKey": 2417963,
+    "speciesKey": 2418003,
+    "class": "Elasmobranchii"
+   },
+   "global_count": 19797,
+   "local_count": 8,
+   "box": {
+    "min_lat": 9.3,
+    "max_lat": 11.3,
+    "min_lon": -110.22,
+    "max_lon": -108.22,
+    "half_width_deg": 1.0
+   }
+  }
+ }
+}

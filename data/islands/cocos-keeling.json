@@ -1,0 +1,603 @@
+{
+  "slug": "cocos-keeling",
+  "name": "Cocos (Keeling) Islands",
+  "alt_names": [
+    "Keeling Islands",
+    "Territory of Cocos (Keeling) Islands"
+  ],
+  "pin": {
+    "lat": -12.1869,
+    "lon": 96.8283,
+    "note": "West Island, the territory's capital (12°11′13″S, 96°49′42″E)"
+  },
+  "territory": "Australia (external territory, administered by the Australian Government)",
+  "creatures": [
+    {
+      "slug": "napoleon-wrasse",
+      "common_name": "Napoleon wrasse",
+      "scientific_name": "Cheilinus undulatus",
+      "creature_type": "marine",
+      "iucn_status": "Endangered (EN), criteria A2bcd; assessment 17 July 2024 per FishBase (Wikipedia cites a 2004 assessment)",
+      "gbif_search_name": "Cheilinus undulatus",
+      "status_note": "Presence verified via GBIF (24 Cocos records) and the Australian Faunal Directory; IUCN page itself could not be fetched, status relayed via FishBase/Wikipedia."
+    }
+  ],
+  "facts": [
+    {
+      "id": "COC-001",
+      "category": "location",
+      "statement": "The Cocos (Keeling) Islands' capital, West Island, sits at roughly 12°11′13″ S, 96°49′42″ E in the eastern Indian Ocean.",
+      "source_url": "https://en.wikipedia.org/wiki/Cocos_(Keeling)_Islands",
+      "source_title": "Cocos (Keeling) Islands",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Infobox coordinates for West Island.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "COC-002",
+      "category": "location",
+      "statement": "The islands lie about 3,685 km (2,290 mi) west of Darwin and about 900 km southwest of Christmas Island.",
+      "source_url": "https://www.britannica.com/place/Cocos-Islands",
+      "source_title": "Cocos Islands",
+      "publisher": "Encyclopaedia Britannica",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Opening summary of the Britannica entry.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "COC-003",
+      "category": "location",
+      "statement": "The group consists of 27 coral islands arranged in two atolls, and only West Island and Home Island have permanent residents.",
+      "source_url": "https://en.wikipedia.org/wiki/Cocos_(Keeling)_Islands",
+      "source_title": "Cocos (Keeling) Islands",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Geography section; SBS factbox also says 27 islands, 24 of them in South Keeling.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "COC-004",
+      "category": "location",
+      "statement": "North Keeling, a small separate atoll, lies roughly 25 km north of the South Keeling atoll.",
+      "source_url": "https://science.nasa.gov/earth/earth-observatory/south-keeling-atoll-152930/",
+      "source_title": "South Keeling Atoll",
+      "publisher": "NASA Earth Observatory",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Description of the two atolls in the image caption.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "COC-005",
+      "category": "climate",
+      "statement": "At Cocos Island Airport, rainfall averages about 1,970 mm per year (records from 1901), peaking in April at about 243 mm and bottoming out in October at about 79 mm.",
+      "source_url": "https://www.bom.gov.au/climate/averages/tables/cw_200284.shtml",
+      "source_title": "Climate statistics for Cocos Island Airport (site 200284)",
+      "publisher": "Australian Bureau of Meteorology",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Rainfall rows of the station averages table.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "COC-006",
+      "category": "climate",
+      "statement": "Temperatures are steady: the mean daily maximum is about 29.1 °C and the mean minimum about 24.7 °C, with March warmest (mean max 30.1 °C) and July-August coolest (mean max 28.1 °C).",
+      "source_url": "https://www.bom.gov.au/climate/averages/tables/cw_200284.shtml",
+      "source_title": "Climate statistics for Cocos Island Airport (site 200284)",
+      "publisher": "Australian Bureau of Meteorology",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Temperature rows of the station averages table.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "COC-007",
+      "category": "climate",
+      "statement": "Wikipedia classifies the climate as tropical rainforest (Köppen Af) with average annual rainfall of about 1,879 mm, wettest in April and driest in October.",
+      "source_url": "https://en.wikipedia.org/wiki/Cocos_(Keeling)_Islands",
+      "source_title": "Cocos (Keeling) Islands",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Climate section and climate chart data.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "COC-008",
+      "category": "climate",
+      "statement": "The Australian government describes the climate as tropical and very humid, with temperatures of 23-30 °C, about 2,000 mm of rain a year mostly from January to August, and south-east trade winds most of the year.",
+      "source_url": "https://www.infrastructure.gov.au/territories-regions-cities/territories/indian-ocean-territories/cocos-keeling-islands/environment-heritage",
+      "source_title": "Cocos (Keeling) Islands environment and heritage",
+      "publisher": "Australian Government Dept of Infrastructure, Transport, Regional Development, Communications, Sport and the Arts",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Climate paragraph of the environment page.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "COC-009",
+      "category": "climate",
+      "statement": "A Ramsar site document notes Australia has warmed about 1.4 °C since 1910 and projects rising temperatures, falling rainfall and rising sea level for the Cocos (Keeling) Islands.",
+      "source_url": "https://rsis.ramsar.org/RISapp/files/RISrep/AU797RIS_2502_en.pdf",
+      "source_title": "Ramsar Information Sheet: Pulu Keeling National Park (Site 797)",
+      "publisher": "Ramsar Convention Secretariat",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Climate change section of the Ramsar sheet.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "COC-010",
+      "category": "terrain",
+      "statement": "Total land area is only about 14.2 km2 with a 26 km coastline, and the highest point is about 5 m above sea level.",
+      "source_url": "https://en.wikipedia.org/wiki/Cocos_(Keeling)_Islands",
+      "source_title": "Cocos (Keeling) Islands",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Geography infobox figures.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "COC-011",
+      "category": "terrain",
+      "statement": "The atolls are horseshoe-shaped, with coral-sand beaches on the ocean side and mudflats on the lagoon side.",
+      "source_url": "https://www.infrastructure.gov.au/territories-regions-cities/territories/indian-ocean-territories/cocos-keeling-islands/environment-heritage",
+      "source_title": "Cocos (Keeling) Islands environment and heritage",
+      "publisher": "Australian Government Dept of Infrastructure, Transport, Regional Development, Communications, Sport and the Arts",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Geography paragraph of the environment page.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "COC-012",
+      "category": "terrain",
+      "statement": "North Keeling is a C-shaped atoll of about 1.2 km2 enclosing a lagoon of about 0.5 km2, whose eastern opening is roughly 50 m wide.",
+      "source_url": "https://en.wikipedia.org/wiki/North_Keeling",
+      "source_title": "North Keeling",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Description in the Area section.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "COC-013",
+      "category": "geology",
+      "statement": "The low reef islands rise only 3-4 m above sea level and sit on a platform of cemented coral rock built from corals dated 4000-3000 radiocarbon years before present, with the islands accumulating over about the last 3000 years.",
+      "source_url": "https://serc.carleton.edu/vignettes/collection/35374.html",
+      "source_title": "The Cocos (Keeling) Islands, and what coral reefs can tell us about changes of sea level",
+      "publisher": "SERC, Carleton College",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Cocos section of the sea-level vignette.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "COC-014",
+      "category": "geology",
+      "statement": "Charles Darwin visited in 1836 and developed his theory that atolls form as a sinking volcanic island leaves a coral ring behind; a NASA page says Beagle depth studies supported this idea.",
+      "source_url": "https://science.nasa.gov/earth/earth-observatory/south-keeling-atoll-152930/",
+      "source_title": "South Keeling Atoll",
+      "publisher": "NASA Earth Observatory",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Geology paragraph; SERC page confirms 1836 visit and 1842 publication.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "COC-015",
+      "category": "history",
+      "statement": "William Keeling, a European captain, sighted the islands in 1609.",
+      "source_url": "https://science.nasa.gov/earth/earth-observatory/south-keeling-atoll-152930/",
+      "source_title": "South Keeling Atoll",
+      "publisher": "NASA Earth Observatory",
+      "retrieved": "2026-10-08",
+      "evidence_note": "History paragraph.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "COC-016",
+      "category": "history",
+      "statement": "John Clunies-Ross first visited in 1825 and later settled with his family, who ruled the islands almost like a private fiefdom for nearly 150 years.",
+      "source_url": "https://en.wikipedia.org/wiki/Cocos_(Keeling)_Islands",
+      "source_title": "Cocos (Keeling) Islands",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "History section.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "COC-017",
+      "category": "history",
+      "statement": "HMS Beagle reached the islands on 1 April 1836 with Charles Darwin aboard for survey work.",
+      "source_url": "https://en.wikipedia.org/wiki/Cocos_(Keeling)_Islands",
+      "source_title": "Cocos (Keeling) Islands",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "History section.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "COC-018",
+      "category": "history",
+      "statement": "On 9 November 1914, HMAS Sydney fought the German raider SMS Emden off the islands, and the Emden ended up driven aground on North Keeling.",
+      "source_url": "https://en.wikipedia.org/wiki/Cocos_(Keeling)_Islands",
+      "source_title": "Cocos (Keeling) Islands",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Battle of Cocos entry; NAA page also says Emden was driven ashore on North Keeling.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "COC-019",
+      "category": "history",
+      "statement": "The islands became an Australian territory on 23 November 1955 under the Cocos (Keeling) Islands Act 1955.",
+      "source_url": "https://www.naa.gov.au/node/3188",
+      "source_title": "History of the Cocos (Keeling) Islands",
+      "publisher": "National Archives of Australia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Transfer paragraph; Australian government governance page gives the same date.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "COC-020",
+      "category": "history",
+      "statement": "In a 1984 UN-supervised self-determination vote, 229 of 261 eligible voters chose full integration with Australia.",
+      "source_url": "https://en.wikipedia.org/wiki/Cocos_(Keeling)_Islands",
+      "source_title": "Cocos (Keeling) Islands",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "History section vote tally; government page confirms the vote favoured integration.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "COC-021",
+      "category": "people_governance",
+      "statement": "The islands are an Australian external territory governed under section 122 of the Constitution, with a Minister for Territories, an Administrator appointed by the Governor-General, and Western Australian law applied through the 1955 Act.",
+      "source_url": "https://www.infrastructure.gov.au/territories-regions-cities/territories/indian-ocean-territories/cocos-keeling-islands/governance-administration",
+      "source_title": "Cocos (Keeling) Islands governance and administration",
+      "publisher": "Australian Government Dept of Infrastructure, Transport, Regional Development, Communications, Sport and the Arts",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Status and Act summary.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "COC-022",
+      "category": "people_governance",
+      "statement": "The population was 593 at the 2021 Census, mainly Cocos Malay people who mostly speak Malay at home (61.2%) and are mostly Sunni Muslims.",
+      "source_url": "https://en.wikipedia.org/wiki/Cocos_(Keeling)_Islands",
+      "source_title": "Cocos (Keeling) Islands",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Demographics section.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "COC-023",
+      "category": "people_governance",
+      "statement": "Local services are run by the Shire of Cocos (Keeling) Islands, and residents vote federally in the Northern Territory Division of Lingiari.",
+      "source_url": "https://www.infrastructure.gov.au/territories-regions-cities/territories/indian-ocean-territories/cocos-keeling-islands/governance-administration",
+      "source_title": "Cocos (Keeling) Islands governance and administration",
+      "publisher": "Australian Government Dept of Infrastructure, Transport, Regional Development, Communications, Sport and the Arts",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Local government and electoral representation bullets.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "COC-024",
+      "category": "ecology",
+      "statement": "North Keeling is the only seabird breeding area within 900 km, and about 60 bird species have been recorded across the islands.",
+      "source_url": "https://www.infrastructure.gov.au/territories-regions-cities/territories/indian-ocean-territories/cocos-keeling-islands/environment-heritage",
+      "source_title": "Cocos (Keeling) Islands environment and heritage",
+      "publisher": "Australian Government Dept of Infrastructure, Transport, Regional Development, Communications, Sport and the Arts",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Fauna section.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "COC-025",
+      "category": "ecology",
+      "statement": "North Keeling regularly supports about 30,000 breeding pairs of red-footed boobies, roughly 6% of the global population.",
+      "source_url": "https://rsis.ramsar.org/RISapp/files/RISrep/AU797RIS_2502_en.pdf",
+      "source_title": "Ramsar Information Sheet: Pulu Keeling National Park (Site 797)",
+      "publisher": "Ramsar Convention Secretariat",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Species numbers in the Ramsar sheet.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "COC-026",
+      "category": "ecology",
+      "statement": "The Cocos buff-banded rail is the islands' only endemic bird; the Ramsar sheet estimates 422-711 birds on North Keeling and notes a 2013 reintroduction to Horsburgh Island.",
+      "source_url": "https://rsis.ramsar.org/RISapp/files/RISrep/AU797RIS_2502_en.pdf",
+      "source_title": "Ramsar Information Sheet: Pulu Keeling National Park (Site 797)",
+      "publisher": "Ramsar Convention Secretariat",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Rail section of the Ramsar sheet.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "COC-027",
+      "category": "ecology",
+      "statement": "Sixty-one plant species have been recorded in the territory, with one endemic subspecies, Pandanus tectorius cocosensis, found on Home and West Islands.",
+      "source_url": "https://www.infrastructure.gov.au/territories-regions-cities/territories/indian-ocean-territories/cocos-keeling-islands/environment-heritage",
+      "source_title": "Cocos (Keeling) Islands environment and heritage",
+      "publisher": "Australian Government Dept of Infrastructure, Transport, Regional Development, Communications, Sport and the Arts",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Flora section.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "COC-028",
+      "category": "ecology",
+      "statement": "The marine park region has over 600 reef fish species and a genetically distinct local green turtle stock.",
+      "source_url": "https://australianmarineparks.gov.au/parks/indian-ocean-territories-marine-parks/cocos-keeling-islands-marine-park/",
+      "source_title": "Cocos (Keeling) Islands Marine Park",
+      "publisher": "Parks Australia (Australian Marine Parks)",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Species section of the marine park page.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "COC-029",
+      "category": "threats",
+      "statement": "Sea level is projected to rise about 14-17 cm by 2030 and 40-50 cm by 2070 at the national park, on islands only a few metres high.",
+      "source_url": "https://www.agriculture.gov.au/sites/default/files/documents/pulukeelingstrategy.pdf",
+      "source_title": "Pulu Keeling National Park climate change strategy",
+      "publisher": "Australian Government Dept of Agriculture, Fisheries and Forestry",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Sea level rise projections in the climate strategy.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "COC-030",
+      "category": "threats",
+      "statement": "Cyclone John in 1989 killed about 40% of booby chicks and 2% of adults, cut nest numbers by 60% the following year, and the colony recovered after four years.",
+      "source_url": "https://www.agriculture.gov.au/sites/default/files/documents/pulukeelingstrategy.pdf",
+      "source_title": "Pulu Keeling National Park climate change strategy",
+      "publisher": "Australian Government Dept of Agriculture, Fisheries and Forestry",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Red-footed booby passage in the strategy.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "COC-031",
+      "category": "threats",
+      "statement": "Yellow crazy ants were detected across 59 ha of North Keeling in 2009, and illegal seabird poaching was estimated at 2,000-3,000 birds a year in 2004.",
+      "source_url": "https://rsis.ramsar.org/RISapp/files/RISrep/AU797RIS_2502_en.pdf",
+      "source_title": "Ramsar Information Sheet: Pulu Keeling National Park (Site 797)",
+      "publisher": "Ramsar Convention Secretariat",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Threats section of the Ramsar sheet.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "COC-032",
+      "category": "conservation",
+      "statement": "Pulu Keeling National Park was established on 12 December 1995 and listed as Ramsar Site 797 on 17 March 1996, with legal hunting having ended in 1989.",
+      "source_url": "https://en.wikipedia.org/wiki/North_Keeling",
+      "source_title": "North Keeling",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Conservation section; Ramsar site page confirms 17 March 1996 and 2,603 ha.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "COC-033",
+      "category": "conservation",
+      "statement": "The Cocos (Keeling) Islands Marine Park was proclaimed on 20 March 2022 and extends out to the edge of Australia's EEZ, covering roughly 467,000 km2.",
+      "source_url": "https://australianmarineparks.gov.au/parks/indian-ocean-territories-marine-parks/cocos-keeling-islands-marine-park/",
+      "source_title": "Cocos (Keeling) Islands Marine Park",
+      "publisher": "Parks Australia (Australian Marine Parks)",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Establishment and size sections; page lists 467,054 and 467,754 km2.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "COC-034",
+      "category": "creature",
+      "statement": "GBIF holds 24 occurrence records of Cheilinus undulatus from the Cocos (Keeling) Islands, including recent human observations.",
+      "source_url": "https://api.gbif.org/v1/occurrence/search?scientificName=Cheilinus%20undulatus&country=CC&limit=3",
+      "source_title": "GBIF occurrence search: Cheilinus undulatus in Cocos (Keeling) Islands",
+      "publisher": "GBIF",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Occurrence search count and records.",
+      "confidence": "high",
+      "subject": "napoleon-wrasse"
+    },
+    {
+      "id": "COC-035",
+      "category": "creature",
+      "statement": "The Australian Faunal Directory lists the humphead (giant) wrasse as occurring at Christmas Island and the Cocos (Keeling) Islands.",
+      "source_url": "https://biodiversity.org.au/afd/taxa/Giant_Wrasse",
+      "source_title": "Species Cheilinus undulatus Rüppell, 1835",
+      "publisher": "Australian Faunal Directory (Australian Government)",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Distribution section citing Hobbs et al. 2014.",
+      "confidence": "high",
+      "subject": "napoleon-wrasse"
+    },
+    {
+      "id": "COC-036",
+      "category": "creature",
+      "statement": "FishBase reports the species as Endangered (criteria A2bcd) on the IUCN Red List, assessed 17 July 2024.",
+      "source_url": "https://www.fishbase.se/summary/5604",
+      "source_title": "Cheilinus undulatus, Humphead wrasse",
+      "publisher": "FishBase",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Conservation status line.",
+      "confidence": "medium",
+      "subject": "napoleon-wrasse"
+    },
+    {
+      "id": "COC-037",
+      "category": "creature",
+      "statement": "Wikipedia attributes the Endangered status to a 2004 IUCN assessment, which differs from the 2024 date shown by FishBase.",
+      "source_url": "https://en.wikipedia.org/wiki/Humphead_wrasse",
+      "source_title": "Humphead wrasse",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Conservation status citation.",
+      "confidence": "medium",
+      "subject": "napoleon-wrasse"
+    },
+    {
+      "id": "COC-038",
+      "category": "creature",
+      "statement": "Males can reach about 229 cm and 191 kg, while females rarely exceed 1 m.",
+      "source_url": "https://en.wikipedia.org/wiki/Humphead_wrasse",
+      "source_title": "Humphead wrasse",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Description section; FishBase gives a similar 229 cm maximum.",
+      "confidence": "high",
+      "subject": "napoleon-wrasse"
+    },
+    {
+      "id": "COC-039",
+      "category": "creature",
+      "statement": "The species is a female-to-male sex changer that matures at 5-7 years and lives about 30 years.",
+      "source_url": "https://en.wikipedia.org/wiki/Humphead_wrasse",
+      "source_title": "Humphead wrasse",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Biology section.",
+      "confidence": "high",
+      "subject": "napoleon-wrasse"
+    },
+    {
+      "id": "COC-040",
+      "category": "creature",
+      "statement": "Its main threat is overfishing for the live reef food-fish trade, and it is listed in CITES Appendix II.",
+      "source_url": "https://en.wikipedia.org/wiki/Humphead_wrasse",
+      "source_title": "Humphead wrasse",
+      "publisher": "Wikipedia",
+      "retrieved": "2026-10-08",
+      "evidence_note": "Threats and CITES lines.",
+      "confidence": "high",
+      "subject": "napoleon-wrasse"
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Cocos_(Keeling)_Islands",
+      "title": "Cocos (Keeling) Islands",
+      "publisher": "Wikipedia"
+    },
+    {
+      "url": "https://www.britannica.com/place/Cocos-Islands",
+      "title": "Cocos Islands",
+      "publisher": "Encyclopaedia Britannica"
+    },
+    {
+      "url": "https://science.nasa.gov/earth/earth-observatory/south-keeling-atoll-152930/",
+      "title": "South Keeling Atoll",
+      "publisher": "NASA Earth Observatory"
+    },
+    {
+      "url": "https://www.bom.gov.au/climate/averages/tables/cw_200284.shtml",
+      "title": "Climate statistics for Cocos Island Airport (site 200284)",
+      "publisher": "Australian Bureau of Meteorology"
+    },
+    {
+      "url": "https://www.infrastructure.gov.au/territories-regions-cities/territories/indian-ocean-territories/cocos-keeling-islands/environment-heritage",
+      "title": "Cocos (Keeling) Islands environment and heritage",
+      "publisher": "Australian Government Dept of Infrastructure, Transport, Regional Development, Communications, Sport and the Arts"
+    },
+    {
+      "url": "https://rsis.ramsar.org/RISapp/files/RISrep/AU797RIS_2502_en.pdf",
+      "title": "Ramsar Information Sheet: Pulu Keeling National Park (Site 797)",
+      "publisher": "Ramsar Convention Secretariat"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/North_Keeling",
+      "title": "North Keeling",
+      "publisher": "Wikipedia"
+    },
+    {
+      "url": "https://serc.carleton.edu/vignettes/collection/35374.html",
+      "title": "The Cocos (Keeling) Islands, and what coral reefs can tell us about changes of sea level",
+      "publisher": "SERC, Carleton College"
+    },
+    {
+      "url": "https://www.naa.gov.au/node/3188",
+      "title": "History of the Cocos (Keeling) Islands",
+      "publisher": "National Archives of Australia"
+    },
+    {
+      "url": "https://www.infrastructure.gov.au/territories-regions-cities/territories/indian-ocean-territories/cocos-keeling-islands/governance-administration",
+      "title": "Cocos (Keeling) Islands governance and administration",
+      "publisher": "Australian Government Dept of Infrastructure, Transport, Regional Development, Communications, Sport and the Arts"
+    },
+    {
+      "url": "https://australianmarineparks.gov.au/parks/indian-ocean-territories-marine-parks/cocos-keeling-islands-marine-park/",
+      "title": "Cocos (Keeling) Islands Marine Park",
+      "publisher": "Parks Australia (Australian Marine Parks)"
+    },
+    {
+      "url": "https://www.agriculture.gov.au/sites/default/files/documents/pulukeelingstrategy.pdf",
+      "title": "Pulu Keeling National Park climate change strategy",
+      "publisher": "Australian Government Dept of Agriculture, Fisheries and Forestry"
+    },
+    {
+      "url": "https://api.gbif.org/v1/occurrence/search?scientificName=Cheilinus%20undulatus&country=CC&limit=3",
+      "title": "GBIF occurrence search: Cheilinus undulatus in Cocos (Keeling) Islands",
+      "publisher": "GBIF"
+    },
+    {
+      "url": "https://biodiversity.org.au/afd/taxa/Giant_Wrasse",
+      "title": "Species Cheilinus undulatus Rüppell, 1835",
+      "publisher": "Australian Faunal Directory (Australian Government)"
+    },
+    {
+      "url": "https://www.fishbase.se/summary/5604",
+      "title": "Cheilinus undulatus, Humphead wrasse",
+      "publisher": "FishBase"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Humphead_wrasse",
+      "title": "Humphead wrasse",
+      "publisher": "Wikipedia"
+    }
+  ],
+  "gaps": [
+    "IUCN Red List site blocked fetching, so status and assessment year are secondhand (FishBase, Wikipedia)",
+    "Cocos buff-banded rail IUCN category not verified",
+    "Exact total area of the original 1950s-era Clunies-Ross estate and Cocos Malay origins not fetched",
+    "Napoleon wrasse local population size/abundance at Cocos not found"
+  ],
+  "conflicts": [
+    "Distance to Christmas Island: ~900 km (Britannica) vs ~960 km (Wikipedia)",
+    "Annual rainfall: 1,969.8 mm (BoM) vs 1,879.3 mm (Wikipedia); different reference periods",
+    "Napoleon wrasse IUCN assessment year: 2024 (FishBase) vs 2004 (Wikipedia)",
+    "Marine park area: 467,054 vs 467,754 km2 within the same page",
+    "North Keeling land area: ~1.1-1.2 km2 (Wikipedia) vs 221 ha incl. lagoon (Ramsar sheet)",
+    "Rail numbers: 422-711 birds in survey text vs 1,000 in a Ramsar table"
+  ]
+}
