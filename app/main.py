@@ -10,7 +10,7 @@ from .config import Settings, get_settings
 from .data.islands import IslandStore
 from .data.models import Evidence, Island
 from .data.retrieval import Retriever
-from .data.sources import SourceStore
+from .data.sources import SourceStore, SourceUnavailable
 from .narration import load_saved, narration_for
 from .ratelimit import RateLimiter, client_key
 from .schemas import (
@@ -24,6 +24,7 @@ from .schemas import (
     IslandDetail,
     IslandSummary,
     NarrationOut,
+    SensorsOut,
     SentenceOut,
 )
 
@@ -112,6 +113,14 @@ def create_app(settings: Settings | None = None, service: ChatService | None = N
         isl = _island(slug)
         facts = [FactOut(**f.model_dump(include=set(FactOut.model_fields))) for f in isl.facts]
         return IslandDetail(**_summary(isl), facts=facts)
+
+    @app.get("/api/islands/{slug}/sensors", response_model=SensorsOut)
+    def sensors(slug: str):
+        isl = _island(slug)
+        try:
+            return SensorsOut(**sources.power_summary(isl))
+        except SourceUnavailable:
+            raise HTTPException(503, "NASA POWER data is unavailable right now.") from None
 
     @app.get("/api/islands/{slug}/narration", response_model=NarrationOut)
     def narration(slug: str, creature: str | None = None):
