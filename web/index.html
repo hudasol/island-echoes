@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Island Echoes</title>
+<meta name="description" content="Seven remote islands, seven endangered or extinct creatures that answer only from NASA POWER, GBIF and cited island fact files.">
+<meta name="theme-color" content="#0B1C26">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#console">Skip to the field agent</a>
+<div class="app" id="app">
+  <nav class="index" aria-label="Islands">
+    <header class="brand">
+      <h1>Island Echoes</h1>
+      <p>Seven remote islands. One creature on each, speaking only from sources.</p>
+    </header>
+    <ul id="island-list" class="island-list"></ul>
+    <section class="layers" aria-label="NASA GIBS imagery">
+      <h2>Satellite layer</h2>
+      <div id="layer-buttons" class="layer-buttons" role="radiogroup"></div>
+      <p id="layer-note" class="layer-note"></p>
+    </section>
+  </nav>
+
+  <main class="stage">
+    <div id="globe" class="globe" aria-label="Interactive 3D globe"></div>
+    <p id="globe-hint" class="globe-hint">Drag to turn the globe. Choose an island to fly there.</p>
+    <p id="globe-error" class="globe-error" hidden></p>
+  </main>
+
+  <aside id="console" class="console" aria-label="Field agent" tabindex="-1">
+    <div class="console-empty" id="console-empty">
+      <h2>No island selected</h2>
+      <p>Pick a pin on the globe or an island in the list. The creature there will report in.</p>
+    </div>
+    <div class="console-body" id="console-body" hidden>
+      <button class="sheet-handle" id="sheet-handle" type="button" aria-label="Expand or collapse the field agent panel"></button>
+      <header class="agent-head">
+        <div>
+          <h2 id="island-name"></h2>
+          <p id="island-territory" class="muted"></p>
+          <details class="pin-details"><summary class="small muted">About this pin</summary><p id="pin-note" class="small muted"></p></details>
+        </div>
+        <button id="close-console" class="quiet" type="button">Close</button>
+      </header>
+
+      <div id="creature-tabs" class="creature-tabs" role="tablist" aria-label="Creatures on this island"></div>
+
+      <div class="window">
+        <canvas id="creature-canvas" width="720" height="360" role="img" aria-label=""></canvas>
+        <div class="window-bar">
+          <span id="creature-name" class="creature-name"></span>
+          <span id="status-chip" class="chip"></span>
+          <button id="pause-anim" class="quiet" type="button" aria-pressed="false">Pause motion</button>
+        </div>
+      </div>
+      <p id="status-detail" class="muted small"></p>
+
+      <section class="sensors" aria-label="NASA POWER sensor readouts">
+        <h3>Sensors on site</h3>
+        <div id="sensor-grid" class="sensor-grid"></div>
+        <p id="sensor-note" class="muted small"></p>
+      </section>
+
+      <section class="narration" aria-label="Narration">
+        <div class="narration-head">
+          <h3>Field report</h3>
+          <button id="speak" class="quiet" type="button">Read aloud</button>
+        </div>
+        <div id="narration-text" class="narration-text"></div>
+      </section>
+
+      <section class="chat" aria-label="Ask the creature">
+        <h3>Ask a question</h3>
+        <div id="suggestions" class="suggestions"></div>
+        <div id="log" class="log" aria-live="polite"></div>
+        <form id="chat-form" class="chat-form" autocomplete="off">
+          <label class="sr" for="chat-input">Your question</label>
+          <input id="chat-input" maxlength="500" placeholder="Ask about climate, history, or the species" required>
+          <button type="submit" id="send">Ask</button>
+        </form>
+        <p class="muted small">Answers use only the sources shown. If the sources are silent, the creature says so.</p>
+      </section>
+    </div>
+  </aside>
+</div>
+<script src="vendor/globe.gl.min.js"></script>
+<script src="creatures.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

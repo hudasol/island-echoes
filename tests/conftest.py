@@ -9,6 +9,8 @@ import pytest
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
+from datetime import UTC
+
 from app.config import Settings  # noqa: E402
 from app.data.islands import IslandStore  # noqa: E402
 from app.data.retrieval import Retriever  # noqa: E402
@@ -53,8 +55,8 @@ class _NoNetwork:
 
 
 def age_snapshot(path: Path, days: int) -> None:
-    from datetime import datetime, timedelta, timezone
+    from datetime import datetime, timedelta
 
     doc = json.loads(path.read_text())
-    doc["fetched_at"] = (datetime.now(timezone.utc) - timedelta(days=days)).isoformat(timespec="seconds")
+    doc["fetched_at"] = (datetime.now(UTC) - timedelta(days=days)).isoformat(timespec="seconds")
     path.write_text(json.dumps(doc))

@@ -1,0 +1,281 @@
+(() => {
+  "use strict";
+  const $ = (id) => document.getElementById(id);
+  const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const GIBS = "https://gibs.earthdata.nasa.gov/wmts/epsg3857/best";
+  const dayAgo = (n) => new Date(Date.now() - n * 864e5).toISOString().slice(0, 10);
+
+  // NASA GIBS layers. `time` null means the layer is a static composite.
+  const LAYERS = [
+    { id: "truecolor", label: "True colour", layer: "VIIRS_SNPP_CorrectedReflectance_TrueColor", matrix: 9, ext: "jpeg", time: dayAgo(4), note: "VIIRS true colour from the Suomi NPP satellite, {d}." },
+    { id: "relief", label: "Relief", layer: "BlueMarble_ShadedRelief_Bathymetry", matrix: 8, ext: "jpeg", time: null, note: "Blue Marble shaded relief with sea-floor bathymetry." },
+    { id: "night", label: "Night lights", layer: "VIIRS_Black_Marble", matrix: 8, ext: "png", time: "2016-01-01", note: "VIIRS Black Marble night lights, 2016. Few lights on these islands." },
+    { id: "sst", label: "Sea temperature", layer: "GHRSST_L4_MUR_Sea_Surface_Temperature", matrix: 7, ext: "png", time: dayAgo(4), note: "GHRSST MUR sea surface temperature, {d}." },
+  ];
+  const STATUS = { CR: "Critically endangered", EN: "Endangered", VU: "Vulnerable", EX: "Extinct", EW: "Extinct in the wild", NT: "Near threatened", LC: "Least concern", DD: "Data deficient" };
+  const SUGGEST = {
+    any: ["What is the climate like?", "How many records does GBIF hold for you?", "What threatens you?", "What is the history of this island?"],
+    marine: ["How warm is the water?"], bird: ["How windy is it where you fly?"], reptile: ["How much rain falls here?"], mammal: ["How hot does it get?"],
+  };
+
+  const statusCode = (s) => /^critically/i.test(s) ? "CR" : /^endangered/i.test(s) ? "EN" : /^vulnerable/i.test(s) ? "VU" : /^extinct in the wild/i.test(s) ? "EW" : /^extinct/i.test(s) ? "EX" : /^near/i.test(s) ? "NT" : "";
+  const S = { islands: [], island: null, creature: null, layer: LAYERS[0], paused: reduced, history: [], busy: false, narration: null, sensorSeq: 0 };
+  let globe = null;
+
+  const el = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
+  const api = async (path, opts) => {
+    const r = await fetch(path, opts);
+    if (!r.ok) { let d = ""; try { d = (await r.json()).detail; } catch (_) {} const e = new Error(d || `Request failed (${r.status})`); e.status = r.status; throw e; }
+    return r.json();
+  };
+
+  /* ---------------- globe ---------------- */
+  function tileUrl(l) {
+    const t = l.time ? `${l.time}/` : "";
+    return (x, y, z) => `${GIBS}/${l.layer}/default/${t}GoogleMapsCompatible_Level${l.matrix}/${z}/${y}/${x}.${l.ext}`;
+  }
+  function applyLayer(l) {
+    S.layer = l;
+    document.querySelectorAll("#layer-buttons button").forEach((b) => b.setAttribute("aria-checked", String(b.dataset.id === l.id)));
+    $("layer-note").textContent = l.note.replace("{d}", l.time || "") + " Source: NASA GIBS.";
+    if (globe) { globe.globeTileEngineClearCache?.(); globe.globeTileEngineMaxLevel(Math.min(l.matrix - 1, 8)); globe.globeTileEngineUrl(tileUrl(l)); }
+  }
+  function initGlobe(host) {
+    try {
+      globe = Globe({ animateIn: !reduced })(host)
+        .backgroundColor("rgba(0,0,0,0)")
+        .atmosphereColor("#2C8C99").atmosphereAltitude(0.18)
+        .globeTileEngineMaxLevel(6)
+        .htmlElementsData(S.islands).htmlLat("lat").htmlLng("lon").htmlAltitude(0.005)
+        .htmlElement((d) => {
+          const b = el("button", "pin"); b.type = "button"; b.dataset.slug = d.slug;
+          b.setAttribute("aria-label", `${d.name}, ${d.territory}`); b.setAttribute("aria-pressed", "false");
+          b.append(el("span", "tip", d.name));
+          b.addEventListener("click", () => select(d.slug));
+          return b;
+        })
+        .ringsData([]).ringColor(() => (t) => `rgba(244,182,63,${1 - t})`).ringMaxRadius(3).ringPropagationSpeed(2).ringRepeatPeriod(1400);
+      globe.pointOfView({ lat: -8, lng: 40, altitude: 2.6 }, 0);
+      const c = globe.controls(); c.autoRotate = !reduced; c.autoRotateSpeed = 0.35; c.minDistance = 140; c.enableDamping = true;
+      const resize = () => globe.width(host.clientWidth).height(host.clientHeight);
+      new ResizeObserver(resize).observe(host); resize();
+      applyLayer(S.layer);
+    } catch (err) {
+      const e = $("globe-error"); e.hidden = false; e.textContent = "The 3D globe needs WebGL, which this browser has not enabled. The island list and field agent still work.";
+    }
+  }
+  function flyTo(isl) {
+    if (!globe) return;
+    globe.controls().autoRotate = false;
+    globe.pointOfView({ lat: isl.lat, lng: isl.lon, altitude: 0.8 }, reduced ? 0 : 1800);
+    globe.ringsData([isl]).ringLat("lat").ringLng("lon");
+    document.querySelectorAll(".pin").forEach((p) => p.setAttribute("aria-pressed", String(p.dataset.slug === isl.slug)));
+  }
+
+  /* ---------------- island list ---------------- */
+  function buildIndex() {
+    const ul = $("island-list");
+    S.islands.forEach((isl) => {
+      const li = el("li"), b = el("button", "island-btn"); b.type = "button"; b.dataset.slug = isl.slug;
+      b.append(el("span", "n", isl.name), el("span", "c", isl.creatures.map((c) => c.common_name).join(", ")));
+      b.addEventListener("click", () => select(isl.slug));
+      li.append(b); ul.append(li);
+    });
+    const lb = $("layer-buttons");
+    LAYERS.forEach((l) => {
+      const b = el("button", null, l.label); b.type = "button"; b.dataset.id = l.id; b.setAttribute("role", "radio");
+      b.addEventListener("click", () => applyLayer(l)); lb.append(b);
+    });
+  }
+
+  /* ---------------- selecting an island ---------------- */
+  async function select(slug, creatureSlug) {
+    const isl = S.islands.find((i) => i.slug === slug); if (!isl) return;
+    S.island = isl; S.history = [];
+    history.replaceState(null, "", `#${slug}`);
+    document.querySelectorAll(".island-btn").forEach((b) => b.setAttribute("aria-current", String(b.dataset.slug === slug)));
+    $("globe-hint").hidden = true;
+    $("console-empty").hidden = true; $("console-body").hidden = false;
+    const con = $("console"); con.classList.add("open"); con.classList.remove("min");
+    $("island-name").textContent = isl.name;
+    $("island-territory").textContent = isl.territory; $("pin-note").textContent = isl.pin_note;
+    flyTo(isl);
+    const tabs = $("creature-tabs"); tabs.replaceChildren();
+    isl.creatures.forEach((c) => {
+      const b = el("button", null, c.common_name); b.type = "button"; b.setAttribute("role", "tab"); b.dataset.slug = c.slug;
+      b.addEventListener("click", () => pickCreature(c.slug)); tabs.append(b);
+    });
+    pickCreature(creatureSlug || isl.creatures[0].slug);
+    loadSensors(isl);
+    con.scrollTop = 0;
+  }
+
+  function pickCreature(slug) {
+    const c = S.island.creatures.find((x) => x.slug === slug); S.creature = c; S.history = [];
+    document.querySelectorAll("#creature-tabs button").forEach((b) => b.setAttribute("aria-selected", String(b.dataset.slug === slug)));
+    $("creature-name").textContent = c.common_name;
+    const code = statusCode(c.iucn_status), chip = $("status-chip");
+    chip.textContent = STATUS[code] || c.iucn_status; chip.dataset.s = code;
+    $("status-detail").textContent = `Status as reported: ${c.iucn_status}. ${c.status_note || ""}`;
+    const cv = $("creature-canvas");
+    cv.setAttribute("aria-label", `Animation of a ${c.common_name} (${c.scientific_name}), a ${c.creature_type} creature`);
+    Creatures.start(cv, c.creature_type, S.paused);
+    $("log").replaceChildren();
+    suggestions();
+    loadNarration();
+  }
+
+  /* ---------------- sensors ---------------- */
+  function spark(vals) {
+    const v = vals.filter((x) => x != null); if (v.length < 2) return null;
+    const lo = Math.min(...v), hi = Math.max(...v), rng = hi - lo || 1, W = 120, H = 26;
+    const pts = vals.map((x, i) => [i * (W / 11), x == null ? null : H - 3 - ((x - lo) / rng) * (H - 6)]);
+    const NS = "http://www.w3.org/2000/svg", svg = document.createElementNS(NS, "svg");
+    svg.setAttribute("viewBox", `0 0 ${W} ${H}`); svg.setAttribute("preserveAspectRatio", "none"); svg.setAttribute("aria-hidden", "true");
+    const p = document.createElementNS(NS, "path");
+    p.setAttribute("d", pts.filter((q) => q[1] != null).map((q, i) => `${i ? "L" : "M"}${q[0].toFixed(1)} ${q[1].toFixed(1)}`).join(" "));
+    svg.append(p);
+    return svg;
+  }
+  async function loadSensors(isl) {
+    const seq = ++S.sensorSeq, grid = $("sensor-grid"), note = $("sensor-note");
+    grid.replaceChildren(); note.textContent = "Reading NASA POWER…";
+    try {
+      const d = await api(`/api/islands/${isl.slug}/sensors`);
+      if (seq !== S.sensorSeq) return;
+      d.items.forEach((s) => {
+        const box = el("div", "sensor"), v = el("div", "v", s.value == null ? "n/a" : String(s.value));
+        v.append(el("small", null, s.unit));
+        box.append(el("div", "l", s.label), v);
+        const sp = spark(s.monthly); if (sp) { box.append(sp); const m = el("div", "m"); m.append(el("span", null, "Jan"), el("span", null, "Dec")); box.append(m); }
+        grid.append(box);
+      });
+      note.textContent = `Annual means, ${d.period}, NASA POWER grid cell ${d.cell_lat.toFixed(1)}, ${d.cell_lon.toFixed(1)}. Data as of ${d.as_of}.`;
+    } catch (e) {
+      if (seq !== S.sensorSeq) return;
+      note.textContent = "Sensor readings are unavailable right now. " + e.message;
+    }
+  }
+
+  /* ---------------- rendering cited sentences ---------------- */
+  function renderSentences(into, sentences, evidence, onCite) {
+    const order = []; evidence.forEach((e) => { if (!order.includes(e.id)) order.push(e.id); });
+    sentences.forEach((s, i) => {
+      if (i) into.append(" ");
+      const span = el("span", s.kind === "voice" ? "s-voice" : "s-fact", s.text);
+      into.append(span);
+      s.cites.forEach((id) => {
+        const sup = el("sup", "cite"), a = el("a", null, `[${order.indexOf(id) + 1 || "?"}]`);
+        a.href = "#"; a.title = id; a.addEventListener("click", (ev) => { ev.preventDefault(); onCite(id); });
+        sup.append(a); into.append(sup);
+      });
+    });
+  }
+  function evidenceCard(e) {
+    const d = el("div", "ev"); d.dataset.id = e.id;
+    const head = el("div"); head.append(el("b", null, e.id), ` ${e.title}`);
+    const body = el("div", null, e.text);
+    const src = el("span", "src"), a = el("a", null, `${e.publisher}: ${e.source_title}`);
+    a.href = e.source_url; a.target = "_blank"; a.rel = "noopener noreferrer";
+    src.append(a, ` · as of ${e.as_of}` + (e.confidence && e.confidence !== "high" ? ` · ${e.confidence} confidence` : ""));
+    d.append(head, body, src);
+    return d;
+  }
+  function evidenceBlock(evidence) {
+    const box = el("div", "evidence");
+    const flash = (id) => { const t = box.querySelector(`[data-id="${CSS.escape(id)}"]`); if (t) { t.scrollIntoView({ block: "nearest", behavior: reduced ? "auto" : "smooth" }); t.classList.add("flash"); setTimeout(() => t.classList.remove("flash"), 1600); } };
+    const cited = evidence.filter((e) => e.cited !== false);
+    cited.forEach((e, i) => { const c = evidenceCard(e); c.querySelector("b").textContent = `[${i + 1}] ${e.id}`; box.append(c); });
+    const rest = evidence.filter((e) => e.cited === false);
+    if (rest.length) {
+      const det = el("details"), sum = el("summary", null, `${rest.length} retrieved, not cited`); det.append(sum);
+      rest.forEach((e) => det.append(evidenceCard(e))); box.append(det);
+    }
+    return { box, flash };
+  }
+
+  /* ---------------- narration ---------------- */
+  async function loadNarration() {
+    const t = $("narration-text"); t.textContent = "Tuning in…"; S.narration = null;
+    speechSynthesis?.cancel?.();
+    const isl = S.island.slug, cr = S.creature.slug;
+    try {
+      const d = await api(`/api/islands/${isl}/narration?creature=${encodeURIComponent(cr)}`);
+      if (S.creature.slug !== cr) return;
+      S.narration = d; t.replaceChildren();
+      const ev = d.evidence.map((e) => ({ ...e, cited: true })), { box, flash } = evidenceBlock(ev);
+      renderSentences(t, d.sentences, ev, flash);
+      const det = el("details", "evidence"); det.append(el("summary", "muted small", `Sources for this report (${ev.length})`)); det.append(...box.children); t.append(det);
+      det.addEventListener("toggle", () => {});
+    } catch (e) { t.textContent = "The field report could not be loaded. " + e.message; }
+  }
+  function speak() {
+    if (!("speechSynthesis" in window) || !S.narration) return;
+    if (speechSynthesis.speaking) { speechSynthesis.cancel(); $("speak").textContent = "Read aloud"; return; }
+    const u = new SpeechSynthesisUtterance(S.narration.sentences.map((s) => s.text).join(" "));
+    u.rate = 0.95; u.onend = u.onerror = () => ($("speak").textContent = "Read aloud");
+    speechSynthesis.speak(u); $("speak").textContent = "Stop";
+  }
+
+  /* ---------------- chat ---------------- */
+  function suggestions() {
+    const box = $("suggestions"); box.replaceChildren();
+    [...SUGGEST.any, ...(SUGGEST[S.creature.creature_type] || [])].slice(0, 5).forEach((q) => {
+      const b = el("button", null, q); b.type = "button"; b.addEventListener("click", () => ask(q)); box.append(b);
+    });
+  }
+  async function ask(text) {
+    text = text.trim(); if (!text || S.busy) return;
+    S.busy = true; $("send").disabled = true;
+    const log = $("log");
+    log.append(el("div", "msg user", text));
+    const m = el("div", "msg agent pending"), body = el("div", "body", "Checking the sources…"); m.append(body); log.append(m);
+    m.scrollIntoView({ block: "nearest", behavior: reduced ? "auto" : "smooth" });
+    try {
+      const r = await api("/api/chat", {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ island: S.island.slug, creature: S.creature.slug, message: text, history: S.history.slice(-6) }),
+      });
+      m.classList.remove("pending"); body.textContent = "";
+      const shown = r.evidence.filter((e) => e.cited);
+      const { box, flash } = evidenceBlock(r.evidence);
+      if (r.sentences.length) renderSentences(body, r.sentences, shown, flash);
+      if (r.missing) m.append(el("p", "missing", r.missing));
+      if (r.evidence.length) m.append(box);
+      S.history.push({ role: "user", text }, { role: "agent", text: r.sentences.map((s) => s.text).join(" ").slice(0, 590) || r.missing.slice(0, 590) });
+    } catch (e) {
+      m.remove();
+      log.append(el("p", "msg error", e.status === 429 ? "Too many questions. Wait a moment and ask again." : e.status === 503 ? "Chat is not switched on for this server yet." : e.message));
+    } finally { S.busy = false; $("send").disabled = false; }
+  }
+
+  /* ---------------- wiring ---------------- */
+  function wire() {
+    $("chat-form").addEventListener("submit", (e) => { e.preventDefault(); const i = $("chat-input"); const v = i.value; i.value = ""; ask(v); });
+    $("speak").addEventListener("click", speak);
+    if (!("speechSynthesis" in window)) $("speak").hidden = true;
+    const pb = $("pause-anim");
+    const syncPause = () => { pb.setAttribute("aria-pressed", String(S.paused)); pb.textContent = S.paused ? "Play motion" : "Pause motion"; };
+    pb.addEventListener("click", () => { S.paused = !S.paused; Creatures.setPaused(S.paused); syncPause(); });
+    syncPause();
+    $("close-console").addEventListener("click", () => {
+      speechSynthesis?.cancel?.(); Creatures.stop(); S.island = null;
+      $("console").classList.remove("open"); $("console-body").hidden = true; $("console-empty").hidden = false;
+      document.querySelectorAll(".island-btn").forEach((b) => b.setAttribute("aria-current", "false"));
+      document.querySelectorAll(".pin").forEach((p) => p.setAttribute("aria-pressed", "false"));
+      globe?.ringsData([]); history.replaceState(null, "", location.pathname);
+    });
+    $("sheet-handle").addEventListener("click", () => $("console").classList.toggle("min"));
+    document.addEventListener("visibilitychange", () => { if (document.hidden) speechSynthesis?.cancel?.(); });
+  }
+
+  async function boot() {
+    wire();
+    try { S.islands = await api("/api/islands"); }
+    catch (e) { $("globe-error").hidden = false; $("globe-error").textContent = "Could not reach the Island Echoes server. " + e.message; return; }
+    buildIndex(); initGlobe($("globe"));
+    const h = location.hash.slice(1); if (h && S.islands.some((i) => i.slug === h)) select(h);
+    if ("serviceWorker" in navigator && location.protocol !== "file:") navigator.serviceWorker.register("/sw.js").catch(() => {});
+  }
+  boot();
+})();
