@@ -88,12 +88,7 @@ class AnthropicJudge:
             tools=[JUDGE_TOOL],
             tool_choice={"type": "tool", "name": "grade"},
         )
-        try:
-            resp = self.client.messages.create(temperature=0, **kwargs)
-        except self._anthropic.BadRequestError as exc:
-            if "temperature" not in str(exc).lower():
-                raise
-            resp = self.client.messages.create(**kwargs)
+        resp = self.client.messages.create(**kwargs)
         for block in resp.content:
             if getattr(block, "type", None) == "tool_use":
                 data = dict(block.input)
