@@ -1,5 +1,5 @@
 // Cache the app shell so the PWA opens offline; API responses are network-first with cache fallback.
-const SHELL = "island-echoes-shell-v1";
+const SHELL = "island-echoes-shell-v2";
 const API = "island-echoes-api-v1";
 const ASSETS = ["/", "/index.html", "/style.css", "/app.js", "/creatures.js", "/vendor/globe.gl.min.js",
   "/manifest.webmanifest", "/icons/icon-192.png", "/icons/icon-512.png"];

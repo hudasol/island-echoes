@@ -37,7 +37,7 @@ def test_islands_listing_and_detail(settings, store, retriever):
     gal = next(i for i in items if i["slug"] == "galapagos")
     assert [x["creature_type"] for x in gal["creatures"]] == ["reptile", "mammal"]
     detail = c.get("/api/islands/socotra").json()
-    assert detail["fact_count"] == len(detail["facts"]) == 39
+    assert detail["fact_count"] == len(detail["facts"]) >= 60
     assert detail["facts"][0]["source_url"].startswith("http")
     assert c.get("/api/islands/atlantis").status_code == 404
 
@@ -130,3 +130,40 @@ def test_every_island_has_all_four_sensors(settings, store, retriever):
     for slug in store.islands:
         items = c.get(f"/api/islands/{slug}/sensors").json()["items"]
         assert len(items) == 4 and all(i["value"] is not None for i in items), slug
+
+
+def test_library_search_finds_sourced_entries_and_counts_categories(settings, store, retriever):
+    c = client_with(settings, store, retriever, None)  # works with no API key
+    body = c.get("/api/library/search", params={"island": "galapagos", "q": "coral bleaching"}).json()
+    assert body["total"] >= 2 and body["counts"].get("water", 0) >= 2
+    assert all(r["source_url"].startswith("http") and r["category"] for r in body["results"])
+    only = c.get("/api/library/search", params={"island": "socotra", "q": "endangered birds", "category": "species"}).json()
+    assert only["results"] and {r["category"] for r in only["results"]} == {"species"}
+    assert sum(only["counts"].values()) >= only["total"]
+
+
+def test_library_says_nothing_when_sources_are_silent(settings, store, retriever):
+    c = client_with(settings, store, retriever, None)
+    body = c.get("/api/library/search", params={"island": "clipperton", "q": "how to bake sourdough bread"}).json()
+    assert body["total"] == 0 and body["results"] == []
+
+
+def test_library_browse_by_category_and_validation(settings, store, retriever):
+    c = client_with(settings, store, retriever, None)
+    water = c.get("/api/library/search", params={"island": "pitcairn", "category": "water"}).json()
+    assert water["total"] >= 5 and all(r["category"] == "water" for r in water["results"])
+    assert c.get("/api/library/search", params={"island": "atlantis"}).status_code == 404
+    assert c.get("/api/library/search", params={"island": "pitcairn", "category": "gossip"}).status_code == 422
+
+
+def test_library_pulls_live_nasa_power_for_climate_words(settings, store, retriever):
+    c = client_with(settings, store, retriever, None)
+    ids = [r["id"] for r in c.get("/api/library/search", params={"island": "bouvet", "q": "how much rain falls"}).json()["results"]]
+    assert "POWER-BOU-PRECIP" in ids
+
+
+def test_every_island_has_species_and_water_entries(settings, store, retriever):
+    c = client_with(settings, store, retriever, None)
+    for slug in store.islands:
+        counts = c.get("/api/library/search", params={"island": slug}).json()["counts"]
+        assert counts.get("species", 0) >= 5 and counts.get("water", 0) >= 4, (slug, counts)

@@ -26,6 +26,8 @@ class SentenceOut(BaseModel):
 class EvidenceOut(BaseModel):
     id: str
     kind: Literal["fact", "power", "gbif"]
+    category: str = ""
+    subject: str = "island"
     title: str
     text: str
     source_url: str
@@ -121,3 +123,13 @@ class NarrationOut(BaseModel):
     creature_type: str
     sentences: list[SentenceOut]
     evidence: list[EvidenceOut]
+
+
+class LibraryOut(BaseModel):
+    island: str
+    query: str
+    category: str | None
+    total: int
+    counts: dict[str, int]
+    results: list[EvidenceOut]
+    notes: list[str]

@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import FastAPI, HTTPException, Query, Request
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 
@@ -8,7 +8,7 @@ from .chat.llm import AnthropicAnswerLLM, LLMError
 from .chat.service import ChatResult, ChatService, ChatUnavailable
 from .config import Settings, get_settings
 from .data.islands import IslandStore
-from .data.models import Evidence, Island
+from .data.models import Category, Evidence, Island
 from .data.retrieval import Retriever
 from .data.sources import SourceStore, SourceUnavailable
 from .narration import load_saved, narration_for
@@ -23,10 +23,13 @@ from .schemas import (
     GroundingOut,
     IslandDetail,
     IslandSummary,
+    LibraryOut,
     NarrationOut,
     SensorsOut,
     SentenceOut,
 )
+
+CATEGORIES = set(Category.__args__)
 
 
 def _summary(isl: Island) -> dict:
@@ -81,6 +84,7 @@ def create_app(settings: Settings | None = None, service: ChatService | None = N
             else None
         )
         service = ChatService(islands, Retriever(islands, sources), llm)
+    retriever = service.retriever
     limiter = RateLimiter(settings.chat_rate_per_min, settings.chat_daily_cap)
     saved_narrations = load_saved(settings.narrations_path)
 
@@ -138,6 +142,22 @@ def create_app(settings: Settings | None = None, service: ChatService | None = N
             creature_type=c.creature_type,
             sentences=[SentenceOut(**s) for s in sentences],
             evidence=[_evidence_out(e, True) for e in ev],
+        )
+
+    @app.get("/api/library/search", response_model=LibraryOut)
+    def library_search(island: str, q: str = Query("", max_length=200), category: str | None = None,
+                       creature: str | None = None, limit: int = Query(40, ge=1, le=100)):
+        isl = _island(island)
+        if category and category not in CATEGORIES:
+            raise HTTPException(422, f"Unknown category {category!r}")
+        try:
+            isl.creature(creature)
+        except KeyError:
+            raise HTTPException(404, f"Unknown creature {creature!r}") from None
+        res = retriever.library(isl.slug, q, category, creature, limit)
+        return LibraryOut(
+            island=isl.slug, query=q, category=category, total=res.total, counts=res.counts,
+            results=[_evidence_out(e, True) for e in res.results], notes=res.notes,
         )
 
     @app.post("/api/chat", response_model=ChatResponse)

@@ -30,6 +30,9 @@ SYNONYM_PATTERNS: list[tuple[str, list[str]]] = [
     (r"\bhot\b|\bwarm|\bheat", ["temperature", "warm"]),
     (r"\bcold|\bcool\b|\bfreez", ["temperature", "cool"]),
     (r"\bweather", ["climate", "temperature", "rainfall"]),
+    (r"\blineage|\bdescendant|\bsurviv", ["ancestry", "hybrid", "descendant"]),
+    (r"\bwater (quality|pollution)|\bpollut|\bplastic|\bdirty", ["pollution", "plastic", "debris", "quality"]),
+    (r"\bendangered|\bthreatened|\brare\b|\bextinct", ["status", "listed", "vulnerable", "endangered", "critically"]),
     (r"\beat\w*|\bfood|\bfeed|\bhunt|\bprey|\bdiet", ["diet", "feed", "food", "eat"]),
     (r"\blive[sd]?\b|\bliving|\binhabit|\bresident|\bpeople|\bcitizens", ["population", "inhabitants", "residents", "settlement"]),
     (r"\bbig\b|\blarge|\bsize|\barea\b", ["area", "km2", "size"]),
@@ -181,8 +184,16 @@ class RetrievalResult:
     notes: list[str] = field(default_factory=list)
 
 
+@dataclass
+class LibraryResult:
+    results: list[Evidence]
+    counts: dict[str, int]
+    total: int
+    notes: list[str] = field(default_factory=list)
+
+
 class Retriever:
-    def __init__(self, islands: IslandStore, sources: SourceStore, k: int = 8):
+    def __init__(self, islands: IslandStore, sources: SourceStore, k: int = 12):
         self.islands, self.sources, self.k = islands, sources, k
         self._index: dict[tuple[str, str], BM25] = {}
 
@@ -196,6 +207,58 @@ class Retriever:
             ]
             self._index[key] = BM25(docs)
         return self._index[key]
+
+    def _live(self, island: Island, creature, raw_words: set[str]) -> tuple[list[Evidence], set[str], list[str]]:
+        """NASA POWER and GBIF evidence pulled in by the words of the question."""
+        intents: set[str] = set()
+        notes: list[str] = []
+        extra: list[Evidence] = []
+        topics = [t for t, words in CLIMATE_TOPICS.items() if raw_words & words]
+        if topics or raw_words & CLIMATE_GENERIC:
+            intents.add("climate")
+            try:
+                extra += self.sources.power_evidence(island, topics or None)
+            except SourceUnavailable:
+                notes.append("NASA POWER data is unavailable right now")
+        if raw_words & SPECIES_INTENT:
+            intents.add("species")
+            try:
+                extra += self.sources.gbif_evidence(island, creature.slug)
+            except SourceUnavailable:
+                notes.append("GBIF data is unavailable right now")
+        return extra, intents, notes
+
+    def library(
+        self, island_slug: str, query: str, category: str | None = None, creature_slug: str | None = None, limit: int = 40
+    ) -> LibraryResult:
+        """Keyword search over every fact of an island (all creatures), for the browsable library.
+
+        An empty query lists the island's facts in file order. Climate and species words also bring in
+        live NASA POWER and GBIF entries for the selected creature.
+        """
+        island = self.islands.get(island_slug)
+        creature = island.creature(creature_slug)
+        key = (island.slug, "*")
+        if key not in self._index:
+            self._index[key] = BM25([self.islands.fact_to_evidence(island, f) for f in island.facts])
+        index = self._index[key]
+        q = _norm(query).strip()
+        notes: list[str] = []
+        if not q:
+            matched = [e for e in (d.evidence for d in index.docs)]
+        else:
+            raw_words = set(re.findall(r"[a-z0-9]+", q))
+            cats = {c for c, pat in CATEGORY_PATTERNS.items() if re.search(pat, q)}
+            boost = {d.evidence.id: 1.25 for d in index.docs if d.evidence.category in cats}
+            ranked = index.score(expand(query, index.vocab), boost)
+            top = ranked[0][0] if ranked else 0.0
+            matched = [e for s, e in ranked if top >= MIN_OVERLAP_SCORE and s >= 0.3 * top]
+            live, _, notes = self._live(island, creature, raw_words)
+            matched = live + matched
+        counts: Counter = Counter(e.category for e in matched)
+        if category:
+            matched = [e for e in matched if e.category == category]
+        return LibraryResult(results=matched[:limit], counts=dict(counts), total=len(matched), notes=notes)
 
     def search(self, island_slug: str, query: str, creature_slug: str | None = None) -> RetrievalResult:
         island = self.islands.get(island_slug)
@@ -228,23 +291,7 @@ class Retriever:
                 picked += extra_cat
                 have.update(e.id for e in extra_cat)
 
-        intents: set[str] = set()
-        notes: list[str] = []
-        extra: list[Evidence] = []
-
-        topics = [t for t, words in CLIMATE_TOPICS.items() if raw_words & words]
-        if topics or raw_words & CLIMATE_GENERIC:
-            intents.add("climate")
-            try:
-                extra += self.sources.power_evidence(island, topics or None)
-            except SourceUnavailable:
-                notes.append("NASA POWER data is unavailable right now")
-        if raw_words & SPECIES_INTENT:
-            intents.add("species")
-            try:
-                extra += self.sources.gbif_evidence(island, creature.slug)
-            except SourceUnavailable:
-                notes.append("GBIF data is unavailable right now")
+        extra, intents, notes = self._live(island, creature, raw_words)
 
         evidence = extra + picked
         return RetrievalResult(
