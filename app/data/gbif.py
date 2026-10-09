@@ -2,9 +2,29 @@
 
 from __future__ import annotations
 
+import time
+
 import httpx
 
 GBIF = "https://api.gbif.org/v1"
+
+# record types GBIF reports (basisOfRecord), grouped for the evidence text
+BASIS_GROUPS: dict[str, list[str]] = {
+    "observations": ["HUMAN_OBSERVATION", "MACHINE_OBSERVATION", "OBSERVATION"],
+    "specimens": ["PRESERVED_SPECIMEN", "FOSSIL_SPECIMEN", "MATERIAL_SAMPLE", "MATERIAL_CITATION"],
+    "living_or_captive": ["LIVING_SPECIMEN"],
+}
+
+
+def _get(client: httpx.Client, url: str, params: dict, tries: int = 6) -> httpx.Response:
+    """GET with backoff when GBIF answers 429 (it throttles bursts of count queries)."""
+    for attempt in range(tries):
+        r = client.get(url, params=params)
+        if r.status_code != 429 or attempt == tries - 1:
+            r.raise_for_status()
+            return r
+        time.sleep(min(float(r.headers.get("retry-after", 0) or 0) or 2 * (attempt + 1), 20))
+    raise RuntimeError("unreachable")
 
 
 def _box_wkt(lat: float, lon: float, deg: float) -> str:
@@ -35,21 +55,29 @@ def fetch_creature(
     own = client is None
     client = client or httpx.Client(timeout=60)
     try:
-        m = client.get(f"{GBIF}/species/match", params={"name": scientific_name})
-        m.raise_for_status()
+        m = _get(client, f"{GBIF}/species/match", {"name": scientific_name})
         match = m.json()
         key = match.get("usageKey")
-        out: dict = {"match": match, "global_count": None, "local_count": None}
+        out: dict = {"match": match, "global_count": None, "local_count": None, "local_breakdown": None}
         if key:
-            g = client.get(f"{GBIF}/occurrence/search", params={"taxonKey": key, "limit": 0})
-            g.raise_for_status()
+            g = _get(client, f"{GBIF}/occurrence/search", {"taxonKey": key, "limit": 0})
             out["global_count"] = g.json().get("count")
-            loc = client.get(
+            loc = _get(
+                client,
                 f"{GBIF}/occurrence/search",
-                params={"taxonKey": key, "geometry": _box_wkt(lat, lon, box_deg), "limit": 0},
+                {"taxonKey": key, "geometry": _box_wkt(lat, lon, box_deg), "limit": 0},
             )
-            loc.raise_for_status()
             out["local_count"] = loc.json().get("count")
+            # usable records only: georeferenced, no flagged coordinate problems, split by record type
+            usable = {"taxonKey": key, "geometry": _box_wkt(lat, lon, box_deg), "hasCoordinate": "true",
+                      "hasGeospatialIssue": "false", "limit": 0}
+            breakdown = {}
+            for label, kinds in BASIS_GROUPS.items():
+                r = _get(client, f"{GBIF}/occurrence/search", {**usable, "basisOfRecord": kinds})
+                breakdown[label] = r.json().get("count")
+            u = _get(client, f"{GBIF}/occurrence/search", usable)
+            breakdown["usable"] = u.json().get("count")
+            out["local_breakdown"] = breakdown
         out["box"] = box_bounds(lat, lon, box_deg)
         return out
     finally:
@@ -76,9 +104,22 @@ def occurrence_text(creature_common: str, island_name: str, data: dict) -> str:
     g, loc = data.get("global_count"), data.get("local_count")
     if g is None:
         return f"GBIF occurrence counts are unavailable for the {creature_common}."
+    where = (
+        f"a search box around {island_name} spanning latitude {b['min_lat']} to {b['max_lat']} and "
+        f"longitude {b['min_lon']} to {b['max_lon']} (±{b['half_width_deg']}° around the pin)"
+    )
+    bd = data.get("local_breakdown")
+    if not bd:
+        return (
+            f"GBIF holds {g:,} occurrence records worldwide for the {creature_common}, and {loc:,} records "
+            f"inside {where}. These counts include every record type and coordinate quality. "
+            f"Record counts reflect what has been published to GBIF, not true abundance."
+        )
+    other = max(bd["usable"] - bd["observations"] - bd["specimens"] - bd["living_or_captive"], 0)
     return (
-        f"GBIF holds {g:,} occurrence records worldwide for the {creature_common}, and {loc:,} records "
-        f"inside a search box around {island_name} spanning latitude {b['min_lat']} to {b['max_lat']} and "
-        f"longitude {b['min_lon']} to {b['max_lon']} (±{b['half_width_deg']}° around the pin). "
+        f"GBIF holds {g:,} occurrence records worldwide for the {creature_common}. Inside {where} it holds "
+        f"{loc:,} records, of which {bd['usable']:,} have coordinates with no flagged problem: "
+        f"{bd['observations']:,} observations, {bd['specimens']:,} preserved or fossil specimens, "
+        f"{bd['living_or_captive']:,} living or captive animals and {other:,} of other or unstated type. "
         f"Record counts reflect what has been published to GBIF, not true abundance."
     )

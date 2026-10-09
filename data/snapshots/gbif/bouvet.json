@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-10-08T11:51:24+00:00",
+ "fetched_at": "2026-10-09T01:38:27+00:00",
  "creatures": {
   "macaroni-penguin": {
    "match": {
@@ -25,8 +25,14 @@
     "speciesKey": 2481643,
     "class": "Aves"
    },
-   "global_count": 87566,
+   "global_count": 87568,
    "local_count": 13,
+   "local_breakdown": {
+    "observations": 6,
+    "specimens": 0,
+    "living_or_captive": 0,
+    "usable": 6
+   },
    "box": {
     "min_lat": -55.4167,
     "max_lat": -53.4167,

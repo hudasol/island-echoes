@@ -138,7 +138,7 @@ docs/       PLAN.md and screenshots
 
 **What went wrong**
 
-- **A second research pass needed a second check.** The 182 library facts added later (species, water, climate, ecology) came from fetch tools that return page summaries rather than raw text. An independent re-read of every one found 26 statements that overstated or mixed up their source (for example two bird population figures swapped), and they were corrected before publishing. Facts that rest on Wikipedia alone are labelled medium confidence in the UI.
+- **A second research pass needed a second check.** The 182 library facts added later (species, water, climate, ecology) came from fetch tools that return page summaries rather than raw text. An independent re-read of every one found 26 statements that overstated or mixed up their source (for example two bird population figures swapped), and they were corrected before publishing. Facts that rest on Wikipedia alone are labelled medium confidence in the UI, and on 9 October a further check of the 32 High-labelled Wikipedia facts found 14 that needed correcting.
 - **The island files did not exist.** The brief assumed a set of attached island files. There were none, so the fact base had to be researched from scratch. That took the largest share of the work and left many facts at medium confidence because they rest on a single secondary source.
 - **IUCN pages were unreachable** from the research environment, so statuses come second-hand. This is stated in the UI and on every creature.
 - **A relevance threshold on retrieval was the wrong gate.** The first design refused any question whose best BM25 score fell below a cut-off. It refused good questions phrased unusually and passed bad ones. It was replaced by a narrow rule (refuse only on zero word overlap) and the model plus validator handle the rest.
@@ -165,7 +165,31 @@ docs/       PLAN.md and screenshots
 - An automated axe-core audit (WCAG 2.0 to 2.2 A and AA rules plus best practices) reports no violations on the start screen, both panel tabs, the answer view and the credits dialog, at desktop and phone widths. Automated checks find only part of the problems. No screen-reader or user testing has been done yet.
 - Tabs, creature switching and the credits dialog work by keyboard. The island list is a keyboard alternative to the globe. Motion can be paused and `prefers-reduced-motion` is respected.
 - Each climate value comes from a NASA POWER grid cell of roughly 0.5 by 0.625 degrees. Every island here is smaller than one cell, so the numbers describe the surrounding area, not a point on the island. The panel says so.
-- The confidence label on each fact is the compiler's judgement and has not been audited independently. Some facts labelled high still cite Wikipedia, which a second verification pass should replace with primary sources.
+- The confidence label on each fact is the compiler's judgement. On 9 October 2026 the 32 facts that were labelled High but cited Wikipedia were re-checked against primary sources: 14 needed corrections (one more was narrowed), 12 were downgraded to Medium because nothing but Wikipedia backs them, and the rest now cite the primary source. No High fact cites Wikipedia now. The other labels have not been audited independently. Three links that returned HTTP 404 were replaced or downgraded the same day.
+- GBIF counts are split into observations, preserved or fossil specimens and living or captive animals, using only records with coordinates and no flagged coordinate issue. For the extinct-in-the-wild Pinta Island tortoise, 22 of its 27 nearby records are specimens.
+- When a creature lives away from the point the NASA POWER readings describe (the Pinta Island tortoise), the panel says so.
+- If live data replaces an older snapshot and a value moves, the change is logged and listed at `/api/data-changes`.
+
+## Library search quality
+
+The library's search is lexical (BM25 with a small stemmer and hand-written synonyms). A question is answered only when the facts cover enough of its words, and a question that names something the library has never seen, such as a capitalised place or an unfamiliar noun, is refused. Matches that cover only part of a question are labelled as the closest entries.
+
+`eval/library_relevance.jsonl` holds 106 questions (52 the library can answer, 54 it cannot) and `tests/test_library_relevance.py` guards them.
+
+| Measure | Before the fix | After |
+|---|---|---|
+| Out-of-scope questions that still returned facts (20 questions) | 10 of 20 | 1 of 54 in the saved set |
+| Answerable questions that returned nothing | not measured | 0 of 52 in the saved set |
+| First run on 42 fresh questions, before tuning on them | | 1 of 20 false positives, 6 of 22 answerable empty |
+
+Both sets were tuned against, so the "after" figures are regression checks, not an independent score. The fresh-question row is the honest estimate: roughly 5% wrong answers to out-of-scope questions and about a quarter of answerable questions missed, before the later fixes for synonyms. A held-out set written by someone else would be a better test.
+
+## Operations
+
+- GitHub Actions runs lint, data validation and the tests on every push against pinned dependencies (`requirements.lock`). A weekly job checks that each fact's source link still resolves.
+- Responses carry a Content-Security-Policy that allows scripts only from this site and imagery only from NASA GIBS, plus HSTS over HTTPS, a frame ban and a permissions policy.
+- Library and sensor lookups are limited per client (`READ_RATE_PER_MIN`, default 240) and chat has its own limit and daily cap. The client address is the entry added by the nearest trusted proxy (`TRUSTED_PROXY_HOPS`, default 1), so a caller cannot reset the limit by forging `X-Forwarded-For`. If a proxy chain on your host differs, set the variable to match.
+- API requests are logged by method, path, status and time. Query strings, which hold what people asked, are not logged.
 
 ## Credits and licence
 

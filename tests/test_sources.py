@@ -83,3 +83,33 @@ def test_evidence_urls_are_reproducible(store, real_settings):
     e = ss.power_evidence(store.get("cocos-keeling"), ["TEMP"])[0]
     assert e.source_url.startswith(power.POWER_URL) and "latitude=-12.1869" in e.source_url
     assert IslandStore  # keep import used
+
+
+@respx.mock
+def test_refresh_that_changes_a_value_is_logged(tmp_settings, store):
+    import json
+
+    path = tmp_settings.snapshots_dir / "power" / "bouvet.json"
+    age_snapshot(path, days=90)
+    raw = json.loads(path.read_text())["raw"]
+    raw["properties"]["parameter"]["T2M"]["ANN"] = raw["properties"]["parameter"]["T2M"]["ANN"] + 0.5
+    respx.get(power.POWER_URL).mock(return_value=httpx.Response(200, json=raw))
+    ss = make(tmp_settings, store)
+    assert ss.recent_changes() == []
+    ss.power_evidence(store.get("bouvet"))
+    [change] = ss.recent_changes()
+    assert change["island"] == "bouvet" and "T2M.ANN" in change["changes"]
+    old, new = change["changes"]["T2M.ANN"]
+    assert round(new - old, 2) == 0.5
+
+
+@respx.mock
+def test_refresh_with_identical_values_logs_nothing(tmp_settings, store):
+    import json
+
+    path = tmp_settings.snapshots_dir / "power" / "bouvet.json"
+    age_snapshot(path, days=90)
+    respx.get(power.POWER_URL).mock(return_value=httpx.Response(200, json=json.loads(path.read_text())["raw"]))
+    ss = make(tmp_settings, store)
+    ss.power_evidence(store.get("bouvet"))
+    assert ss.recent_changes() == []

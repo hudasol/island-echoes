@@ -167,3 +167,55 @@ def test_every_island_has_species_and_water_entries(settings, store, retriever):
     for slug in store.islands:
         counts = c.get("/api/library/search", params={"island": slug}).json()["counts"]
         assert counts.get("species", 0) >= 5 and counts.get("water", 0) >= 4, (slug, counts)
+
+
+def test_library_reports_match_quality(tmp_settings):
+    c = TestClient(create_app(tmp_settings))
+    ok = c.get("/api/library/search", params={"island": "bouvet", "q": "penguins"}).json()
+    assert ok["quality"] in ("strong", "partial") and ok["total"] > 0
+    none = c.get("/api/library/search", params={"island": "bouvet", "q": "what is the price of gold"}).json()
+    assert none["quality"] == "none" and none["total"] == 0
+
+
+def test_sensors_warn_when_creature_lives_away_from_the_pin(tmp_settings):
+    c = TestClient(create_app(tmp_settings))
+    w = c.get("/api/islands/galapagos/sensors", params={"creature": "pinta-island-tortoise"}).json()["warning"]
+    assert "Pinta Island" in w and "regional context" in w
+    assert c.get("/api/islands/galapagos/sensors", params={"creature": "galapagos-sea-lion"}).json()["warning"] == ""
+    assert c.get("/api/islands/bouvet/sensors").json()["warning"] == ""
+    assert c.get("/api/islands/galapagos/sensors", params={"creature": "nope"}).status_code == 404
+
+
+def _fake_request(forwarded: str | None, host: str = "10.0.0.1"):
+    from starlette.requests import Request
+
+    headers = [(b"x-forwarded-for", forwarded.encode())] if forwarded else []
+    return Request({"type": "http", "headers": headers, "client": (host, 1234)})
+
+
+def test_client_key_trusts_only_the_proxy_appended_entry():
+    from app.ratelimit import client_key
+
+    # a caller can put anything on the left; the right-most entry is the one the proxy added
+    assert client_key(_fake_request("6.6.6.6, 203.0.113.9")) == "203.0.113.9"
+    assert client_key(_fake_request("1.1.1.1, 2.2.2.2, 203.0.113.9"), trusted_hops=2) == "2.2.2.2"
+    assert client_key(_fake_request(None, host="192.0.2.5")) == "192.0.2.5"
+    assert client_key(_fake_request("6.6.6.6", host="192.0.2.5"), trusted_hops=0) == "192.0.2.5"
+
+
+def test_library_and_sensor_endpoints_are_rate_limited(tmp_settings):
+    tmp_settings.read_rate_per_min = 3
+    c = TestClient(create_app(tmp_settings))
+    codes = [c.get("/api/library/search", params={"island": "bouvet", "q": "ice"}).status_code for _ in range(3)]
+    assert codes == [200, 200, 200]
+    assert c.get("/api/library/search", params={"island": "bouvet", "q": "ice"}).status_code == 429
+    assert c.get("/api/islands/bouvet/sensors").status_code == 429  # shares the lookup budget
+
+
+def test_spoofed_forwarded_for_does_not_reset_the_limit(tmp_settings):
+    tmp_settings.read_rate_per_min = 2
+    c = TestClient(create_app(tmp_settings))
+    for i in range(2):
+        c.get("/api/library/search", params={"island": "bouvet", "q": "ice"}, headers={"x-forwarded-for": f"9.9.9.{i}, 203.0.113.9"})
+    r = c.get("/api/library/search", params={"island": "bouvet", "q": "ice"}, headers={"x-forwarded-for": "9.9.9.77, 203.0.113.9"})
+    assert r.status_code == 429

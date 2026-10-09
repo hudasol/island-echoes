@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-10-08T11:51:35+00:00",
+ "fetched_at": "2026-10-09T01:38:46+00:00",
  "creatures": {
   "pitcairn-reed-warbler": {
    "match": {
@@ -27,6 +27,12 @@
    },
    "global_count": 153,
    "local_count": 98,
+   "local_breakdown": {
+    "observations": 96,
+    "specimens": 1,
+    "living_or_captive": 0,
+    "usable": 97
+   },
    "box": {
     "min_lat": -27.0667,
     "max_lat": -23.0667,

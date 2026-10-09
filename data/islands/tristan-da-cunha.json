@@ -24,11 +24,11 @@
       "id": "TDC-001",
       "category": "location",
       "statement": "Tristan da Cunha's main settlement, Edinburgh of the Seven Seas, sits at about 37 degrees 4 minutes S, 12 degrees 18 minutes W in the South Atlantic.",
-      "source_url": "https://en.wikipedia.org/wiki/Tristan_da_Cunha",
-      "source_title": "Tristan da Cunha",
-      "publisher": "Wikipedia",
-      "retrieved": "2026-10-08",
-      "evidence_note": "Coordinates in the infobox/lead.",
+      "source_url": "https://geonames.nga.mil/geon-ags/rest/services/RESEARCH/GIS_OUTPUT/MapServer/0/3769560",
+      "source_title": "GEOnet Names Server record for Edinburgh of the Seven Seas",
+      "publisher": "US National Geospatial-Intelligence Agency",
+      "retrieved": "2026-10-09",
+      "evidence_note": "Coordinates in the infobox/lead. Re-checked 2026-10-09: NGA gives 37°04'03\" S, 12°18'38\" W, matching 'about 37°4′ S, 12°18′ W'.",
       "confidence": "high",
       "subject": "island"
     },
@@ -568,8 +568,8 @@
       "source_title": "Inaccessible Island rail",
       "publisher": "Wikipedia",
       "retrieved": "2026-10-09",
-      "evidence_note": "Infobox, lead, 'Morphology' and conservation text. The IUCN Outlook page also labels it Vulnerable with a stable population. Statement corrected after an independent re-read of the source.",
-      "confidence": "high",
+      "evidence_note": "Infobox, lead, 'Morphology' and conservation text. The IUCN Outlook page also labels it Vulnerable with a stable population. Statement corrected after an independent re-read of the source. Re-checked 2026-10-09: no primary source confirmed it. Wikipedia matches the statement, but IUCN returned robots-disallowed and BirdLife's page loaded empty, so Vulnerable status, 13-15.5 cm and the predator threat lack an opened authoritative source (Atlas Obscura only says 'vulnerable').",
+      "confidence": "medium",
       "subject": "island"
     },
     {

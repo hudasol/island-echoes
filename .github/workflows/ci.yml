@@ -1,0 +1,29 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+          cache-dependency-path: |
+            requirements.lock
+            requirements-dev.txt
+      - name: Install pinned runtime dependencies and dev tools
+        run: |
+          pip install -r requirements.lock
+          pip install pytest respx ruff
+      - name: Lint
+        run: ruff check .
+      - name: Validate fact files
+        run: python scripts/validate_data.py
+      - name: Tests (offline; NASA and GBIF calls are mocked or read from committed snapshots)
+        run: pytest -q

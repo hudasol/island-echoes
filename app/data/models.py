@@ -44,6 +44,10 @@ class Creature(BaseModel):
     gbif_search_name: str
     gbif_usage_key: int | None = None
     status_note: str = ""
+    home_name: str | None = None  # where the creature actually lives, when that is not the pin
+    home_lat: float | None = None
+    home_lon: float | None = None
+    home_note: str = ""
 
 
 class Pin(BaseModel):

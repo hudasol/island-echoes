@@ -26,12 +26,12 @@
     {
       "id": "CLI-001",
       "category": "location",
-      "statement": "Clipperton lies in the eastern Pacific at roughly 10 deg 18 min N, 109 deg 13 min W.",
-      "source_url": "https://en.wikipedia.org/wiki/Clipperton_Island",
-      "source_title": "Clipperton Island",
-      "publisher": "Wikipedia (Wikimedia Foundation)",
-      "retrieved": "2026-10-08",
-      "evidence_note": "Coordinates in the geography section.",
+      "statement": "The CIA World Factbook places Clipperton in the eastern Pacific at roughly 10 deg 17 min N, 109 deg 13 min W (Wikipedia gives 10 deg 18 min N).",
+      "source_url": "https://www.cia.gov/the-world-factbook/about/archives/2022/countries/clipperton-island",
+      "source_title": "The World Factbook (2022 archive): Clipperton Island",
+      "publisher": "CIA",
+      "retrieved": "2026-10-09",
+      "evidence_note": "Coordinates in the geography section. Re-checked 2026-10-09 against CIA; the statement keeps only the parts that source supports. Wikipedia gives 10 18 N, 109 13 W; CIA Factbook archive gives 10 17 N, 109 13 W, so the minutes differ by one.",
       "confidence": "high",
       "subject": "island"
     },

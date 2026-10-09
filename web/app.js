@@ -23,6 +23,14 @@
   let globe = null;
 
   const el = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
+  const ISSUES = "https://github.com/hudasol/island-echoes/issues/new";
+  function reportLink(e) {
+    const a = el("a", "report", "Report a problem");
+    const body = `Entry: ${e.id}\nSource: ${e.source_url}\nPage: ${location.href}\n\nWhat looks wrong or out of date:\n`;
+    a.href = `${ISSUES}?${new URLSearchParams({ title: `Problem with ${e.id}`, body })}`;
+    a.target = "_blank"; a.rel = "noopener noreferrer"; a.setAttribute("aria-label", `Report a problem with entry ${e.id}`);
+    return a;
+  }
   const api = async (path, opts) => {
     const r = await fetch(path, opts);
     if (!r.ok) { let d = ""; try { d = (await r.json()).detail; } catch (_) {} const e = new Error(d || `Request failed (${r.status})`); e.status = r.status; throw e; }
@@ -107,7 +115,6 @@
       b.addEventListener("click", () => pickCreature(c.slug)); tabs.append(b);
     });
     pickCreature(creatureSlug || isl.creatures[0].slug);
-    loadSensors(isl);
     con.scrollTop = 0;
     if (userPick) $("island-name").focus({ preventScroll: true });
   }
@@ -126,6 +133,7 @@
     $("log").replaceChildren(); $("ask-log").replaceChildren();
     suggestions(); askSuggestions();
     loadNarration();
+    loadSensors(S.island, slug);
     runLibrary(true);
   }
 
@@ -141,11 +149,11 @@
     svg.append(p);
     return svg;
   }
-  async function loadSensors(isl) {
+  async function loadSensors(isl, creature) {
     const seq = ++S.sensorSeq, grid = $("sensor-grid"), note = $("sensor-note");
-    grid.replaceChildren(); note.textContent = "Reading NASA POWER…";
+    grid.replaceChildren(); note.textContent = "Reading NASA POWER…"; $("sensor-warning").hidden = true;
     try {
-      const d = await api(`/api/islands/${isl.slug}/sensors`);
+      const d = await api(`/api/islands/${isl.slug}/sensors${creature ? `?creature=${encodeURIComponent(creature)}` : ""}`);
       if (seq !== S.sensorSeq) return;
       d.items.forEach((s) => {
         const box = el("div", "sensor"), v = el("div", "v", s.value == null ? "n/a" : String(s.value));
@@ -155,6 +163,7 @@
         grid.append(box);
       });
       note.textContent = `Annual means, ${d.period}, NASA POWER grid cell ${d.cell_lat.toFixed(1)}, ${d.cell_lon.toFixed(1)}. Data as of ${d.as_of}.`;
+      $("sensor-warning").textContent = d.warning || ""; $("sensor-warning").hidden = !d.warning;
     } catch (e) {
       if (seq !== S.sensorSeq) return;
       note.textContent = "Sensor readings are unavailable right now. " + e.message;
@@ -182,6 +191,7 @@
     const src = el("span", "src"), a = el("a", null, `${e.publisher}: ${e.source_title}`);
     a.href = e.source_url; a.target = "_blank"; a.rel = "noopener noreferrer";
     src.append(a, ` · retrieved ${e.as_of}` + (e.confidence ? ` · ${e.confidence} confidence` : ""));
+    src.append(" · ", reportLink(e));
     d.append(head, body, src);
     return d;
   }
@@ -242,16 +252,17 @@
     }
     node.append(text.slice(last));
   }
-  function libCard(e, q, i) {
+  function libCard(e, q, i, partial) {
     const c = el("article", "lib-card"), meta = el("div", "meta");
     meta.append(el("span", "k", e.kind === "fact" ? (CAT_LABEL[e.category] || e.category) : e.kind === "power" ? "NASA POWER" : "GBIF"));
     if (e.kind !== "fact") meta.append(el("span", "badge live", "live data"));
+    if (partial) meta.append(el("span", "badge partial", "partial match"));
     if (e.kind === "fact") meta.append(el("span", `badge conf-${e.confidence}`, `${e.confidence[0].toUpperCase()}${e.confidence.slice(1)} confidence`));
     meta.append(el("span", null, e.id));
     const p = el("p"); highlight(p, e.text, q);
     const src = el("div", "src"), a = el("a", null, `${e.publisher}: ${e.source_title}`);
     a.href = e.source_url; a.target = "_blank"; a.rel = "noopener noreferrer";
-    src.append(el("span", "ref", `Reference [${i}]: `), a, ` (retrieved ${e.as_of})`);
+    src.append(el("span", "ref", `Reference [${i}]: `), a, ` (retrieved ${e.as_of}) · `, reportLink(e));
     c.append(meta, p, src); return c;
   }
   async function runLibrary(first) {
@@ -273,12 +284,13 @@
       box.replaceChildren();
       if (!d.results.length) {
         box.append(el("p", "lib-empty", q
-          ? `Nothing in ${S.island.name}'s library matches "${q}". The sources may not cover it. Try a different word, or clear the category filter.`
+          ? `The library for ${S.island.name} has nothing that matches "${q}". The sources may not cover it. Try a different word, or clear the category filter.`
           : "No entries in this category."));
         sum.textContent = d.notes.join(". ");
       } else {
         sum.textContent = `${d.total} ${d.total === 1 ? "entry" : "entries"}${q ? ` for "${q}"` : ""}${cat ? ` in ${CAT_LABEL[cat]}` : ""}. ` + d.notes.join(". ");
-        d.results.forEach((e, i) => box.append(libCard(e, q, i + 1)));
+        const part = new Set(d.partial_ids || []); d.results.forEach((e, i) => box.append(libCard(e, q, i + 1, part.has(e.id))));
+        if (d.quality === "partial") sum.textContent = "Closest entries only. They match part of your question, and the library may not answer it. " + sum.textContent;
       }
     } catch (e) { if (seq === libSeq) { sum.textContent = ""; box.replaceChildren(el("p", "lib-empty", "The library could not be loaded. " + e.message)); } }
   }
@@ -327,7 +339,9 @@
         body.textContent = `The library has nothing on that yet. It has no entry for "${text}" for ${S.island.name}, so I will not guess.`;
         m.append(el("p", "missing", "Try different words, or browse the Library tab to see what is covered."));
       } else {
-        body.append(el("p", "lead", `From the library (${d.total} ${d.total === 1 ? "entry matches" : "entries match"}${d.total > items.length ? `, showing the top ${items.length}` : ""}):`));
+        body.append(el("p", "lead", d.quality === "partial"
+          ? "The library has no entry that answers this directly. These are the closest, and they only match part of your question:"
+          : `From the library (${d.total} ${d.total === 1 ? "entry matches" : "entries match"}${d.total > items.length ? `, showing the top ${items.length}` : ""}):`));
         const ev = items.map((e) => ({ ...e, cited: true })), { box, flash } = evidenceBlock(ev);
         ev.forEach((e) => {
           const pt = el("div", "point"); renderSentences(pt, [{ text: e.kind === "power" ? compactPower(e.text) : e.text, kind: "fact", cites: [e.id] }], ev, flash); body.append(pt);

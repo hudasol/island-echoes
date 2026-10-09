@@ -86,3 +86,8 @@ def test_accessibility_basics_present():
 def test_library_cards_always_show_confidence():
     js = (WEB / "app.js").read_text()
     assert "conf-${e.confidence}" in js
+
+
+def test_fact_cards_link_to_a_prefilled_issue():
+    js = (WEB / "app.js").read_text()
+    assert "github.com/hudasol/island-echoes/issues/new" in js and "Report a problem" in js

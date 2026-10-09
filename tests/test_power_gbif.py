@@ -72,13 +72,34 @@ def test_gbif_fetch_counts_global_and_local():
                   "family": "Labridae", "genus": "Cheilinus"},
         )
     )
+    counts = [5480, 23, 12, 11, 0, 23]  # global, local, observations, specimens, living, usable
     occ = respx.get(f"{gbif.GBIF}/occurrence/search").mock(
-        side_effect=[httpx.Response(200, json={"count": 5480}), httpx.Response(200, json={"count": 23})]
+        side_effect=[httpx.Response(200, json={"count": c}) for c in counts]
     )
     d = gbif.fetch_creature("Cheilinus undulatus", -12.1869, 96.8283, 1.0)
     assert d["global_count"] == 5480 and d["local_count"] == 23
+    assert d["local_breakdown"] == {"observations": 12, "specimens": 11, "living_or_captive": 0, "usable": 23}
     assert occ.calls[1].request.url.params["geometry"].startswith("POLYGON((95.8283 -13.1869")
+    assert occ.calls[2].request.url.params["hasGeospatialIssue"] == "false"
+    assert "HUMAN_OBSERVATION" in str(occ.calls[2].request.url)
     assert d["box"]["half_width_deg"] == 1.0
+
+
+@respx.mock
+def test_gbif_retries_after_429(monkeypatch):
+    monkeypatch.setattr(gbif.time, "sleep", lambda s: None)
+    respx.get(f"{gbif.GBIF}/species/match").mock(
+        side_effect=[httpx.Response(429, headers={"retry-after": "1"}), httpx.Response(200, json={"matchType": "NONE"})]
+    )
+    assert gbif.fetch_creature("X y", 0, 0, 1.0)["match"]["matchType"] == "NONE"
+
+
+def test_gbif_text_splits_observations_from_specimens():
+    d = {"match": {}, "global_count": 57, "local_count": 27,
+         "local_breakdown": {"observations": 5, "specimens": 22, "living_or_captive": 0, "usable": 27},
+         "box": {"min_lat": -2.5, "max_lat": 3.5, "min_lon": -93.5, "max_lon": -87.5, "half_width_deg": 3.0}}
+    t = gbif.occurrence_text("Pinta Island tortoise", "the Galápagos", d)
+    assert "5 observations" in t and "22 preserved or fossil specimens" in t and "not true abundance" in t
 
 
 @respx.mock

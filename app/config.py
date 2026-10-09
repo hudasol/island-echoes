@@ -18,6 +18,8 @@ class Settings(BaseSettings):
     source_ttl_days: int = 30
     chat_rate_per_min: int = 10
     chat_daily_cap: int = 400
+    read_rate_per_min: int = 240  # library and sensor lookups, per client
+    trusted_proxy_hops: int = 1  # proxies in front of the app whose X-Forwarded-For entry can be trusted
 
     narrations_path: Path = ROOT / "data" / "narrations.json"
     islands_dir: Path = ROOT / "data" / "islands"

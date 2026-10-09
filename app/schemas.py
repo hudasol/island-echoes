@@ -115,6 +115,7 @@ class SensorsOut(BaseModel):
     cell_lat: float
     cell_lon: float
     items: list[SensorOut]
+    warning: str = ""
 
 
 class NarrationOut(BaseModel):
@@ -133,3 +134,5 @@ class LibraryOut(BaseModel):
     counts: dict[str, int]
     results: list[EvidenceOut]
     notes: list[str]
+    quality: str = "browse"
+    partial_ids: list[str] = []

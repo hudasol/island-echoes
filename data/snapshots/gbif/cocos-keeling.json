@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-10-08T11:51:29+00:00",
+ "fetched_at": "2026-10-09T01:38:36+00:00",
  "creatures": {
   "napoleon-wrasse": {
    "match": {
@@ -25,6 +25,12 @@
    },
    "global_count": 5480,
    "local_count": 23,
+   "local_breakdown": {
+    "observations": 12,
+    "specimens": 11,
+    "living_or_captive": 0,
+    "usable": 23
+   },
    "box": {
     "min_lat": -13.1869,
     "max_lat": -11.1869,

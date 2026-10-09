@@ -8,6 +8,7 @@ reproducible and let the server start with no outbound calls.
 from __future__ import annotations
 
 import json
+import logging
 import time
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
@@ -21,6 +22,7 @@ from . import power as power_mod
 from .islands import IslandStore
 from .models import Evidence, Island
 
+log = logging.getLogger("island_echoes.data")
 RUNTIME_TIMEOUT = 10.0
 BACKOFF_SECONDS = 600
 
@@ -38,6 +40,21 @@ def _read(path: Path) -> dict | None:
         return json.loads(path.read_text(encoding="utf-8"))
     except (FileNotFoundError, json.JSONDecodeError):
         return None
+
+
+def comparable(kind: str, doc: dict) -> dict:
+    """The numbers a reader would notice changing, flattened to {name: value}."""
+    out: dict = {}
+    if kind == "power":
+        for param, series in doc.get("raw", {}).get("properties", {}).get("parameter", {}).items():
+            out[f"{param}.ANN"] = series.get("ANN")
+    else:
+        for slug, c in doc.get("creatures", {}).items():
+            out[f"{slug}.global_count"] = c.get("global_count")
+            out[f"{slug}.local_count"] = c.get("local_count")
+            for k, v in (c.get("local_breakdown") or {}).items():
+                out[f"{slug}.local.{k}"] = v
+    return out
 
 
 def _write(path: Path, doc: dict) -> None:
@@ -83,6 +100,7 @@ class SourceStore:
             try:
                 doc = fetch(island, client)
                 _write(cache_p, doc)
+                self._record_changes(kind, island, cache or snap, doc)
                 return doc
             except (httpx.HTTPError, ValueError, KeyError):
                 self._backoff[key] = time.monotonic() + BACKOFF_SECONDS
@@ -93,6 +111,32 @@ class SourceStore:
         if stale:
             return stale
         raise SourceUnavailable(f"{kind} data for {island.slug} is unavailable")
+
+    def _record_changes(self, kind: str, island: Island, old: dict | None, new: dict) -> None:
+        """Note every value that moved when live data replaces older data, so evidence text never changes silently."""
+        if not old:
+            return
+        before, after = comparable(kind, old), comparable(kind, new)
+        diff = {k: [before.get(k), after.get(k)] for k in after if before.get(k) != after.get(k)}
+        if not diff:
+            return
+        entry = {"at": _now().isoformat(timespec="seconds"), "kind": kind, "island": island.slug,
+                 "previous_as_of": str(old.get("fetched_at", ""))[:10], "changes": diff}
+        log.info("data change %s %s: %s", kind, island.slug, diff)
+        try:
+            path = self.s.cache_dir / "changes.jsonl"
+            path.parent.mkdir(parents=True, exist_ok=True)
+            with path.open("a", encoding="utf-8") as f:
+                f.write(json.dumps(entry, ensure_ascii=False) + "\n")
+        except OSError:
+            pass
+
+    def recent_changes(self, limit: int = 50) -> list[dict]:
+        try:
+            lines = (self.s.cache_dir / "changes.jsonl").read_text(encoding="utf-8").splitlines()
+        except FileNotFoundError:
+            return []
+        return [json.loads(x) for x in lines[-limit:]][::-1]
 
     # ---- fetchers (also used by scripts/snapshot_sources.py) -----------
     def fetch_power_doc(self, island: Island, client: httpx.Client) -> dict:
