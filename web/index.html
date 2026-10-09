@@ -49,6 +49,12 @@
         <button id="close-console" class="quiet" type="button">Close</button>
       </header>
 
+      <div class="panel-tabs" role="tablist" aria-label="Island panel">
+        <button id="tab-agent" type="button" role="tab" aria-selected="true" aria-controls="pane-agent">Field agent</button>
+        <button id="tab-library" type="button" role="tab" aria-selected="false" aria-controls="pane-library">Library</button>
+      </div>
+
+      <div id="pane-agent" class="pane" role="tabpanel" aria-labelledby="tab-agent">
       <div id="creature-tabs" class="creature-tabs" role="tablist" aria-label="Creatures on this island"></div>
 
       <div class="window">
@@ -75,6 +81,32 @@
         <div id="narration-text" class="narration-text"></div>
       </section>
 
+      <section class="ask" id="ask" aria-label="Learn facts from the library">
+        <h3>Learn facts from the library</h3>
+        <div id="ask-suggestions" class="suggestions"></div>
+        <div id="ask-log" class="log" aria-live="polite"></div>
+        <form id="ask-form" class="chat-form" autocomplete="off">
+          <label class="sr" for="ask-input">Your question</label>
+          <input id="ask-input" maxlength="200" placeholder="Ask about climate, water, species or history" required>
+          <button type="submit" id="ask-send">Search</button>
+        </form>
+        <p class="muted small">Answers come only from the library's sourced entries. If the library has nothing on your question, it says so. <button type="button" class="linklike" id="open-library">Browse the whole library</button></p>
+      </section>
+
+      <details class="chat" id="chat-details" hidden>
+        <summary>Ask the creature</summary>
+        <div id="suggestions" class="suggestions"></div>
+        <div id="log" class="log" aria-live="polite"></div>
+        <form id="chat-form" class="chat-form" autocomplete="off">
+          <label class="sr" for="chat-input">Your question</label>
+          <input id="chat-input" maxlength="500" placeholder="Ask about climate, history, or the species" required>
+          <button type="submit" id="send">Ask</button>
+        </form>
+        <p class="muted small">Answers use only the sources shown. If the sources are silent, the creature says so.</p>
+      </details>
+      </div>
+
+      <div id="pane-library" class="pane" role="tabpanel" aria-labelledby="tab-library" hidden>
       <section class="library" aria-label="Island library">
         <h3>Island library</h3>
         <p class="muted small" id="library-intro">Every entry is a sourced fact. Search by topic, or filter by category.</p>
@@ -89,17 +121,7 @@
         <div id="lib-results" class="lib-results"></div>
       </section>
 
-      <details class="chat" id="chat-details" hidden>
-        <summary>Ask the creature</summary>
-        <div id="suggestions" class="suggestions"></div>
-        <div id="log" class="log" aria-live="polite"></div>
-        <form id="chat-form" class="chat-form" autocomplete="off">
-          <label class="sr" for="chat-input">Your question</label>
-          <input id="chat-input" maxlength="500" placeholder="Ask about climate, history, or the species" required>
-          <button type="submit" id="send">Ask</button>
-        </form>
-        <p class="muted small">Answers use only the sources shown. If the sources are silent, the creature says so.</p>
-      </details>
+      </div>
     </div>
   </aside>
 </div>
