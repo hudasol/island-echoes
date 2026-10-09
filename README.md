@@ -118,7 +118,9 @@ The 25 of 25 recall is not an independent result: the retrieval synonyms and cat
 
 ## Deploy
 
-The repository includes a Render blueprint (`render.yaml`): one web service serves both the API and the static app. Create a Blueprint from this repo, then set `ANTHROPIC_API_KEY` in the Render dashboard. The public chat endpoint has a per-IP limit (10 per minute) and a daily cap (400 requests, `CHAT_DAILY_CAP`) to bound cost.
+Live demo: https://island-echoes.onrender.com. It runs on Render's free plan, so the first request after a quiet spell can take up to a minute while the service wakes. The library works without any API key.
+
+The repository includes a Render blueprint (`render.yaml`): one web service serves both the API and the static app. Create a Blueprint from this repo. Setting `ANTHROPIC_API_KEY` in the Render dashboard is optional and only switches on the hidden creature chat. The public chat endpoint has a per-IP limit (10 per minute) and a daily cap (400 requests, `CHAT_DAILY_CAP`) to bound cost.
 
 ## Project layout
 
