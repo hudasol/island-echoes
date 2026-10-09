@@ -56,3 +56,33 @@ def test_frontend_uses_nasa_gibs_and_has_no_secrets():
     app = (WEB / "app.js").read_text()
     assert "gibs.earthdata.nasa.gov/wmts/epsg3857/best" in app
     assert "ANTHROPIC" not in app and "sk-ant" not in app
+
+
+def test_nasa_credits_and_no_endorsement_are_in_the_shell():
+    html = (WEB / "index.html").read_text()
+    for needle in (
+        "Global Imagery Browse Services (GIBS)",
+        "NASA Langley Research Center (LaRC) POWER Project",
+        "GBIF.org",
+        "not a NASA product",
+    ):
+        assert needle.lower() in html.lower(), needle
+
+
+def test_sensor_caveat_names_the_grid_cell_limit():
+    assert "larger than the island" in (WEB / "index.html").read_text()
+
+
+def test_accessibility_basics_present():
+    html = (WEB / "index.html").read_text()
+    assert 'class="skip"' in html and "<noscript>" in html and "<dialog" in html
+    assert 'role="radiogroup"' not in html
+    js = (WEB / "app.js").read_text()
+    assert "ArrowRight" in js and "aria-pressed" in js
+    css = (WEB / "style.css").read_text()
+    assert "prefers-reduced-motion" in css and "forced-colors" in css
+
+
+def test_library_cards_always_show_confidence():
+    js = (WEB / "app.js").read_text()
+    assert "conf-${e.confidence}" in js
