@@ -36,8 +36,9 @@
   }
   function applyLayer(l) {
     S.layer = l;
-    document.querySelectorAll("#layer-buttons button").forEach((b) => b.setAttribute("aria-checked", String(b.dataset.id === l.id)));
+    document.querySelectorAll("#layer-buttons button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.id === l.id)));
     $("layer-note").textContent = l.note.replace("{d}", l.time || "") + " Source: NASA GIBS.";
+    $("attribution").textContent = `Imagery: ${l.label}${l.time ? `, ${l.time}` : ""}, NASA GIBS. Climate: NASA POWER. Species records: GBIF. Not a NASA product.`;
     if (globe) { globe.globeTileEngineClearCache?.(); globe.globeTileEngineMaxLevel(Math.min(l.matrix - 1, 8)); globe.globeTileEngineUrl(tileUrl(l)); }
   }
   function initGlobe(host) {
@@ -83,13 +84,13 @@
     });
     const lb = $("layer-buttons");
     LAYERS.forEach((l) => {
-      const b = el("button", null, l.label); b.type = "button"; b.dataset.id = l.id; b.setAttribute("role", "radio");
+      const b = el("button", null, l.label); b.type = "button"; b.dataset.id = l.id; b.setAttribute("aria-pressed", "false");
       b.addEventListener("click", () => applyLayer(l)); lb.append(b);
     });
   }
 
   /* ---------------- selecting an island ---------------- */
-  async function select(slug, creatureSlug, tab) {
+  async function select(slug, creatureSlug, tab, userPick = true) {
     const isl = S.islands.find((i) => i.slug === slug); if (!isl) return;
     S.island = isl; S.history = []; S.lib = { q: "", cat: "" }; $("library-input").value = "";
     setTab(tab === "library" ? "library" : "agent");
@@ -108,17 +109,19 @@
     pickCreature(creatureSlug || isl.creatures[0].slug);
     loadSensors(isl);
     con.scrollTop = 0;
+    if (userPick) $("island-name").focus({ preventScroll: true });
   }
 
   function pickCreature(slug) {
     const c = S.island.creatures.find((x) => x.slug === slug); S.creature = c; S.history = [];
     document.querySelectorAll("#creature-tabs button").forEach((b) => b.setAttribute("aria-selected", String(b.dataset.slug === slug)));
+    syncTabStops($("creature-tabs"));
     $("creature-name").textContent = c.common_name;
     const code = statusCode(c.iucn_status), chip = $("status-chip");
     chip.textContent = STATUS[code] || c.iucn_status; chip.dataset.s = code;
     $("status-detail").textContent = `Status as reported: ${c.iucn_status}. ${c.status_note || ""}`;
     const cv = $("creature-canvas");
-    cv.setAttribute("aria-label", `Animation of a ${c.common_name} (${c.scientific_name}), a ${c.creature_type} creature`);
+    cv.setAttribute("aria-label", `Decorative animation of a ${c.common_name} (${c.scientific_name}), a ${c.creature_type}. The facts are in the text below.`);
     Creatures.start(cv, c.creature_type, S.paused);
     $("log").replaceChildren(); $("ask-log").replaceChildren();
     suggestions(); askSuggestions();
@@ -178,7 +181,7 @@
     const body = el("div", null, e.text);
     const src = el("span", "src"), a = el("a", null, `${e.publisher}: ${e.source_title}`);
     a.href = e.source_url; a.target = "_blank"; a.rel = "noopener noreferrer";
-    src.append(a, ` · as of ${e.as_of}` + (e.confidence && e.confidence !== "high" ? ` · ${e.confidence} confidence` : ""));
+    src.append(a, ` · retrieved ${e.as_of}` + (e.confidence ? ` · ${e.confidence} confidence` : ""));
     d.append(head, body, src);
     return d;
   }
@@ -243,12 +246,12 @@
     const c = el("article", "lib-card"), meta = el("div", "meta");
     meta.append(el("span", "k", e.kind === "fact" ? (CAT_LABEL[e.category] || e.category) : e.kind === "power" ? "NASA POWER" : "GBIF"));
     if (e.kind !== "fact") meta.append(el("span", "badge live", "live data"));
-    if (e.kind === "fact" && e.confidence !== "high") meta.append(el("span", "badge", `${e.confidence} confidence`));
+    if (e.kind === "fact") meta.append(el("span", `badge conf-${e.confidence}`, `${e.confidence[0].toUpperCase()}${e.confidence.slice(1)} confidence`));
     meta.append(el("span", null, e.id));
     const p = el("p"); highlight(p, e.text, q);
     const src = el("div", "src"), a = el("a", null, `${e.publisher}: ${e.source_title}`);
     a.href = e.source_url; a.target = "_blank"; a.rel = "noopener noreferrer";
-    src.append(el("span", "ref", `Reference [${i}]: `), a, ` (as of ${e.as_of})`);
+    src.append(el("span", "ref", `Reference [${i}]: `), a, ` (retrieved ${e.as_of})`);
     c.append(meta, p, src); return c;
   }
   async function runLibrary(first) {
@@ -291,6 +294,7 @@
     ["agent", "library"].forEach((t) => {
       $("pane-" + t).hidden = t !== name; $("tab-" + t).setAttribute("aria-selected", String(t === name));
     });
+    syncTabStops(document.querySelector(".panel-tabs"));
     if (S.island) history.replaceState(null, "", `#${S.island.slug}${name === "library" ? "/library" : ""}`);
   }
 
@@ -371,8 +375,26 @@
     } finally { S.busy = false; $("send").disabled = false; }
   }
 
+  /* ---------------- keyboard support for tab lists ---------------- */
+  function tabKeys(list) {
+    list.addEventListener("keydown", (ev) => {
+      const tabs = [...list.querySelectorAll('[role="tab"]')], i = tabs.indexOf(document.activeElement);
+      if (i < 0) return;
+      const to = { ArrowRight: (i + 1) % tabs.length, ArrowLeft: (i - 1 + tabs.length) % tabs.length, Home: 0, End: tabs.length - 1 }[ev.key];
+      if (to == null) return;
+      ev.preventDefault(); tabs[to].focus(); tabs[to].click();
+    });
+  }
+  function syncTabStops(list) {
+    list.querySelectorAll('[role="tab"]').forEach((t) => t.setAttribute("tabindex", t.getAttribute("aria-selected") === "true" ? "0" : "-1"));
+  }
+
   /* ---------------- wiring ---------------- */
   function wire() {
+    tabKeys(document.querySelector(".panel-tabs")); tabKeys($("creature-tabs"));
+    const about = $("about");
+    $("open-about").addEventListener("click", () => (about.showModal ? about.showModal() : about.setAttribute("open", "")));
+    about.addEventListener("click", (ev) => { if (ev.target === about) about.close(); });
     libIdeas();
     $("tab-agent").addEventListener("click", () => setTab("agent"));
     $("tab-library").addEventListener("click", () => setTab("library"));
@@ -387,11 +409,11 @@
     pb.addEventListener("click", () => { S.paused = !S.paused; Creatures.setPaused(S.paused); syncPause(); });
     syncPause();
     $("close-console").addEventListener("click", () => {
-      speechSynthesis?.cancel?.(); Creatures.stop(); S.island = null;
+      speechSynthesis?.cancel?.(); Creatures.stop(); const back = S.island && document.querySelector(`.island-btn[data-slug="${S.island.slug}"]`); S.island = null;
       $("console").classList.remove("open"); $("console-body").hidden = true; $("console-empty").hidden = false;
       document.querySelectorAll(".island-btn").forEach((b) => b.setAttribute("aria-current", "false"));
       document.querySelectorAll(".pin").forEach((p) => p.setAttribute("aria-pressed", "false"));
-      globe?.ringsData([]); history.replaceState(null, "", location.pathname);
+      globe?.ringsData([]); history.replaceState(null, "", location.pathname); back?.focus();
     });
     $("sheet-handle").addEventListener("click", () => $("console").classList.toggle("min"));
     document.addEventListener("visibilitychange", () => { if (document.hidden) speechSynthesis?.cancel?.(); });
@@ -403,7 +425,7 @@
     catch (e) { $("globe-error").hidden = false; $("globe-error").textContent = "Could not reach the Island Echoes server. " + e.message; return; }
     buildIndex(); initGlobe($("globe"));
     api("/api/health").then((h) => { $("chat-details").hidden = !(h.chat_enabled && new URLSearchParams(location.search).has("claude")); }).catch(() => {});
-    const [h, t] = location.hash.slice(1).split("/"); if (h && S.islands.some((i) => i.slug === h)) select(h, undefined, t);
+    const [h, t] = location.hash.slice(1).split("/"); if (h && S.islands.some((i) => i.slug === h)) select(h, undefined, t, false);
     if ("serviceWorker" in navigator && location.protocol !== "file:") navigator.serviceWorker.register("/sw.js").catch(() => {});
   }
   boot();

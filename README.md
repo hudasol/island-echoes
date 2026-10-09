@@ -158,6 +158,13 @@ docs/       PLAN.md and screenshots
 - Pull Red List statuses from the official API once a token is available.
 - Run the eval in CI on every change to the fact files.
 
+## Accessibility and data caveats
+
+- An automated axe-core audit (WCAG 2.0 to 2.2 A and AA rules plus best practices) reports no violations on the start screen, both panel tabs, the answer view and the credits dialog, at desktop and phone widths. Automated checks find only part of the problems. No screen-reader or user testing has been done yet.
+- Tabs, creature switching and the credits dialog work by keyboard. The island list is a keyboard alternative to the globe. Motion can be paused and `prefers-reduced-motion` is respected.
+- Each climate value comes from a NASA POWER grid cell of roughly 0.5 by 0.625 degrees. Every island here is smaller than one cell, so the numbers describe the surrounding area, not a point on the island. The panel says so.
+- The confidence label on each fact is the compiler's judgement and has not been audited independently. Some facts labelled high still cite Wikipedia, which a second verification pass should replace with primary sources.
+
 ## Credits and licence
 
-NASA POWER, NASA GIBS and GBIF provide the open data. [globe.gl](https://github.com/vasturiano/globe.gl) (MIT) is vendored in `web/vendor/`. Code is released under the MIT licence (see `LICENSE`). Fact sources are linked on each fact and retain their own licences.
+This is an independent project. It is not a NASA product and NASA has not reviewed or endorsed it. We acknowledge the use of imagery provided by services from NASA's Global Imagery Browse Services (GIBS), operated by NASA/GSFC/Earth Science Data and Information System (ESDIS). Climate data were obtained from the NASA Langley Research Center (LaRC) POWER Project, funded through the NASA Earth Science/Applied Science Program. Species records come from GBIF.org. [globe.gl](https://github.com/vasturiano/globe.gl) (MIT) is vendored in `web/vendor/`. Code is released under the MIT licence (see `LICENSE`). Fact sources are linked on each fact and retain their own licences.

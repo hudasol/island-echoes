@@ -13,6 +13,7 @@
 </head>
 <body>
 <a class="skip" href="#console">Skip to the field agent</a>
+<noscript><p class="noscript">Island Echoes needs JavaScript to show the globe and the library.</p></noscript>
 <div class="app" id="app">
   <nav class="index" aria-label="Islands">
     <header class="brand">
@@ -22,15 +23,17 @@
     <ul id="island-list" class="island-list"></ul>
     <section class="layers" aria-label="NASA GIBS imagery">
       <h2>Satellite layer</h2>
-      <div id="layer-buttons" class="layer-buttons" role="radiogroup"></div>
+      <div id="layer-buttons" class="layer-buttons" role="group" aria-label="Satellite layer"></div>
       <p id="layer-note" class="layer-note"></p>
     </section>
+    <button id="open-about" class="quiet about-btn" type="button">About the data and credits</button>
   </nav>
 
   <main class="stage">
-    <div id="globe" class="globe" aria-label="Interactive 3D globe"></div>
+    <div id="globe" class="globe" role="group" aria-label="Interactive 3D globe. The island list offers the same choices by keyboard."></div>
     <p id="globe-hint" class="globe-hint">Drag to turn the globe. Choose an island to fly there.</p>
-    <p id="globe-error" class="globe-error" hidden></p>
+    <p id="globe-error" class="globe-error" hidden role="alert"></p>
+    <p id="attribution" class="attribution">Imagery: NASA GIBS. Climate: NASA POWER. Species records: GBIF. Not a NASA product.</p>
   </main>
 
   <aside id="console" class="console" aria-label="Field agent" tabindex="-1">
@@ -42,7 +45,7 @@
       <button class="sheet-handle" id="sheet-handle" type="button" aria-label="Expand or collapse the field agent panel"></button>
       <header class="agent-head">
         <div>
-          <h2 id="island-name"></h2>
+          <h2 id="island-name" tabindex="-1"></h2>
           <p id="island-territory" class="muted"></p>
           <details class="pin-details"><summary class="small muted">About this pin</summary><p id="pin-note" class="small muted"></p></details>
         </div>
@@ -58,7 +61,7 @@
       <div id="creature-tabs" class="creature-tabs" role="tablist" aria-label="Creatures on this island"></div>
 
       <div class="window">
-        <canvas id="creature-canvas" width="720" height="360" role="img" aria-label=""></canvas>
+        <canvas id="creature-canvas" width="720" height="360" role="img" aria-label="Animated creature"></canvas>
         <div class="window-bar">
           <span id="creature-name" class="creature-name"></span>
           <span id="status-chip" class="chip"></span>
@@ -70,7 +73,8 @@
       <section class="sensors" aria-label="NASA POWER sensor readouts">
         <h3>Sensors on site</h3>
         <div id="sensor-grid" class="sensor-grid"></div>
-        <p id="sensor-note" class="muted small"></p>
+        <p id="sensor-note" class="muted small" aria-live="polite"></p>
+        <p class="muted small">Each value describes a NASA POWER grid cell about 55 km by 70 km, which is larger than the island, so it blends land and open sea. Treat it as the climate of the area, not a station on the shore.</p>
       </section>
 
       <section class="narration" aria-label="Narration">
@@ -125,6 +129,28 @@
     </div>
   </aside>
 </div>
+<dialog id="about" class="about" aria-labelledby="about-title">
+  <form method="dialog" class="about-close"><button class="quiet" aria-label="Close about and credits">Close</button></form>
+  <h2 id="about-title">About the data and credits</h2>
+  <p>Island Echoes is an independent open-data education project. It is not a NASA product, and NASA has not reviewed or endorsed it.</p>
+  <h3>Where each thing comes from</h3>
+  <ul>
+    <li><b>Satellite imagery:</b> we acknowledge the use of imagery provided by services from NASA's Global Imagery Browse Services (GIBS), operated by NASA/GSFC/Earth Science Data and Information System (ESDIS). The layer and date on screen are named under the layer buttons.</li>
+    <li><b>Climate readouts:</b> these data were obtained from the NASA Langley Research Center (LaRC) POWER Project, funded through the NASA Earth Science/Applied Science Program. Values are 2001 to 2020 climatology on a grid cell of roughly 0.5 by 0.625 degrees. Every island here is smaller than one cell.</li>
+    <li><b>Species records:</b> GBIF.org occurrence counts and species matches. Counts show recorded observations, not population size.</li>
+    <li><b>Island facts:</b> a researched fact file for each island. Each entry carries its publisher, link and the date it was retrieved.</li>
+  </ul>
+  <h3>How to read the confidence label</h3>
+  <p>The label is the compiler's judgement of how directly the cited source supports the statement and whether other sources agree. It is not a measured score, and it has not yet been independently audited.</p>
+  <ul>
+    <li><b>High:</b> the source states it plainly and nothing we found contradicts it.</li>
+    <li><b>Medium:</b> it rests on one source, often an encyclopedia or a news report.</li>
+    <li><b>Low:</b> the sources conflict or are thin.</li>
+  </ul>
+  <p>Conservation statuses are shown as reported by the cited source and may have been revised since. Check the IUCN Red List for the current category.</p>
+  <h3>Found a mistake?</h3>
+  <p>Please report it at <a href="https://github.com/hudasol/island-echoes/issues" target="_blank" rel="noopener noreferrer">the project's issue tracker</a>.</p>
+</dialog>
 <script src="vendor/globe.gl.min.js"></script>
 <script src="creatures.js"></script>
 <script src="app.js"></script>
