@@ -12,10 +12,11 @@ and you get a confident paragraph with no way to tell which parts are real. For 
 of extinction, that is the wrong failure mode: invented facts about a vanishing animal are worse than
 silence.
 
-Island Echoes treats the creature as a voice, not an authority. Every factual sentence must carry a
-citation to a retrieved source (an island fact file, NASA POWER climate data, or GBIF species records).
-A mechanical validator checks those citations before anything reaches the screen. When the sources do
-not cover a question, the creature says so.
+Island Echoes treats the creature as a voice, not an authority. Every island has a searchable library of
+sourced facts (species, water and ocean, climate, ecology, history). Each entry shows its source, and a search
+that the sources cannot answer returns nothing instead of a guess. An optional chat lets the creature answer in
+the first person: every factual sentence must cite a retrieved source, and a mechanical validator checks those
+citations before anything reaches the screen.
 
 ## What is in it
 
@@ -33,7 +34,8 @@ not cover a question, the creature says so.
 - **Globe**: [globe.gl](https://globe.gl) with NASA GIBS imagery (true colour, relief, night lights, sea surface temperature). Click a pin or pick an island from the list to fly there.
 - **Creatures**: four procedural canvas animations (bird, marine, reptile, mammal) and one spoken field report per creature (browser speech synthesis). A pause control stops all motion; reduced-motion preferences start paused.
 - **Sensors**: the readouts beside each creature are NASA POWER 20-year climatology (temperature, rainfall, wind, humidity) for that island's grid cell, with a monthly trace.
-- **Chat**: ask anything. Answers show numbered citations and the evidence cards behind them.
+- **Library**: search each island's sourced facts or filter by category (species, water and ocean, climate, ecology, threats, history and more). Climate and species searches also pull live NASA POWER and GBIF entries. No API key needed.
+- **Chat (optional)**: shown only when the server has an `ANTHROPIC_API_KEY`. Answers show numbered citations and the evidence cards behind them.
 - **PWA**: installable, with an offline app shell.
 
 <img src="docs/img/mobile.png" alt="Mobile layout with the field agent as a bottom sheet" width="260">
@@ -45,7 +47,7 @@ flowchart LR
   UI["Browser<br/>globe.gl + NASA GIBS tiles<br/>creature canvas, PWA"] -->|"POST /api/chat"| API[FastAPI]
   UI -->|"GET /api/islands, /sensors, /narration"| API
   API --> RET["Retriever<br/>BM25 + intent routing"]
-  RET --> F[("Island fact files<br/>287 sourced facts")]
+  RET --> F[("Island fact files<br/>469 sourced facts")]
   RET --> P[("NASA POWER<br/>climatology")]
   RET --> G[("GBIF<br/>taxonomy + records")]
   RET -->|"evidence bundle with IDs"| LLM["Anthropic API<br/>forced answer tool"]
@@ -69,7 +71,7 @@ flowchart LR
 
 Only public sources are used. No keys are needed for any of them.
 
-- **Island fact files** (`data/islands/*.json`): 287 facts across seven islands, each with a source URL, publisher, retrieval date and a confidence label. Compiled from public sources including government and agency pages, UNESCO, BirdLife, FishBase, GBIF and Wikipedia. Gaps and conflicts are listed in each file.
+- **Island fact files** (`data/islands/*.json`): 469 facts across seven islands, each with a source URL, publisher, retrieval date and a confidence label. Compiled from public sources including government and agency pages, UNESCO, BirdLife, FishBase, GBIF and Wikipedia. Gaps and conflicts are listed in each file.
 - **NASA POWER**: climatology API, 2001 to 2020, snapshotted in `data/snapshots/power/`.
 - **GBIF**: species match and occurrence counts, snapshotted in `data/snapshots/gbif/`.
 - **NASA GIBS**: satellite imagery tiles, loaded by the browser.
@@ -85,7 +87,7 @@ git clone https://github.com/hudasol/island-echoes && cd island-echoes
 make run
 ```
 
-That creates a virtualenv, installs dependencies, copies `.env.example` to `.env` and starts the server at <http://localhost:8000>. The globe, sensors and field reports work with no keys. To enable chat, put your key in `.env`:
+That creates a virtualenv, installs dependencies, copies `.env.example` to `.env` and starts the server at <http://localhost:8000>. The globe, sensors, field reports and the library work with no keys. To enable the optional chat, put your key in `.env`:
 
 ```
 ANTHROPIC_API_KEY=your-key-here
@@ -134,6 +136,7 @@ docs/       PLAN.md and screenshots
 
 **What went wrong**
 
+- **A second research pass needed a second check.** The 182 library facts added later (species, water, climate, ecology) came from fetch tools that return page summaries rather than raw text. An independent re-read of every one found 26 statements that overstated or mixed up their source (for example two bird population figures swapped), and they were corrected before publishing. Facts that rest on Wikipedia alone are labelled medium confidence in the UI.
 - **The island files did not exist.** The brief assumed a set of attached island files. There were none, so the fact base had to be researched from scratch. That took the largest share of the work and left many facts at medium confidence because they rest on a single secondary source.
 - **IUCN pages were unreachable** from the research environment, so statuses come second-hand. This is stated in the UI and on every creature.
 - **A relevance threshold on retrieval was the wrong gate.** The first design refused any question whose best BM25 score fell below a cut-off. It refused good questions phrased unusually and passed bad ones. It was replaced by a narrow rule (refuse only on zero word overlap) and the model plus validator handle the rest.

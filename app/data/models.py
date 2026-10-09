@@ -17,6 +17,8 @@ Category = Literal[
     "threats",
     "conservation",
     "creature",
+    "species",
+    "water",
 ]
 
 

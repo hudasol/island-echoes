@@ -75,8 +75,22 @@
         <div id="narration-text" class="narration-text"></div>
       </section>
 
-      <section class="chat" aria-label="Ask the creature">
-        <h3>Ask a question</h3>
+      <section class="library" aria-label="Island library">
+        <h3>Island library</h3>
+        <p class="muted small" id="library-intro">Every entry is a sourced fact. Search by topic, or filter by category.</p>
+        <form id="library-form" class="chat-form" role="search" autocomplete="off">
+          <label class="sr" for="library-input">Search this island's library</label>
+          <input id="library-input" type="search" maxlength="200" placeholder="Try: coral bleaching, rainfall, endangered birds">
+          <button type="submit">Search</button>
+        </form>
+        <div id="lib-suggestions" class="suggestions"></div>
+        <div id="lib-cats" class="cats" role="group" aria-label="Filter by category"></div>
+        <p id="lib-summary" class="muted small" aria-live="polite"></p>
+        <div id="lib-results" class="lib-results"></div>
+      </section>
+
+      <details class="chat" id="chat-details" hidden>
+        <summary>Ask the creature</summary>
         <div id="suggestions" class="suggestions"></div>
         <div id="log" class="log" aria-live="polite"></div>
         <form id="chat-form" class="chat-form" autocomplete="off">
@@ -85,7 +99,7 @@
           <button type="submit" id="send">Ask</button>
         </form>
         <p class="muted small">Answers use only the sources shown. If the sources are silent, the creature says so.</p>
-      </section>
+      </details>
     </div>
   </aside>
 </div>
