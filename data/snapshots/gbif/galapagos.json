@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-10-08T11:51:32+00:00",
+ "fetched_at": "2026-10-09T01:38:42+00:00",
  "creatures": {
   "pinta-island-tortoise": {
    "match": {
@@ -25,6 +25,12 @@
    },
    "global_count": 57,
    "local_count": 27,
+   "local_breakdown": {
+    "observations": 5,
+    "specimens": 22,
+    "living_or_captive": 0,
+    "usable": 27
+   },
    "box": {
     "min_lat": -3.5,
     "max_lat": 2.5,
@@ -59,6 +65,12 @@
    },
    "global_count": 8306,
    "local_count": 8169,
+   "local_breakdown": {
+    "observations": 7542,
+    "specimens": 627,
+    "living_or_captive": 0,
+    "usable": 8169
+   },
    "box": {
     "min_lat": -3.5,
     "max_lat": 2.5,

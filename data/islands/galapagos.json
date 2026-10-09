@@ -20,7 +20,11 @@
       "creature_type": "reptile",
       "iucn_status": "Extinct (IUCN Red List; assessment Cayot et al., 2016 per two secondary sources; Wikipedia says the assessment was amended in 2022)",
       "gbif_search_name": "Chelonoidis abingdonii",
-      "status_note": "The last known pure individual, Lonesome George, died 24 June 2012. Hybrids with Pinta ancestry were found on Volcano Wolf, Isabela, so purebred relatives may survive. The IUCN Red List site could not be fetched directly."
+      "status_note": "The last known pure individual, Lonesome George, died 24 June 2012. Hybrids with Pinta ancestry were found on Volcano Wolf, Isabela, so purebred relatives may survive. The IUCN Red List site could not be fetched directly.",
+      "home_name": "Pinta Island",
+      "home_lat": 0.5873,
+      "home_lon": -90.7622,
+      "home_note": "Pinta Island coordinates (0°35′14″N 90°45′44″W) from the Wikipedia article infobox."
     },
     {
       "slug": "galapagos-sea-lion",
@@ -577,12 +581,12 @@
     {
       "id": "GAL-108",
       "category": "creature",
-      "statement": "Feral dogs threaten sea lion pups and can pass diseases to the population, and fishing gear and nets cause entanglement and injuries.",
-      "source_url": "https://en.wikipedia.org/wiki/Gal%C3%A1pagos_sea_lion",
-      "source_title": "Galápagos sea lion",
-      "publisher": "Wikipedia",
-      "retrieved": "2026-10-08",
-      "evidence_note": "Threats section covers stray dog packs, disease and fishing entanglement; Animal Diversity Web also names feral dogs as a threat.",
+      "statement": "Feral dogs have been reported to kill young Galápagos sea lions and may transmit canine diseases to the population, according to the Handbook of the Mammals of the World.",
+      "source_url": "https://zenodo.org/records/6606872",
+      "source_title": "Zalophus wollebaeki Sivertsen 1953 (Handbook of the Mammals of the World, Vol. 4)",
+      "publisher": "Lynx Edicions (Mittermeier and Wilson), via Zenodo/Plazi",
+      "retrieved": "2026-10-09",
+      "evidence_note": "Threats section covers stray dog packs, disease and fishing entanglement; Animal Diversity Web also names feral dogs as a threat. Re-checked 2026-10-09 against Lynx Edicions (Mittermeier and Wilson), via Zenodo/Plazi; the statement keeps only the parts that source supports. Dogs/disease confirmed by this handbook chapter and Animal Diversity Web; fishing-net entanglement not confirmed there (only a pinnipeds.org page of ~2000 data mentions it), so that half is left out.",
       "confidence": "high",
       "subject": "galapagos-sea-lion"
     },
@@ -593,9 +597,9 @@
       "source_url": "https://www.galapagos.org/?p=22719",
       "source_title": "Galápagos sea lion and fur seal monitoring cruise",
       "publisher": "Galápagos Conservancy",
-      "retrieved": "2026-10-08",
-      "evidence_note": "Article describes the cruise partners, site count and health sampling funded through Galápagos Conservancy grants.",
-      "confidence": "medium",
+      "retrieved": "2026-10-09",
+      "evidence_note": "Article describes the cruise partners, site count and health sampling funded through Galápagos Conservancy grants. 2026-10-09: the source link now returns HTTP 404 and no replacement page confirming the monitoring cruise details (30 sites, 14 islands) was found. Treat as unverified.",
+      "confidence": "low",
       "subject": "galapagos-sea-lion"
     },
     {

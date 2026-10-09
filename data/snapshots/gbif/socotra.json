@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-10-08T11:51:37+00:00",
+ "fetched_at": "2026-10-09T01:38:50+00:00",
  "creatures": {
   "socotra-buzzard": {
    "match": {
@@ -27,6 +27,12 @@
    },
    "global_count": 185,
    "local_count": 181,
+   "local_breakdown": {
+    "observations": 181,
+    "specimens": 0,
+    "living_or_captive": 0,
+    "usable": 181
+   },
    "box": {
     "min_lat": 11.01,
     "max_lat": 14.01,

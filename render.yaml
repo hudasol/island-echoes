@@ -4,8 +4,8 @@ services:
     name: island-echoes
     runtime: python
     plan: free
-    buildCommand: pip install -r requirements.txt
-    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    buildCommand: pip install -r requirements.lock
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT --no-access-log
     healthCheckPath: /api/health
     envVars:
       - key: PYTHON_VERSION

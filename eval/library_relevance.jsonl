@@ -1,0 +1,106 @@
+{"island": "galapagos", "question": "do tortoises eat cactus", "answerable": true, "split": "tuned"}
+{"island": "galapagos", "question": "Is the sea lion population increasing or decreasing?", "answerable": true, "split": "tuned"}
+{"island": "galapagos", "question": "what threatens the sea lions", "answerable": true, "split": "tuned"}
+{"island": "galapagos", "question": "how did El Niño affect the Galápagos", "answerable": true, "split": "tuned"}
+{"island": "galapagos", "question": "when did Ecuador annex the islands", "answerable": true, "split": "tuned"}
+{"island": "galapagos", "question": "how far is it from the mainland", "answerable": true, "split": "tuned"}
+{"island": "socotra", "question": "dragon blood tree", "answerable": true, "split": "tuned"}
+{"island": "socotra", "question": "what is the climate like", "answerable": true, "split": "tuned"}
+{"island": "socotra", "question": "which birds are endangered", "answerable": true, "split": "tuned"}
+{"island": "socotra", "question": "who rules Socotra", "answerable": true, "split": "tuned"}
+{"island": "pitcairn", "question": "mutiny on the Bounty", "answerable": true, "split": "tuned"}
+{"island": "pitcairn", "question": "how many people live on Pitcairn", "answerable": true, "split": "tuned"}
+{"island": "pitcairn", "question": "how many reed warblers are there", "answerable": true, "split": "tuned"}
+{"island": "bouvet", "question": "penguins", "answerable": true, "split": "tuned"}
+{"island": "bouvet", "question": "can I visit Bouvet", "answerable": true, "split": "tuned"}
+{"island": "bouvet", "question": "who discovered Bouvet Island", "answerable": true, "split": "tuned"}
+{"island": "bouvet", "question": "is it covered in ice", "answerable": true, "split": "tuned"}
+{"island": "clipperton", "question": "what happened to the survivors in 1917", "answerable": true, "split": "tuned"}
+{"island": "clipperton", "question": "what sharks live around Clipperton", "answerable": true, "split": "tuned"}
+{"island": "clipperton", "question": "who owns Clipperton", "answerable": true, "split": "tuned"}
+{"island": "cocos-keeling", "question": "sea level rise", "answerable": true, "split": "tuned"}
+{"island": "cocos-keeling", "question": "how warm is the water", "answerable": true, "split": "tuned"}
+{"island": "cocos-keeling", "question": "what did Darwin do here", "answerable": true, "split": "tuned"}
+{"island": "cocos-keeling", "question": "how big is the humphead wrasse", "answerable": true, "split": "tuned"}
+{"island": "tristan-da-cunha", "question": "how many albatrosses are left", "answerable": true, "split": "tuned"}
+{"island": "tristan-da-cunha", "question": "what happened in the 1961 volcanic eruption", "answerable": true, "split": "tuned"}
+{"island": "tristan-da-cunha", "question": "how rainy is it", "answerable": true, "split": "tuned"}
+{"island": "tristan-da-cunha", "question": "what threatens the albatross", "answerable": true, "split": "tuned"}
+{"island": "galapagos", "question": "plastic pollution", "answerable": true, "split": "tuned"}
+{"island": "socotra", "question": "water supply", "answerable": true, "split": "tuned"}
+{"island": "galapagos", "question": "who is the president of Ecuador", "answerable": false, "split": "tuned"}
+{"island": "galapagos", "question": "how many tourists visit per year", "answerable": false, "split": "tuned"}
+{"island": "galapagos", "question": "what is the best hotel", "answerable": false, "split": "tuned"}
+{"island": "socotra", "question": "what is the capital of France", "answerable": false, "split": "tuned"}
+{"island": "pitcairn", "question": "how do I book a flight", "answerable": false, "split": "tuned"}
+{"island": "bouvet", "question": "what is the price of gold", "answerable": false, "split": "tuned"}
+{"island": "clipperton", "question": "who won the world cup", "answerable": false, "split": "tuned"}
+{"island": "cocos-keeling", "question": "what is the wifi speed", "answerable": false, "split": "tuned"}
+{"island": "tristan-da-cunha", "question": "how do I bake bread", "answerable": false, "split": "tuned"}
+{"island": "galapagos", "question": "what is the population of Tokyo", "answerable": false, "split": "tuned"}
+{"island": "socotra", "question": "tell me a joke", "answerable": false, "split": "tuned"}
+{"island": "pitcairn", "question": "is bitcoin a good investment", "answerable": false, "split": "tuned"}
+{"island": "bouvet", "question": "which airline flies there", "answerable": false, "split": "tuned"}
+{"island": "cocos-keeling", "question": "what is the meaning of life", "answerable": false, "split": "tuned"}
+{"island": "clipperton", "question": "how tall is mount everest", "answerable": false, "split": "tuned"}
+{"island": "tristan-da-cunha", "question": "who is the king of Norway", "answerable": false, "split": "tuned"}
+{"island": "socotra", "question": "what language is spoken in Brazil", "answerable": false, "split": "tuned"}
+{"island": "galapagos", "question": "how old is the universe", "answerable": false, "split": "tuned"}
+{"island": "pitcairn", "question": "what is the speed of light", "answerable": false, "split": "tuned"}
+{"island": "cocos-keeling", "question": "how many moons does Jupiter have", "answerable": false, "split": "tuned"}
+{"island": "galapagos", "question": "temperature in Paris", "answerable": false, "split": "tuned"}
+{"island": "bouvet", "question": "how do vaccines work", "answerable": false, "split": "tuned"}
+{"island": "socotra", "question": "what is the GDP of Yemen", "answerable": false, "split": "tuned"}
+{"island": "pitcairn", "question": "best restaurants on the island", "answerable": false, "split": "tuned"}
+{"island": "clipperton", "question": "how many hotels are there", "answerable": false, "split": "tuned"}
+{"island": "cocos-keeling", "question": "what is the football team", "answerable": false, "split": "tuned"}
+{"island": "tristan-da-cunha", "question": "how do I get a visa to Mars", "answerable": false, "split": "tuned"}
+{"island": "galapagos", "question": "who invented the telephone", "answerable": false, "split": "tuned"}
+{"island": "galapagos", "question": "are the giant tortoises endangered", "answerable": true, "split": "held_out_then_tuned"}
+{"island": "galapagos", "question": "what do sea lions eat", "answerable": true, "split": "held_out_then_tuned"}
+{"island": "galapagos", "question": "how many volcanoes are on Isabela", "answerable": true, "split": "held_out_then_tuned"}
+{"island": "galapagos", "question": "what is the Charles Darwin Research Station", "answerable": true, "split": "held_out_then_tuned"}
+{"island": "socotra", "question": "what language do people speak", "answerable": true, "split": "held_out_then_tuned"}
+{"island": "socotra", "question": "tell me about the Socotra buzzard", "answerable": true, "split": "held_out_then_tuned"}
+{"island": "socotra", "question": "is Socotra a World Heritage site", "answerable": true, "split": "held_out_then_tuned"}
+{"island": "socotra", "question": "what is the rainfall", "answerable": true, "split": "held_out_then_tuned"}
+{"island": "pitcairn", "question": "where is Pitcairn", "answerable": true, "split": "held_out_then_tuned"}
+{"island": "pitcairn", "question": "what happened to the Bounty ship", "answerable": true, "split": "held_out_then_tuned"}
+{"island": "pitcairn", "question": "how big is the reed warbler population", "answerable": true, "split": "held_out_then_tuned"}
+{"island": "bouvet", "question": "how big is Bouvet Island", "answerable": true, "split": "held_out_then_tuned"}
+{"island": "bouvet", "question": "are there seals", "answerable": true, "split": "held_out_then_tuned"}
+{"island": "bouvet", "question": "which country owns it", "answerable": true, "split": "held_out_then_tuned"}
+{"island": "clipperton", "question": "what is Clipperton made of", "answerable": true, "split": "held_out_then_tuned"}
+{"island": "clipperton", "question": "is it inhabited", "answerable": true, "split": "held_out_then_tuned"}
+{"island": "clipperton", "question": "what is the lagoon like", "answerable": true, "split": "held_out_then_tuned"}
+{"island": "cocos-keeling", "question": "who were the Clunies-Ross family", "answerable": true, "split": "held_out_then_tuned"}
+{"island": "cocos-keeling", "question": "what is the Napoleon wrasse", "answerable": true, "split": "held_out_then_tuned"}
+{"island": "tristan-da-cunha", "question": "how many people live on Tristan", "answerable": true, "split": "held_out_then_tuned"}
+{"island": "tristan-da-cunha", "question": "how isolated is it", "answerable": true, "split": "held_out_then_tuned"}
+{"island": "tristan-da-cunha", "question": "what is Gough Island", "answerable": true, "split": "held_out_then_tuned"}
+{"island": "galapagos", "question": "what is the weather forecast for tomorrow in London", "answerable": false, "split": "held_out_then_tuned"}
+{"island": "galapagos", "question": "how much does a cruise cost", "answerable": false, "split": "held_out_then_tuned"}
+{"island": "socotra", "question": "who is the prime minister of Yemen", "answerable": false, "split": "held_out_then_tuned"}
+{"island": "socotra", "question": "what time is it in Dubai", "answerable": false, "split": "held_out_then_tuned"}
+{"island": "pitcairn", "question": "how do I buy stamps online", "answerable": false, "split": "held_out_then_tuned"}
+{"island": "pitcairn", "question": "what is the best smartphone", "answerable": false, "split": "held_out_then_tuned"}
+{"island": "bouvet", "question": "what is the stock price of Apple", "answerable": false, "split": "held_out_then_tuned"}
+{"island": "bouvet", "question": "how do I learn Python", "answerable": false, "split": "held_out_then_tuned"}
+{"island": "clipperton", "question": "who wrote Hamlet", "answerable": false, "split": "held_out_then_tuned"}
+{"island": "clipperton", "question": "what is the recipe for pancakes", "answerable": false, "split": "held_out_then_tuned"}
+{"island": "cocos-keeling", "question": "how do airplanes fly", "answerable": false, "split": "held_out_then_tuned"}
+{"island": "cocos-keeling", "question": "what is the capital of Japan", "answerable": false, "split": "held_out_then_tuned"}
+{"island": "tristan-da-cunha", "question": "how many calories in an apple", "answerable": false, "split": "held_out_then_tuned"}
+{"island": "tristan-da-cunha", "question": "what is the tallest building in Dubai", "answerable": false, "split": "held_out_then_tuned"}
+{"island": "galapagos", "question": "how do I train for a marathon", "answerable": false, "split": "held_out_then_tuned"}
+{"island": "socotra", "question": "which phone has the best camera", "answerable": false, "split": "held_out_then_tuned"}
+{"island": "pitcairn", "question": "who is the CEO of Tesla", "answerable": false, "split": "held_out_then_tuned"}
+{"island": "bouvet", "question": "what is a black hole", "answerable": false, "split": "held_out_then_tuned"}
+{"island": "clipperton", "question": "how long does it take to fly to Paris", "answerable": false, "split": "held_out_then_tuned"}
+{"island": "cocos-keeling", "question": "what is the minimum wage in Australia", "answerable": false, "split": "held_out_then_tuned"}
+{"island": "bouvet", "question": "how many penguins fit in a car", "answerable": false, "split": "tuned"}
+{"island": "galapagos", "question": "which island has the best beach for surfing", "answerable": false, "split": "tuned"}
+{"island": "pitcairn", "question": "is the water good for drinking beer", "answerable": false, "split": "tuned"}
+{"island": "socotra", "question": "what is the best programming language", "answerable": false, "split": "tuned"}
+{"island": "cocos-keeling", "question": "how do I cook a wrasse", "answerable": false, "split": "tuned"}
+{"island": "clipperton", "question": "how much does a shark cost to buy", "answerable": false, "split": "tuned"}

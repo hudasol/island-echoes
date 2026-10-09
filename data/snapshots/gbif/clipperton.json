@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-10-08T11:51:27+00:00",
+ "fetched_at": "2026-10-09T01:38:31+00:00",
  "creatures": {
   "silvertip-shark": {
    "match": {
@@ -27,6 +27,12 @@
    },
    "global_count": 19797,
    "local_count": 8,
+   "local_breakdown": {
+    "observations": 3,
+    "specimens": 5,
+    "living_or_captive": 0,
+    "usable": 8
+   },
    "box": {
     "min_lat": 9.3,
     "max_lat": 11.3,

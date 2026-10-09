@@ -21,7 +21,7 @@ from .sources import SourceStore, SourceUnavailable
 STOP = set(
     """a an and are as at be been but by can did do does for from had has have how i if in is it its
     me my of on or our so than that the their them then there these they this to us was we were what
-    when where which who whom why will with would you your tell about please could should like some any""".split()
+    when where which who whom why will with would you your tell about please could should like some any here many much name give list show find know say fahrenheit kelvin miles mph inches feet affect happen happened fall falls get gets go goes make makes use used""".split()
 )
 
 # (pattern on the lower-cased query, words added to the query)
@@ -41,7 +41,7 @@ SYNONYM_PATTERNS: list[tuple[str, list[str]]] = [
     (r"\bendanger|\bthreatened|\bextinct|\bsurviv|\bstatus", ["iucn", "status", "threatened", "extinct", "endangered"]),
     (r"\bthreat|\bdanger|\bdecline|\brisk|\bpredat|\binvasive|\bpoach", ["threats", "decline", "predators", "invasive", "threatened"]),
     (r"\bprotect|\bconserv|\bsave|\brescue|\breserve|\brestor", ["conservation", "protected", "reserve", "restoration"]),
-    (r"\bdiscover|\bfound(ed)?\b|\bfirst\b|\bsettl|\bcolon|\bexplor|\bannex|\bruled?\b|\bruling|\bgovern|\bhistor", ["history", "discovered", "settled", "ruled", "claimed"]),
+    (r"\bdiscover|\bfound(ed)?\b|\bfirst\b|\bsettl|\bcolon|\bexplor|\bannex|\brules?\b|\bruled\b|\bruler|\bruling|\bgovern|\bhistor", ["history", "discovered", "settled", "ruled", "claimed"]),
     (r"\bvolcan|\beruption|\bcrater|\blava", ["volcanic", "eruption", "crater", "geology"]),
     (r"\bfar\b|\bdistance|\bnearest|\bclosest|\bremote", ["distance", "km", "nearest", "kilometres"]),
     (r"\bwhere\b|\blocated|\bcoordinate|\blatitude|\blongitude", ["location", "located", "coordinates"]),
@@ -49,6 +49,12 @@ SYNONYM_PATTERNS: list[tuple[str, list[str]]] = [
     (r"\bweigh|\bmass\b|\bheavy", ["weight", "mass", "kg"]),
     (r"\bbirth|\bborn\b|\bpopulation", ["population", "individuals", "estimate"]),
     (r"\bice\b|\bicy\b|\bglaci|\bsnow|\bfrozen", ["ice", "glacier", "glaciated", "covered"]),
+    (r"\brules?\b|\bruler|\bruled\b|\bgovern|\bwho controls|\bcontrol|\bowns?\b|\bbelongs?|\bsovereign|\bcapital\b", ["governorate", "control", "controlled", "sovereignty", "sultanate", "territory", "administered", "capital"]),
+    (r"\bspeak|\blanguage|\bspoken|\btongue|\bdialect", ["language", "spoken", "speak", "dialect"]),
+    (r"\bisolat", ["remote", "isolated", "distance", "nearest", "km"]),
+    (r"\bcountry\b|\bnation", ["country", "territory", "sovereignty", "governorate", "administered"]),
+    (r"\bmutin", ["mutineers", "mutiny", "bounty"]),
+    (r"\bsupply|\bdrinking|\bfreshwater|\bfresh water|\bwells?\b|\breservoir", ["freshwater", "drinking", "wells", "springs", "reservoir", "rainwater", "groundwater"]),
     (r"\bhow many\b.*\b(left|remain|survive|alive|exist)|\b(left|remain\w*|surviv\w*)\b.*\bhow many\b|\bhow many (of you|are there)|\bnumber of (you|your)", ["population", "estimated", "individuals", "survey", "mature"]),
 ]
 
@@ -117,8 +123,21 @@ def _norm(text: str) -> str:
     return _strip_accents(text).lower().replace("km²", "km2").replace("°", " deg ")
 
 
+# prefix -> characters to strip, so compound forms also match their base word
+_PREFIXES = {"micro": 5, "macro": 5, "mega": 4, "nano": 4, "super": 5, "anti": 4, "unin": 2}
+
+
 def tokenize(text: str) -> list[str]:
-    return [_stem(t) for t in re.findall(r"[a-z0-9]+", _norm(text)) if t not in STOP]
+    """Stemmed content words. "macroplastic" also yields "plastic" and "uninhabited" also yields "inhabited"."""
+    out: list[str] = []
+    for t in re.findall(r"[a-z0-9]+", _norm(text)):
+        if t in STOP:
+            continue
+        out.append(_stem(t))
+        for pre, n in _PREFIXES.items():
+            if t.startswith(pre) and len(t) - n >= 4:
+                out.append(_stem(t[n:]))
+    return out
 
 
 def expand(query: str, vocab: set[str] | None = None) -> list[str]:
@@ -139,6 +158,52 @@ def expand(query: str, vocab: set[str] | None = None) -> list[str]:
             prefix = s[:2] if s.endswith("00") else s[:3] if s.endswith("0") else s
             toks.extend(v for v in vocab if len(v) == 4 and v.isdigit() and v.startswith(prefix))
     return toks
+
+
+_INTENT_WORDS = set().union(*CLIMATE_TOPICS.values(), CLIMATE_GENERIC, SPECIES_INTENT)
+STRONG_COVERAGE = 0.6   # share of the question's weighted words a fact must cover to count as an answer
+PARTIAL_COVERAGE = 0.4  # below this a fact is not shown at all
+MAX_UNKNOWN_SHARE = 0.5  # if this share or more of the question is unknown to the library, nothing is shown
+
+
+@dataclass
+class _Term:
+    stem: str
+    alts: set[str]
+    weight: float
+    known: bool
+
+
+def query_terms(query: str, index: BM25, skip: set[str] | None = None, names: set[str] | None = None) -> list[_Term]:
+    """The question's content words with the stems that count as a match for each.
+
+    A word is "known" when the island's facts contain it (or a synonym the patterns add for it). Unknown
+    words, such as "president" or "Tokyo", carry the highest weight, so a question built around words the
+    library has never seen cannot be rescued by one shared common word.
+    """
+    q = _norm(query)
+    max_idf = max(index.idf.values(), default=1.0)
+    terms: dict[str, _Term] = {}
+    for m in re.finditer(r"[a-z0-9]+", q):
+        w = m.group(0)
+        st = _stem(w)
+        if w in STOP or st in STOP or (skip and st in skip):
+            continue
+        alts = {st}
+        for pat, words in SYNONYM_PATTERNS:
+            for pm in re.finditer(pat, q):
+                if pm.start() < m.end() and pm.end() > m.start():
+                    for x in words:
+                        alts.update(tokenize(x))
+        for country, adjective in DEMONYMS:
+            if w in (country, adjective):
+                alts.update(tokenize(f"{country} {adjective}"))
+        present = [index.idf[a] for a in alts if a in index.idf]
+        known = bool(present)
+        if not known and (st in (names or ()) or w in _INTENT_WORDS):  # climate/species wording is answered by live NASA POWER / GBIF data
+            known, present = True, [max_idf * 0.5]
+        terms[st] = _Term(st, alts, max(present) if known else max_idf, known)
+    return list(terms.values())
 
 
 @dataclass
@@ -190,6 +255,8 @@ class LibraryResult:
     counts: dict[str, int]
     total: int
     notes: list[str] = field(default_factory=list)
+    quality: str = "browse"  # browse | strong | partial | none
+    partial_ids: set[str] = field(default_factory=set)
 
 
 class Retriever:
@@ -228,6 +295,19 @@ class Retriever:
                 notes.append("GBIF data is unavailable right now")
         return extra, intents, notes
 
+    @staticmethod
+    def _unknown_entity(query: str, index: BM25, skip: set[str]) -> bool:
+        """True when the question names a capitalised word (not the first word) that no fact contains."""
+        for m in list(re.finditer(r"[A-Za-z\u00c0-\u024f]+", query))[1:]:
+            w = m.group(0)
+            if not w[0].isupper() or len(w) < 3:
+                continue
+            st = _stem(_strip_accents(w).lower())
+            if st in STOP or st in skip or st in index.vocab:
+                continue
+            return True
+        return False
+
     def library(
         self, island_slug: str, query: str, category: str | None = None, creature_slug: str | None = None, limit: int = 40
     ) -> LibraryResult:
@@ -244,6 +324,7 @@ class Retriever:
         index = self._index[key]
         q = _norm(query).strip()
         notes: list[str] = []
+        quality, partial_ids = "browse", set()
         if not q:
             matched = [e for e in (d.evidence for d in index.docs)]
         else:
@@ -252,13 +333,55 @@ class Retriever:
             boost = {d.evidence.id: 1.25 for d in index.docs if d.evidence.category in cats}
             ranked = index.score(expand(query, index.vocab), boost)
             top = ranked[0][0] if ranked else 0.0
-            matched = [e for s, e in ranked if top >= MIN_OVERLAP_SCORE and s >= 0.3 * top]
-            live, _, notes = self._live(island, creature, raw_words)
+            skip = set(tokenize(" ".join([island.name, island.slug.replace("-", " "), *island.alt_names])))
+            names = set(tokenize(" ".join(f"{c.common_name} {c.scientific_name}" for c in island.creatures)))
+            terms = query_terms(query, index, skip, names)
+            total_w = sum(t.weight for t in terms) or 1.0
+            unknown_share = sum(t.weight for t in terms if not t.known) / total_w
+            if self._unknown_entity(query, index, skip | names):
+                unknown_share = 1.0  # a capitalised name the library has never seen: the question is about something else
+            by_id = {d.evidence.id: d for d in index.docs}
+            matched, strong = [], 0
+            if not terms and top < MIN_OVERLAP_SCORE and cats:
+                # "where is X": no content words left, so answer with the facts of the category the question asks for
+                for _, e in ranked:
+                    if e.category in cats and len(matched) < 5:
+                        matched.append(e)
+                        strong += 1
+            elif not terms and top >= MIN_OVERLAP_SCORE:
+                # the question only names the island or its creature, or asks "where"/"who": rank by the expanded query
+                for sc, e in ranked:
+                    if sc < 0.3 * top:
+                        break
+                    matched.append(e)
+                    strong += 1
+            elif unknown_share < MAX_UNKNOWN_SHARE and top >= MIN_OVERLAP_SCORE:
+                # when every word of the question is known, the unknown-word guard has nothing to catch, so a
+                # fact may cover a smaller share of the (idf-weighted) words and still count
+                strong_at, partial_at = (0.45, 0.2) if unknown_share == 0 else (STRONG_COVERAGE, PARTIAL_COVERAGE)
+                for sc, e in ranked:
+                    if sc < 0.3 * top:
+                        break
+                    toks = by_id[e.id].tf
+                    cov = sum(t.weight for t in terms if t.alts & toks.keys()) / total_w
+                    if cov >= strong_at:
+                        matched.append(e)
+                        strong += 1
+                    elif cov >= partial_at:
+                        matched.append(e)
+                        partial_ids.add(e.id)
+            live: list[Evidence] = []
+            if unknown_share < MAX_UNKNOWN_SHARE:
+                live, _, notes = self._live(island, creature, raw_words)
             matched = live + matched
+            quality = "strong" if (strong or live) else "partial" if matched else "none"
+            if quality == "none":
+                notes.append("No entry in this island's library covers the words of the question")
         counts: Counter = Counter(e.category for e in matched)
         if category:
             matched = [e for e in matched if e.category == category]
-        return LibraryResult(results=matched[:limit], counts=dict(counts), total=len(matched), notes=notes)
+        return LibraryResult(results=matched[:limit], counts=dict(counts), total=len(matched), notes=notes,
+                             quality=quality, partial_ids=partial_ids)
 
     def search(self, island_slug: str, query: str, creature_slug: str | None = None) -> RetrievalResult:
         island = self.islands.get(island_slug)

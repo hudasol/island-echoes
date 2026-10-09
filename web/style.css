@@ -213,3 +213,7 @@ mark { background: #f4b63f55; color: inherit; border-radius: 2px; }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
 @media (prefers-contrast: more) { :root { --text-soft: #2d4650; --on-dark-soft: #cfdde1; } .ev, .lib-card, .sensor, .msg.agent { outline: 1px solid var(--text); } }
 @media (forced-colors: active) { button, .island-btn, .pin { border: 1px solid ButtonText; } .pin::before { background: Highlight; } .island-btn[aria-current="true"], .panel-tabs button[aria-selected="true"] { border-color: Highlight; } }
+.badge.partial { background: #F6E3B4; color: #3a2a00; }
+.warning { background: #F6E3B4; color: #3a2a00; border-radius: 6px; padding: 6px 9px; }
+.report { color: var(--text-soft); font-size: 12.5px; }
+.report:hover { color: var(--tide-dark); }

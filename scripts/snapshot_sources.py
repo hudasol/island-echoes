@@ -35,7 +35,7 @@ def main(argv: list[str]) -> int:
                         doc["raw"]["header"].get("range", "")[:60]
                         if kind == "power"
                         else ", ".join(
-                            f"{k}: {v['global_count']} global / {v['local_count']} local"
+                            f"{k}: {v['global_count']} global / {v['local_count']} local, usable {(v.get('local_breakdown') or {}).get('usable')}"
                             for k, v in doc["creatures"].items()
                         )
                     )
