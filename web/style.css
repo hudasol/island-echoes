@@ -179,3 +179,15 @@ sup.cite a:hover { text-decoration: underline; }
 .more { margin-top: 6px; align-self: flex-start; }
 details.chat summary { cursor: pointer; font: 500 19px var(--serif); margin-bottom: 8px; }
 mark { background: #f4b63f55; color: inherit; border-radius: 2px; }
+
+/* ---------- panel tabs ---------- */
+.panel-tabs { display: flex; gap: 4px; border-bottom: 2px solid var(--salt-2); margin: 2px 0 -2px; }
+.panel-tabs button { background: none; border: 0; border-bottom: 3px solid transparent; margin-bottom: -2px; padding: 8px 14px; font: 500 17px var(--serif); color: var(--text-soft); }
+.panel-tabs button:hover { color: var(--text); }
+.panel-tabs button[aria-selected="true"] { color: var(--text); border-bottom-color: var(--tide); }
+.pane { display: flex; flex-direction: column; gap: 18px; }
+.pane[hidden] { display: none !important; }
+.linklike { background: none; border: 0; padding: 0; color: var(--tide-dark); text-decoration: underline; font: inherit; cursor: pointer; }
+.msg.agent .lead { font: 400 14px var(--sans); color: var(--text-soft); margin-bottom: 4px; }
+.msg.agent .point + .point { margin-top: 6px; }
+.lib-card .ref { font-weight: 600; color: var(--tide-dark); }

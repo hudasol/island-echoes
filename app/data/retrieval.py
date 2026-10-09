@@ -21,7 +21,7 @@ from .sources import SourceStore, SourceUnavailable
 STOP = set(
     """a an and are as at be been but by can did do does for from had has have how i if in is it its
     me my of on or our so than that the their them then there these they this to us was we were what
-    when where which who whom why will with would you your tell about please could should""".split()
+    when where which who whom why will with would you your tell about please could should like some any""".split()
 )
 
 # (pattern on the lower-cased query, words added to the query)

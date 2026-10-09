@@ -19,7 +19,7 @@
   };
 
   const statusCode = (s) => /^critically/i.test(s) ? "CR" : /^endangered/i.test(s) ? "EN" : /^vulnerable/i.test(s) ? "VU" : /^extinct in the wild/i.test(s) ? "EW" : /^extinct/i.test(s) ? "EX" : /^near/i.test(s) ? "NT" : "";
-  const S = { lib: { q: "", cat: "" }, islands: [], island: null, creature: null, layer: LAYERS[0], paused: reduced, history: [], busy: false, narration: null, sensorSeq: 0 };
+  const S = { tab: "agent", lib: { q: "", cat: "" }, islands: [], island: null, creature: null, layer: LAYERS[0], paused: reduced, history: [], busy: false, narration: null, sensorSeq: 0 };
   let globe = null;
 
   const el = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
@@ -89,10 +89,10 @@
   }
 
   /* ---------------- selecting an island ---------------- */
-  async function select(slug, creatureSlug) {
+  async function select(slug, creatureSlug, tab) {
     const isl = S.islands.find((i) => i.slug === slug); if (!isl) return;
     S.island = isl; S.history = []; S.lib = { q: "", cat: "" }; $("library-input").value = "";
-    history.replaceState(null, "", `#${slug}`);
+    setTab(tab === "library" ? "library" : "agent");
     document.querySelectorAll(".island-btn").forEach((b) => b.setAttribute("aria-current", String(b.dataset.slug === slug)));
     $("globe-hint").hidden = true;
     $("console-empty").hidden = true; $("console-body").hidden = false;
@@ -120,8 +120,8 @@
     const cv = $("creature-canvas");
     cv.setAttribute("aria-label", `Animation of a ${c.common_name} (${c.scientific_name}), a ${c.creature_type} creature`);
     Creatures.start(cv, c.creature_type, S.paused);
-    $("log").replaceChildren();
-    suggestions();
+    $("log").replaceChildren(); $("ask-log").replaceChildren();
+    suggestions(); askSuggestions();
     loadNarration();
     runLibrary(true);
   }
@@ -239,7 +239,7 @@
     }
     node.append(text.slice(last));
   }
-  function libCard(e, q) {
+  function libCard(e, q, i) {
     const c = el("article", "lib-card"), meta = el("div", "meta");
     meta.append(el("span", "k", e.kind === "fact" ? (CAT_LABEL[e.category] || e.category) : e.kind === "power" ? "NASA POWER" : "GBIF"));
     if (e.kind !== "fact") meta.append(el("span", "badge live", "live data"));
@@ -248,7 +248,7 @@
     const p = el("p"); highlight(p, e.text, q);
     const src = el("div", "src"), a = el("a", null, `${e.publisher}: ${e.source_title}`);
     a.href = e.source_url; a.target = "_blank"; a.rel = "noopener noreferrer";
-    src.append(a, ` (as of ${e.as_of})`);
+    src.append(el("span", "ref", `Reference [${i}]: `), a, ` (as of ${e.as_of})`);
     c.append(meta, p, src); return c;
   }
   async function runLibrary(first) {
@@ -275,13 +275,68 @@
         sum.textContent = d.notes.join(". ");
       } else {
         sum.textContent = `${d.total} ${d.total === 1 ? "entry" : "entries"}${q ? ` for "${q}"` : ""}${cat ? ` in ${CAT_LABEL[cat]}` : ""}. ` + d.notes.join(". ");
-        d.results.forEach((e) => box.append(libCard(e, q)));
+        d.results.forEach((e, i) => box.append(libCard(e, q, i + 1)));
       }
     } catch (e) { if (seq === libSeq) { sum.textContent = ""; box.replaceChildren(el("p", "lib-empty", "The library could not be loaded. " + e.message)); } }
   }
   function libIdeas() {
     const box = $("lib-suggestions"); if (box.childElementCount) return;
     LIB_IDEAS.forEach((q) => { const b = el("button", null, q); b.type = "button"; b.addEventListener("click", () => { $("library-input").value = q; S.lib = { q, cat: "" }; runLibrary(); }); box.append(b); });
+  }
+
+
+  /* ---------------- tabs ---------------- */
+  function setTab(name) {
+    S.tab = name;
+    ["agent", "library"].forEach((t) => {
+      $("pane-" + t).hidden = t !== name; $("tab-" + t).setAttribute("aria-selected", String(t === name));
+    });
+    if (S.island) history.replaceState(null, "", `#${S.island.slug}${name === "library" ? "/library" : ""}`);
+  }
+
+  /* ---------------- ask: answers come from the library ---------------- */
+  const ASK_IDEAS = ["What is the climate like?", "Which species are endangered here?", "How warm is the water?", "What threatens the wildlife?", "What is the history of this island?"];
+  function askSuggestions() {
+    const box = $("ask-suggestions"); box.replaceChildren();
+    ASK_IDEAS.forEach((q) => { const b = el("button", null, q); b.type = "button"; b.addEventListener("click", () => askLibrary(q)); box.append(b); });
+  }
+  // NASA POWER entries hold full monthly tables; in an answer show only the annual means (the table stays in the source card).
+  function compactPower(t) {
+    const parts = [...t.matchAll(/([A-Z][A-Za-z0-9 ]+?) \((\w+), ([^)]+)\): (?:[A-Z]{3} -?[\d.]+, )*ANN (-?\d+(?:\.\d+)?)/g)].map((m) => `${m[1].trim().toLowerCase()} ${m[4]} ${m[3] === "C" ? "°C" : m[3]}`);
+    return parts.length ? `NASA POWER annual means for this island's grid cell: ${parts.join("; ")}. The monthly values are in the source below.` : t;
+  }
+  async function askLibrary(text) {
+    text = text.trim(); if (!text || S.askBusy || !S.island) return;
+    S.askBusy = true; $("ask-send").disabled = true;
+    const log = $("ask-log");
+    log.append(el("div", "msg user", text));
+    const m = el("div", "msg agent pending"), body = el("div", "body", "Looking in the library…"); m.append(body); log.append(m);
+    m.scrollIntoView({ block: "nearest", behavior: reduced ? "auto" : "smooth" });
+    try {
+      const params = new URLSearchParams({ island: S.island.slug, q: text, limit: "20" });
+      if (S.creature) params.set("creature", S.creature.slug);
+      const d = await api(`/api/library/search?${params}`);
+      m.classList.remove("pending"); body.replaceChildren();
+      const facts = d.results.filter((e) => e.kind === "fact"), live = d.results.filter((e) => e.kind !== "fact");
+      const items = [...facts.slice(0, 4), ...live.slice(0, facts.length ? 1 : 2)];
+      if (!items.length) {
+        body.textContent = `The library has nothing on that yet. It has no entry for "${text}" for ${S.island.name}, so I will not guess.`;
+        m.append(el("p", "missing", "Try different words, or browse the Library tab to see what is covered."));
+      } else {
+        body.append(el("p", "lead", `From the library (${d.total} ${d.total === 1 ? "entry matches" : "entries match"}${d.total > items.length ? `, showing the top ${items.length}` : ""}):`));
+        const ev = items.map((e) => ({ ...e, cited: true })), { box, flash } = evidenceBlock(ev);
+        ev.forEach((e) => {
+          const pt = el("div", "point"); renderSentences(pt, [{ text: e.kind === "power" ? compactPower(e.text) : e.text, kind: "fact", cites: [e.id] }], ev, flash); body.append(pt);
+        });
+        const det = el("details", "evidence"); det.open = true;
+        det.append(el("summary", "muted small", `Sources for this answer (${ev.length})`)); det.append(...box.children); m.append(det);
+        if (d.total > items.length) {
+          const more = el("button", "linklike more", `See all ${d.total} entries in the Library tab`); more.type = "button";
+          more.addEventListener("click", () => { $("library-input").value = text; S.lib = { q: text, cat: "" }; runLibrary(); setTab("library"); }); m.append(more);
+        }
+      }
+    } catch (e) { m.remove(); log.append(el("p", "msg error", e.message)); }
+    finally { S.askBusy = false; $("ask-send").disabled = false; }
   }
 
   /* ---------------- chat ---------------- */
@@ -319,6 +374,10 @@
   /* ---------------- wiring ---------------- */
   function wire() {
     libIdeas();
+    $("tab-agent").addEventListener("click", () => setTab("agent"));
+    $("tab-library").addEventListener("click", () => setTab("library"));
+    $("open-library").addEventListener("click", () => setTab("library"));
+    $("ask-form").addEventListener("submit", (e) => { e.preventDefault(); const i = $("ask-input"); const v = i.value; i.value = ""; askLibrary(v); });
     $("library-form").addEventListener("submit", (e) => { e.preventDefault(); S.lib = { q: $("library-input").value.trim(), cat: "" }; runLibrary(); });
     $("chat-form").addEventListener("submit", (e) => { e.preventDefault(); const i = $("chat-input"); const v = i.value; i.value = ""; ask(v); });
     $("speak").addEventListener("click", speak);
@@ -343,8 +402,8 @@
     try { S.islands = await api("/api/islands"); }
     catch (e) { $("globe-error").hidden = false; $("globe-error").textContent = "Could not reach the Island Echoes server. " + e.message; return; }
     buildIndex(); initGlobe($("globe"));
-    api("/api/health").then((h) => { $("chat-details").hidden = !h.chat_enabled; }).catch(() => {});
-    const h = location.hash.slice(1); if (h && S.islands.some((i) => i.slug === h)) select(h);
+    api("/api/health").then((h) => { $("chat-details").hidden = !(h.chat_enabled && new URLSearchParams(location.search).has("claude")); }).catch(() => {});
+    const [h, t] = location.hash.slice(1).split("/"); if (h && S.islands.some((i) => i.slug === h)) select(h, undefined, t);
     if ("serviceWorker" in navigator && location.protocol !== "file:") navigator.serviceWorker.register("/sw.js").catch(() => {});
   }
   boot();
