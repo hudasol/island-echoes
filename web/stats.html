@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Island Echoes statistics</title>
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/stats.css">
+</head>
+<body class="stats-page">
+<a class="skip" href="#main">Skip to the statistics</a>
+<main id="main">
+  <header>
+    <h1>Island Echoes statistics</h1>
+    <p class="muted">Usage and answer quality measured by this server. Question text is not stored unless the operator turned that on. This server forgets its history when it restarts.</p>
+    <p><a href="/">Back to the globe</a>
+      <label class="range">Window
+        <select id="days"><option value="1">1 day</option><option value="7" selected>7 days</option><option value="30">30 days</option></select>
+      </label></p>
+  </header>
+  <p id="status" role="status" class="muted">Loading…</p>
+  <section id="cards" class="cards" hidden></section>
+  <section id="tables" hidden></section>
+</main>
+<script src="/stats.js"></script>
+</body>
+</html>

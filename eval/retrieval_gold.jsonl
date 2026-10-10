@@ -1,0 +1,58 @@
+{"id": "H01", "island": "bouvet", "creature": null, "question": "Who owns this island and since when?", "gold": ["BOU-019", "BOU-020"], "split": "heldout"}
+{"id": "H02", "island": "bouvet", "creature": null, "question": "What can grow on the bare ground here, given nothing like trees survive?", "gold": ["BOU-026"], "split": "heldout"}
+{"id": "H03", "island": "bouvet", "creature": null, "question": "Why are penguin numbers dropping at the bay where the seals gather?", "gold": ["BOU-029", "BOU-032", "BOU-225"], "split": "heldout"}
+{"id": "H04", "island": "bouvet", "creature": null, "question": "Am I allowed to bring a dog ashore?", "gold": ["BOU-025"], "split": "heldout"}
+{"id": "H05", "island": "bouvet", "creature": null, "question": "How cold does it get in a typical year?", "gold": ["BOU-005", "BOU-006", "BOU-008"], "split": "heldout"}
+{"id": "H06", "island": "bouvet", "creature": null, "question": "Which Frenchman first spotted this land?", "gold": ["BOU-017"], "split": "heldout"}
+{"id": "H07", "island": "bouvet", "creature": null, "question": "Is foreign wildlife a problem here?", "gold": ["BOU-030", "BOU-031"], "split": "heldout"}
+{"id": "H08", "island": "bouvet", "creature": null, "question": "Which seabird used to nest here but no longer does?", "gold": ["BOU-201", "BOU-202"], "split": "heldout"}
+{"id": "H09", "island": "clipperton", "creature": null, "question": "What stops people from visiting the atoll without permission?", "gold": ["CLI-022", "CLI-023"], "split": "heldout"}
+{"id": "H10", "island": "clipperton", "creature": null, "question": "Which other sharks swim around here?", "gold": ["CLI-028", "CLI-201"], "split": "heldout"}
+{"id": "H11", "island": "clipperton", "creature": null, "question": "Why can't any fish live in the enclosed saltwater pond in the middle?", "gold": ["CLI-010", "CLI-011", "CLI-209", "CLI-210"], "split": "heldout"}
+{"id": "H12", "island": "clipperton", "creature": null, "question": "Who fought over this territory and who won the arbitration?", "gold": ["CLI-016", "CLI-019"], "split": "heldout"}
+{"id": "H13", "island": "clipperton", "creature": null, "question": "How did the pigs affect the seabirds?", "gold": ["CLI-221", "CLI-026"], "split": "heldout"}
+{"id": "H14", "island": "clipperton", "creature": null, "question": "How many babies do you have at a time?", "gold": ["CLI-040", "CLI-035"], "split": "heldout"}
+{"id": "H15", "island": "clipperton", "creature": null, "question": "What is the nearest dry land?", "gold": ["CLI-002"], "split": "heldout"}
+{"id": "H16", "island": "clipperton", "creature": null, "question": "Is the coral healthy?", "gold": ["CLI-212", "CLI-213", "CLI-214"], "split": "heldout"}
+{"id": "H17", "island": "cocos-keeling", "creature": null, "question": "Which tiny part of the group is the only breeding ground for sea birds in the region?", "gold": ["COC-024", "COC-025"], "split": "heldout"}
+{"id": "H18", "island": "cocos-keeling", "creature": null, "question": "What were the results of the vote on joining Australia?", "gold": ["COC-020"], "split": "heldout"}
+{"id": "H19", "island": "cocos-keeling", "creature": null, "question": "How much human trash is buried in the sand?", "gold": ["COC-209", "COC-210"], "split": "heldout"}
+{"id": "H20", "island": "cocos-keeling", "creature": null, "question": "Where do residents get their drinking water?", "gold": ["COC-211", "COC-212"], "split": "heldout"}
+{"id": "H21", "island": "cocos-keeling", "creature": null, "question": "Which ship carried the famous naturalist here in the 1830s?", "gold": ["COC-017", "COC-014"], "split": "heldout"}
+{"id": "H22", "island": "cocos-keeling", "creature": null, "question": "What is the main danger to your kind from people?", "gold": ["COC-040"], "split": "heldout"}
+{"id": "H23", "island": "cocos-keeling", "creature": null, "question": "Do you change sex as you get older?", "gold": ["COC-039"], "split": "heldout"}
+{"id": "H24", "island": "cocos-keeling", "creature": null, "question": "What happened to the German warship in the First World War?", "gold": ["COC-018"], "split": "heldout"}
+{"id": "H25", "island": "cocos-keeling", "creature": null, "question": "How much will the ocean rise?", "gold": ["COC-029", "COC-221"], "split": "heldout"}
+{"id": "H26", "island": "galapagos", "creature": null, "question": "How did the last known one of your kind die?", "gold": ["GAL-033"], "split": "heldout"}
+{"id": "H27", "island": "galapagos", "creature": null, "question": "What did the animals people brought do to the plants on your island?", "gold": ["GAL-034", "GAL-226"], "split": "heldout"}
+{"id": "H28", "island": "galapagos", "creature": null, "question": "Which sea-warming event strikes every few years?", "gold": ["GAL-218"], "split": "heldout"}
+{"id": "H29", "island": "galapagos", "creature": null, "question": "On what date was the national park created?", "gold": ["GAL-018"], "split": "heldout"}
+{"id": "H30", "island": "galapagos", "creature": null, "question": "What share of species live nowhere else on Earth?", "gold": ["GAL-026", "GAL-024"], "split": "heldout"}
+{"id": "H31", "island": "galapagos", "creature": "galapagos-sea-lion", "question": "How does a mother find her baby in a noisy crowd?", "gold": ["GAL-110"], "split": "heldout"}
+{"id": "H32", "island": "galapagos", "creature": "galapagos-sea-lion", "question": "What do you catch when you hunt at sea?", "gold": ["GAL-105"], "split": "heldout"}
+{"id": "H33", "island": "galapagos", "creature": null, "question": "Why was the archipelago put on UNESCO's endangered heritage list?", "gold": ["GAL-020", "GAL-031"], "split": "heldout"}
+{"id": "H34", "island": "galapagos", "creature": null, "question": "How many people live in the province?", "gold": ["GAL-022"], "split": "heldout"}
+{"id": "H35", "island": "galapagos", "creature": null, "question": "Has any of your bloodline survived elsewhere?", "gold": ["GAL-036", "GAL-037"], "split": "heldout"}
+{"id": "H36", "island": "pitcairn", "creature": null, "question": "Who rebelled against a ship's captain and hid here?", "gold": ["PIT-017", "PIT-018"], "split": "heldout"}
+{"id": "H37", "island": "pitcairn", "creature": null, "question": "How many of your kind are estimated to exist?", "gold": ["PIT-034", "PIT-036"], "split": "heldout"}
+{"id": "H38", "island": "pitcairn", "creature": null, "question": "What is the political status of this territory?", "gold": ["PIT-021", "PIT-022"], "split": "heldout"}
+{"id": "H39", "island": "pitcairn", "creature": null, "question": "Where does rubbish pile up the most anywhere in the world?", "gold": ["PIT-212"], "split": "heldout"}
+{"id": "H40", "island": "pitcairn", "creature": null, "question": "How do people get fresh water on the island?", "gold": ["PIT-214"], "split": "heldout"}
+{"id": "H41", "island": "pitcairn", "creature": null, "question": "Why did the campaign to kill the rats fail?", "gold": ["PIT-030"], "split": "heldout"}
+{"id": "H42", "island": "pitcairn", "creature": null, "question": "When did the community relocate to Norfolk?", "gold": ["PIT-020"], "split": "heldout"}
+{"id": "H43", "island": "pitcairn", "creature": null, "question": "How large is the ocean sanctuary?", "gold": ["PIT-031", "PIT-216"], "split": "heldout"}
+{"id": "H44", "island": "socotra", "creature": null, "question": "What do you hunt, given there are barely any mammals?", "gold": ["SOC-037", "SOC-224"], "split": "heldout"}
+{"id": "H45", "island": "socotra", "creature": null, "question": "Why is this island so full of unique species and how did it get separated?", "gold": ["SOC-014", "SOC-015"], "split": "heldout"}
+{"id": "H46", "island": "socotra", "creature": null, "question": "Which storm hit in 2015?", "gold": ["SOC-009", "SOC-219", "SOC-220"], "split": "heldout"}
+{"id": "H47", "island": "socotra", "creature": null, "question": "What language do locals speak?", "gold": ["SOC-022"], "split": "heldout"}
+{"id": "H48", "island": "socotra", "creature": null, "question": "Which tree with red resin grows here?", "gold": ["SOC-027", "SOC-029"], "split": "heldout"}
+{"id": "H49", "island": "socotra", "creature": null, "question": "When did the Emirates take control of the harbour?", "gold": ["SOC-023"], "split": "heldout"}
+{"id": "H50", "island": "socotra", "creature": null, "question": "How do islanders collect rainwater?", "gold": ["SOC-216"], "split": "heldout"}
+{"id": "H51", "island": "tristan-da-cunha", "creature": null, "question": "What happened to everyone when the mountain threatened in the early sixties?", "gold": ["TDC-019", "TDC-014", "TDC-020"], "split": "heldout"}
+{"id": "H52", "island": "tristan-da-cunha", "creature": null, "question": "How did the rodent poisoning mission affect breeding success?", "gold": ["TDC-031", "TDC-038"], "split": "heldout"}
+{"id": "H53", "island": "tristan-da-cunha", "creature": null, "question": "How big is the largest ocean no-fishing zone?", "gold": ["TDC-028"], "split": "heldout"}
+{"id": "H54", "island": "tristan-da-cunha", "creature": null, "question": "How tall is the volcano?", "gold": ["TDC-011"], "split": "heldout"}
+{"id": "H55", "island": "tristan-da-cunha", "creature": null, "question": "How much rain falls in a year?", "gold": ["TDC-008", "TDC-217"], "split": "heldout"}
+{"id": "H56", "island": "tristan-da-cunha", "creature": null, "question": "How wide are your wings?", "gold": ["TDC-037"], "split": "heldout"}
+{"id": "H57", "island": "tristan-da-cunha", "creature": null, "question": "Why are mice a problem for you?", "gold": ["TDC-029", "TDC-034"], "split": "heldout"}
+{"id": "H58", "island": "tristan-da-cunha", "creature": null, "question": "Who first sighted the group?", "gold": ["TDC-015"], "split": "heldout"}

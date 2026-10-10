@@ -35,7 +35,8 @@ citations before anything reaches the screen.
 - **Creatures**: four procedural canvas animations (bird, marine, reptile, mammal) and one spoken field report per creature (browser speech synthesis). A pause control stops all motion; reduced-motion preferences start paused.
 - **Sensors**: the readouts beside each creature are NASA POWER 20-year climatology (temperature, rainfall, wind, humidity) for that island's grid cell, with a monthly trace.
 - **Library**: search each island's sourced facts or filter by category (species, water and ocean, climate, ecology, threats, history and more). Climate and species searches also pull live NASA POWER and GBIF entries. No API key needed.
-- **Chat (optional)**: shown only when the server has an `ANTHROPIC_API_KEY`. Answers show numbered citations and the evidence cards behind them.
+- **Chat (optional)**: shown when the server has an answer model configured (`LLM_PROVIDER`: a free local model, a free hosted one, a no-model baseline, or Anthropic). Answers show numbered citations and the evidence cards behind them.
+- **Statistics**: `/stats.html` and `/api/stats` show usage, answer rate, latency and validator activity; `python -m scripts.stats --csv` exports raw events.
 - **PWA**: installable, with an offline app shell.
 
 <img src="docs/img/mobile.png" alt="Mobile layout with the field agent as a bottom sheet" width="260">
@@ -44,18 +45,34 @@ citations before anything reaches the screen.
 
 ```mermaid
 flowchart LR
-  UI["Browser<br/>globe.gl + NASA GIBS tiles<br/>creature canvas, PWA"] -->|"POST /api/chat"| API[FastAPI]
-  UI -->|"GET /api/islands, /sensors, /narration"| API
-  API --> RET["Retriever<br/>BM25 + intent routing"]
-  RET --> F[("Island fact files<br/>469 sourced facts")]
+  UI["Browser<br/>globe.gl + NASA GIBS tiles<br/>creature canvas, PWA, stats page"] -->|"/api/library, /api/chat"| API[FastAPI]
+  UI -->|"/api/islands, /sensors, /stats"| API
+  API --> RET["Retriever<br/>BM25, dense or hybrid (RRF)<br/>+ intent routing"]
+  RET --> F[("Island fact files<br/>469 sourced facts<br/>+ precomputed embeddings")]
   RET --> P[("NASA POWER<br/>climatology")]
   RET --> G[("GBIF<br/>taxonomy + records")]
-  RET -->|"evidence bundle with IDs"| LLM["Anthropic API<br/>forced answer tool"]
+  RET -->|"evidence bundle with IDs"| LLM["Answer model (swappable)<br/>extractive | Ollama | llama.cpp<br/>Hugging Face | Anthropic"]
   LLM -->|"sentences + cited IDs"| VAL["Grounding validator"]
   VAL -->|"repair once, else drop"| LLM
   VAL --> API
   API -->|"answer + evidence cards"| UI
+  API -.->|"one row per request"| TEL[("Telemetry<br/>SQLite")]
+  TEL -.-> STATS["/api/stats, scripts/stats.py"]
+  EVAL["eval/: retrieval gold sets,<br/>30-question end-to-end runs"] -.-> RET
+  EVAL -.-> LLM
 ```
+
+### Layers
+
+| Layer | Where | Swap with |
+|---|---|---|
+| Retrieval | `app/data/retrieval.py`, `app/retrieval/` | `RETRIEVAL_MODE=bm25\|dense\|hybrid` |
+| Answer model | `app/llm/` | `LLM_PROVIDER=extractive\|ollama\|llamacpp\|huggingface\|openai-compat\|anthropic` |
+| Guardrails | `app/chat/grounding.py` | (same checks for every model) |
+| Telemetry | `app/telemetry/` | `TELEMETRY=off`, `LOG_QUESTIONS=true` |
+| Evaluation | `eval/` | `make eval-retrieval`, `make eval-baseline`, `python -m eval.run_eval --provider ...` |
+
+The design plan is in [docs/LLM_PLAN.md](docs/LLM_PLAN.md).
 
 **Grounding rules, enforced in code (`app/chat/grounding.py`):**
 
@@ -87,51 +104,96 @@ git clone https://github.com/hudasol/island-echoes && cd island-echoes
 make run
 ```
 
-That creates a virtualenv, installs dependencies, copies `.env.example` to `.env` and starts the server at <http://localhost:8000>. The globe, sensors, field reports and the library work with no keys. To enable the optional chat, put your key in `.env`:
+That creates a virtualenv, installs dependencies, copies `.env.example` to `.env` and starts the server at <http://localhost:8000>. The globe, sensors, field reports and the library work with no keys. `.env` is git-ignored. Other commands: `make test`, `make lint`, `make validate` (checks every fact file), `make snapshot` (refreshes POWER and GBIF snapshots), `make stats`, `make report`.
 
-```
-ANTHROPIC_API_KEY=your-key-here
+### Turn on the creature chat without paying for an API
+
+Chat appears when `LLM_PROVIDER` is set. Every option runs the same retrieval and the same validator.
+
+```text
+LLM_PROVIDER=extractive     # no model: quotes the top sources. Free, instant, a baseline.
+LLM_PROVIDER=ollama         # a local model:  ollama pull qwen2.5:3b-instruct
+LLM_PROVIDER=huggingface    # free-tier hosted model; HF_TOKEN=<free token>
+LLM_PROVIDER=anthropic      # paid API; ANTHROPIC_API_KEY=...
 ```
 
-`.env` is git-ignored. Other commands: `make test`, `make lint`, `make validate` (checks every fact file), `make snapshot` (refreshes POWER and GBIF snapshots), `make eval`.
+For better retrieval, install the optional packages and use embeddings (the vectors are already committed; only the question is embedded at run time):
+
+```bash
+pip install -r requirements-ml.txt
+RETRIEVAL_MODE=hybrid make run
+```
+
+On Windows (PowerShell), the same with Ollama:
+
+```powershell
+ollama pull qwen2.5:3b-instruct
+.venv\Scripts\pip install -r requirements-ml.txt
+$env:LLM_PROVIDER="ollama"; $env:RETRIEVAL_MODE="hybrid"; .venv\Scripts\uvicorn app.main:app --port 8000
+```
+
+If a layer cannot start (no `fastembed`, stale vectors, model server down) the app falls back to keyword retrieval and says so in `/api/health`.
+
+### Statistics
+
+Every library lookup and chat turn is logged to a local SQLite file (`data/cache/telemetry.db`): stage latencies, retrieval mode, model, tokens, how many sentences the validator kept, dropped or repaired. The text of questions is **not** stored unless `LOG_QUESTIONS=true`; otherwise only a hash and length are kept.
+
+- `GET /api/stats?days=7`, or the page at `/stats.html`
+- `python -m scripts.stats` (readable), `--json`, `--csv events.csv` (for pandas or a spreadsheet), `--url https://island-echoes.onrender.com`
+
+On the free Render plan the file is lost on restart, and `/api/stats` reports when its data starts.
 
 ## Evaluation
 
-`eval/questions.jsonl` holds 30 questions: 11 single-fact, 4 multi-fact, 4 climate (NASA POWER), 2 species (GBIF), 4 source conflicts, 4 unanswerable, and 1 prompt-injection attempt. Each lists the evidence IDs that should support the answer, a regex the answer must satisfy, and whether the creature should refuse.
+Three kinds of check, kept separate. Full tables are generated into [docs/RESULTS.md](docs/RESULTS.md) by `make report`; every run is stored in `eval/results/` with its model, retrieval mode, commit and a hash of the facts.
 
-`make eval` runs the full pipeline (retrieval, model, validator) and then an LLM judge that grades each fact sentence against only its cited evidence. It reports, with 95% Wilson intervals:
+**1. Retrieval** (`make eval-retrieval`). Does the right fact reach the model? 58 held-out questions, paraphrased on purpose so they do not reuse the fact wording, each with gold fact IDs (`eval/retrieval_gold.jsonl`), plus the 19 fact-ID questions of the 30-question set, which the keyword retriever was developed against.
 
-- **Groundedness**: share of fact sentences the judge finds supported by their cited evidence.
-- **Hallucination rate**: share of fact sentences that are unsupported or contradicted, counting an answer that should have refused but did not.
-- Citation validity, expected-evidence recall, refusal accuracy, and how often the validator had to repair a draft.
+| Held-out set, n=58 | hit@1 | hit@5 | recall@12 | MRR |
+|---|---|---|---|---|
+| keyword (BM25) | 0.59 | 0.81 | 0.75 | 0.68 |
+| dense (bge-small-en-v1.5) | 0.71 | 0.90 | 0.87 | 0.79 |
+| hybrid (reciprocal rank fusion) | 0.71 | 0.90 | 0.88 | 0.78 |
 
-Results are written to `eval/results/latest.json` and `latest.md`. `make eval-offline` re-scores a saved run without calling the API.
+Dense and hybrid retrieval find a correct fact more often when the question uses different words from the source. The 95% intervals overlap (for example hit@5 0.81 [0.71-0.91] against 0.90 [0.81-0.97]), so this is a likely gain, not a proven one. On the development questions keyword search is as good or better (hit@5 1.00 against 0.95), which is expected because it was tuned on them. Gold IDs were labelled by one person (the author), so they carry that person's judgement.
 
-**Current results.** The full model-in-the-loop eval has not been run yet, because it needs an Anthropic API key and none was available when this was built. No groundedness or hallucination numbers are claimed here. What has been measured without a model:
+**2. End to end, no judge model** (`python -m eval.run_eval --provider <name>`). The 30 questions in `eval/questions.jsonl` (11 single-fact, 4 multi-fact, 4 climate, 2 species, 4 source conflicts, 4 unanswerable, 1 prompt injection) run through retrieval, the model and the validator. Scoring is mechanical: required values present, expected evidence cited, unanswerable questions refused, plus how many of the model's fact sentences the validator had to reject on the first attempt (a proxy for hallucination: invented IDs, numbers or names not in the cited text). Runs checkpoint after every answer and resume if interrupted.
 
-| Check (no model involved) | Result |
-|---|---|
-| Questions where every expected evidence ID is retrieved | 25 of 25 |
-| Unanswerable questions refused before reaching the model | 1 of 5 |
+| Run (all on free, local hardware) | passed | key facts | refusal accuracy | false refusals | first-attempt validator failures |
+|---|---|---|---|---|---|
+| No model: quote the top sources (`extractive`, keyword retrieval) | 15/30 | 26/41 | 1/5 | 0/25 | 0/83 |
+| Qwen2.5-3B-Instruct Q4, hybrid retrieval, 8 facts | 14/29 | 25/40 | 4/5 | 10/24 | 12/45 (27%) |
 
-The 25 of 25 recall is not an independent result: the retrieval synonyms and category rules were tuned while writing these questions, so it overstates how the retriever will do on new questions. The other four unanswerable questions rely on the model and validator to refuse, which is what the full eval is for. This section will be replaced with real numbers, including failures, after the first full run.
+What this says, honestly:
+
+- A 3B model **did not beat quoting the sources** on pass rate (14/29 against 15/30; intervals roughly 31-66% against 33-67%). It added something the baseline cannot do, refusing questions the sources do not cover (4 of 5 against 1 of 5), and paid for it by refusing 10 of 24 answerable questions.
+- More than a quarter of its fact sentences failed a check on the first try, mostly wrong or malformed citations and numbers or names not in the cited text. The validator removed them, so nothing unsupported was shown, but the answers got shorter. This is the case the validator is built for.
+- One question (Q02) failed because the model returned malformed JSON, and is excluded from the 29.
+- With 30 questions the intervals are wide. These numbers are a regression guard and a comparison between configurations, not a benchmark. No LLM judge has been run, so faithfulness beyond the mechanical checks is not measured. Larger models were not run: the Anthropic API needs paid credit, and the free hosted option (`LLM_PROVIDER=huggingface`) needs a token this build did not have. Both are one setting away and produce a row in the same table.
+
+**3. Library relevance** (`pytest tests/test_library_relevance.py`). 106 questions, 52 answerable and 54 not, guard the no-model library search against returning facts for off-topic questions. Part of this set was used for tuning (see "Library search quality").
 
 ## Deploy
 
 Live demo: https://island-echoes.onrender.com. It runs on Render's free plan, so the first request after a quiet spell can take up to a minute while the service wakes. The library works without any API key.
 
-The repository includes a Render blueprint (`render.yaml`): one web service serves both the API and the static app. Create a Blueprint from this repo. Setting `ANTHROPIC_API_KEY` in the Render dashboard is optional and only switches on the hidden creature chat. The public chat endpoint has a per-IP limit (10 per minute) and a daily cap (400 requests, `CHAT_DAILY_CAP`) to bound cost.
+The repository includes a Render blueprint (`render.yaml`): one web service serves both the API and the static app. Create a Blueprint from this repo. The deployed instance runs keyword retrieval and no model (the free plan has 512 MB of memory). Setting `LLM_PROVIDER=extractive` in the Render dashboard switches on the no-model chat; a paid provider key is optional. The public chat endpoint has a per-IP limit (10 per minute) and a daily cap (400 requests, `CHAT_DAILY_CAP`) to bound cost.
 
 ## Project layout
 
 ```
-app/        FastAPI app: routes, retrieval, grounding validator, LLM client, sensors
-data/       islands/*.json fact files, snapshots/ (NASA POWER, GBIF)
-eval/       30 questions, metrics, LLM judge, runner
-scripts/    snapshot_sources.py, validate_data.py
-web/        globe frontend, creature animations, service worker, manifest, vendored globe.gl
-tests/      146 tests (retrieval, grounding, API, sensors, web assets, eval metrics)
-docs/       PLAN.md and screenshots
+app/            FastAPI app: routes, sensors, rate limiting, security headers
+app/data/       fact store, keyword retrieval, NASA POWER and GBIF clients
+app/retrieval/  dense retrieval (precomputed embeddings), fusion, retriever factory
+app/llm/        answer models behind one interface: extractive, Ollama, llama.cpp, Hugging Face, Anthropic
+app/chat/       prompts, grounding validator, chat service
+app/telemetry/  per-request SQLite statistics
+data/           islands/*.json fact files, snapshots/ (NASA POWER, GBIF), embeddings/
+eval/           question sets, retrieval and end-to-end eval, metrics, report, stored results
+scripts/        snapshot_sources.py, validate_data.py, build_embeddings.py, stats.py
+web/            globe frontend, creature animations, stats page, service worker, vendored globe.gl
+tests/          200+ tests (retrieval, dense, providers, grounding, telemetry, API, web assets, eval metrics)
+docs/           PLAN.md, LLM_PLAN.md, RESULTS.md and screenshots
 ```
 
 ## Retrospective
@@ -145,17 +207,23 @@ docs/       PLAN.md and screenshots
 - **Naive stemming broke matches** ("tortoises" against "tortoise"), and first-person questions ("what do you eat?") pulled in evidence about the wrong topic when I anchored them to the creature name. Both were fixed with tests.
 - **Some sources disagree** (population figures, assessment years). These are kept as separate facts rather than merged, which makes answers longer but honest.
 
+- **A small local model followed the citation format badly.** The first run of Qwen2.5-3B padded evidence IDs with punctuation (".TDC-019"), so every citation was rejected and the model looked useless. A cleaner for the wrapper characters (the ID itself must still match retrieved evidence) fixed it; a 27% first-attempt failure rate remains, and the model still over-refuses. Measuring before blaming the model mattered.
+- **Embeddings helped less than hoped as a gate.** Dense similarity separates answerable from unanswerable questions better than BM25 scores (AUC 0.93 against 0.85 on the 106-question set), but no threshold is clean (at 0.55, 19 of 54 off-topic questions pass), so the library keeps its tuned keyword gate and dense retrieval is used only to rank evidence for the chat.
+- **A long eval run was lost** when the sandbox restarted. The runner now checkpoints every answer and resumes.
+
 **Assumptions**
 
 - A sentence is grounded if its numbers and names appear in the evidence it cites. This catches invented figures and names cheaply, but it cannot catch a wrong claim built from correct words. That is why the LLM judge exists in the eval.
 - One representative creature per island (two on the Galápagos), chosen because presence on or near the island is verifiable in GBIF.
 - NASA POWER's coarse grid cell is a fair stand-in for an island's climate. For tiny islands such as Clipperton it is an approximation, and the sensor note shows the cell used.
-- Anthropic's model is called through a forced tool, so output shape is guaranteed but content is not.
+- Anthropic's model is called through a forced tool, so output shape is guaranteed but content is not. Local and hosted open models are asked for JSON against a schema, and small ones sometimes return malformed output, which counts as an error.
 
 **What I would redesign**
 
 - Store claims, not paragraphs: break each fact into atomic statements so the validator can check meaning, not only numbers and names.
-- Replace keyword retrieval with a small embedding index, keeping BM25 as the fallback, and measure the difference on a held-out question set.
+- Check meaning, not only words, with a small local entailment model, so a wrong claim built from correct words is caught without a paid judge.
+- Grow the held-out set and have a second person label the gold fact IDs; 58 questions from one annotator leave wide intervals.
+- Try a 7B-class free hosted model and a fine-tuned small model on the citation format, then compare in the same table.
 - Add a second, independent verifier model call for every answer instead of only in the eval.
 - Pull Red List statuses from the official API once a token is available.
 - Run the eval in CI on every change to the fact files.
