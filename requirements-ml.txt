@@ -1,0 +1,5 @@
+# Optional layers. The deployed free instance does not install these; it runs keyword retrieval and no model.
+-r requirements.txt
+numpy>=1.26
+fastembed>=0.4,<1            # dense retrieval (ONNX, CPU); downloads BAAI/bge-small-en-v1.5 on first use
+# llama-cpp-python>=0.3      # only for LLM_PROVIDER=llamacpp (compiles C++; Ollama is easier on Windows)

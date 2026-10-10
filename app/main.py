@@ -8,15 +8,15 @@ from fastapi import FastAPI, HTTPException, Query, Request
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 
-from .chat.llm import AnthropicAnswerLLM, LLMError
 from .chat.service import ChatResult, ChatService, ChatUnavailable
 from .config import Settings, get_settings
 from .data.islands import IslandStore
 from .data.models import Category, Evidence, Island
-from .data.retrieval import Retriever
 from .data.sources import SourceStore, SourceUnavailable
+from .llm import LLMError, build_llm
 from .narration import load_saved, narration_for
 from .ratelimit import RateLimiter, client_key
+from .retrieval.factory import build_retriever
 from .schemas import (
     ChatRequest,
     ChatResponse,
@@ -32,6 +32,7 @@ from .schemas import (
     SensorsOut,
     SentenceOut,
 )
+from .telemetry import Telemetry
 
 CATEGORIES = set(Category.__args__)
 log = logging.getLogger("island_echoes.access")
@@ -116,13 +117,11 @@ def create_app(settings: Settings | None = None, service: ChatService | None = N
     islands = IslandStore.load(settings.islands_dir)
     sources = SourceStore(settings, islands)
     if service is None:
-        llm = (
-            AnthropicAnswerLLM(settings.anthropic_api_key, settings.anthropic_model)
-            if settings.anthropic_api_key
-            else None
-        )
-        service = ChatService(islands, Retriever(islands, sources), llm)
+        llm = build_llm(settings)
+        service = ChatService(islands, build_retriever(settings, islands, sources), llm)
     retriever = service.retriever
+    telemetry = Telemetry(settings.telemetry_path, settings.telemetry, settings.log_questions)
+    app_started = time.time()
     limiter = RateLimiter(settings.chat_rate_per_min, settings.chat_daily_cap)
     read_limiter = RateLimiter(settings.read_rate_per_min, 10**9, minute_message="Too many lookups in a minute. Wait a moment and try again.")
 
@@ -152,7 +151,23 @@ def create_app(settings: Settings | None = None, service: ChatService | None = N
 
     @app.get("/api/health")
     def health():
-        return {"status": "ok", "chat_enabled": service.llm is not None, "islands": len(islands.islands)}
+        return {
+            "status": "ok",
+            "chat_enabled": service.llm is not None,
+            "islands": len(islands.islands),
+            "retrieval_mode": getattr(retriever, "mode", "bm25"),
+            "llm": f"{service.llm.provider}:{service.llm.model}" if service.llm is not None else None,
+            "uptime_s": round(time.time() - app_started),
+        }
+
+    @app.get("/api/stats")
+    def stats(request: Request, days: float = Query(7, gt=0, le=365)):
+        """Aggregate usage and quality numbers. No question text is ever returned unless LOG_QUESTIONS is on."""
+        read_limiter.check(caller(request))
+        out = telemetry.summary(days)
+        out["retrieval_mode"] = getattr(retriever, "mode", "bm25")
+        out["llm"] = f"{service.llm.provider}:{service.llm.model}" if service.llm is not None else None
+        return out
 
     @app.get("/api/data-changes")
     def data_changes():
@@ -217,7 +232,12 @@ def create_app(settings: Settings | None = None, service: ChatService | None = N
             isl.creature(creature)
         except KeyError:
             raise HTTPException(404, f"Unknown creature {creature!r}") from None
+        t0 = time.perf_counter()
         res = retriever.library(isl.slug, q, category, creature, limit)
+        ms = (time.perf_counter() - t0) * 1000
+        telemetry.record("library", q, island=isl.slug, creature=creature, quality=res.quality, n_evidence=res.total,
+                         answered=res.quality in ("strong", "partial") if q.strip() else None,
+                         retrieval_mode="bm25", total_ms=ms, retrieval_ms=ms)
         return LibraryOut(
             island=isl.slug, query=q, category=category, total=res.total, counts=res.counts,
             results=[_evidence_out(e, True) for e in res.results], notes=res.notes,
@@ -233,15 +253,30 @@ def create_app(settings: Settings | None = None, service: ChatService | None = N
             raise HTTPException(404, f"Unknown creature {req.creature!r}") from None
         limiter.check(caller(request))
         history = [("User" if t.role == "user" else "Agent", t.text) for t in req.history]
+        t0 = time.perf_counter()
         try:
             result = service.respond(req.island, req.message, req.creature, history)
         except ChatUnavailable:
             return JSONResponse(
                 status_code=503,
-                content={"detail": "Chat is not configured on this server (missing ANTHROPIC_API_KEY)."},
+                content={"detail": "Chat is not configured on this server (no LLM_PROVIDER set)."},
             )
         except LLMError as exc:
+            telemetry.record("chat", req.message, island=req.island, creature=req.creature, status="error",
+                             error=str(exc)[:120], total_ms=(time.perf_counter() - t0) * 1000,
+                             provider=getattr(service.llm, "provider", None), model=getattr(service.llm, "model", None))
             return JSONResponse(status_code=502, content={"detail": str(exc) or "The language model is unavailable right now."})
+        fact_kept = sum(1 for x in result.sentences if x.kind == "fact")
+        telemetry.record(
+            "chat", req.message, island=result.island, creature=result.creature,
+            status="ok" if result.llm_called else "refused_no_evidence",
+            retrieval_mode=result.retrieval_mode, n_evidence=len(result.retrieved), answered=result.answered,
+            provider=result.provider or None, model=result.model or None,
+            tokens_in=result.tokens_in, tokens_out=result.tokens_out, retrieval_ms=result.retrieval_ms,
+            llm_ms=result.llm_ms if result.llm_called else None, total_ms=(time.perf_counter() - t0) * 1000,
+            fact_kept=fact_kept, fact_dropped=len(result.rejected), raw_flagged=len(result.raw_issues),
+            repaired=result.repaired,
+        )
         return _chat_response(result)
 
     if settings.web_dir.exists():

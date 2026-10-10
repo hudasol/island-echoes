@@ -70,7 +70,7 @@ def test_chat_returns_cited_answer_with_evidence_cards(settings, store, retrieve
 def test_chat_without_key_is_503_but_no_overlap_still_answers(settings, store, retriever):
     c = client_with(settings, store, retriever, None)
     r = c.post("/api/chat", json={"island": "socotra", "message": "What is the tallest mountain?"})
-    assert r.status_code == 503 and "ANTHROPIC_API_KEY" in r.json()["detail"]
+    assert r.status_code == 503 and "LLM_PROVIDER" in r.json()["detail"]
     ok = c.post("/api/chat", json={"island": "pitcairn", "message": "How do I bake sourdough bread?"})
     assert ok.status_code == 200 and ok.json()["answered"] is False
 

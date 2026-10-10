@@ -1,0 +1,2424 @@
+{
+ "meta": {
+  "timestamp": "2026-10-09T22:09:56+00:00",
+  "commit": "4321023",
+  "answer_model": "extractive:top-evidence",
+  "provider": "extractive",
+  "model": "top-evidence",
+  "retrieval_mode": "hybrid",
+  "facts_hash": "491e9b1e2b6592e8",
+  "wall_seconds": 1.3,
+  "judge_model": null,
+  "errored": 0,
+  "label": "extractive-top-evidence-hybrid"
+ },
+ "summary": {
+  "questions": 30,
+  "judged_questions": 0,
+  "fact_sentences_judged": 0,
+  "groundedness": {
+   "k": 0,
+   "n": 0
+  },
+  "partially_supported": {
+   "k": 0,
+   "n": 0
+  },
+  "hallucination_rate": {
+   "k": 0,
+   "n": 0
+  },
+  "answers_with_hallucination": {
+   "k": 4,
+   "n": 30
+  },
+  "refusal_accuracy": {
+   "k": 1,
+   "n": 5
+  },
+  "false_refusals": {
+   "k": 0,
+   "n": 25
+  },
+  "key_fact_recall": {
+   "k": 24,
+   "n": 41
+  },
+  "expected_source_recall": {
+   "k": 29,
+   "n": 41
+  },
+  "validator_first_pass_failures": {
+   "k": 0,
+   "n": 87
+  },
+  "repaired_answers": {
+   "k": 0,
+   "n": 30
+  },
+  "conflicts_reported": {
+   "k": 0,
+   "n": 0
+  },
+  "questions_passed": {
+   "k": 13,
+   "n": 30
+  }
+ },
+ "records": [
+  {
+   "id": "Q01",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "When the volcano threatened in October 1961, all 264 islanders left, spent a night on Nightingale Island, and were carried by the Dutch liner Tjisadane to Cape Town, then on to England.",
+     "kind": "fact",
+     "cites": [
+      "TDC-019"
+     ]
+    },
+    {
+     "text": "On Tristan da Cunha the endemic Tristan moorhen is extinct, eight Gough moorhens released at Sandy Point in 1956 colonised the island, and the South American silver porgy (Diplodus argenteus), thought to have sought refuge there after a 2006 oil-platform wreck, is suspected of consuming components of the kelp forest.",
+     "kind": "fact",
+     "cites": [
+      "TDC-225"
+     ]
+    },
+    {
+     "text": "The endemic Tristan thrush or starchy (Turdus eremita) is listed as Near Threatened (IUCN 3.1) per Wikipedia, with about 850 pairs on Inaccessible Island and roughly 6,000 birds for the whole group in the 1980s, and black rats on Tristan an ongoing threat.",
+     "kind": "fact",
+     "cites": [
+      "TDC-207"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "TDC-019",
+    "TDC-225",
+    "TDC-207"
+   ],
+   "retrieved_ids": [
+    "TDC-019",
+    "TDC-225",
+    "TDC-207",
+    "TDC-033",
+    "TDC-021",
+    "TDC-205",
+    "TDC-012",
+    "TDC-202",
+    "TDC-206",
+    "TDC-208",
+    "TDC-214",
+    "TDC-020",
+    "TDC-014",
+    "TDC-013",
+    "TDC-030",
+    "TDC-029",
+    "TDC-226"
+   ],
+   "raw_sentences": [
+    {
+     "text": "When the volcano threatened in October 1961, all 264 islanders left, spent a night on Nightingale Island, and were carried by the Dutch liner Tjisadane to Cape Town, then on to England.",
+     "kind": "fact",
+     "cites": [
+      "TDC-019"
+     ]
+    },
+    {
+     "text": "On Tristan da Cunha the endemic Tristan moorhen is extinct, eight Gough moorhens released at Sandy Point in 1956 colonised the island, and the South American silver porgy (Diplodus argenteus), thought to have sought refuge there after a 2006 oil-platform wreck, is suspected of consuming components of the kelp forest.",
+     "kind": "fact",
+     "cites": [
+      "TDC-225"
+     ]
+    },
+    {
+     "text": "The endemic Tristan thrush or starchy (Turdus eremita) is listed as Near Threatened (IUCN 3.1) per Wikipedia, with about 850 pairs on Inaccessible Island and roughly 6,000 birds for the whole group in the 1980s, and black rats on Tristan an ongoing threat.",
+     "kind": "fact",
+     "cites": [
+      "TDC-207"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 0.2,
+   "retrieval_ms": 199.4,
+   "llm_ms": 0.2,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q02",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "The Bounty mutineers settled Pitcairn in January 1790 with six Polynesian men, twelve Polynesian women and an infant girl, and the ship was burned on 23 January 1790, as reported by the Pitcairn Islands Study Center.",
+     "kind": "fact",
+     "cites": [
+      "PIT-017"
+     ]
+    },
+    {
+     "text": "A steep road known as the Hill of Difficulty climbs from Bounty Bay, the mutineers' landing place, up to the Edge, according to the Pitcairn Government.",
+     "kind": "fact",
+     "cites": [
+      "PIT-013"
+     ]
+    },
+    {
+     "text": "In 1856 the Pitcairn community, reported as 194 people, sailed on the Morayshire on 3 May and reached Norfolk Island on 8 June; some families returned from 1859, according to the Pitcairn Islands Study Center.",
+     "kind": "fact",
+     "cites": [
+      "PIT-020"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "PIT-017",
+    "PIT-013",
+    "PIT-020"
+   ],
+   "retrieved_ids": [
+    "PIT-017",
+    "PIT-013",
+    "PIT-020",
+    "PIT-033",
+    "PIT-035",
+    "PIT-021",
+    "PIT-002",
+    "PIT-028",
+    "PIT-004",
+    "PIT-208",
+    "PIT-016",
+    "PIT-008"
+   ],
+   "raw_sentences": [
+    {
+     "text": "The Bounty mutineers settled Pitcairn in January 1790 with six Polynesian men, twelve Polynesian women and an infant girl, and the ship was burned on 23 January 1790, as reported by the Pitcairn Islands Study Center.",
+     "kind": "fact",
+     "cites": [
+      "PIT-017"
+     ]
+    },
+    {
+     "text": "A steep road known as the Hill of Difficulty climbs from Bounty Bay, the mutineers' landing place, up to the Edge, according to the Pitcairn Government.",
+     "kind": "fact",
+     "cites": [
+      "PIT-013"
+     ]
+    },
+    {
+     "text": "In 1856 the Pitcairn community, reported as 194 people, sailed on the Morayshire on 3 May and reached Norfolk Island on 8 June; some families returned from 1859, according to the Pitcairn Islands Study Center.",
+     "kind": "fact",
+     "cites": [
+      "PIT-020"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 0.17,
+   "retrieval_ms": 170.4,
+   "llm_ms": 0.2,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q03",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "The 2021 Census recorded 593 people in the Cocos (Keeling) Islands; 61.2% spoke Malay at home and 65.6% reported Islam as their religion, according to the Australian Bureau of Statistics.",
+     "kind": "fact",
+     "cites": [
+      "COC-022"
+     ]
+    },
+    {
+     "text": "The islands became an Australian territory on 23 November 1955 under the Cocos (Keeling) Islands Act 1955.",
+     "kind": "fact",
+     "cites": [
+      "COC-019"
+     ]
+    },
+    {
+     "text": "Local services are run by the Shire of Cocos (Keeling) Islands, and residents vote federally in the Northern Territory Division of Lingiari.",
+     "kind": "fact",
+     "cites": [
+      "COC-023"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "COC-022",
+    "COC-019",
+    "COC-023"
+   ],
+   "retrieved_ids": [
+    "COC-022",
+    "COC-019",
+    "COC-023",
+    "COC-001",
+    "COC-010",
+    "COC-034",
+    "COC-207",
+    "COC-225",
+    "COC-224",
+    "COC-209",
+    "COC-208",
+    "COC-003",
+    "COC-021"
+   ],
+   "raw_sentences": [
+    {
+     "text": "The 2021 Census recorded 593 people in the Cocos (Keeling) Islands; 61.2% spoke Malay at home and 65.6% reported Islam as their religion, according to the Australian Bureau of Statistics.",
+     "kind": "fact",
+     "cites": [
+      "COC-022"
+     ]
+    },
+    {
+     "text": "The islands became an Australian territory on 23 November 1955 under the Cocos (Keeling) Islands Act 1955.",
+     "kind": "fact",
+     "cites": [
+      "COC-019"
+     ]
+    },
+    {
+     "text": "Local services are run by the Shire of Cocos (Keeling) Islands, and residents vote federally in the Northern Territory Division of Lingiari.",
+     "kind": "fact",
+     "cites": [
+      "COC-023"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 0.18,
+   "retrieval_ms": 176.7,
+   "llm_ms": 0.1,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q04",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "Hoq Cave, about 1.5 km inland on the northeast coast, holds inscriptions in six scripts, including Brahmi, Greek and Ethiopic Ge'ez, dating from the 1st to 6th centuries CE.",
+     "kind": "fact",
+     "cites": [
+      "SOC-016"
+     ]
+    },
+    {
+     "text": "Limestone plateaus covering much of the island sit mostly at about 300-700 m and show karst features such as pavements, gullies and many caves, with few surface streams.",
+     "kind": "fact",
+     "cites": [
+      "SOC-013"
+     ]
+    },
+    {
+     "text": "Soqotri, an unwritten Modern South Arabian Semitic language, is spoken mainly on the Socotra archipelago and is classified by UNESCO as severely endangered.",
+     "kind": "fact",
+     "cites": [
+      "SOC-022"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "SOC-016",
+    "SOC-013",
+    "SOC-022"
+   ],
+   "retrieved_ids": [
+    "SOC-016",
+    "SOC-013",
+    "SOC-022",
+    "SOC-214",
+    "SOC-203",
+    "SOC-225",
+    "SOC-201",
+    "SOC-004",
+    "SOC-224",
+    "SOC-209",
+    "SOC-019",
+    "SOC-017"
+   ],
+   "raw_sentences": [
+    {
+     "text": "Hoq Cave, about 1.5 km inland on the northeast coast, holds inscriptions in six scripts, including Brahmi, Greek and Ethiopic Ge'ez, dating from the 1st to 6th centuries CE.",
+     "kind": "fact",
+     "cites": [
+      "SOC-016"
+     ]
+    },
+    {
+     "text": "Limestone plateaus covering much of the island sit mostly at about 300-700 m and show karst features such as pavements, gullies and many caves, with few surface streams.",
+     "kind": "fact",
+     "cites": [
+      "SOC-013"
+     ]
+    },
+    {
+     "text": "Soqotri, an unwritten Modern South Arabian Semitic language, is spoken mainly on the Socotra archipelago and is classified by UNESCO as severely endangered.",
+     "kind": "fact",
+     "cites": [
+      "SOC-022"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 0.18,
+   "retrieval_ms": 184.4,
+   "llm_ms": 0.1,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q05",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "Lonesome George was found dead on 24 June 2012 by his caretaker Fausto Llerena after about 40 years of care.",
+     "kind": "fact",
+     "cites": [
+      "GAL-033"
+     ]
+    },
+    {
+     "text": "Chelonoidis abingdonii, the Pinta Island tortoise, is listed as Extinct on the IUCN Red List (assessment Cayot et al., 2016, as cited).",
+     "kind": "fact",
+     "cites": [
+      "GAL-032"
+     ]
+    },
+    {
+     "text": "Wikipedia says the giant tortoise population fell from about 250,000 when first discovered in the 16th century to a low of roughly 15,000 in the 1970s, and was about 19,317 in a 1995-2009 estimate.",
+     "kind": "fact",
+     "cites": [
+      "GAL-225"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "GAL-033",
+    "GAL-032",
+    "GAL-225"
+   ],
+   "retrieved_ids": [
+    "GAL-033",
+    "GAL-032",
+    "GAL-225",
+    "GAL-209",
+    "GAL-224",
+    "GAL-211",
+    "GAL-202",
+    "GAL-203",
+    "GAL-207",
+    "GAL-226",
+    "GAL-002",
+    "GAL-034"
+   ],
+   "raw_sentences": [
+    {
+     "text": "Lonesome George was found dead on 24 June 2012 by his caretaker Fausto Llerena after about 40 years of care.",
+     "kind": "fact",
+     "cites": [
+      "GAL-033"
+     ]
+    },
+    {
+     "text": "Chelonoidis abingdonii, the Pinta Island tortoise, is listed as Extinct on the IUCN Red List (assessment Cayot et al., 2016, as cited).",
+     "kind": "fact",
+     "cites": [
+      "GAL-032"
+     ]
+    },
+    {
+     "text": "Wikipedia says the giant tortoise population fell from about 250,000 when first discovered in the 16th century to a low of roughly 15,000 in the 1970s, and was about 19,317 in a 1995-2009 estimate.",
+     "kind": "fact",
+     "cites": [
+      "GAL-225"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 0.14,
+   "retrieval_ms": 134.2,
+   "llm_ms": 0.2,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q06",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "Galápagos sea lions feed mainly on sardines plus crustaceans, squid, lanternfish and octopus, and foraging trips can reach 10-15 km from shore and last several days.",
+     "kind": "fact",
+     "cites": [
+      "GAL-105"
+     ]
+    },
+    {
+     "text": "The archipelago lies in the Pacific Ocean roughly 1,000 km from mainland Ecuador.",
+     "kind": "fact",
+     "cites": [
+      "GAL-001"
+     ]
+    },
+    {
+     "text": "El Niño warming reduces the sea lions' food supply and can cause population declines and die-offs; the early-1980s El Niño killed many yearlings and lowered pup production the next year.",
+     "kind": "fact",
+     "cites": [
+      "GAL-107"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "GAL-105",
+    "GAL-001",
+    "GAL-107"
+   ],
+   "retrieved_ids": [
+    "GAL-105",
+    "GAL-001",
+    "GAL-107",
+    "GAL-029",
+    "GAL-214",
+    "GAL-212",
+    "GAL-204",
+    "GAL-203",
+    "GAL-210",
+    "GAL-104",
+    "GAL-215",
+    "GAL-209",
+    "GAL-024",
+    "GAL-025",
+    "GAL-026",
+    "GAL-002",
+    "GAL-003",
+    "GAL-004"
+   ],
+   "raw_sentences": [
+    {
+     "text": "Galápagos sea lions feed mainly on sardines plus crustaceans, squid, lanternfish and octopus, and foraging trips can reach 10-15 km from shore and last several days.",
+     "kind": "fact",
+     "cites": [
+      "GAL-105"
+     ]
+    },
+    {
+     "text": "The archipelago lies in the Pacific Ocean roughly 1,000 km from mainland Ecuador.",
+     "kind": "fact",
+     "cites": [
+      "GAL-001"
+     ]
+    },
+    {
+     "text": "El Niño warming reduces the sea lions' food supply and can cause population declines and die-offs; the early-1980s El Niño killed many yearlings and lowered pup production the next year.",
+     "kind": "fact",
+     "cites": [
+      "GAL-107"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 0.2,
+   "retrieval_ms": 195.2,
+   "llm_ms": 0.2,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q07",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "The macaroni penguin (Eudyptes chrysolophus) is listed as Vulnerable on the IUCN Red List, based on a 2020 assessment.",
+     "kind": "fact",
+     "cites": [
+      "BOU-035"
+     ]
+    },
+    {
+     "text": "Wikipedia says the macaroni penguin is globally Vulnerable on the IUCN Red List and lists Bouvet Island among the islands it occupies.",
+     "kind": "fact",
+     "cites": [
+      "BOU-036"
+     ]
+    },
+    {
+     "text": "Wikipedia reports that the IUCN moved the Antarctic fur seal (Arctocephalus gazella) from Least Concern to Endangered in April 2026, and lists Bouvet Island as holding the second-largest population, 46,834 animals, with a decreasing trend.",
+     "kind": "fact",
+     "cites": [
+      "BOU-203"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "BOU-035",
+    "BOU-036",
+    "BOU-203"
+   ],
+   "retrieved_ids": [
+    "BOU-035",
+    "BOU-036",
+    "BOU-203",
+    "BOU-037",
+    "BOU-039",
+    "BOU-027",
+    "BOU-038",
+    "BOU-029",
+    "BOU-210",
+    "BOU-207",
+    "BOU-032",
+    "BOU-208"
+   ],
+   "raw_sentences": [
+    {
+     "text": "The macaroni penguin (Eudyptes chrysolophus) is listed as Vulnerable on the IUCN Red List, based on a 2020 assessment.",
+     "kind": "fact",
+     "cites": [
+      "BOU-035"
+     ]
+    },
+    {
+     "text": "Wikipedia says the macaroni penguin is globally Vulnerable on the IUCN Red List and lists Bouvet Island among the islands it occupies.",
+     "kind": "fact",
+     "cites": [
+      "BOU-036"
+     ]
+    },
+    {
+     "text": "Wikipedia reports that the IUCN moved the Antarctic fur seal (Arctocephalus gazella) from Least Concern to Endangered in April 2026, and lists Bouvet Island as holding the second-largest population, 46,834 animals, with a decreasing trend.",
+     "kind": "fact",
+     "cites": [
+      "BOU-203"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 0.17,
+   "retrieval_ms": 169.9,
+   "llm_ms": 0.1,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q08",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "After the 2021 mouse operation, Tristan albatross breeding success on Gough reached 76 percent in 2022, up from a mouse-affected average of 32 percent, with over 1,000 chicks fledged.",
+     "kind": "fact",
+     "cites": [
+      "TDC-038"
+     ]
+    },
+    {
+     "text": "The Gough moorhen (Gallinula comeri) became rare on Gough Island after the 2021 mouse eradication operation, with fewer than 20 birds in 2025 and only a single reproductive pair recorded until 2024; the IUCN Outlook says several thousand likely live on Tristan da Cunha, where it was introduced in the 1950s (another.",
+     "kind": "fact",
+     "cites": [
+      "TDC-205"
+     ]
+    },
+    {
+     "text": "In May 2008 the Tristan albatross was recategorised Critically Endangered by BirdLife International on behalf of IUCN because of mouse predation of chicks on Gough Island and longline fishing mortality.",
+     "kind": "fact",
+     "cites": [
+      "TDC-034"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "TDC-038",
+    "TDC-205",
+    "TDC-034"
+   ],
+   "retrieved_ids": [
+    "TDC-038",
+    "TDC-205",
+    "TDC-034",
+    "TDC-209",
+    "TDC-036",
+    "TDC-202",
+    "TDC-201",
+    "TDC-204",
+    "TDC-203",
+    "TDC-035",
+    "TDC-225",
+    "TDC-026",
+    "TDC-027",
+    "TDC-223",
+    "TDC-222"
+   ],
+   "raw_sentences": [
+    {
+     "text": "After the 2021 mouse operation, Tristan albatross breeding success on Gough reached 76 percent in 2022, up from a mouse-affected average of 32 percent, with over 1,000 chicks fledged.",
+     "kind": "fact",
+     "cites": [
+      "TDC-038"
+     ]
+    },
+    {
+     "text": "The Gough moorhen (Gallinula comeri) became rare on Gough Island after the 2021 mouse eradication operation, with fewer than 20 birds in 2025 and only a single reproductive pair recorded until 2024; the IUCN Outlook says several thousand likely live on Tristan da Cunha, where it was introduced in the 1950s (another.",
+     "kind": "fact",
+     "cites": [
+      "TDC-205"
+     ]
+    },
+    {
+     "text": "In May 2008 the Tristan albatross was recategorised Critically Endangered by BirdLife International on behalf of IUCN because of mouse predation of chicks on Gough Island and longline fishing mortality.",
+     "kind": "fact",
+     "cites": [
+      "TDC-034"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 0.19,
+   "retrieval_ms": 192.5,
+   "llm_ms": 0.2,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q09",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "The Henderson fruit dove (Ptilinopus insularis) is endemic to Henderson Island and is listed as Vulnerable (IUCN 3.1) by Wikipedia; its population is described as stable at roughly 3,000-4,000 mature individuals.",
+     "kind": "fact",
+     "cites": [
+      "PIT-203"
+     ]
+    },
+    {
+     "text": "The Henderson crake (Zapornia atra), a flightless rail found only on Henderson Island, is listed as Vulnerable (IUCN 3.1) by Wikipedia, with about 5,600 mature individuals (range 3,800-8,400) as of 2022.",
+     "kind": "fact",
+     "cites": [
+      "PIT-202"
+     ]
+    },
+    {
+     "text": "A 2022/23 survey estimated about 1,568 Pitcairn reed warblers (95% confidence interval 812-3,237).",
+     "kind": "fact",
+     "cites": [
+      "PIT-036"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "PIT-203",
+    "PIT-202",
+    "PIT-036"
+   ],
+   "retrieved_ids": [
+    "PIT-203",
+    "PIT-202",
+    "PIT-036",
+    "PIT-204",
+    "PIT-201",
+    "PIT-224",
+    "PIT-023",
+    "PIT-223",
+    "PIT-035",
+    "PIT-030",
+    "PIT-034",
+    "PIT-206"
+   ],
+   "raw_sentences": [
+    {
+     "text": "The Henderson fruit dove (Ptilinopus insularis) is endemic to Henderson Island and is listed as Vulnerable (IUCN 3.1) by Wikipedia; its population is described as stable at roughly 3,000-4,000 mature individuals.",
+     "kind": "fact",
+     "cites": [
+      "PIT-203"
+     ]
+    },
+    {
+     "text": "The Henderson crake (Zapornia atra), a flightless rail found only on Henderson Island, is listed as Vulnerable (IUCN 3.1) by Wikipedia, with about 5,600 mature individuals (range 3,800-8,400) as of 2022.",
+     "kind": "fact",
+     "cites": [
+      "PIT-202"
+     ]
+    },
+    {
+     "text": "A 2022/23 survey estimated about 1,568 Pitcairn reed warblers (95% confidence interval 812-3,237).",
+     "kind": "fact",
+     "cites": [
+      "PIT-036"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 0.17,
+   "retrieval_ms": 168.0,
+   "llm_ms": 0.1,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q10",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "The silvertip shark (Carcharhinus albimarginatus) is listed as Vulnerable and is a qualifying species for the Clipperton shark and ray area.",
+     "kind": "fact",
+     "cites": [
+      "CLI-034"
+     ]
+    },
+    {
+     "text": "Tagged silvertip sharks have moved between Clipperton and the Galapagos, indicating regional connectivity.",
+     "kind": "fact",
+     "cites": [
+      "CLI-037"
+     ]
+    },
+    {
+     "text": "A 2016 baited-video survey recorded Galapagos sharks on 83% of deployments and silvertip sharks on 33% at Clipperton.",
+     "kind": "fact",
+     "cites": [
+      "CLI-028"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "CLI-034",
+    "CLI-037",
+    "CLI-028"
+   ],
+   "retrieved_ids": [
+    "CLI-034",
+    "CLI-037",
+    "CLI-028",
+    "CLI-033",
+    "CLI-202",
+    "CLI-035",
+    "CLI-038",
+    "CLI-201",
+    "CLI-039",
+    "CLI-204",
+    "CLI-036",
+    "CLI-203"
+   ],
+   "raw_sentences": [
+    {
+     "text": "The silvertip shark (Carcharhinus albimarginatus) is listed as Vulnerable and is a qualifying species for the Clipperton shark and ray area.",
+     "kind": "fact",
+     "cites": [
+      "CLI-034"
+     ]
+    },
+    {
+     "text": "Tagged silvertip sharks have moved between Clipperton and the Galapagos, indicating regional connectivity.",
+     "kind": "fact",
+     "cites": [
+      "CLI-037"
+     ]
+    },
+    {
+     "text": "A 2016 baited-video survey recorded Galapagos sharks on 83% of deployments and silvertip sharks on 33% at Clipperton.",
+     "kind": "fact",
+     "cites": [
+      "CLI-028"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 0.2,
+   "retrieval_ms": 201.4,
+   "llm_ms": 0.1,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q11",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "Socotra buzzards live in foothills, plateaus and deep ravines, usually at 150-800 m, and need cliffs for nesting.",
+     "kind": "fact",
+     "cites": [
+      "SOC-036"
+     ]
+    },
+    {
+     "text": "The Socotra cormorant (Phalacrocorax nigrogularis) is rated Vulnerable on the IUCN Red List (listed since 2000, per Wikipedia) because of few breeding localities and ongoing rapid decline; breeding on Socotra itself was only confirmed in 2005 despite the name.",
+     "kind": "fact",
+     "cites": [
+      "SOC-202"
+     ]
+    },
+    {
+     "text": "Nesting loggerhead turtles (Caretta caretta) at Abalhen Beach on Socotra fell from 206 individuals in 2007 to 95 in 2012, and the submission lists the loggerhead as endangered and on CITES Appendix I.",
+     "kind": "fact",
+     "cites": [
+      "SOC-209"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "SOC-036",
+    "SOC-202",
+    "SOC-209"
+   ],
+   "retrieved_ids": [
+    "SOC-036",
+    "SOC-202",
+    "SOC-209",
+    "SOC-204",
+    "SOC-203",
+    "SOC-201",
+    "SOC-038",
+    "SOC-034",
+    "SOC-025",
+    "SOC-206",
+    "SOC-207",
+    "SOC-205",
+    "SOC-024",
+    "SOC-026",
+    "SOC-027",
+    "SOC-001",
+    "SOC-002",
+    "SOC-003"
+   ],
+   "raw_sentences": [
+    {
+     "text": "Socotra buzzards live in foothills, plateaus and deep ravines, usually at 150-800 m, and need cliffs for nesting.",
+     "kind": "fact",
+     "cites": [
+      "SOC-036"
+     ]
+    },
+    {
+     "text": "The Socotra cormorant (Phalacrocorax nigrogularis) is rated Vulnerable on the IUCN Red List (listed since 2000, per Wikipedia) because of few breeding localities and ongoing rapid decline; breeding on Socotra itself was only confirmed in 2005 despite the name.",
+     "kind": "fact",
+     "cites": [
+      "SOC-202"
+     ]
+    },
+    {
+     "text": "Nesting loggerhead turtles (Caretta caretta) at Abalhen Beach on Socotra fell from 206 individuals in 2007 to 95 in 2012, and the submission lists the loggerhead as endangered and on CITES Appendix I.",
+     "kind": "fact",
+     "cites": [
+      "SOC-209"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 0.13,
+   "retrieval_ms": 119.0,
+   "llm_ms": 0.1,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q12",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "When the volcano threatened in October 1961, all 264 islanders left, spent a night on Nightingale Island, and were carried by the Dutch liner Tjisadane to Cape Town, then on to England.",
+     "kind": "fact",
+     "cites": [
+      "TDC-019"
+     ]
+    },
+    {
+     "text": "The 1961 evacuees were taken to England; after the 1962 Royal Society expedition judged the settlement largely intact, most islanders returned in 1963, the first group in April and the rest in November.",
+     "kind": "fact",
+     "cites": [
+      "TDC-020"
+     ]
+    },
+    {
+     "text": "Earth tremors from August 1961 preceded a lava dome that formed on 10 October 1961 a few hundred feet east of the village; a 1962 Royal Society team found lava had flowed north and east into the sea.",
+     "kind": "fact",
+     "cites": [
+      "TDC-014"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "TDC-019",
+    "TDC-020",
+    "TDC-014"
+   ],
+   "retrieved_ids": [
+    "TDC-019",
+    "TDC-020",
+    "TDC-014",
+    "TDC-022",
+    "TDC-224",
+    "TDC-215",
+    "TDC-225",
+    "TDC-017",
+    "TDC-206",
+    "TDC-218",
+    "TDC-003",
+    "TDC-226"
+   ],
+   "raw_sentences": [
+    {
+     "text": "When the volcano threatened in October 1961, all 264 islanders left, spent a night on Nightingale Island, and were carried by the Dutch liner Tjisadane to Cape Town, then on to England.",
+     "kind": "fact",
+     "cites": [
+      "TDC-019"
+     ]
+    },
+    {
+     "text": "The 1961 evacuees were taken to England; after the 1962 Royal Society expedition judged the settlement largely intact, most islanders returned in 1963, the first group in April and the rest in November.",
+     "kind": "fact",
+     "cites": [
+      "TDC-020"
+     ]
+    },
+    {
+     "text": "Earth tremors from August 1961 preceded a lava dome that formed on 10 October 1961 a few hundred feet east of the village; a 1962 Royal Society team found lava had flowed north and east into the sea.",
+     "kind": "fact",
+     "cites": [
+      "TDC-014"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 0.15,
+   "retrieval_ms": 150.5,
+   "llm_ms": 0.1,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q13",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "Local services are run by the Shire of Cocos (Keeling) Islands, and residents vote federally in the Northern Territory Division of Lingiari.",
+     "kind": "fact",
+     "cites": [
+      "COC-023"
+     ]
+    },
+    {
+     "text": "The islands became an Australian territory on 23 November 1955 under the Cocos (Keeling) Islands Act 1955.",
+     "kind": "fact",
+     "cites": [
+      "COC-019"
+     ]
+    },
+    {
+     "text": "The islands are an Australian external territory governed under section 122 of the Constitution, with a Minister for Territories, an Administrator appointed by the Governor-General, and Western Australian law applied through the 1955 Act.",
+     "kind": "fact",
+     "cites": [
+      "COC-021"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "COC-023",
+    "COC-019",
+    "COC-021"
+   ],
+   "retrieved_ids": [
+    "COC-023",
+    "COC-019",
+    "COC-021",
+    "COC-022",
+    "COC-033",
+    "COC-216",
+    "COC-224",
+    "COC-020",
+    "COC-035",
+    "COC-211",
+    "COC-010",
+    "COC-032"
+   ],
+   "raw_sentences": [
+    {
+     "text": "Local services are run by the Shire of Cocos (Keeling) Islands, and residents vote federally in the Northern Territory Division of Lingiari.",
+     "kind": "fact",
+     "cites": [
+      "COC-023"
+     ]
+    },
+    {
+     "text": "The islands became an Australian territory on 23 November 1955 under the Cocos (Keeling) Islands Act 1955.",
+     "kind": "fact",
+     "cites": [
+      "COC-019"
+     ]
+    },
+    {
+     "text": "The islands are an Australian external territory governed under section 122 of the Constitution, with a Minister for Territories, an Administrator appointed by the Governor-General, and Western Australian law applied through the 1955 Act.",
+     "kind": "fact",
+     "cites": [
+      "COC-021"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 0.22,
+   "retrieval_ms": 215.1,
+   "llm_ms": 0.1,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q14",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "GBIF backbone match for the Pinta Island tortoise: Chelonoidis abingdonii (usageKey 7451150, rank SPECIES, taxonomic status ACCEPTED, match type EXACT, confidence 99).",
+     "kind": "fact",
+     "cites": [
+      "GBIF-GAL-pinta-island-tortoise-SPECIES"
+     ]
+    },
+    {
+     "text": "GBIF holds 57 occurrence records worldwide for the Pinta Island tortoise.",
+     "kind": "fact",
+     "cites": [
+      "GBIF-GAL-pinta-island-tortoise-OCC"
+     ]
+    },
+    {
+     "text": "A 2012 Yale expedition found 17 first-generation-type hybrids at Wolf Volcano, and in 2020 a young female with direct Pinta ancestry was reported.",
+     "kind": "fact",
+     "cites": [
+      "GAL-037"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "GBIF-GAL-pinta-island-tortoise-SPECIES",
+    "GBIF-GAL-pinta-island-tortoise-OCC",
+    "GAL-037"
+   ],
+   "retrieved_ids": [
+    "GBIF-GAL-pinta-island-tortoise-SPECIES",
+    "GBIF-GAL-pinta-island-tortoise-OCC",
+    "GAL-037",
+    "GAL-032",
+    "GAL-036",
+    "GAL-034",
+    "GAL-209",
+    "GAL-207",
+    "GAL-208",
+    "GAL-201",
+    "GAL-210",
+    "GAL-206",
+    "GAL-203",
+    "GAL-226",
+    "GAL-028",
+    "GAL-029"
+   ],
+   "raw_sentences": [
+    {
+     "text": "GBIF backbone match for the Pinta Island tortoise: Chelonoidis abingdonii (usageKey 7451150, rank SPECIES, taxonomic status ACCEPTED, match type EXACT, confidence 99).",
+     "kind": "fact",
+     "cites": [
+      "GBIF-GAL-pinta-island-tortoise-SPECIES"
+     ]
+    },
+    {
+     "text": "GBIF holds 57 occurrence records worldwide for the Pinta Island tortoise.",
+     "kind": "fact",
+     "cites": [
+      "GBIF-GAL-pinta-island-tortoise-OCC"
+     ]
+    },
+    {
+     "text": "A 2012 Yale expedition found 17 first-generation-type hybrids at Wolf Volcano, and in 2020 a young female with direct Pinta ancestry was reported.",
+     "kind": "fact",
+     "cites": [
+      "GAL-037"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 0.14,
+   "retrieval_ms": 143.0,
+   "llm_ms": 0.1,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q15",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "The ACAP page says Bouvetøya has been a nature reserve with its territorial waters since December 1971, equivalent to IUCN Category Ia, is on Norway's tentative World Heritage list, and is a BirdLife Important Bird Area; it also says Norway has not declared a 200-nautical-mile exclusive economic zone, whereas.",
+     "kind": "fact",
+     "cites": [
+      "BOU-226"
+     ]
+    },
+    {
+     "text": "Norwegian authorities call Bouvetøya the world's most remote nature reserve, protected since 1971.",
+     "kind": "fact",
+     "cites": [
+      "BOU-033"
+     ]
+    },
+    {
+     "text": "Bouvet Island is uninhabited; Britannica notes the Norwegian government declared it a nature reserve in 1971.",
+     "kind": "fact",
+     "cites": [
+      "BOU-023"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "BOU-226",
+    "BOU-033",
+    "BOU-023"
+   ],
+   "retrieved_ids": [
+    "BOU-226",
+    "BOU-033",
+    "BOU-023",
+    "BOU-019",
+    "BOU-002",
+    "BOU-020",
+    "BOU-018",
+    "BOU-217",
+    "BOU-213",
+    "BOU-036",
+    "BOU-208",
+    "BOU-214",
+    "BOU-034"
+   ],
+   "raw_sentences": [
+    {
+     "text": "The ACAP page says Bouvetøya has been a nature reserve with its territorial waters since December 1971, equivalent to IUCN Category Ia, is on Norway's tentative World Heritage list, and is a BirdLife Important Bird Area; it also says Norway has not declared a 200-nautical-mile exclusive economic zone, whereas.",
+     "kind": "fact",
+     "cites": [
+      "BOU-226"
+     ]
+    },
+    {
+     "text": "Norwegian authorities call Bouvetøya the world's most remote nature reserve, protected since 1971.",
+     "kind": "fact",
+     "cites": [
+      "BOU-033"
+     ]
+    },
+    {
+     "text": "Bouvet Island is uninhabited; Britannica notes the Norwegian government declared it a nature reserve in 1971.",
+     "kind": "fact",
+     "cites": [
+      "BOU-023"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 0.16,
+   "retrieval_ms": 162.7,
+   "llm_ms": 0.1,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q16",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "NASA POWER climatology for the grid cell nearest 12.510, 53.920 (cell centre 12.51, 53.92).",
+     "kind": "fact",
+     "cites": [
+      "POWER-SOC-TEMP"
+     ]
+    },
+    {
+     "text": "NASA POWER climatology for the grid cell nearest 12.510, 53.920 (cell centre 12.51, 53.92).",
+     "kind": "fact",
+     "cites": [
+      "POWER-SOC-PRECIP"
+     ]
+    },
+    {
+     "text": "At Socotra Airport the annual mean daily maximum is 30.8 C and mean daily minimum 25.1 C, with about 21.7 rainy days a year and average relative humidity of 65%, ranging from 57% in August to 73% in December.",
+     "kind": "fact",
+     "cites": [
+      "SOC-218"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "POWER-SOC-TEMP",
+    "POWER-SOC-PRECIP",
+    "SOC-218"
+   ],
+   "retrieved_ids": [
+    "POWER-SOC-TEMP",
+    "POWER-SOC-PRECIP",
+    "SOC-218",
+    "SOC-007",
+    "SOC-006",
+    "SOC-222",
+    "SOC-005",
+    "SOC-212",
+    "SOC-002",
+    "SOC-008",
+    "SOC-213",
+    "SOC-009",
+    "SOC-216",
+    "SOC-011"
+   ],
+   "raw_sentences": [
+    {
+     "text": "NASA POWER climatology for the grid cell nearest 12.510, 53.920 (cell centre 12.51, 53.92).",
+     "kind": "fact",
+     "cites": [
+      "POWER-SOC-TEMP"
+     ]
+    },
+    {
+     "text": "NASA POWER climatology for the grid cell nearest 12.510, 53.920 (cell centre 12.51, 53.92).",
+     "kind": "fact",
+     "cites": [
+      "POWER-SOC-PRECIP"
+     ]
+    },
+    {
+     "text": "At Socotra Airport the annual mean daily maximum is 30.8 C and mean daily minimum 25.1 C, with about 21.7 rainy days a year and average relative humidity of 65%, ranging from 57% in August to 73% in December.",
+     "kind": "fact",
+     "cites": [
+      "SOC-218"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 0.19,
+   "retrieval_ms": 188.3,
+   "llm_ms": 0.2,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q17",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "NASA POWER climatology for the grid cell nearest -54.417, 3.333 (cell centre -54.417, 3.333).",
+     "kind": "fact",
+     "cites": [
+      "POWER-BOU-WIND"
+     ]
+    },
+    {
+     "text": "NASA POWER climatology for the grid cell nearest -54.417, 3.333 (cell centre -54.417, 3.333).",
+     "kind": "fact",
+     "cites": [
+      "POWER-BOU-HUMID"
+     ]
+    },
+    {
+     "text": "A NASA Earth Observatory astronaut photograph acquired on 13 September 2008 shows abundant sea ice around Bouvet Island.",
+     "kind": "fact",
+     "cites": [
+      "BOU-214"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "POWER-BOU-WIND",
+    "POWER-BOU-HUMID",
+    "BOU-214"
+   ],
+   "retrieved_ids": [
+    "POWER-BOU-WIND",
+    "POWER-BOU-HUMID",
+    "BOU-214",
+    "BOU-004",
+    "BOU-002",
+    "BOU-209",
+    "BOU-220",
+    "BOU-005",
+    "BOU-217",
+    "BOU-001",
+    "BOU-006",
+    "BOU-216",
+    "BOU-008",
+    "BOU-218"
+   ],
+   "raw_sentences": [
+    {
+     "text": "NASA POWER climatology for the grid cell nearest -54.417, 3.333 (cell centre -54.417, 3.333).",
+     "kind": "fact",
+     "cites": [
+      "POWER-BOU-WIND"
+     ]
+    },
+    {
+     "text": "NASA POWER climatology for the grid cell nearest -54.417, 3.333 (cell centre -54.417, 3.333).",
+     "kind": "fact",
+     "cites": [
+      "POWER-BOU-HUMID"
+     ]
+    },
+    {
+     "text": "A NASA Earth Observatory astronaut photograph acquired on 13 September 2008 shows abundant sea ice around Bouvet Island.",
+     "kind": "fact",
+     "cites": [
+      "BOU-214"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 0.17,
+   "retrieval_ms": 172.6,
+   "llm_ms": 0.2,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q18",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "NASA POWER climatology for the grid cell nearest 10.300, -109.220 (cell centre 10.3, -109.22).",
+     "kind": "fact",
+     "cites": [
+      "POWER-CLI-PRECIP"
+     ]
+    },
+    {
+     "text": "Annual rainfall is reported as 3,000-5,000 mm, with relative humidity usually 85-95%.",
+     "kind": "fact",
+     "cites": [
+      "CLI-006"
+     ]
+    },
+    {
+     "text": "Between 11 August and 17 September 1958 a rain gauge on Clipperton collected 890 mm, with 125 to 150 mm falling in some 24-hour periods.",
+     "kind": "fact",
+     "cites": [
+      "CLI-219"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "POWER-CLI-PRECIP",
+    "CLI-006",
+    "CLI-219"
+   ],
+   "retrieved_ids": [
+    "POWER-CLI-PRECIP",
+    "CLI-006",
+    "CLI-219",
+    "CLI-005",
+    "CLI-216",
+    "CLI-215",
+    "CLI-218",
+    "CLI-217",
+    "CLI-036",
+    "CLI-211",
+    "CLI-207",
+    "CLI-212",
+    "CLI-002"
+   ],
+   "raw_sentences": [
+    {
+     "text": "NASA POWER climatology for the grid cell nearest 10.300, -109.220 (cell centre 10.3, -109.22).",
+     "kind": "fact",
+     "cites": [
+      "POWER-CLI-PRECIP"
+     ]
+    },
+    {
+     "text": "Annual rainfall is reported as 3,000-5,000 mm, with relative humidity usually 85-95%.",
+     "kind": "fact",
+     "cites": [
+      "CLI-006"
+     ]
+    },
+    {
+     "text": "Between 11 August and 17 September 1958 a rain gauge on Clipperton collected 890 mm, with 125 to 150 mm falling in some 24-hour periods.",
+     "kind": "fact",
+     "cites": [
+      "CLI-219"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 0.17,
+   "retrieval_ms": 170.4,
+   "llm_ms": 0.1,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q19",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "NASA POWER climatology for the grid cell nearest -12.187, 96.828 (cell centre -12.187, 96.828).",
+     "kind": "fact",
+     "cites": [
+      "POWER-COC-TEMP"
+     ]
+    },
+    {
+     "text": "Temperatures are steady: the mean daily maximum is about 29.1 °C and the mean minimum about 24.7 °C, with March warmest (mean max 30.1 °C) and July-August coolest (mean max 28.1 °C).",
+     "kind": "fact",
+     "cites": [
+      "COC-006"
+     ]
+    },
+    {
+     "text": "A literature review in the Western Australian CHRMAP appendices says sea surface temperature at the Cocos (Keeling) Islands has increased by about 0.5 degrees C, with stronger warming in winter.",
+     "kind": "fact",
+     "cites": [
+      "COC-216"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "POWER-COC-TEMP",
+    "COC-006",
+    "COC-216"
+   ],
+   "retrieved_ids": [
+    "POWER-COC-TEMP",
+    "COC-006",
+    "COC-216",
+    "COC-217",
+    "COC-007",
+    "COC-008",
+    "COC-009",
+    "COC-222",
+    "COC-218",
+    "COC-022",
+    "COC-033",
+    "COC-001",
+    "COC-032"
+   ],
+   "raw_sentences": [
+    {
+     "text": "NASA POWER climatology for the grid cell nearest -12.187, 96.828 (cell centre -12.187, 96.828).",
+     "kind": "fact",
+     "cites": [
+      "POWER-COC-TEMP"
+     ]
+    },
+    {
+     "text": "Temperatures are steady: the mean daily maximum is about 29.1 °C and the mean minimum about 24.7 °C, with March warmest (mean max 30.1 °C) and July-August coolest (mean max 28.1 °C).",
+     "kind": "fact",
+     "cites": [
+      "COC-006"
+     ]
+    },
+    {
+     "text": "A literature review in the Western Australian CHRMAP appendices says sea surface temperature at the Cocos (Keeling) Islands has increased by about 0.5 degrees C, with stronger warming in winter.",
+     "kind": "fact",
+     "cites": [
+      "COC-216"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 0.19,
+   "retrieval_ms": 183.6,
+   "llm_ms": 0.2,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q20",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "GBIF backbone match for the Galápagos sea lion: Zalophus wollebaeki (usageKey 2433460, rank SPECIES, taxonomic status ACCEPTED, match type EXACT, confidence 99).",
+     "kind": "fact",
+     "cites": [
+      "GBIF-GAL-galapagos-sea-lion-SPECIES"
+     ]
+    },
+    {
+     "text": "GBIF holds 8,306 occurrence records worldwide for the Galápagos sea lion.",
+     "kind": "fact",
+     "cites": [
+      "GBIF-GAL-galapagos-sea-lion-OCC"
+     ]
+    },
+    {
+     "text": "Galápagos sea lions live and breed on all the main Galápagos islands and several smaller ones, have colonised Isla de la Plata, and have been sighted from mainland Ecuador north to Isla Gorgona, Colombia.",
+     "kind": "fact",
+     "cites": [
+      "GAL-104"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "GBIF-GAL-galapagos-sea-lion-SPECIES",
+    "GBIF-GAL-galapagos-sea-lion-OCC",
+    "GAL-104"
+   ],
+   "retrieved_ids": [
+    "GBIF-GAL-galapagos-sea-lion-SPECIES",
+    "GBIF-GAL-galapagos-sea-lion-OCC",
+    "GAL-104",
+    "GAL-101",
+    "GAL-103",
+    "GAL-109",
+    "GAL-105",
+    "GAL-108",
+    "GAL-102",
+    "GAL-110",
+    "GAL-222",
+    "GAL-220",
+    "GAL-221",
+    "GAL-005"
+   ],
+   "raw_sentences": [
+    {
+     "text": "GBIF backbone match for the Galápagos sea lion: Zalophus wollebaeki (usageKey 2433460, rank SPECIES, taxonomic status ACCEPTED, match type EXACT, confidence 99).",
+     "kind": "fact",
+     "cites": [
+      "GBIF-GAL-galapagos-sea-lion-SPECIES"
+     ]
+    },
+    {
+     "text": "GBIF holds 8,306 occurrence records worldwide for the Galápagos sea lion.",
+     "kind": "fact",
+     "cites": [
+      "GBIF-GAL-galapagos-sea-lion-OCC"
+     ]
+    },
+    {
+     "text": "Galápagos sea lions live and breed on all the main Galápagos islands and several smaller ones, have colonised Isla de la Plata, and have been sighted from mainland Ecuador north to Isla Gorgona, Colombia.",
+     "kind": "fact",
+     "cites": [
+      "GAL-104"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 0.19,
+   "retrieval_ms": 187.4,
+   "llm_ms": 0.1,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q21",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "GBIF backbone match for the Napoleon wrasse: Cheilinus undulatus (usageKey 2383313, rank SPECIES, taxonomic status ACCEPTED, match type EXACT, confidence 99).",
+     "kind": "fact",
+     "cites": [
+      "GBIF-COC-napoleon-wrasse-SPECIES"
+     ]
+    },
+    {
+     "text": "GBIF holds 5,480 occurrence records worldwide for the Napoleon wrasse.",
+     "kind": "fact",
+     "cites": [
+      "GBIF-COC-napoleon-wrasse-OCC"
+     ]
+    },
+    {
+     "text": "GBIF holds 24 occurrence records of Cheilinus undulatus from the Cocos (Keeling) Islands, including recent human observations.",
+     "kind": "fact",
+     "cites": [
+      "COC-034"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "GBIF-COC-napoleon-wrasse-SPECIES",
+    "GBIF-COC-napoleon-wrasse-OCC",
+    "COC-034"
+   ],
+   "retrieved_ids": [
+    "GBIF-COC-napoleon-wrasse-SPECIES",
+    "GBIF-COC-napoleon-wrasse-OCC",
+    "COC-034",
+    "COC-016",
+    "COC-206",
+    "COC-204",
+    "COC-225",
+    "COC-205",
+    "COC-224",
+    "COC-207",
+    "COC-226",
+    "COC-223",
+    "COC-035",
+    "COC-037"
+   ],
+   "raw_sentences": [
+    {
+     "text": "GBIF backbone match for the Napoleon wrasse: Cheilinus undulatus (usageKey 2383313, rank SPECIES, taxonomic status ACCEPTED, match type EXACT, confidence 99).",
+     "kind": "fact",
+     "cites": [
+      "GBIF-COC-napoleon-wrasse-SPECIES"
+     ]
+    },
+    {
+     "text": "GBIF holds 5,480 occurrence records worldwide for the Napoleon wrasse.",
+     "kind": "fact",
+     "cites": [
+      "GBIF-COC-napoleon-wrasse-OCC"
+     ]
+    },
+    {
+     "text": "GBIF holds 24 occurrence records of Cheilinus undulatus from the Cocos (Keeling) Islands, including recent human observations.",
+     "kind": "fact",
+     "cites": [
+      "COC-034"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 0.16,
+   "retrieval_ms": 157.5,
+   "llm_ms": 0.1,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q22",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "Socotra's highest point is Mashanig in the Hajhir Mountains at about 1,503 m.",
+     "kind": "fact",
+     "cites": [
+      "SOC-011"
+     ]
+    },
+    {
+     "text": "The Socotra grosbeak (Rhynchostruthus socotranus) is found only on Socotra and is listed as Least Concern by the IUCN per Wikipedia, with about 6,500 adult individuals living from mountains to sea level in dry scrub or woodland of Euphorbia, Acacia and Juniperus.",
+     "kind": "fact",
+     "cites": [
+      "SOC-206"
+     ]
+    },
+    {
+     "text": "Wikipedia lists the Socotra bunting (Emberiza socotrana) as Near Threatened (IUCN 3.1), endemic to Socotra, with habitat loss as a threat to its high-altitude shrubland habitat.",
+     "kind": "fact",
+     "cites": [
+      "SOC-205"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "SOC-011",
+    "SOC-206",
+    "SOC-205"
+   ],
+   "retrieved_ids": [
+    "SOC-011",
+    "SOC-206",
+    "SOC-205",
+    "SOC-032",
+    "SOC-207",
+    "SOC-214",
+    "SOC-204",
+    "SOC-014",
+    "SOC-010",
+    "SOC-201",
+    "SOC-003",
+    "SOC-202",
+    "SOC-012",
+    "SOC-013"
+   ],
+   "raw_sentences": [
+    {
+     "text": "Socotra's highest point is Mashanig in the Hajhir Mountains at about 1,503 m.",
+     "kind": "fact",
+     "cites": [
+      "SOC-011"
+     ]
+    },
+    {
+     "text": "The Socotra grosbeak (Rhynchostruthus socotranus) is found only on Socotra and is listed as Least Concern by the IUCN per Wikipedia, with about 6,500 adult individuals living from mountains to sea level in dry scrub or woodland of Euphorbia, Acacia and Juniperus.",
+     "kind": "fact",
+     "cites": [
+      "SOC-206"
+     ]
+    },
+    {
+     "text": "Wikipedia lists the Socotra bunting (Emberiza socotrana) as Near Threatened (IUCN 3.1), endemic to Socotra, with habitat loss as a threat to its high-altitude shrubland habitat.",
+     "kind": "fact",
+     "cites": [
+      "SOC-205"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 0.16,
+   "retrieval_ms": 161.2,
+   "llm_ms": 0.1,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q23",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "Sea-ice analysis of the first Bouvet ice core says the island sits on the edge of the median maximum sea ice extent (1981-2010 median, 15% concentration threshold), so in low-ice years it may lie outside the sea ice zone.",
+     "kind": "fact",
+     "cites": [
+      "BOU-215"
+     ]
+    },
+    {
+     "text": "Bouvet Island covers about 49 km2, according to the Norwegian Polar Institute.",
+     "kind": "fact",
+     "cites": [
+      "BOU-002"
+     ]
+    },
+    {
+     "text": "The Cryosphere ice-core study measured annual snow accumulation on Bouvet Island at 0.59 m water equivalent, based on annual layer counting of chemical and isotopic species by King et al.",
+     "kind": "fact",
+     "cites": [
+      "BOU-218"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "BOU-215",
+    "BOU-002",
+    "BOU-218"
+   ],
+   "retrieved_ids": [
+    "BOU-215",
+    "BOU-002",
+    "BOU-218",
+    "BOU-217",
+    "BOU-222",
+    "BOU-214",
+    "BOU-220",
+    "BOU-216",
+    "BOU-012",
+    "BOU-005",
+    "BOU-212",
+    "BOU-219"
+   ],
+   "raw_sentences": [
+    {
+     "text": "Sea-ice analysis of the first Bouvet ice core says the island sits on the edge of the median maximum sea ice extent (1981-2010 median, 15% concentration threshold), so in low-ice years it may lie outside the sea ice zone.",
+     "kind": "fact",
+     "cites": [
+      "BOU-215"
+     ]
+    },
+    {
+     "text": "Bouvet Island covers about 49 km2, according to the Norwegian Polar Institute.",
+     "kind": "fact",
+     "cites": [
+      "BOU-002"
+     ]
+    },
+    {
+     "text": "The Cryosphere ice-core study measured annual snow accumulation on Bouvet Island at 0.59 m water equivalent, based on annual layer counting of chemical and isotopic species by King et al.",
+     "kind": "fact",
+     "cites": [
+      "BOU-218"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 0.16,
+   "retrieval_ms": 161.6,
+   "llm_ms": 0.1,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q24",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "The Pitcairn Islands Marine Protected Area was established in 2016 and is given as 841,910 km2 by the Cefas report card, whereas Wikipedia and Pew give 834,334 km2 for the March 2015 reserve announcement.",
+     "kind": "fact",
+     "cites": [
+      "PIT-216"
+     ]
+    },
+    {
+     "text": "Pitcairn is small: about 4.5 km2, roughly 3.5 km long and 1.8 km wide according to one source (others give 5 km2 or 450 ha).",
+     "kind": "fact",
+     "cites": [
+      "PIT-012"
+     ]
+    },
+    {
+     "text": "The Pitcairn group has four islands (Pitcairn, Henderson, Ducie and Oeno) with about 47 km2 of land in total, of which Henderson accounts for about 86%.",
+     "kind": "fact",
+     "cites": [
+      "PIT-004"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "PIT-216",
+    "PIT-012",
+    "PIT-004"
+   ],
+   "retrieved_ids": [
+    "PIT-216",
+    "PIT-012",
+    "PIT-004",
+    "PIT-024",
+    "PIT-003",
+    "PIT-224",
+    "PIT-001",
+    "PIT-020",
+    "PIT-008",
+    "PIT-033",
+    "PIT-010",
+    "PIT-223"
+   ],
+   "raw_sentences": [
+    {
+     "text": "The Pitcairn Islands Marine Protected Area was established in 2016 and is given as 841,910 km2 by the Cefas report card, whereas Wikipedia and Pew give 834,334 km2 for the March 2015 reserve announcement.",
+     "kind": "fact",
+     "cites": [
+      "PIT-216"
+     ]
+    },
+    {
+     "text": "Pitcairn is small: about 4.5 km2, roughly 3.5 km long and 1.8 km wide according to one source (others give 5 km2 or 450 ha).",
+     "kind": "fact",
+     "cites": [
+      "PIT-012"
+     ]
+    },
+    {
+     "text": "The Pitcairn group has four islands (Pitcairn, Henderson, Ducie and Oeno) with about 47 km2 of land in total, of which Henderson accounts for about 86%.",
+     "kind": "fact",
+     "cites": [
+      "PIT-004"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 0.18,
+   "retrieval_ms": 180.5,
+   "llm_ms": 0.2,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q25",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "NASA POWER climatology for the grid cell nearest -12.187, 96.828 (cell centre -12.187, 96.828).",
+     "kind": "fact",
+     "cites": [
+      "POWER-COC-PRECIP"
+     ]
+    },
+    {
+     "text": "At Cocos Island Airport, rainfall averages about 1,970 mm per year (records from 1901), peaking in April at about 243 mm and bottoming out in October at about 79 mm.",
+     "kind": "fact",
+     "cites": [
+      "COC-005"
+     ]
+    },
+    {
+     "text": "The Australian government describes the climate as tropical and very humid, with temperatures of 23-30 °C, about 2,000 mm of rain a year mostly from January to August, and south-east trade winds most of the year.",
+     "kind": "fact",
+     "cites": [
+      "COC-008"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "POWER-COC-PRECIP",
+    "COC-005",
+    "COC-008"
+   ],
+   "retrieved_ids": [
+    "POWER-COC-PRECIP",
+    "COC-005",
+    "COC-008",
+    "COC-218",
+    "COC-007",
+    "COC-217",
+    "COC-221",
+    "COC-211",
+    "COC-009",
+    "COC-209",
+    "COC-001",
+    "COC-002",
+    "COC-203"
+   ],
+   "raw_sentences": [
+    {
+     "text": "NASA POWER climatology for the grid cell nearest -12.187, 96.828 (cell centre -12.187, 96.828).",
+     "kind": "fact",
+     "cites": [
+      "POWER-COC-PRECIP"
+     ]
+    },
+    {
+     "text": "At Cocos Island Airport, rainfall averages about 1,970 mm per year (records from 1901), peaking in April at about 243 mm and bottoming out in October at about 79 mm.",
+     "kind": "fact",
+     "cites": [
+      "COC-005"
+     ]
+    },
+    {
+     "text": "The Australian government describes the climate as tropical and very humid, with temperatures of 23-30 °C, about 2,000 mm of rain a year mostly from January to August, and south-east trade winds most of the year.",
+     "kind": "fact",
+     "cites": [
+      "COC-008"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 0.14,
+   "retrieval_ms": 137.7,
+   "llm_ms": 0.2,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q26",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "Local government is led by an elected Island Council that acts as the legislature, with a Mayor customarily heading day-to-day administration and a King's Governor appointed from the UK.",
+     "kind": "fact",
+     "cites": [
+      "PIT-022"
+     ]
+    },
+    {
+     "text": "The Henderson petrel (Pterodroma atrata), which Wikipedia lists as Endangered (IUCN 3.1), is believed to nest only on Henderson Island in the Pitcairn group; current colony numbers are put at about 40,000, and Brooke estimated roughly 16,000 breeding pairs in 1991/92.",
+     "kind": "fact",
+     "cites": [
+      "PIT-201"
+     ]
+    },
+    {
+     "text": "On 20 September 1793 violence killed most of the remaining English settlers, including Fletcher Christian; John Adams later became the community's leader.",
+     "kind": "fact",
+     "cites": [
+      "PIT-018"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "PIT-022",
+    "PIT-201",
+    "PIT-018"
+   ],
+   "retrieved_ids": [
+    "PIT-022",
+    "PIT-201",
+    "PIT-018",
+    "PIT-216",
+    "PIT-021",
+    "PIT-204",
+    "PIT-033",
+    "PIT-202",
+    "PIT-205",
+    "PIT-214",
+    "PIT-206",
+    "PIT-218"
+   ],
+   "raw_sentences": [
+    {
+     "text": "Local government is led by an elected Island Council that acts as the legislature, with a Mayor customarily heading day-to-day administration and a King's Governor appointed from the UK.",
+     "kind": "fact",
+     "cites": [
+      "PIT-022"
+     ]
+    },
+    {
+     "text": "The Henderson petrel (Pterodroma atrata), which Wikipedia lists as Endangered (IUCN 3.1), is believed to nest only on Henderson Island in the Pitcairn group; current colony numbers are put at about 40,000, and Brooke estimated roughly 16,000 breeding pairs in 1991/92.",
+     "kind": "fact",
+     "cites": [
+      "PIT-201"
+     ]
+    },
+    {
+     "text": "On 20 September 1793 violence killed most of the remaining English settlers, including Fletcher Christian; John Adams later became the community's leader.",
+     "kind": "fact",
+     "cites": [
+      "PIT-018"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 0.14,
+   "retrieval_ms": 139.8,
+   "llm_ms": 0.1,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q27",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "My instruments searched my field notes, NASA climate readings and species records and found nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "Nothing in the curated island notes, NASA POWER data or GBIF records relates to this question.",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": false,
+   "seconds": 0.18,
+   "retrieval_ms": 178.9,
+   "llm_ms": 0.0,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q28",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "At Socotra Airport the annual mean daily maximum is 30.8 C and mean daily minimum 25.1 C, with about 21.7 rainy days a year and average relative humidity of 65%, ranging from 57% in August to 73% in December.",
+     "kind": "fact",
+     "cites": [
+      "SOC-218"
+     ]
+    },
+    {
+     "text": "The Socotra grosbeak (Rhynchostruthus socotranus) is found only on Socotra and is listed as Least Concern by the IUCN per Wikipedia, with about 6,500 adult individuals living from mountains to sea level in dry scrub or woodland of Euphorbia, Acacia and Juniperus.",
+     "kind": "fact",
+     "cites": [
+      "SOC-206"
+     ]
+    },
+    {
+     "text": "The Socotra buzzard (Buteo socotraensis) occurs only on Socotra, Yemen.",
+     "kind": "fact",
+     "cites": [
+      "SOC-032"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "SOC-218",
+    "SOC-206",
+    "SOC-032"
+   ],
+   "retrieved_ids": [
+    "SOC-218",
+    "SOC-206",
+    "SOC-032",
+    "SOC-207",
+    "SOC-204",
+    "SOC-205",
+    "SOC-201",
+    "SOC-203",
+    "SOC-226",
+    "SOC-034",
+    "SOC-010",
+    "SOC-030"
+   ],
+   "raw_sentences": [
+    {
+     "text": "At Socotra Airport the annual mean daily maximum is 30.8 C and mean daily minimum 25.1 C, with about 21.7 rainy days a year and average relative humidity of 65%, ranging from 57% in August to 73% in December.",
+     "kind": "fact",
+     "cites": [
+      "SOC-218"
+     ]
+    },
+    {
+     "text": "The Socotra grosbeak (Rhynchostruthus socotranus) is found only on Socotra and is listed as Least Concern by the IUCN per Wikipedia, with about 6,500 adult individuals living from mountains to sea level in dry scrub or woodland of Euphorbia, Acacia and Juniperus.",
+     "kind": "fact",
+     "cites": [
+      "SOC-206"
+     ]
+    },
+    {
+     "text": "The Socotra buzzard (Buteo socotraensis) occurs only on Socotra, Yemen.",
+     "kind": "fact",
+     "cites": [
+      "SOC-032"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 0.14,
+   "retrieval_ms": 141.9,
+   "llm_ms": 0.1,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q29",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "Lonesome George was found dead on 24 June 2012 by his caretaker Fausto Llerena after about 40 years of care.",
+     "kind": "fact",
+     "cites": [
+      "GAL-033"
+     ]
+    },
+    {
+     "text": "Lack of fresh water limited early visits to the Galápagos, and Wikipedia says two men and ten horses died of thirst there in 1535; Laguna El Junco on San Cristóbal is described as the archipelago's largest freshwater lake.",
+     "kind": "fact",
+     "cites": [
+      "GAL-216"
+     ]
+    },
+    {
+     "text": "Island ages increase to the east, from Fernandina at about 0.05 million years to San Cristóbal at about 3.2 million years.",
+     "kind": "fact",
+     "cites": [
+      "GAL-014"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "GAL-033",
+    "GAL-216",
+    "GAL-014"
+   ],
+   "retrieved_ids": [
+    "GAL-033",
+    "GAL-216",
+    "GAL-014",
+    "GAL-221",
+    "GAL-218",
+    "GAL-219",
+    "GAL-215",
+    "GAL-029",
+    "GAL-013",
+    "GAL-225",
+    "GAL-211",
+    "GAL-016"
+   ],
+   "raw_sentences": [
+    {
+     "text": "Lonesome George was found dead on 24 June 2012 by his caretaker Fausto Llerena after about 40 years of care.",
+     "kind": "fact",
+     "cites": [
+      "GAL-033"
+     ]
+    },
+    {
+     "text": "Lack of fresh water limited early visits to the Galápagos, and Wikipedia says two men and ten horses died of thirst there in 1535; Laguna El Junco on San Cristóbal is described as the archipelago's largest freshwater lake.",
+     "kind": "fact",
+     "cites": [
+      "GAL-216"
+     ]
+    },
+    {
+     "text": "Island ages increase to the east, from Fernandina at about 0.05 million years to San Cristóbal at about 3.2 million years.",
+     "kind": "fact",
+     "cites": [
+      "GAL-014"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 0.18,
+   "retrieval_ms": 174.6,
+   "llm_ms": 0.1,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q30",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "The southern giant petrel (Macronectes giganteus), a species covered by the ACAP agreement, once bred in small numbers on Bouvetøya: 20-25 chicks were seen at Nyrøysa in February 1977, and the last breeding record is a single nest seen on 24 January 1981.",
+     "kind": "fact",
+     "cites": [
+      "BOU-201"
+     ]
+    },
+    {
+     "text": "Chinstrap penguin counts at Nyrøysa fell from 2,700 in 1990 to 422 in 1997, probably because fur seals took over penguin territory.",
+     "kind": "fact",
+     "cites": [
+      "BOU-029"
+     ]
+    },
+    {
+     "text": "Growing fur seal numbers appear to be displacing penguins from breeding space at Nyrøysa.",
+     "kind": "fact",
+     "cites": [
+      "BOU-032"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "BOU-201",
+    "BOU-029",
+    "BOU-032"
+   ],
+   "retrieved_ids": [
+    "BOU-201",
+    "BOU-029",
+    "BOU-032",
+    "BOU-039",
+    "BOU-204",
+    "BOU-202",
+    "BOU-027",
+    "BOU-210",
+    "BOU-035",
+    "BOU-221",
+    "BOU-025",
+    "BOU-009"
+   ],
+   "raw_sentences": [
+    {
+     "text": "The southern giant petrel (Macronectes giganteus), a species covered by the ACAP agreement, once bred in small numbers on Bouvetøya: 20-25 chicks were seen at Nyrøysa in February 1977, and the last breeding record is a single nest seen on 24 January 1981.",
+     "kind": "fact",
+     "cites": [
+      "BOU-201"
+     ]
+    },
+    {
+     "text": "Chinstrap penguin counts at Nyrøysa fell from 2,700 in 1990 to 422 in 1997, probably because fur seals took over penguin territory.",
+     "kind": "fact",
+     "cites": [
+      "BOU-029"
+     ]
+    },
+    {
+     "text": "Growing fur seal numbers appear to be displacing penguins from breeding space at Nyrøysa.",
+     "kind": "fact",
+     "cites": [
+      "BOU-032"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 0.15,
+   "retrieval_ms": 154.4,
+   "llm_ms": 0.2,
+   "tokens_in": 0,
+   "tokens_out": 0
+  }
+ ]
+}

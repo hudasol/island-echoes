@@ -20,7 +20,7 @@ jobs:
       - name: Install pinned runtime dependencies and dev tools
         run: |
           pip install -r requirements.lock
-          pip install pytest respx ruff
+          pip install pytest respx ruff numpy
       - name: Lint
         run: ruff check .
       - name: Validate fact files

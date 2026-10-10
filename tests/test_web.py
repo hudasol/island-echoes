@@ -91,3 +91,22 @@ def test_library_cards_always_show_confidence():
 def test_fact_cards_link_to_a_prefilled_issue():
     js = (WEB / "app.js").read_text()
     assert "github.com/hudasol/island-echoes/issues/new" in js and "Report a problem" in js
+
+
+def test_stats_page_is_served_and_csp_safe(tmp_settings, store, retriever):
+    from fastapi.testclient import TestClient
+
+    from app.chat.service import ChatService
+    from app.main import create_app
+
+    c = TestClient(create_app(tmp_settings, ChatService(store, retriever, None)))
+    page = c.get("/stats.html")
+    assert page.status_code == 200 and "<script src=\"/stats.js\">" in page.text
+    assert "onclick" not in page.text and "<script>" not in page.text  # CSP is script-src 'self'
+    assert c.get("/stats.js").status_code == 200 and c.get("/stats.css").status_code == 200
+    assert c.get("/api/stats").json()["events"] == 0
+
+
+def test_chat_box_follows_the_server_not_a_query_flag():
+    js = (WEB / "app.js").read_text()
+    assert "has(\"claude\")" not in js and "h.chat_enabled" in js

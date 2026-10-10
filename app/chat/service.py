@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import time
 from dataclasses import dataclass, field
 
 from ..data.islands import IslandStore
@@ -39,6 +40,20 @@ class ChatResult:
     repaired: bool = False
     llm_called: bool = False
     notes: list[str] = field(default_factory=list)
+    retrieval_ms: float = 0.0
+    llm_ms: float = 0.0
+    tokens_in: int = 0
+    tokens_out: int = 0
+    provider: str = ""
+    model: str = ""
+    retrieval_mode: str = ""
+
+
+@dataclass
+class _Meter:
+    ms: float = 0.0
+    tok_in: int = 0
+    tok_out: int = 0
 
 
 class ChatService:
@@ -62,8 +77,15 @@ class ChatService:
             last_user = next((t for who, t in reversed(history) if who == "User"), "")
             query = f"{last_user} {message}".strip()
 
+        t0 = time.perf_counter()
         res = self.retriever.search(island.slug, query, creature.slug)
-        base = dict(island=island.slug, creature=creature.slug, retrieved=res.evidence, notes=list(res.notes))
+        retrieval_ms = (time.perf_counter() - t0) * 1000
+        meter = _Meter()
+        base = dict(
+            island=island.slug, creature=creature.slug, retrieved=res.evidence, notes=list(res.notes),
+            retrieval_ms=retrieval_ms, retrieval_mode=getattr(self.retriever, "mode", "bm25"),
+            provider=getattr(self.llm, "provider", ""), model=getattr(self.llm, "model", ""),
+        )
 
         if not res.has_evidence:
             return ChatResult(
@@ -80,7 +102,7 @@ class ChatService:
         names = grounding.allowed_names(island.name, island.alt_names, [creature.common_name, creature.scientific_name])
         system = prompts.build_system(island, creature)
 
-        out = self._attempt(system, message, res.evidence, history, None)
+        out = self._attempt(system, message, res.evidence, history, None, meter)
         checked = grounding.check_sentences(out.get("sentences", []), evidence, message, names)
         raw = [{"text": c.text, "kind": c.kind, "cites": c.cites} for c in checked]
         raw_issues = [{"text": c.text, "issues": c.issues} for c in checked if c.issues]
@@ -89,7 +111,7 @@ class ChatService:
         if raw_issues:
             repaired = True
             fb = prompts.repair_feedback([(i["text"], i["issues"]) for i in raw_issues])
-            out2 = self._attempt(system, message, res.evidence, history, fb)
+            out2 = self._attempt(system, message, res.evidence, history, fb, meter)
             checked = grounding.check_sentences(out2.get("sentences", []), evidence, message, names)
             out = out2
 
@@ -120,16 +142,23 @@ class ChatService:
             raw_issues=raw_issues,
             repaired=repaired,
             llm_called=True,
+            llm_ms=meter.ms,
+            tokens_in=meter.tok_in,
+            tokens_out=meter.tok_out,
             **base,
         )
 
-    def _attempt(self, system, message, evidence, history, feedback) -> dict:
+    def _attempt(self, system, message, evidence, history, feedback, meter) -> dict:
         assert self.llm is not None
         user = prompts.build_user(message, evidence, history, feedback)
+        t0 = time.perf_counter()
         try:
             out = self.llm.answer(system, user)
-        except LLMError:
-            raise
+        finally:
+            meter.ms += (time.perf_counter() - t0) * 1000
+        usage = getattr(self.llm, "last_usage", None)
+        meter.tok_in += getattr(usage, "input_tokens", 0) or 0
+        meter.tok_out += getattr(usage, "output_tokens", 0) or 0
         if not isinstance(out, dict) or not isinstance(out.get("sentences", []), list):
             raise LLMError("malformed model output")
         return out

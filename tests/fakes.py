@@ -6,6 +6,9 @@ from __future__ import annotations
 class ScriptedLLM:
     """Returns pre-written tool outputs in order and records every prompt it was given."""
 
+    provider = "scripted"
+    model = "test"
+
     def __init__(self, *outputs: dict):
         self.outputs = list(outputs)
         self.calls: list[tuple[str, str]] = []

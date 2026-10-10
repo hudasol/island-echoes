@@ -21,7 +21,7 @@ ROOT = Path(__file__).resolve().parent.parent
 
 @pytest.fixture(scope="session")
 def real_settings() -> Settings:
-    return Settings(anthropic_api_key=None)
+    return Settings(anthropic_api_key=None, telemetry=False)
 
 
 @pytest.fixture(scope="session")
@@ -38,6 +38,7 @@ def tmp_settings(tmp_path) -> Settings:
         anthropic_api_key=None,
         snapshots_dir=snaps,
         cache_dir=tmp_path / "cache",
+        telemetry_path=tmp_path / "telemetry.db",
     )
 
 

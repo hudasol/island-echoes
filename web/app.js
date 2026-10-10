@@ -438,7 +438,10 @@
     try { S.islands = await api("/api/islands"); }
     catch (e) { $("globe-error").hidden = false; $("globe-error").textContent = "Could not reach the Island Echoes server. " + e.message; return; }
     buildIndex(); initGlobe($("globe"));
-    api("/api/health").then((h) => { $("chat-details").hidden = !(h.chat_enabled && new URLSearchParams(location.search).has("claude")); }).catch(() => {});
+    api("/api/health").then((h) => {
+      $("chat-details").hidden = !h.chat_enabled;
+      if (h.chat_enabled && $("chat-model")) $("chat-model").textContent = `Model: ${h.llm}. Retrieval: ${h.retrieval_mode}.`;
+    }).catch(() => {});
     const [h, t] = location.hash.slice(1).split("/"); if (h && S.islands.some((i) => i.slug === h)) select(h, undefined, t, false);
     if ("serviceWorker" in navigator && location.protocol !== "file:") navigator.serviceWorker.register("/sw.js").catch(() => {});
   }

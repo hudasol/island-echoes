@@ -14,6 +14,7 @@ import unicodedata
 from collections import Counter
 from dataclasses import dataclass, field
 
+from ..retrieval.dense import rrf
 from .islands import IslandStore
 from .models import Evidence, Island
 from .sources import SourceStore, SourceUnavailable
@@ -260,9 +261,20 @@ class LibraryResult:
 
 
 class Retriever:
-    def __init__(self, islands: IslandStore, sources: SourceStore, k: int = 12):
+    def __init__(
+        self,
+        islands: IslandStore,
+        sources: SourceStore,
+        k: int = 12,
+        dense=None,
+        mode: str = "bm25",
+        dense_min_sim: float = 0.55,
+    ):
         self.islands, self.sources, self.k = islands, sources, k
         self._index: dict[tuple[str, str], BM25] = {}
+        self.dense = dense
+        self.mode = mode if dense is not None else "bm25"
+        self.dense_min_sim = dense_min_sim
 
     def _bm25(self, island: Island, creature_slug: str) -> BM25:
         key = (island.slug, creature_slug)
@@ -383,7 +395,16 @@ class Retriever:
         return LibraryResult(results=matched[:limit], counts=dict(counts), total=len(matched), notes=notes,
                              quality=quality, partial_ids=partial_ids)
 
-    def search(self, island_slug: str, query: str, creature_slug: str | None = None) -> RetrievalResult:
+    def rank(
+        self, island_slug: str, query: str, creature_slug: str | None = None, mode: str | None = None
+    ) -> tuple[list[Evidence], dict]:
+        """Best-first facts for a question under one retrieval mode, plus the numbers behind the gate.
+
+        Used by search() and by the retrieval eval, so both measure the same code path.
+        """
+        mode = mode or self.mode
+        if mode != "bm25" and self.dense is None:
+            raise ValueError("dense retrieval is not loaded")
         island = self.islands.get(island_slug)
         creature = island.creature(creature_slug)
         index = self._bm25(island, creature.slug)
@@ -405,7 +426,28 @@ class Retriever:
 
         ranked = index.score(expand(query, index.vocab), boost)
         top = ranked[0][0] if ranked else 0.0
-        picked = [e for s, e in ranked[: self.k] if s > 0] if top >= MIN_OVERLAP_SCORE else []
+        info = {"bm25_top": top, "dense_top": None, "cats": cats, "raw_words": raw_words, "mode": mode,
+                "bm25_ranked": ranked, "island": island, "creature": creature}
+        by_id = {e.id: e for _, e in ranked}
+        lexical = [e for s_, e in ranked if s_ > 0]
+        if mode == "bm25":
+            return lexical, info
+        drank = self.dense.rank(query, [e.id for _, e in ranked])
+        info["dense_top"] = drank[0][0] if drank else None
+        if mode == "dense":
+            return [by_id[i] for _, i in drank], info
+        # hybrid: fuse the lexical list with the dense list
+        fused = rrf([[e.id for e in lexical], [i for _, i in drank]])
+        order = sorted(fused, key=lambda i: -fused[i])
+        return [by_id[i] for i in order], info
+
+    def search(self, island_slug: str, query: str, creature_slug: str | None = None) -> RetrievalResult:
+        order, info = self.rank(island_slug, query, creature_slug)
+        island, creature = info["island"], info["creature"]
+        ranked, top, cats = info["bm25_ranked"], info["bm25_top"], info["cats"]
+        dense_top = info["dense_top"]
+        passes_gate = top >= MIN_OVERLAP_SCORE or (dense_top is not None and dense_top >= self.dense_min_sim)
+        picked = order[: self.k] if passes_gate else []
         if picked:
             # category questions ("what threatens you?") also pull the best facts of that category
             have = {e.id for e in picked}
@@ -414,7 +456,7 @@ class Retriever:
                 picked += extra_cat
                 have.update(e.id for e in extra_cat)
 
-        extra, intents, notes = self._live(island, creature, raw_words)
+        extra, intents, notes = self._live(island, creature, info["raw_words"])
 
         evidence = extra + picked
         return RetrievalResult(

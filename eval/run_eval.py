@@ -19,12 +19,13 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
-from app.chat.llm import AnthropicAnswerLLM, LLMError  # noqa: E402
 from app.chat.service import ChatService  # noqa: E402
 from app.config import get_settings  # noqa: E402
 from app.data.islands import IslandStore  # noqa: E402
-from app.data.retrieval import Retriever  # noqa: E402
 from app.data.sources import SourceStore  # noqa: E402
+from app.llm import LLMError, build_llm  # noqa: E402
+from app.retrieval.dense import fact_texts, texts_hash  # noqa: E402
+from app.retrieval.factory import build_retriever  # noqa: E402
 
 from . import metrics  # noqa: E402
 from .judge import AnthropicJudge  # noqa: E402
@@ -64,6 +65,10 @@ def answer_one(service: ChatService, q: dict) -> dict:
                 "repaired": r.repaired,
                 "llm_called": r.llm_called,
                 "seconds": round(time.time() - t0, 2),
+                "retrieval_ms": round(r.retrieval_ms, 1),
+                "llm_ms": round(r.llm_ms, 1),
+                "tokens_in": r.tokens_in,
+                "tokens_out": r.tokens_out,
             }
         except LLMError as exc:
             last = exc
@@ -168,15 +173,22 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--judge", action="store_true", help="grade fact sentences with the LLM judge")
     ap.add_argument("--from-run", type=Path, help="re-score a saved run JSON without calling the API for answers")
     ap.add_argument("--ids", help="comma-separated question IDs")
-    ap.add_argument("--workers", type=int, default=4)
-    ap.add_argument("--out", type=Path, default=RESULTS / "latest")
+    ap.add_argument("--workers", type=int, default=None, help="parallel questions (default 1 for local models, else 4)")
+    ap.add_argument("--out", type=Path, default=None, help="output path without extension (default eval/results/<label>)")
+    ap.add_argument("--provider", help="LLM_PROVIDER for this run: extractive | ollama | llamacpp | huggingface | anthropic")
+    ap.add_argument("--model", help="model name for the provider")
+    ap.add_argument("--retrieval", choices=["bm25", "dense", "hybrid"], help="retrieval mode for this run")
+    ap.add_argument("--k", type=int, help="facts shown to the model (default RETRIEVAL_K, 12)")
+    ap.add_argument("--label", help="name of the run (default provider-model-retrieval)")
     args = ap.parse_args(argv)
 
     settings = get_settings()
+    overrides = {k: v for k, v in {"llm_provider": args.provider, "llm_model": args.model, "retrieval_mode": args.retrieval, "retrieval_k": args.k}.items() if v}
+    settings = settings.model_copy(update=overrides)
     ids = set(args.ids.split(",")) if args.ids else None
     questions = {q["id"]: q for q in load_questions(ids)}
     islands = IslandStore.load(settings.islands_dir)
-    retriever = Retriever(islands, SourceStore(settings, islands))
+    retriever = build_retriever(settings, islands, SourceStore(settings, islands))
 
     if args.from_run:
         saved = json.loads(args.from_run.read_text(encoding="utf-8"))
@@ -184,18 +196,51 @@ def main(argv: list[str] | None = None) -> int:
         meta = saved["meta"]
         service = ChatService(islands, retriever, None)
     else:
-        if not settings.anthropic_api_key:
-            print("ANTHROPIC_API_KEY is not set (put it in .env). Use --from-run to re-score a saved run.", file=sys.stderr)
+        try:
+            llm = build_llm(settings)
+        except LLMError as exc:
+            print(f"{exc}", file=sys.stderr)
             return 2
-        llm = AnthropicAnswerLLM(settings.anthropic_api_key, settings.anthropic_model)
+        if llm is None:
+            print("No LLM_PROVIDER set. Use --provider (extractive needs nothing) or --from-run to re-score a saved run.", file=sys.stderr)
+            return 2
         service = ChatService(islands, retriever, llm)
-        with ThreadPoolExecutor(max_workers=args.workers) as pool:
-            results = list(pool.map(lambda q: answer_one(service, q), questions.values()))
+        local = llm.provider in ("ollama", "llamacpp")
+        workers = args.workers or (1 if local else 4)
+        started = time.time()
+        # checkpoint every answer so a killed run resumes instead of starting over
+        ckpt = RESULTS / f".{args.label or 'run'}.partial.jsonl"
+        ckpt.parent.mkdir(parents=True, exist_ok=True)
+        done = {}
+        if ckpt.exists():
+            for line in ckpt.read_text(encoding="utf-8").splitlines():
+                r = json.loads(line)
+                if "error" not in r:
+                    done[r["id"]] = r
+        todo = [q for q in questions.values() if q["id"] not in done]
+        if done:
+            print(f"resuming: {len(done)} answers already saved", file=sys.stderr)
+
+        def work(q):
+            r = answer_one(service, q)
+            with ckpt.open("a", encoding="utf-8") as f:
+                f.write(json.dumps(r, ensure_ascii=False) + "\n")
+            return r
+
+        with ThreadPoolExecutor(max_workers=workers) as pool:
+            results = list(done.values()) + list(pool.map(work, todo))
         recs = {r["id"]: r for r in results}
+        ckpt.unlink(missing_ok=True)
         meta = {
             "timestamp": datetime.now(UTC).isoformat(timespec="seconds"),
             "commit": git_sha(),
-            "answer_model": settings.anthropic_model,
+            "answer_model": f"{llm.provider}:{llm.model}",
+            "provider": llm.provider,
+            "model": llm.model,
+            "retrieval_mode": retriever.mode,
+            "retrieval_k": retriever.k,
+            "facts_hash": texts_hash(fact_texts(islands)),
+            "wall_seconds": round(time.time() - started, 1),
             "judge_model": None,
         }
 
@@ -224,9 +269,12 @@ def main(argv: list[str] | None = None) -> int:
     }
     summary = metrics.summarise(scores, conflict)
 
-    args.out.parent.mkdir(parents=True, exist_ok=True)
-    out_json = args.out.with_suffix(".json")
-    out_md = args.out.with_suffix(".md")
+    label = args.label or "-".join(str(meta.get(k) or "") for k in ("provider", "model", "retrieval_mode")).replace("/", "_").replace(":", "_")
+    meta["label"] = label
+    out = args.out or (RESULTS / label)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out_json = out.parent / (out.name + ".json")
+    out_md = out.parent / (out.name + ".md")
     out_json.write_text(json.dumps({"meta": meta, "summary": summary, "records": list(recs.values())}, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     md = render_markdown(meta, summary, scores, questions, good)
     out_md.write_text(md, encoding="utf-8")

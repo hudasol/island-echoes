@@ -25,3 +25,4 @@ eval/.scratch/
 # demo video working files
 brag-output/
 *.mp4
+eval/results/.*.partial.jsonl
