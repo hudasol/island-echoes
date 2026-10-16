@@ -4,7 +4,7 @@ import logging
 
 import httpx
 
-from .base import ANSWER_SCHEMA, JSON_INSTRUCTION, LLMError, Usage, parse_answer_json
+from .base import JSON_INSTRUCTION, LLMError, Usage, answer_schema, parse_answer_json
 
 log = logging.getLogger(__name__)
 
@@ -16,6 +16,7 @@ class OllamaAnswerLLM:
     """
 
     provider = "ollama"
+    accepts_cite_ids = True  # the schema can be narrowed to the retrieved evidence IDs
 
     def __init__(self, model: str, base_url: str = "http://localhost:11434", timeout: float = 180.0,
                  num_ctx: int = 8192, http: httpx.Client | None = None):
@@ -23,11 +24,11 @@ class OllamaAnswerLLM:
         self._http = http or httpx.Client(timeout=timeout)
         self.last_usage = Usage()
 
-    def answer(self, system: str, user: str) -> dict:
+    def answer(self, system: str, user: str, cite_ids: list[str] | None = None) -> dict:
         body = {
             "model": self.model,
             "stream": False,
-            "format": ANSWER_SCHEMA,
+            "format": answer_schema(cite_ids),
             "options": {"temperature": 0, "num_ctx": self.num_ctx},
             "messages": [
                 {"role": "system", "content": system + JSON_INSTRUCTION},

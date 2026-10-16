@@ -34,6 +34,46 @@ ANSWER_SCHEMA = {
     "required": ["answered", "sentences", "missing"],
 }
 
+def answer_schema(cite_ids: list[str] | None = None) -> dict:
+    """The answer schema, optionally narrowed to one request's evidence.
+
+    With `cite_ids`, a fact sentence must cite one to three of those IDs and a voice sentence none, and
+    each sentence states its kind and citations before its text. A constrained decoder (Ollama's `format`)
+    then cannot produce an uncited fact or an invented ID. The grounding validator still checks every
+    sentence; this only removes formatting failures before they happen.
+    """
+    if not cite_ids:
+        return ANSWER_SCHEMA
+    cite = {"type": "string", "enum": list(dict.fromkeys(cite_ids))}
+    fact = {
+        "type": "object",
+        "properties": {
+            "kind": {"type": "string", "enum": ["fact"]},
+            "cites": {"type": "array", "items": cite, "minItems": 1, "maxItems": 3},
+            "text": {"type": "string"},
+        },
+        "required": ["kind", "cites", "text"],
+    }
+    voice = {
+        "type": "object",
+        "properties": {
+            "kind": {"type": "string", "enum": ["voice"]},
+            "cites": {"type": "array", "items": cite, "maxItems": 0},
+            "text": {"type": "string"},
+        },
+        "required": ["kind", "cites", "text"],
+    }
+    return {
+        "type": "object",
+        "properties": {
+            "answered": ANSWER_SCHEMA["properties"]["answered"],
+            "sentences": {"type": "array", "items": {"anyOf": [fact, voice]}},
+            "missing": ANSWER_SCHEMA["properties"]["missing"],
+        },
+        "required": ["answered", "sentences", "missing"],
+    }
+
+
 ANSWER_TOOL = {
     "name": "answer",
     "description": "Return the in-character reply as cited sentences.",
