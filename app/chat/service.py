@@ -56,6 +56,27 @@ class _Meter:
     tok_out: int = 0
 
 
+def _passing_facts(checked: list[grounding.CheckedSentence]) -> int:
+    return sum(1 for c in checked if c.ok and c.kind == "fact")
+
+
+def _repair_hints(c: grounding.CheckedSentence, evidence: dict[str, Evidence]) -> list[str]:
+    """Pointers for the repair prompt only. They never mark a sentence as passing; the retry is checked again."""
+    hints = []
+    ids_in_text = [i for i in evidence if i in c.text]
+    if ids_in_text:
+        hints.append("evidence IDs belong in cites, not in the text: remove " + ", ".join(ids_in_text))
+    text = c.text
+    for i in ids_in_text:
+        text = text.replace(i, " ")
+    nums = grounding.numbers(text)
+    if nums and c.kind == "fact":
+        elsewhere = [i for i, e in evidence.items() if i not in c.cites and nums <= grounding.numbers(e.text)]
+        if elsewhere:
+            hints.append(f"these numbers appear in {', '.join(elsewhere[:2])}; cite that item if it states the claim")
+    return hints
+
+
 class ChatService:
     def __init__(self, islands: IslandStore, retriever: Retriever, llm: AnswerLLM | None):
         self.islands, self.retriever, self.llm = islands, retriever, llm
@@ -110,10 +131,14 @@ class ChatService:
 
         if raw_issues:
             repaired = True
-            fb = prompts.repair_feedback([(i["text"], i["issues"]) for i in raw_issues])
+            fb = prompts.repair_feedback([(c.text, c.issues + _repair_hints(c, evidence)) for c in checked if c.issues])
             out2 = self._attempt(system, message, res.evidence, history, fb, meter)
-            checked = grounding.check_sentences(out2.get("sentences", []), evidence, message, names)
-            out = out2
+            checked2 = grounding.check_sentences(out2.get("sentences", []), evidence, message, names)
+            # A repair can make things worse (a small model often gives up and declines). Keep the attempt
+            # with more fact sentences that pass every check; on a tie the repair wins. Either way only
+            # sentences that passed the same checks are shown.
+            if _passing_facts(checked2) >= _passing_facts(checked):
+                checked, out = checked2, out2
 
         kept = [c for c in checked if c.ok]
         dropped = [{"text": c.text, "issues": c.issues} for c in checked if not c.ok]
@@ -153,7 +178,10 @@ class ChatService:
         user = prompts.build_user(message, evidence, history, feedback)
         t0 = time.perf_counter()
         try:
-            out = self.llm.answer(system, user)
+            if getattr(self.llm, "accepts_cite_ids", False):
+                out = self.llm.answer(system, user, cite_ids=[e.id for e in evidence])
+            else:
+                out = self.llm.answer(system, user)
         finally:
             meter.ms += (time.perf_counter() - t0) * 1000
         usage = getattr(self.llm, "last_usage", None)

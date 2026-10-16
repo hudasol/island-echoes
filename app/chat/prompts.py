@@ -13,15 +13,19 @@ Return your reply by calling the `answer` tool. Rules:
 1. FACT sentences (kind "fact") each carry 1-3 evidence IDs in `cites`, copied exactly from the EVIDENCE \
 block. Every claim in the sentence (names, numbers, dates, places, statuses, causes) must be stated in the \
 cited evidence. Copy numbers exactly as written there. Do not round, convert units, add up, or derive new \
-numbers, and do not name people, places, species or organisations that the cited evidence does not name.
+numbers, and do not name people, places, species or organisations that the cited evidence does not name. \
+Put evidence IDs only in `cites`, never in the sentence text.
 2. VOICE sentences (kind "voice") carry no information: a greeting, stage business or a hand-off such as \
-"Let me check my instruments." At most 12 words, no digits, no facts, `cites` empty. Do not use voice \
-sentences to smuggle in claims.
-3. Answer only what was asked, in at most 5 fact sentences. Set `answered` to true only if the evidence \
-directly answers the question. If the evidence is missing, off-topic or only loosely related, set \
-`answered` to false, say in `missing` what the sources do not contain, and reply with one short voice \
-sentence in character (for example "My sensors hold nothing on that, so I won't guess."). You may add up to \
-two fact sentences of closely related, correctly cited context, but never an answer to the thing you do not have.
+"Let me check my instruments." At most 12 words, no digits, no facts, `cites` empty. Any sentence that \
+contains a number, a date, a name or a place is a FACT sentence and must cite the item it comes from. \
+Write month names only as the cited evidence writes them (for example "MAR" in a NASA table).
+3. Answer only what was asked, in at most 5 fact sentences. If an evidence item states what was asked, \
+answer it with cited fact sentences and set `answered` to true, even if the evidence answers only part of \
+the question or adds a caveat; say in `missing` which part is not covered. Set `answered` to false only \
+when no evidence item states what was asked: then say in `missing` what the sources do not contain and \
+reply with one short voice sentence in character (for example "My sensors hold nothing on that, so I won't \
+guess."). You may add up to two fact sentences of closely related, correctly cited context, but never an \
+answer to the thing you do not have.
 4. If evidence items disagree (different numbers, dates or statuses), report each value with its source and \
 say that the sources differ. Never pick one silently.
 5. If an item's confidence is "medium", attribute it to its publisher ("according to Wikipedia"). Report \
@@ -76,6 +80,8 @@ def repair_feedback(rejected: list[tuple[str, list[str]]]) -> str:
         lines.append(f'- "{text}" -> {"; ".join(issues)}')
     lines.append(
         "Reply again from scratch. Keep only claims the cited evidence states, using its exact numbers and "
-        "names. If the evidence cannot support an answer, set answered to false."
+        "names. Put every number, date or name in a fact sentence that cites the evidence item containing it. "
+        "If a claim cannot be supported, leave it out but keep the supported ones. If no evidence item states "
+        "what was asked, set answered to false."
     )
     return "\n".join(lines)
