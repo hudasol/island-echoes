@@ -2,7 +2,8 @@
 
     python -m eval.report            # writes docs/RESULTS.md and prints it
 
-Reads eval/results/*.json (generation runs from eval.run_eval) and eval/results/retrieval.json.
+Reads eval/results/*.json (generation runs from eval.run_eval), eval/results/retrieval.json, development-set
+runs in eval/results/dev/ and, if present, the hand-written analysis in eval/results/NOTES.md.
 Only runs that exist are reported; nothing is filled in.
 """
 
@@ -21,9 +22,9 @@ from eval.retrieval_eval import to_markdown as retrieval_md  # noqa: E402
 RESULTS = ROOT / "eval" / "results"
 
 
-def load_runs() -> list[dict]:
+def load_runs(folder: Path = RESULTS) -> list[dict]:
     runs = []
-    for p in sorted(RESULTS.glob("*.json")):
+    for p in sorted(folder.glob("*.json")):
         if p.name == "retrieval.json":
             continue
         d = json.loads(p.read_text(encoding="utf-8"))
@@ -61,16 +62,28 @@ def tokens(run: dict) -> str:
 
 def generation_table(runs: list[dict]) -> str:
     head = ("| run | model | retrieval (k) | passed | key-fact recall | source recall | false refusals | refusal accuracy "
-            "| first-attempt failures | repaired | median / p95 time | tokens in / out per call |")
-    lines = [head, "|" + "---|" * 12]
+            "| first-attempt failures | repaired | errored | median / p95 time | tokens in / out per call |")
+    lines = [head, "|" + "---|" * 13]
     for r in runs:
         m, s = r["meta"], r["summary"]
         lines.append(
             f"| {m.get('label', r['_file'])} | {m.get('answer_model')} | {m.get('retrieval_mode', 'bm25')} ({m.get('retrieval_k', 12)}) "
             f"| {_short(s['questions_passed'])} | {_short(s['key_fact_recall'])} | {_short(s['expected_source_recall'])} "
             f"| {_short(s['false_refusals'])} | {_short(s['refusal_accuracy'])} | {_short(s['validator_first_pass_failures'])} "
-            f"| {_short(s['repaired_answers'])} | {latency(r)} | {tokens(r)} |"
+            f"| {_short(s['repaired_answers'])} | {m.get('errored', 0)} | {latency(r)} | {tokens(r)} |"
         )
+    return "\n".join(lines)
+
+
+def issue_table(runs: list[dict]) -> str:
+    from eval.compare import ISSUE_KINDS, issue_breakdown
+
+    counts = {r["meta"].get("label", r["_file"]): issue_breakdown(r) for r in runs}
+    kinds = [k for k, _ in ISSUE_KINDS] + ["other"]
+    lines = ["| issue | " + " | ".join(counts) + " |", "|---|" + "---|" * len(counts)]
+    for k in kinds:
+        if any(c[k] for c in counts.values()):
+            lines.append(f"| {k} | " + " | ".join(str(c[k]) for c in counts.values()) + " |")
     return "\n".join(lines)
 
 
@@ -91,9 +104,27 @@ def build() -> str:
             "numbers or names that are not in the cited text). No judge model was run, so semantic faithfulness beyond those "
             "checks is not measured here.",
             "",
+            "First-attempt validator issues by kind, summed over each run (a sentence can have more than one issue):",
+            "",
+            issue_table(runs),
+            "",
         ]
     else:
         parts += ["No generation runs stored yet."]
+    dev = load_runs(RESULTS / "dev")
+    if dev:
+        parts += [
+            "## Development set (tuned against: not a held out result)",
+            "",
+            "Runs on `eval/dev_questions.jsonl` (20 answerable questions and 5 refusal guards), used to choose changes. "
+            "These numbers were optimised against and say little about unseen questions.",
+            "",
+            generation_table(dev),
+            "",
+        ]
+    notes = RESULTS / "NOTES.md"
+    if notes.exists():
+        parts += [notes.read_text(encoding="utf-8").strip(), ""]
     return "\n".join(parts) + "\n"
 
 
