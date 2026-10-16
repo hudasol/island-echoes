@@ -189,9 +189,10 @@ def test_issue_breakdown_counts_each_kind():
     run = {"records": [
         {"raw_issues": [{"text": "a", "issues": ["fact sentence has no citation"]},
                         {"text": "b", "issues": ["numbers not in cited evidence: 9", "name not in cited evidence: March"]}]},
-        {"raw_issues": [{"text": "c", "issues": ["voice sentence contains digits"]}]},
+        {"raw_issues": [{"text": "c", "issues": ["voice sentence contains digits"]}, {"text": "", "issues": ["empty sentence"]}]},
         {"error": "malformed"},
     ]}
     got = issue_breakdown(run)
     assert got["no citation"] == 1 and got["number not in cited evidence"] == 1
     assert got["name not in cited evidence"] == 1 and got["voice sentence carried digits or names"] == 1
+    assert got["empty sentence"] == 1 and got["other"] == 0

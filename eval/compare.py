@@ -41,6 +41,7 @@ ISSUE_KINDS = [
     ("voice sentence carried digits or names", r"voice sentence contains"),
     ("voice sentence too long", r"voice sentence longer"),
     ("voice sentence cited a source", r"voice sentence must not cite"),
+    ("empty sentence", r"empty sentence"),
 ]
 
 
