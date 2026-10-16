@@ -3,6 +3,7 @@
     python -m eval.run_eval --judge                # answer with the Anthropic API, then judge (needs ANTHROPIC_API_KEY)
     python -m eval.run_eval --from-run eval/results/latest.json   # re-score a saved run, no API calls
     python -m eval.run_eval --ids Q01,Q26          # subset
+    python -m eval.run_eval --questions eval/dev_questions.jsonl --provider ollama   # development set
 """
 
 from __future__ import annotations
@@ -31,11 +32,12 @@ from . import metrics  # noqa: E402
 from .judge import AnthropicJudge  # noqa: E402
 
 QUESTIONS = Path(__file__).with_name("questions.jsonl")
+DEV_QUESTIONS = Path(__file__).with_name("dev_questions.jsonl")  # tuning set; the 30 above stay frozen
 RESULTS = Path(__file__).with_name("results")
 
 
-def load_questions(ids: set[str] | None = None) -> list[dict]:
-    qs = [json.loads(line) for line in QUESTIONS.read_text(encoding="utf-8").splitlines() if line.strip()]
+def load_questions(ids: set[str] | None = None, path: Path = QUESTIONS) -> list[dict]:
+    qs = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
     return [q for q in qs if not ids or q["id"] in ids]
 
 
@@ -173,6 +175,7 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--judge", action="store_true", help="grade fact sentences with the LLM judge")
     ap.add_argument("--from-run", type=Path, help="re-score a saved run JSON without calling the API for answers")
     ap.add_argument("--ids", help="comma-separated question IDs")
+    ap.add_argument("--questions", type=Path, default=QUESTIONS, help="question file (default the frozen 30)")
     ap.add_argument("--workers", type=int, default=None, help="parallel questions (default 1 for local models, else 4)")
     ap.add_argument("--out", type=Path, default=None, help="output path without extension (default eval/results/<label>)")
     ap.add_argument("--provider", help="LLM_PROVIDER for this run: extractive | ollama | llamacpp | huggingface | anthropic")
@@ -186,7 +189,7 @@ def main(argv: list[str] | None = None) -> int:
     overrides = {k: v for k, v in {"llm_provider": args.provider, "llm_model": args.model, "retrieval_mode": args.retrieval, "retrieval_k": args.k}.items() if v}
     settings = settings.model_copy(update=overrides)
     ids = set(args.ids.split(",")) if args.ids else None
-    questions = {q["id"]: q for q in load_questions(ids)}
+    questions = {q["id"]: q for q in load_questions(ids, args.questions)}
     islands = IslandStore.load(settings.islands_dir)
     retriever = build_retriever(settings, islands, SourceStore(settings, islands))
 
@@ -242,6 +245,7 @@ def main(argv: list[str] | None = None) -> int:
             "facts_hash": texts_hash(fact_texts(islands)),
             "wall_seconds": round(time.time() - started, 1),
             "judge_model": None,
+            "questions_file": args.questions.name,
         }
 
     if args.judge:
