@@ -7,9 +7,10 @@ import pytest
 
 from app.data.sources import SourceStore
 from eval import metrics
-from eval.run_eval import load_questions, main, render_markdown
+from eval.run_eval import DEV_QUESTIONS, load_questions, main, render_markdown
 
 QUESTIONS = load_questions()
+DEV = load_questions(path=DEV_QUESTIONS)
 
 
 def evidence_text(store, source_store, island_slug, ev_id):
@@ -66,6 +67,34 @@ def test_unanswerable_questions_are_truly_absent_from_the_sources(q, store):
     for pat in q.get("forbidden", []):
         for f in store.get(q["island"]).facts:
             assert not re.search(pat, f.statement), f"{q['id']}: {f.id} already contains the 'forbidden' value"
+
+
+def test_dev_set_is_separate_from_the_frozen_thirty():
+    """Tuning happens on the development set only, so it must not share questions or target facts with the 30."""
+    assert len(DEV) == 25 and len({q["id"] for q in DEV}) == 25
+    assert sum(1 for q in DEV if not q["should_refuse"]) == 20
+    assert not {q["id"] for q in DEV} & {q["id"] for q in QUESTIONS}
+    assert not {q["question"].lower() for q in DEV} & {q["question"].lower() for q in QUESTIONS}
+    frozen_ids = {i for q in QUESTIONS for i in q["expected_ids"]}
+    assert not {i for q in DEV for i in q["expected_ids"]} & frozen_ids
+
+
+@pytest.mark.parametrize("q", DEV, ids=lambda q: q["id"])
+def test_dev_questions_are_well_formed_and_grounded(q, store, real_settings):
+    store.get(q["island"]).creature(q.get("creature"))
+    for p in q["must_include"] + q.get("forbidden", []):
+        re.compile(p)
+    if q["should_refuse"]:
+        assert q["forbidden"], q["id"]
+        for pat in q["forbidden"]:
+            for f in store.get(q["island"]).facts:
+                assert not re.search(pat, f.statement), f"{q['id']}: {f.id} already contains the 'forbidden' value"
+    else:
+        assert q["expected_ids"] and q["must_include"], q["id"]
+        ss = SourceStore(real_settings, store, http=object())
+        texts = " ".join(evidence_text(store, ss, q["island"], i) for i in q["expected_ids"])
+        for pat in q["must_include"]:
+            assert re.search(pat, texts, re.I), f"{q['id']}: /{pat}/ not in expected sources"
 
 
 # ---- metrics ----------------------------------------------------------------------------
