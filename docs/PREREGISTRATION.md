@@ -83,3 +83,12 @@ Further predictions:
 - Numbers from the development set are labelled as tuned. Numbers on the frozen 30 for C are a single
   run after tuning, on questions the tuning never saw, but the frozen 30 were used to diagnose the problem in the earlier run, so
   they are reported as a regression check, not as a fully held out result.
+
+## Amendment before results (16 October, 09:50 UTC+04:00)
+
+Added after the runs started and before any result was read. Under the load on the machine at run time (other
+processes kept the CPU near 100%), generation ran at about 5.7 tokens per second, too slow to run A, B and the
+development runs one after another in the time available. Ollama was therefore restarted with two parallel slots,
+and A ran at the same time as B and the development runs. Answers are generated at temperature 0, so this changes
+timing, not the predictions or the metrics above. Latency figures from these runs are reported but are not
+comparable with earlier runs or with an idle machine.
