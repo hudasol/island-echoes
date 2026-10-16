@@ -172,3 +172,26 @@ def test_rescore_saved_run_writes_report(tmp_path):
     md = out.with_suffix(".md").read_text()
     assert "| Groundedness |" in md and "100.0% (3/3" in md and "## Per question" in md
     assert render_markdown  # imported symbol stays referenced
+
+
+def test_exact_mcnemar_matches_hand_computed_values():
+    from eval.compare import mcnemar_exact
+
+    assert mcnemar_exact(0, 0) == 1.0
+    assert abs(mcnemar_exact(0, 6) - 2 / 64) < 1e-12
+    assert abs(mcnemar_exact(5, 1) - 14 / 64) < 1e-12
+    assert mcnemar_exact(3, 3) == 1.0
+
+
+def test_issue_breakdown_counts_each_kind():
+    from eval.compare import issue_breakdown
+
+    run = {"records": [
+        {"raw_issues": [{"text": "a", "issues": ["fact sentence has no citation"]},
+                        {"text": "b", "issues": ["numbers not in cited evidence: 9", "name not in cited evidence: March"]}]},
+        {"raw_issues": [{"text": "c", "issues": ["voice sentence contains digits"]}]},
+        {"error": "malformed"},
+    ]}
+    got = issue_breakdown(run)
+    assert got["no citation"] == 1 and got["number not in cited evidence"] == 1
+    assert got["name not in cited evidence"] == 1 and got["voice sentence carried digits or names"] == 1
