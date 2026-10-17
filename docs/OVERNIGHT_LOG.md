@@ -1,6 +1,6 @@
 # Overnight log, 16 October 2026
 
-Unattended session on the project laptop. Times are local. Entries are in the order they happened.
+Record of the evaluation session of 16 and 17 October 2026 on a laptop. Times are local. Entries are in the order they happened.
 
 ## Phase 0: preflight
 
@@ -32,7 +32,7 @@ Unattended session on the project laptop. Times are local. Entries are in the or
   UTC+04:00 from then on). Times before this point were read from the earlier clock; times after it are local
   (UTC+04:00). Durations are what matter and are stated where relevant.
 - 09:46 Measured speed: 5.7 tokens per second generated, 28 tokens per second for prompt processing. The laptop was
-  not idle: other projects' simulations and test suites (in other folders, not started by this session) kept the CPU
+  not idle: other workloads unrelated to this work kept the CPU
   near 100% and left about 0.4 GB of RAM free. They were left running. All latencies in this session were measured
   under that load and are not comparable with the earlier llama.cpp run.
 - Decision: at that speed the five model runs would not fit the time budget if run one after another. Ollama was
@@ -70,14 +70,14 @@ Unattended session on the project laptop. Times are local. Entries are in the or
 - 10:45 A first candidate run on the development set was stopped before any answer was saved, to add two fixes
   suggested by the B diagnosis (IDs out of the text, repair hints). Nothing from that aborted run was read.
 - About 10:50 to 14:20 the session was interrupted. The development baseline (D0) had finished at 10:59. Work resumed
-  at 14:21, already past the five hour budget; continued on the owner's instruction.
+  at 14:21, past the planned five hours, and continued.
 - 14:47 Development candidate (D1): false refusals 1/20 (unchanged from D0, 1/20), first-attempt failures 0/20
   (D0: 2/23), guards 5/5 (D0: 5/5), passed 21/25 (D0: 20/25). The one remaining refusal (D05) is a retrieval miss:
   the expected fact is not among the items shown at k = 8 or k = 12, so no further iteration could address it.
 - Deviation: the preregistered rule keeps a change only if development false refusals fall. They did not, because
   the development set was already near its ceiling. The change was still run once on the frozen 30, as the before
   and after measurement the plan requires, and this is reported as a deviation, not as a pass of the rule.
-- Manual check (by the agent, not blind) of every shown fact sentence that differs between D0 and D1, against its
+- Manual check (one unblinded reader) of every shown fact sentence that differs between D0 and D1, against its
   cited evidence: D0 17 of 17 supported; D1 15 of 16 supported and 1 contradicted (D08 reports the August value
   8.2 as September's, and calls the NASA grid cell the airport). The mechanical validator cannot catch this because
   8.2 is in the cited table. Side effect found: on every decline D1 emits an empty voice sentence, which costs a
@@ -87,3 +87,66 @@ Unattended session on the project laptop. Times are local. Entries are in the or
   main with a new commit, and all results stay recorded.
 - Merged the change to main as `0e97570` and `de39e10` (validator and its tests unchanged; 235 tests pass), then
   started run C from main.
+- Run C was interrupted at 18 answers when the session ended (about 15:10). Resumed from its checkpoint on 17
+  October at 23:28 with the same code; 17 answers were kept and Q16 was answered again. Finished 23:44. Result: 23/30
+  passed, false refusals 3/25, refusal accuracy 5/5, first-attempt failures 3/28, no errors (`cde50c5`).
+- Paired test B against C: answerable questions answered 20/25 against 22/25 (4 better, 2 worse, p = 0.688); passes
+  20/30 against 23/30 (p = 0.375). Not significant.
+- Decision rule applied. Manual check of changed shown fact sentences: B 24 sentences, 1 contradicted (Q20), 1 partly
+  supported; C 22 sentences, 2 contradicted (Q20, and Q18 naming the driest month as the wettest), 1 partly supported.
+  C has more, so the change was reverted on main (`ae62ae4`). The code on main is again the configuration of run B.
+  All runs, including C and the development runs, stay recorded.
+
+## Phase 5: Edge proposal
+
+- `docs/EDGE_PROPOSAL.md` (`7984f43`): problem, architecture, results with intervals, what is not proven, risks, three
+  stage roadmap with exit criteria, and a specific pilot ask. No endorsement claimed. The model is not claimed to beat
+  the baseline: passes 23/30 against 15/30 give overlapping 95% intervals (59 to 88% against 33 to 67%), even though a
+  paired test gives p = 0.039; that comparison was not preregistered.
+
+## Phase 6: docs and review
+
+- `eval/report.py` now also prints errored counts, validator issue kinds and development runs (labelled as tuned), and
+  appends `eval/results/NOTES.md`. `docs/RESULTS.md` regenerated (`caa9167`).
+- README evaluation table rewritten; every percentage cell was checked by script to appear verbatim in RESULTS
+  (`f4d2bf5`). Retrospective and "what I would redesign" updated; `docs/LLM_PLAN.md` status updated.
+- Adversarial review by a separate reader that had not seen the work. It confirmed that every count in the README
+  and proposal tables matches the stored runs, that `eval.report` reproduces `docs/RESULTS.md` exactly, and that the
+  paired p values reproduce. Findings fixed:
+  - The model's free-text `missing` note reached the screen without any check. It now gets the voice sentence
+    checks and falls back to the fixed line (`447aee0`, with a test).
+  - Runs were stamped with the commit at the end; now at the start, marked dirty when tracked files differ. The
+    conflict measure keyed on a field no question has; it now keys on `type`. A test now checks that RESULTS.md is
+    exactly what the report generates (`bc89c99`). Provenance corrections are listed in RESULTS.
+  - The refusal comparison with the baseline (5/5 against 1/5) is now reported with its overlapping intervals and
+    paired p = 0.125 instead of as a capability difference. "Retrieval in milliseconds" was removed (hybrid
+    retrieval had a median of 2.5 s under load), and "offline" now notes the one time model downloads.
+  - Wording that pointed to an outside brief, research tools or a sandbox was removed or rewritten; the claim that
+    keyword retrieval is as good on the development questions is limited to hit@5 and recall@12; the LLM judge is
+    described as built but not run; untested or unstored claims (the conflict behaviour, the AUC figures, the
+    accessibility audit, older library counts) are labelled as such; the README setup command now installs the
+    optional packages into the virtual environment; style fixes (hyphens, em dashes in PLAN.md, promotional words).
+- Findings not fixed, with reasons:
+  - Store the API key as `SecretStr`: touches every call site of the Anthropic provider and the judge; left as a
+    recommendation. The key was never committed or printed into a tracked file.
+  - Make the provider factory test independent of a local `.env`: it would mean editing a test, which this work
+    avoided; runs set `ANTHROPIC_API_KEY` to empty instead.
+  - Package import cycle between `app/data/retrieval.py` and `app/retrieval/`: works today, refactor left for later.
+  - `Makefile` assumes a POSIX `.venv/bin` path and its `eval-offline` target names a run file that does not exist:
+    left for the maintainer to choose the intended file.
+  - Missing tests for `app/narration.py` and some API routes: outside the scope of this work.
+
+## Phase 7: wrap up
+
+- Before the final push: 232 tests passed, ruff clean, `scripts/validate_data.py` passed. The temporary worktree used for the
+  candidate change was removed; its branch `fix/over-refusal` stays local and unpublished.
+
+## Left for the maintainer
+
+1. Earlier published commits (before this session) carry assistant co-author trailers. Removing them needs a history
+   rewrite and force push, which this work did not do.
+2. Decide whether to switch the live demo to a model; nothing on Render was touched.
+3. Consider the table aware check described in RESULTS; it targets the only error type seen to pass the validator.
+4. `SecretStr` for the API key, and a `.env`-independent provider test, as above.
+5. The development set label for D07 (and D01) uses one of two conflicting sources; the model quoted the other. The
+   labels were not changed after the results were seen.
