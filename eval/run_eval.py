@@ -212,7 +212,7 @@ def main(argv: list[str] | None = None) -> int:
         if llm is None:
             print("No LLM_PROVIDER set. Use --provider (extractive needs nothing) or --from-run to re-score a saved run.", file=sys.stderr)
             return 2
-        service = ChatService(islands, retriever, llm)
+        service = ChatService(islands, retriever, llm, settings.table_check)
         commit = git_sha()  # stamped before answering, so later commits made while it runs do not appear here
         local = llm.provider in ("ollama", "llamacpp")
         workers = args.workers or (1 if local else 4)
@@ -253,6 +253,7 @@ def main(argv: list[str] | None = None) -> int:
             "judge_model": None,
             "questions_file": args.questions.name,
             "split": args.split,
+            "table_check": settings.table_check,
         }
 
     if args.judge:
