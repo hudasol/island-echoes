@@ -90,8 +90,8 @@ rule for keeping a change; it was run on the frozen 30 anyway as the planned sin
 and that is a recorded deviation.
 
 **Manual check of shown sentences.** Because the mechanical proxy cannot see a wrong claim built from correct words,
-every shown fact sentence that differed between the runs was read against its cited evidence (by the agent, not
-blind, so a check rather than a measurement):
+every shown fact sentence that differed between the runs was read against its cited evidence (one unblinded
+reader, so a check rather than a measurement):
 
 | Set | Sentences only in the earlier run | Sentences only in the later run |
 |---|---|---|
@@ -101,7 +101,7 @@ blind, so a check rather than a measurement):
 Both contradicted sentences that are new in C and D1 passed the validator because the number they quote does appear
 in the cited table, only for a different month. The rule fixed before run C was read says to revert the change if C
 has more unsupported or contradicted sentences than B. It has (2 against 1), so the change was reverted on main
-(`ae62ae4`); the deployed code is the configuration of run B. With one sentence of difference this is not evidence
+(`ae62ae4`); the code on main again matches the configuration of run B (the deployed instance runs no model). With one sentence of difference this is not evidence
 that the change causes errors, only that it was not shown to be safe.
 
 **Side effect.** Under the narrowed schema the model emits an empty voice sentence whenever it declines, which costs
@@ -110,6 +110,14 @@ a needless repair call.
 **Run C conditions.** The session was interrupted after 18 answers. The runner resumed from its checkpoint with the
 same code; 17 answers were kept and one record (Q16, most likely the request in flight at the interruption) was
 answered again. The resumed part ran on a quieter machine, so run C timings mix two load conditions.
+
+### Provenance corrections
+
+- Runs A, B and C record a later commit than the code they ran, because the runner stamped the commit when a run
+  finished: A and B ran the code of `cd7fd79` (recorded `54791c9` and `bbf0729`, which changed only documentation);
+  C ran the code of `de39e10` (recorded `575380e`). The runner now stamps the commit at the start.
+- `dev-candidate-1` records `b48847c`, a commit on a local branch that was not published. Its code is the same as
+  `0e97570` plus `de39e10` on main, except for one import style change in a test.
 
 ### What this means for the next step
 

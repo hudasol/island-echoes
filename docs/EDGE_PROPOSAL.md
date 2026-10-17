@@ -2,7 +2,7 @@
 
 ## 1. The problem
 
-Field teams, analysts and decision makers increasingly ask language models about places they cannot easily
+Field teams, analysts and decision makers can now ask language models about places they cannot easily
 visit: remote islands, offshore installations, protected reserves. General chat models answer fluently and
 without traceable sources, and in this setting a confident invented figure is worse than no answer. Three
 requirements follow. Every factual statement must point to a source a reviewer can open. A question the sources do
@@ -24,7 +24,7 @@ deliberately modest in scope so that every number in it can be checked.
 | Telemetry | One row per request: stage latencies, model, tokens, validator outcome; question text is not stored by default | Built |
 | Evaluation | Gold retrieval sets, a 30 question end to end set, a separate development set, stored runs with commit and data hash, a preregistration | Built |
 
-The whole pipeline runs offline on a laptop CPU with a 3 billion parameter open model. No paid service is needed.
+The whole pipeline runs offline on a laptop CPU with a 3 billion parameter open model, after a one time download of the model and the embedding model. No paid service is needed.
 
 ## 3. Measured results
 
@@ -43,8 +43,8 @@ rather than held out benchmarks.
 | Baseline with no model (quotes the top sources) | 15/30 passed; declines 1/5 unanswerable questions |
 
 What these show. A 3 billion parameter model running offline on a laptop CPU answered roughly three quarters of the
-questions with every factual sentence cited and checked, and declined every question the sources do not cover,
-which the baseline without a model cannot do. The difference between keyword and hybrid retrieval is not
+questions with every factual sentence cited and checked, and declined all 5 questions the sources do not cover,
+against 1 of 5 for the baseline without a model (intervals overlap with only five such questions; paired p = 0.125). The difference between keyword and hybrid retrieval is not
 significant (paired test, p = 0.375 on passes). The validator rejected between 8 and 15% of the model's first
 attempts before anything was shown.
 
@@ -72,7 +72,7 @@ Timings were taken on a heavily loaded laptop and are not a performance claim.
 | Too many refusals make the tool unhelpful | Measured per run; changes tested on a separate development set first | 16 to 20% of answerable questions declined |
 | Source facts are wrong or outdated | Source link, retrieval date and confidence on every fact; link checks weekly | Facts resting on a single secondary source |
 | Prompt injection through the question | Questions and evidence are treated as data; injection cases are in the eval | Small test set |
-| Latency on modest hardware | Retrieval in milliseconds; model time dominates and is reported | Tens of seconds per answer on a laptop CPU |
+| Latency on modest hardware | Model time dominates and is reported per stage; under heavy load hybrid retrieval took a median of 2.5 s | Tens of seconds per answer on a laptop CPU |
 
 ## 6. Roadmap
 

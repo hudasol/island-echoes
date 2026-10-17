@@ -2,7 +2,7 @@
 
 These checks are intentionally conservative and mechanical. They catch invented citations, missing
 citations, numbers that the cited evidence does not contain, and proper nouns that neither the
-evidence nor the question contain. They cannot judge subtler entailment; the eval's LLM judge does.
+evidence nor the question contain. They cannot judge subtler entailment; an LLM judge (eval/judge.py) is built for that but has not been run.
 """
 
 from __future__ import annotations

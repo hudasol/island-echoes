@@ -1,13 +1,13 @@
 # Island Echoes
 
 A 3D globe of seven remote islands. On each one, an endangered or extinct creature reports in as a
-sensor-equipped field agent and answers questions in the first person, using only facts it can cite.
+sensor equipped field agent and answers questions in the first person, using only facts it can cite.
 
 ![Island Echoes on desktop: Cocos (Keeling) Islands with the Napoleon wrasse](docs/img/desktop.png)
 
 ## The problem
 
-Chatbots that role-play animals are charming and unreliable. Ask a talking tortoise about its diet
+Chatbots that play the part of animals are engaging but unreliable. Ask a talking tortoise about its diet
 and you get a confident paragraph with no way to tell which parts are real. For species on the edge
 of extinction, that is the wrong failure mode: invented facts about a vanishing animal are worse than
 silence.
@@ -81,7 +81,7 @@ The design plan is in [docs/LLM_PLAN.md](docs/LLM_PLAN.md).
 3. A fact sentence is rejected if it has no citation, cites an ID that was not retrieved, contains a number that is not in the cited evidence, or names a person or place that is not in the cited evidence or the question.
 4. Voice sentences (the persona) are capped at 14 words and may not contain digits or names.
 5. Rejected sentences go back to the model once with feedback. Anything still failing is dropped. If nothing survives, the reply is a fixed "not in my sources" line.
-6. Source conflicts are stored as separate facts, so the creature reports both values and says they differ.
+6. Source conflicts are stored as separate facts, and the creature is instructed to report both values and say they differ. Whether it does is not yet measured: that check needs the judge, which has not been run.
 7. Questions that share no words with the island's sources are refused without calling the model.
 
 ## Data sources
@@ -93,7 +93,7 @@ Only public sources are used. No keys are needed for any of them.
 - **GBIF**: species match and occurrence counts, snapshotted in `data/snapshots/gbif/`.
 - **NASA GIBS**: satellite imagery tiles, loaded by the browser.
 
-Snapshots are committed so the app and the eval work offline. Live data is refreshed after 30 days (`SOURCE_TTL_DAYS`), with stale fallback if the network fails.
+Snapshots are committed so the app and the eval work offline (dense retrieval downloads its embedding model once, on first use). Live data is refreshed after 30 days (`SOURCE_TTL_DAYS`), with stale fallback if the network fails.
 
 > IUCN Red List pages could not be fetched while compiling the facts. Conservation statuses are therefore shown as "reported by" the secondary sources named on each fact, and are not presented as official IUCN assessments.
 
@@ -113,14 +113,14 @@ Chat appears when `LLM_PROVIDER` is set. Every option runs the same retrieval an
 ```text
 LLM_PROVIDER=extractive     # no model: quotes the top sources. Free, instant, a baseline.
 LLM_PROVIDER=ollama         # a local model:  ollama pull qwen2.5:3b-instruct
-LLM_PROVIDER=huggingface    # free-tier hosted model; HF_TOKEN=<free token>
+LLM_PROVIDER=huggingface    # free tier hosted model; HF_TOKEN=<free token>
 LLM_PROVIDER=anthropic      # paid API; ANTHROPIC_API_KEY=...
 ```
 
 For better retrieval, install the optional packages and use embeddings (the vectors are already committed; only the question is embedded at run time):
 
 ```bash
-pip install -r requirements-ml.txt
+make install && .venv/bin/pip install -r requirements-ml.txt
 RETRIEVAL_MODE=hybrid make run
 ```
 
@@ -145,9 +145,9 @@ On the free Render plan the file is lost on restart, and `/api/stats` reports wh
 
 ## Evaluation
 
-Three kinds of check, kept separate. Full tables are generated into [docs/RESULTS.md](docs/RESULTS.md) by `make report`; every run is stored in `eval/results/` with its model, retrieval mode, commit and a hash of the facts.
+Three kinds of check, kept separate. Full tables are generated into [docs/RESULTS.md](docs/RESULTS.md) by `make report`; every run is stored in `eval/results/` with its model, retrieval mode, commit and a hash of the facts. Runs before 18 October 2026 stamped the commit when they finished, so some record a later commit that changed only documentation; newer runs stamp it at the start.
 
-**1. Retrieval** (`make eval-retrieval`). Does the right fact reach the model? 58 held-out questions, paraphrased on purpose so they do not reuse the fact wording, each with gold fact IDs (`eval/retrieval_gold.jsonl`), plus the 19 fact-ID questions of the 30-question set, which the keyword retriever was developed against.
+**1. Retrieval** (`make eval-retrieval`). Does the right fact reach the model? 58 held out questions, paraphrased on purpose so they do not reuse the fact wording, each with gold fact IDs (`eval/retrieval_gold.jsonl`), plus the 19 fact-ID questions of the 30-question set, which the keyword retriever was developed against.
 
 | Held-out set, n=58 | hit@1 | hit@5 | recall@12 | MRR |
 |---|---|---|---|---|
@@ -155,13 +155,13 @@ Three kinds of check, kept separate. Full tables are generated into [docs/RESULT
 | dense (bge-small-en-v1.5) | 0.71 | 0.90 | 0.87 | 0.79 |
 | hybrid (reciprocal rank fusion) | 0.71 | 0.90 | 0.88 | 0.78 |
 
-Dense and hybrid retrieval find a correct fact more often when the question uses different words from the source. The 95% intervals overlap (for example hit@5 0.81 [0.71-0.91] against 0.90 [0.81-0.97]), so this is a likely gain, not a proven one. On the development questions keyword search is as good or better (hit@5 1.00 against 0.95), which is expected because it was tuned on them. Gold IDs were labelled by one person (the author), so they carry that person's judgement.
+Dense and hybrid retrieval find a correct fact more often when the question uses different words from the source. The 95% intervals overlap (for example hit@5 0.81 [0.71-0.91] against 0.90 [0.81-0.97]), so this is a likely gain, not a proven one. On the development questions keyword search is as good or better on hit@5 and recall@12 (hit@5 1.00 against 0.95), though not on hit@1 or MRR, which is expected because it was tuned on them. Gold IDs were labelled by one person (the author), so they carry that person's judgement.
 
-**2. End to end, no judge model** (`python -m eval.run_eval --provider <name>`). The 30 questions in `eval/questions.jsonl` (11 single-fact, 4 multi-fact, 4 climate, 2 species, 4 source conflicts, 4 unanswerable, 1 prompt injection) run through retrieval, the model and the validator. Scoring is mechanical: required values present, expected evidence cited, unanswerable questions refused, plus how many of the model's fact sentences the validator had to reject on the first attempt (a proxy for hallucination: invented IDs, numbers or names not in the cited text). Runs checkpoint after every answer and resume if interrupted.
+**2. End to end, no judge model** (`python -m eval.run_eval --provider <name>`). The 30 questions in `eval/questions.jsonl` (11 single fact, 4 multiple fact, 4 climate, 2 species, 4 source conflicts, 4 unanswerable, 1 prompt injection) run through retrieval, the model and the validator. Scoring is mechanical: required values present, expected evidence cited, unanswerable questions refused, plus how many of the model's fact sentences the validator had to reject on the first attempt (a proxy for hallucination: invented IDs, numbers or names not in the cited text). Runs checkpoint after every answer and resume if interrupted.
 
 Rows are copied from [docs/RESULTS.md](docs/RESULTS.md); brackets are 95% intervals. Every model run uses Qwen2.5-3B-Instruct (4-bit) at temperature 0 with 8 facts shown, on a laptop CPU.
 
-| Run | passed | false refusals | refusal accuracy | first-attempt failures |
+| Run | passed | false refusals | refusal accuracy | first attempt failures |
 |---|---|---|---|---|
 | No model: quote the top sources (`extractive`, keyword retrieval) | 50% (15/30) [33-67] | 0% (0/25) [0-13] | 20% (1/5) [4-62] | 0% (0/83) [0-4] |
 | Ollama, keyword retrieval | 77% (23/30) [59-88] | 16% (4/25) [6-35] | 100% (5/5) [57-100] | 8% (3/36) [3-22] |
@@ -169,16 +169,16 @@ Rows are copied from [docs/RESULTS.md](docs/RESULTS.md); brackets are 95% interv
 | Ollama, hybrid, after a prompt change that was then reverted | 77% (23/30) [59-88] | 12% (3/25) [4-30] | 100% (5/5) [57-100] | 11% (3/28) [4-27] |
 | llama.cpp, hybrid (earlier run, no constrained decoding) | 48% (14/29) [31-66] | 42% (10/24) [24-61] | 80% (4/5) [38-96] | 27% (12/45) [16-41] |
 
-What this says, honestly:
+What this says:
 
-- The local model declined every unanswerable or injection question (5 of 5), which quoting the sources cannot do (1 of 5), and answered most answerable ones. Its pass rate is higher than the baseline's, but the 95% intervals overlap, so this is **not claimed as a proven gain**. A paired test on passes gives p = 0.039 for the keyword run, but that comparison was not preregistered and is one of several.
+- The local model declined every unanswerable or injection question (5 of 5, against 1 of 5 for quoting the sources) and answered most answerable ones. With only five such questions the intervals overlap ([57-100] against [4-62]; paired p = 0.125), so the refusal difference is not proven either. Its pass rate is higher than the baseline's, but the 95% intervals overlap, so this is **not claimed as a proven gain**. A paired test on passes gives p = 0.039 for the keyword run, but that comparison was not preregistered and is one of several.
 - Keyword and hybrid retrieval do not differ significantly end to end (paired exact McNemar test: passes p = 0.375, false refusals p = 1.000).
-- A prompt and schema change aimed at false refusals was tried after tuning on a separate 25-question development set. On the frozen 30 it lowered false refusals from 5 to 3 of 25 (p = 0.688, not significant). A manual reading of the changed answers found 2 contradicted sentences against 1 before, and a rule fixed in advance said to revert in that case, so it was reverted. Details are in [docs/RESULTS.md](docs/RESULTS.md).
-- The errors that get through quote a number that is in the cited table but belongs to another month or row (for example the driest month given as the wettest). The mechanical validator cannot see this; a table-aware check or an entailment model would.
+- A prompt and schema change aimed at false refusals was tried after tuning on a separate development set of 25 questions. It did not meet the preregistered rule for keeping a change (development false refusals stayed at 1 of 20) and was run once on the frozen 30 anyway, as a recorded deviation. There it lowered false refusals from 5 to 3 of 25 (p = 0.688, not significant). A manual reading of the changed answers found 2 contradicted sentences against 1 before, and a rule fixed in advance said to revert in that case, so it was reverted. Details are in [docs/RESULTS.md](docs/RESULTS.md).
+- The errors that get through quote a number that is in the cited table but belongs to another month or row (for example the driest month given as the wettest). The mechanical validator cannot see this; a table aware check or an entailment model would.
 - Predictions for these runs were written before they ran ([docs/PREREGISTRATION.md](docs/PREREGISTRATION.md)). Most missed because they were anchored on the earlier llama.cpp run, which served the same weights without constrained decoding and did much worse. The cause of that difference was not isolated.
 - With 30 questions the intervals are wide, and these questions were used to diagnose problems, so they are a regression guard, not a benchmark. No judge model was run (the machine had less than 16 GB of RAM), so groundedness is measured only by the mechanical checks. Timings were taken on a heavily loaded laptop and are left out of this table; they are in RESULTS.
 
-**3. Library relevance** (`pytest tests/test_library_relevance.py`). 106 questions, 52 answerable and 54 not, guard the no-model library search against returning facts for off-topic questions. Part of this set was used for tuning (see "Library search quality").
+**3. Library relevance** (`pytest tests/test_library_relevance.py`). 106 questions, 52 answerable and 54 not, guard the no-model library search against returning facts for off topic questions. Part of this set was used for tuning (see "Library search quality").
 
 ## Deploy
 
@@ -207,31 +207,31 @@ docs/           PLAN.md, LLM_PLAN.md, RESULTS.md, PREREGISTRATION.md, EDGE_PROPO
 
 **What went wrong**
 
-- **A second research pass needed a second check.** The 182 library facts added later (species, water, climate, ecology) came from fetch tools that return page summaries rather than raw text. An independent re-read of every one found 26 statements that overstated or mixed up their source (for example two bird population figures swapped), and they were corrected before publishing. Facts that rest on Wikipedia alone are labelled medium confidence in the UI, and on 9 October a further check of the 32 High-labelled Wikipedia facts found 14 that needed correcting.
-- **The island files did not exist.** The brief assumed a set of attached island files. There were none, so the fact base had to be researched from scratch. That took the largest share of the work and left many facts at medium confidence because they rest on a single secondary source.
-- **IUCN pages were unreachable** from the research environment, so statuses come second-hand. This is stated in the UI and on every creature.
-- **A relevance threshold on retrieval was the wrong gate.** The first design refused any question whose best BM25 score fell below a cut-off. It refused good questions phrased unusually and passed bad ones. It was replaced by a narrow rule (refuse only on zero word overlap) and the model plus validator handle the rest.
+- **A second research pass needed a second check.** The 182 library facts added later (species, water, climate, ecology) were first compiled from page summaries rather than the full source text. An independent re-read of every one found 26 statements that overstated or mixed up their source (for example two bird population figures swapped), and they were corrected before publishing. Facts that rest on Wikipedia alone are labelled medium confidence in the UI, and on 9 October a further check of the 32 Wikipedia facts labelled High found 14 that needed correcting.
+- **The fact base had to be researched from scratch.** That took the largest share of the work and left many facts at medium confidence because they rest on a single secondary source.
+- **IUCN pages could not be fetched** when the facts were compiled, so statuses come secondhand. This is stated in the UI and on every creature.
+- **A relevance threshold on retrieval was the wrong gate.** The first design refused any question whose best BM25 score fell below a cutoff. It refused good questions phrased unusually and passed bad ones. It was replaced by a narrow rule (refuse only on zero word overlap) and the model plus validator handle the rest.
 - **Naive stemming broke matches** ("tortoises" against "tortoise"), and first-person questions ("what do you eat?") pulled in evidence about the wrong topic when I anchored them to the creature name. Both were fixed with tests.
-- **Some sources disagree** (population figures, assessment years). These are kept as separate facts rather than merged, which makes answers longer but honest.
+- **Some sources disagree** (population figures, assessment years). These are kept as separate facts rather than merged, which makes answers longer but faithful to the sources.
 
-- **A small local model followed the citation format badly at first.** The first run of Qwen2.5-3B padded evidence IDs with punctuation (".TDC-019"), so every citation was rejected and the model looked useless. A cleaner for the wrapper characters (the ID itself must still match retrieved evidence) fixed it. Serving the same weights through Ollama with schema constrained output later cut first-attempt failures from 27% to 8 to 15% and false refusals from 42% to 16 to 20%. Measuring before blaming the model mattered.
+- **A small local model followed the citation format badly at first.** The first run of Qwen2.5-3B padded evidence IDs with punctuation (".TDC-019"), so every citation was rejected and the model looked useless. A cleaner for the wrapper characters (the ID itself must still match retrieved evidence) fixed it. Serving the same weights through Ollama with schema constrained output later coincided with first attempt failures of 8 to 15% instead of 27% and false refusals of 16 to 20% instead of 42%; the cause was not isolated. Measuring before blaming the model mattered.
 - **Predictions anchored on one old run were wrong.** The preregistered predictions assumed the llama.cpp behaviour would carry over; most missed on the optimistic side. They are reported as misses.
 - **A fix that looked better was reverted.** A prompt and schema change lowered false refusals within noise, but a manual reading found one more contradicted sentence among the changed answers. A rule set before the run said to revert, and it was. The mechanical proxy alone would have kept it.
-- **Embeddings helped less than hoped as a gate.** Dense similarity separates answerable from unanswerable questions better than BM25 scores (AUC 0.93 against 0.85 on the 106-question set), but no threshold is clean (at 0.55, 19 of 54 off-topic questions pass), so the library keeps its tuned keyword gate and dense retrieval is used only to rank evidence for the chat.
-- **A long eval run was lost** when the sandbox restarted. The runner now checkpoints every answer and resumes; this later saved an interrupted run.
+- **Embeddings helped less than hoped as a gate.** Dense similarity separates answerable from unanswerable questions better than BM25 scores (AUC 0.93 against 0.85 on the 106-question set), but no threshold is clean (at 0.55, 19 of 54 off topic questions pass; measured once, and the script and output are not stored in this repository), so the library keeps its tuned keyword gate and dense retrieval is used only to rank evidence for the chat.
+- **A long eval run was lost** when the machine restarted. The runner now checkpoints every answer and resumes; this later saved an interrupted run.
 
 **Assumptions**
 
-- A sentence is grounded if its numbers and names appear in the evidence it cites. This catches invented figures and names cheaply, but it cannot catch a wrong claim built from correct words. That is why the LLM judge exists in the eval.
+- A sentence is grounded if its numbers and names appear in the evidence it cites. This catches invented figures and names cheaply, but it cannot catch a wrong claim built from correct words. An LLM judge (`eval/judge.py`) is built for this but has not been run.
 - One representative creature per island (two on the Galápagos), chosen because presence on or near the island is verifiable in GBIF.
-- NASA POWER's coarse grid cell is a fair stand-in for an island's climate. For tiny islands such as Clipperton it is an approximation, and the sensor note shows the cell used.
+- NASA POWER's coarse grid cell is a fair proxy for an island's climate. For tiny islands such as Clipperton it is an approximation, and the sensor note shows the cell used.
 - Anthropic's model is called through a forced tool, so output shape is guaranteed but content is not. Local and hosted open models are asked for JSON against a schema, and small ones sometimes return malformed output, which counts as an error.
 
 **What I would redesign**
 
 - Store claims, not paragraphs: break each fact into atomic statements so the validator can check meaning, not only numbers and names.
 - Check meaning, not only words, with a small local entailment model, so a wrong claim built from correct words is caught without a paid judge.
-- Grow the held-out set and have a second person label the gold fact IDs; 58 questions from one annotator leave wide intervals.
+- Grow the held out set and have a second person label the gold fact IDs; 58 questions from one annotator leave wide intervals.
 - Add a table-aware check: a number quoted from a NASA table must sit next to the month or field the sentence names. This targets the errors that currently pass.
 - Try a 7B-class free hosted model and a fine-tuned small model on the citation format, then compare in the same table.
 - Add a second, independent verifier model call for every answer instead of only in the eval.
@@ -240,27 +240,27 @@ docs/           PLAN.md, LLM_PLAN.md, RESULTS.md, PREREGISTRATION.md, EDGE_PROPO
 
 ## Accessibility and data caveats
 
-- An automated axe-core audit (WCAG 2.0 to 2.2 A and AA rules plus best practices) reports no violations on the start screen, both panel tabs, the answer view and the credits dialog, at desktop and phone widths. Automated checks find only part of the problems. No screen-reader or user testing has been done yet.
+- An automated axe-core audit (WCAG 2.0 to 2.2 A and AA rules plus best practices) reports no violations on the start screen, both panel tabs, the answer view and the credits dialog, at desktop and phone widths (run once; the report is not stored in this repository). Automated checks find only part of the problems. No screen-reader or user testing has been done yet.
 - Tabs, creature switching and the credits dialog work by keyboard. The island list is a keyboard alternative to the globe. Motion can be paused and `prefers-reduced-motion` is respected.
 - Each climate value comes from a NASA POWER grid cell of roughly 0.5 by 0.625 degrees. Every island here is smaller than one cell, so the numbers describe the surrounding area, not a point on the island. The panel says so.
 - The confidence label on each fact is the compiler's judgement. On 9 October 2026 the 32 facts that were labelled High but cited Wikipedia were re-checked against primary sources: 14 needed corrections (one more was narrowed), 12 were downgraded to Medium because nothing but Wikipedia backs them, and the rest now cite the primary source. No High fact cites Wikipedia now. The other labels have not been audited independently. Three links that returned HTTP 404 were replaced or downgraded the same day.
-- GBIF counts are split into observations, preserved or fossil specimens and living or captive animals, using only records with coordinates and no flagged coordinate issue. For the extinct-in-the-wild Pinta Island tortoise, 22 of its 27 nearby records are specimens.
+- GBIF counts are split into observations, preserved or fossil specimens and living or captive animals, using only records with coordinates and no flagged coordinate issue. For the extinct Pinta Island tortoise, 22 of its 27 nearby records are specimens.
 - When a creature lives away from the point the NASA POWER readings describe (the Pinta Island tortoise), the panel says so.
 - If live data replaces an older snapshot and a value moves, the change is logged and listed at `/api/data-changes`.
 
 ## Library search quality
 
-The library's search is lexical (BM25 with a small stemmer and hand-written synonyms). A question is answered only when the facts cover enough of its words, and a question that names something the library has never seen, such as a capitalised place or an unfamiliar noun, is refused. Matches that cover only part of a question are labelled as the closest entries.
+The library's search is lexical (BM25 with a small stemmer and handwritten synonyms). A question is answered only when the facts cover enough of its words, and a question that names something the library has never seen, such as a capitalised place or an unfamiliar noun, is refused. Matches that cover only part of a question are labelled as the closest entries.
 
 `eval/library_relevance.jsonl` holds 106 questions (52 the library can answer, 54 it cannot) and `tests/test_library_relevance.py` guards them.
 
 | Measure | Before the fix | After |
 |---|---|---|
-| Out-of-scope questions that still returned facts (20 questions) | 10 of 20 | 1 of 54 in the saved set |
+| Out of scope questions that still returned facts (20 questions) | 10 of 20 | 1 of 54 in the saved set |
 | Answerable questions that returned nothing | not measured | 0 of 52 in the saved set |
 | First run on 42 fresh questions, before tuning on them | | 1 of 20 false positives, 6 of 22 answerable empty |
 
-Both sets were tuned against, so the "after" figures are regression checks, not an independent score. The fresh-question row is the honest estimate: roughly 5% wrong answers to out-of-scope questions and about a quarter of answerable questions missed, before the later fixes for synonyms. A held-out set written by someone else would be a better test.
+Both sets were tuned against, so the "after" figures are regression checks, not an independent score. The fresh question row is the better estimate: roughly 5% wrong answers to out-of-scope questions and about a quarter of answerable questions missed, before the later fixes for synonyms. A held out set written by someone else would be a better test. Only the saved set is rechecked by tests; the other counts in this table were recorded once.
 
 ## Operations
 
