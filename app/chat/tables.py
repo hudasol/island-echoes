@@ -34,6 +34,10 @@ _MAX_WORDS = re.compile(r"\b(wettest|rainiest|warmest|hottest|windiest|most|high
 _MIN_WORDS = re.compile(r"\b(driest|coldest|coolest|calmest|least|lowest|fewest|smallest)\b", re.I)
 
 
+def _fmt(v: float) -> str:
+    return f"{v:g}"
+
+
 def parse_rows(evidence_text: str) -> dict[str, dict[str, float]]:
     """{code: {label: value}} for every POWER table row in the text."""
     rows = {}
@@ -89,7 +93,9 @@ def table_issues(sentence: str, cited_text: str) -> list[str]:
             continue
         where = sorted({lb for c in codes for lb, v in rows[c].items() if v == n}, key=(MONTHS + ["ANN"]).index)
         if where and any(lab in rows[c] for c in codes):
-            issues.append(f"{m.group()} is the {', '.join(where)} value in the cited table, not {lab}")
+            # name the right cell, so the repair retry can state it (the retry is checked again in full)
+            right = "; ".join(f"{c} {lab} is {_fmt(rows[c][lab])}" for c in codes if lab in rows[c])
+            issues.append(f"{m.group()} is the {', '.join(where)} value in the cited table, not {lab} ({right})")
 
     months = {lab for _, _, lab in labels if lab != "ANN"}
     hi, lo = bool(_MAX_WORDS.search(sentence)), bool(_MIN_WORDS.search(sentence))
@@ -98,11 +104,12 @@ def table_issues(sentence: str, cited_text: str) -> list[str]:
         codes = _family_codes(sentence, None, rows)
         quoted = [c for n, lab, cs in bound if lab == month for c in cs if rows[c].get(month) == n]
         codes = [c for c in codes if c in quoted] or codes
-        ok = False
+        ok, right = False, []
         for c in codes:
             monthly = {k: v for k, v in rows[c].items() if k != "ANN"}
             target = max(monthly.values()) if hi else min(monthly.values())
             ok = ok or monthly.get(month) == target
+            right.append(f"in {c} it is {', '.join(k for k, v in monthly.items() if v == target)} at {_fmt(target)}")
         if not ok:
-            issues.append(f"{month} is not the {'highest' if hi else 'lowest'} month in the cited table")
+            issues.append(f"{month} is not the {'highest' if hi else 'lowest'} month in the cited table ({'; '.join(right)})")
     return issues

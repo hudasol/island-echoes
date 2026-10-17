@@ -26,14 +26,14 @@ def test_rows_are_parsed_from_power_evidence(power):
 def test_a_value_from_the_neighbouring_month_is_caught(power):
     ev = power("cocos-keeling", "POWER-COC-WIND")
     s = "In September, the wind speed at 10 meters (WS10M) at Cocos Island Airport is 8.2 m/s."
-    assert table_issues(s, ev.text) == ["8.2 is the AUG value in the cited table, not SEP"]
+    assert table_issues(s, ev.text) == ["8.2 is the AUG value in the cited table, not SEP (WS10M SEP is 8.15)"]
     assert table_issues("In September, the wind speed at 10 meters is 8.15 m/s.", ev.text) == []
 
 
 def test_a_false_superlative_month_is_caught(power):
     ev = power("clipperton", "POWER-CLI-PRECIP")
     assert table_issues("March has the most rain in NASA's climate data, with 1.42 mm/day.", ev.text) == [
-        "MAR is not the highest month in the cited table"
+        "MAR is not the highest month in the cited table (in PRECTOTCORR it is AUG at 13.4)"
     ]
     assert table_issues("August is the wettest month, with 13.4 mm/day.", ev.text) == []
     assert table_issues("March is the driest month, with 1.42 mm/day.", ev.text) == []
@@ -45,7 +45,7 @@ def test_annual_values_and_parameters_are_bound(power):
     ok = "The annual average temperature at your location is 26.28°C, and the annual average daily rainfall is 0.36 mm."
     assert table_issues(ok, both) == []
     assert table_issues("The annual mean temperature is 29.22 C.", temp.text) == [
-        "29.22 is the MAY value in the cited table, not ANN"
+        "29.22 is the MAY value in the cited table, not ANN (T2M ANN is 26.28; T2M_MAX ANN is 34.86; T2M_MIN ANN is 19.43)"
     ]
 
 
