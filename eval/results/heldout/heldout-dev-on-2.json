@@ -1,0 +1,1145 @@
+{
+ "meta": {
+  "timestamp": "2026-10-17T23:24:49+00:00",
+  "commit": "19822c0",
+  "answer_model": "ollama:qwen2.5:3b-instruct",
+  "provider": "ollama",
+  "model": "qwen2.5:3b-instruct",
+  "retrieval_mode": "hybrid",
+  "retrieval_k": 8,
+  "facts_hash": "491e9b1e2b6592e8",
+  "wall_seconds": 1130.3,
+  "judge_model": null,
+  "questions_file": "questions_heldout.jsonl",
+  "split": "dev",
+  "table_check": true,
+  "errored": 0,
+  "label": "heldout-dev-on-2"
+ },
+ "summary": {
+  "questions": 20,
+  "judged_questions": 0,
+  "fact_sentences_judged": 0,
+  "groundedness": {
+   "k": 0,
+   "n": 0
+  },
+  "partially_supported": {
+   "k": 0,
+   "n": 0
+  },
+  "hallucination_rate": {
+   "k": 0,
+   "n": 0
+  },
+  "answers_with_hallucination": {
+   "k": 1,
+   "n": 20
+  },
+  "refusal_accuracy": {
+   "k": 4,
+   "n": 5
+  },
+  "false_refusals": {
+   "k": 6,
+   "n": 15
+  },
+  "key_fact_recall": {
+   "k": 10,
+   "n": 21
+  },
+  "expected_source_recall": {
+   "k": 8,
+   "n": 15
+  },
+  "validator_first_pass_failures": {
+   "k": 9,
+   "n": 19
+  },
+  "repaired_answers": {
+   "k": 8,
+   "n": 20
+  },
+  "conflicts_reported": {
+   "k": 0,
+   "n": 0
+  },
+  "questions_passed": {
+   "k": 13,
+   "n": 20
+  }
+ },
+ "records": [
+  {
+   "id": "H01",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "The cited evidence does not contain the name of the windiest month.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "The name of the windiest month in NASA's climate data",
+   "cited_ids": [],
+   "retrieved_ids": [
+    "POWER-TDC-WIND",
+    "TDC-217",
+    "TDC-216",
+    "TDC-005",
+    "TDC-218",
+    "TDC-221",
+    "TDC-211",
+    "TDC-002",
+    "TDC-026"
+   ],
+   "raw_sentences": [
+    {
+     "text": "The windiest month in NASA's climate data is August with a wind speed of 8.93 m/s.",
+     "kind": "fact",
+     "cites": [
+      "POWER-TDC-WIND"
+     ]
+    },
+    {
+     "text": "The windiest month in NASA's climate data is August with a wind speed of 8.93 m/s.",
+     "kind": "fact",
+     "cites": [
+      "POWER-TDC-WIND"
+     ]
+    }
+   ],
+   "raw_issues": [
+    {
+     "text": "The windiest month in NASA's climate data is August with a wind speed of 8.93 m/s.",
+     "issues": [
+      "name not in cited evidence: August"
+     ]
+    },
+    {
+     "text": "The windiest month in NASA's climate data is August with a wind speed of 8.93 m/s.",
+     "issues": [
+      "name not in cited evidence: August"
+     ]
+    }
+   ],
+   "rejected": [],
+   "repaired": true,
+   "llm_called": true,
+   "seconds": 58.27,
+   "retrieval_ms": 88.5,
+   "llm_ms": 58175.9,
+   "tokens_in": 3220,
+   "tokens_out": 164
+  },
+  {
+   "id": "H02",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "The evidence does not specify which month is the driest in NASA's climate data.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "NASA's climate data does not specify the driest month or the amount of rain per day in that month.",
+   "cited_ids": [],
+   "retrieved_ids": [
+    "POWER-PIT-PRECIP",
+    "PIT-217",
+    "PIT-007",
+    "PIT-006",
+    "PIT-008",
+    "PIT-222",
+    "PIT-214",
+    "PIT-210",
+    "PIT-016"
+   ],
+   "raw_sentences": [
+    {
+     "text": "The driest month in NASA's climate data is January, with 3.99 mm of rain per day.",
+     "kind": "fact",
+     "cites": [
+      "POWER-PIT-PRECIP"
+     ]
+    }
+   ],
+   "raw_issues": [
+    {
+     "text": "The driest month in NASA's climate data is January, with 3.99 mm of rain per day.",
+     "issues": [
+      "JAN is not the lowest month in the cited table (in PRECTOTCORR it is MAR at 3.33)"
+     ]
+    }
+   ],
+   "rejected": [],
+   "repaired": true,
+   "llm_called": true,
+   "seconds": 53.79,
+   "retrieval_ms": 73.6,
+   "llm_ms": 53719.4,
+   "tokens_in": 3284,
+   "tokens_out": 132
+  },
+  {
+   "id": "H04",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "I can't back that with my sources, so I won't state it.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "The retrieved sources do not directly answer this question.",
+   "cited_ids": [],
+   "retrieved_ids": [
+    "POWER-GAL-TEMP",
+    "GAL-006",
+    "GAL-005",
+    "GAL-222",
+    "GAL-002",
+    "GAL-007",
+    "GAL-218",
+    "GAL-212",
+    "GAL-224"
+   ],
+   "raw_sentences": [
+    {
+     "text": "The lowest mean air temperature at 2 Meters (T2M_MIN, C) is 17.51 °C, occurring in December.",
+     "kind": "fact",
+     "cites": [
+      "POWER-GAL-TEMP"
+     ]
+    }
+   ],
+   "raw_issues": [
+    {
+     "text": "The lowest mean air temperature at 2 Meters (T2M_MIN, C) is 17.51 °C, occurring in December.",
+     "issues": [
+      "17.51 is the OCT, ANN value in the cited table, not DEC (T2M DEC is 23.99; T2M_MAX DEC is 29.17; T2M_MIN DEC is 19.89)",
+      "DEC is not the lowest month in the cited table (in T2M it is SEP at 22.15; in T2M_MAX it is AUG at 26.71; in T2M_MIN it is OCT at 17.51)"
+     ]
+    }
+   ],
+   "rejected": [
+    {
+     "text": "The lowest mean air temperature at 2 Meters (T2M_MIN, C) is 17.51 °C, occurring in October (OCT).",
+     "issues": [
+      "name not in cited evidence: October"
+     ]
+    },
+    {
+     "text": "The lowest mean air temperature at 2 Meters (T2M_MIN, C) is 17.51 °C, occurring in December (DEC).",
+     "issues": [
+      "17.51 is the OCT, ANN value in the cited table, not DEC (T2M DEC is 23.99; T2M_MAX DEC is 29.17; T2M_MIN DEC is 19.89)",
+      "DEC is not the lowest month in the cited table (in T2M it is SEP at 22.15; in T2M_MAX it is AUG at 26.71; in T2M_MIN it is OCT at 17.51)"
+     ]
+    }
+   ],
+   "repaired": true,
+   "llm_called": true,
+   "seconds": 82.98,
+   "retrieval_ms": 42.2,
+   "llm_ms": 82930.4,
+   "tokens_in": 3689,
+   "tokens_out": 245
+  },
+  {
+   "id": "H05",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "I can't back that with my sources, so I won't state it.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "PRECIPITATION data for each month in the climate table",
+   "cited_ids": [],
+   "retrieved_ids": [
+    "POWER-BOU-PRECIP",
+    "BOU-009",
+    "BOU-214",
+    "BOU-005",
+    "BOU-211",
+    "BOU-001",
+    "BOU-004",
+    "BOU-219",
+    "BOU-226"
+   ],
+   "raw_sentences": [
+    {
+     "text": "The wettest month in NASA's climate data is December, with 2.55 mm/day.",
+     "kind": "fact",
+     "cites": [
+      "POWER-BOU-PRECIP"
+     ]
+    }
+   ],
+   "raw_issues": [
+    {
+     "text": "The wettest month in NASA's climate data is December, with 2.55 mm/day.",
+     "issues": [
+      "DEC is not the highest month in the cited table (in PRECTOTCORR it is APR at 3.74)"
+     ]
+    }
+   ],
+   "rejected": [
+    {
+     "text": "The cited evidence does not provide the wettest month or the precipitation amount per day for any specific month.",
+     "issues": [
+      "voice sentence longer than 14 words"
+     ]
+    }
+   ],
+   "repaired": true,
+   "llm_called": true,
+   "seconds": 55.28,
+   "retrieval_ms": 78.6,
+   "llm_ms": 55200.6,
+   "tokens_in": 3125,
+   "tokens_out": 138
+  },
+  {
+   "id": "H07",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "Temperature at 2 Meters (T2M, C): JAN 26.76",
+     "kind": "fact",
+     "cites": [
+      "POWER-CLI-TEMP"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "POWER-CLI-TEMP"
+   ],
+   "retrieved_ids": [
+    "POWER-CLI-TEMP",
+    "CLI-005",
+    "CLI-008",
+    "CLI-218",
+    "CLI-211",
+    "CLI-220",
+    "CLI-212",
+    "CLI-217",
+    "CLI-019"
+   ],
+   "raw_sentences": [
+    {
+     "text": "Temperature at 2 Meters (T2M, C): JAN 26.76",
+     "kind": "fact",
+     "cites": [
+      "POWER-CLI-TEMP"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 45.42,
+   "retrieval_ms": 132.9,
+   "llm_ms": 45284.9,
+   "tokens_in": 1831,
+   "tokens_out": 58
+  },
+  {
+   "id": "H08",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "Temperature at 2 Meters (T2M, C): ANN 23.11.",
+     "kind": "fact",
+     "cites": [
+      "POWER-PIT-TEMP"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "POWER-PIT-TEMP"
+   ],
+   "retrieved_ids": [
+    "POWER-PIT-TEMP",
+    "PIT-007",
+    "PIT-008",
+    "PIT-006",
+    "PIT-217",
+    "PIT-005",
+    "PIT-219",
+    "PIT-009",
+    "PIT-211"
+   ],
+   "raw_sentences": [
+    {
+     "text": "Temperature at 2 Meters (T2M, C): ANN 23.11.",
+     "kind": "fact",
+     "cites": [
+      "POWER-PIT-TEMP"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 44.62,
+   "retrieval_ms": 79.6,
+   "llm_ms": 44536.5,
+   "tokens_in": 1869,
+   "tokens_out": 58
+  },
+  {
+   "id": "H11",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "Twelve seabird species are recorded breeding on Bouvetøya",
+     "kind": "fact",
+     "cites": [
+      "BOU-201"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "BOU-201"
+   ],
+   "retrieved_ids": [
+    "BOU-221",
+    "BOU-201",
+    "BOU-204",
+    "BOU-209",
+    "BOU-223",
+    "BOU-202",
+    "BOU-224",
+    "BOU-205",
+    "BOU-030",
+    "BOU-027",
+    "BOU-026"
+   ],
+   "raw_sentences": [
+    {
+     "text": "Twelve seabird species are recorded breeding on Bouvetøya",
+     "kind": "fact",
+     "cites": [
+      "BOU-201"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 39.79,
+   "retrieval_ms": 38.4,
+   "llm_ms": 39748.5,
+   "tokens_in": 1686,
+   "tokens_out": 52
+  },
+  {
+   "id": "H12",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "A rain gauge on Clipperton collected 890 mm of rain between 11 August and 17 September 1958.",
+     "kind": "fact",
+     "cites": [
+      "CLI-219"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "CLI-219"
+   ],
+   "retrieved_ids": [
+    "POWER-CLI-PRECIP",
+    "CLI-219",
+    "CLI-001",
+    "CLI-216",
+    "CLI-016",
+    "CLI-006",
+    "CLI-221",
+    "CLI-020",
+    "CLI-225"
+   ],
+   "raw_sentences": [
+    {
+     "text": "A rain gauge on Clipperton collected 890 mm of rain between 11 August and 17 September 1958.",
+     "kind": "fact",
+     "cites": [
+      "CLI-219"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 37.37,
+   "retrieval_ms": 75.9,
+   "llm_ms": 37289.1,
+   "tokens_in": 1545,
+   "tokens_out": 68
+  },
+  {
+   "id": "H14",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "The lesser frigatebird (Fregata ariel) is listed as LC by the Ramsar sheet for Pulu Keeling National Park, which gives 6,000 individuals (3,000 pairs) from a 2004 count, about 3% of the global population, breeding in large numbers on North Keeling.",
+     "kind": "fact",
+     "cites": [
+      "COC-207"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "COC-207"
+   ],
+   "retrieved_ids": [
+    "COC-207",
+    "COC-032",
+    "COC-224",
+    "COC-225",
+    "COC-204",
+    "COC-201",
+    "COC-223",
+    "COC-019"
+   ],
+   "raw_sentences": [
+    {
+     "text": "The lesser frigatebird (Fregata ariel) is listed as LC by the Ramsar sheet for Pulu Keeling National Park, which gives 6,000 individuals (3,000 pairs) from a 2004 count, about 3% of the global population, breeding in large numbers on North Keeling.",
+     "kind": "fact",
+     "cites": [
+      "COC-207"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 42.76,
+   "retrieval_ms": 57.4,
+   "llm_ms": 42704.1,
+   "tokens_in": 1370,
+   "tokens_out": 111
+  },
+  {
+   "id": "H15",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "My sensors hold nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "The retrieved sources do not directly answer this question.",
+   "cited_ids": [],
+   "retrieved_ids": [
+    "GAL-211",
+    "GAL-221",
+    "GAL-202",
+    "GAL-218",
+    "GAL-205",
+    "GAL-222",
+    "GAL-215",
+    "GAL-206"
+   ],
+   "raw_sentences": [
+    {
+     "text": "According to [GAL-211], the 1982-83 El Niño event resulted in an average mortality of 97% for Galápagos coral reefs.",
+     "kind": "fact",
+     "cites": [
+      "GAL-211"
+     ]
+    },
+    {
+     "text": "I do not have information on the specific share of coral reefs that died in the 1982-83 El Niño.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "raw_issues": [
+    {
+     "text": "According to [GAL-211], the 1982-83 El Niño event resulted in an average mortality of 97% for Galápagos coral reefs.",
+     "issues": [
+      "numbers not in cited evidence: 211"
+     ]
+    },
+    {
+     "text": "I do not have information on the specific share of coral reefs that died in the 1982-83 El Niño.",
+     "issues": [
+      "voice sentence longer than 14 words",
+      "voice sentence contains digits"
+     ]
+    }
+   ],
+   "rejected": [],
+   "repaired": true,
+   "llm_called": true,
+   "seconds": 71.07,
+   "retrieval_ms": 84.8,
+   "llm_ms": 70980.8,
+   "tokens_in": 2942,
+   "tokens_out": 234
+  },
+  {
+   "id": "H16",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "The parasitic fly Philornis downsi was first recorded in Darwin's finch nests on Santa Cruz in 1997.",
+     "kind": "fact",
+     "cites": [
+      "GAL-224"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "GAL-224"
+   ],
+   "retrieved_ids": [
+    "GAL-224",
+    "GAL-223",
+    "GAL-208",
+    "GAL-204",
+    "GAL-225",
+    "GAL-016",
+    "GAL-207",
+    "GAL-212",
+    "GAL-025",
+    "GAL-027",
+    "GAL-024"
+   ],
+   "raw_sentences": [
+    {
+     "text": "The parasitic fly Philornis downsi was first recorded in Darwin's finch nests on Santa Cruz in 1997.",
+     "kind": "fact",
+     "cites": [
+      "GAL-224"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 40.72,
+   "retrieval_ms": 195.0,
+   "llm_ms": 40521.8,
+   "tokens_in": 1552,
+   "tokens_out": 66
+  },
+  {
+   "id": "H17",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "The 1814 visit by HMS Briton and HMS Tagus counted about 46 inhabitants on Pitcairn, according to the Naval Chronicle; one contemporary letter says 40.",
+     "kind": "fact",
+     "cites": [
+      "PIT-019"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "PIT-019"
+   ],
+   "retrieved_ids": [
+    "PIT-019",
+    "PIT-021",
+    "PIT-017",
+    "PIT-020",
+    "PIT-035",
+    "PIT-033",
+    "PIT-028",
+    "PIT-004",
+    "PIT-023",
+    "PIT-022"
+   ],
+   "raw_sentences": [
+    {
+     "text": "The 1814 visit by HMS Briton and HMS Tagus counted about 46 inhabitants on Pitcairn, according to the Naval Chronicle; one contemporary letter says 40.",
+     "kind": "fact",
+     "cites": [
+      "PIT-019"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 39.58,
+   "retrieval_ms": 148.8,
+   "llm_ms": 39411.4,
+   "tokens_in": 1449,
+   "tokens_out": 79
+  },
+  {
+   "id": "H19",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "In 2007, 206 nesting loggerhead turtles (Caretta caretta) were counted at Abalhen Beach on Socotra, and in 2012, 95 turtles were counted.",
+     "kind": "fact",
+     "cites": [
+      "SOC-209"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "SOC-209"
+   ],
+   "retrieved_ids": [
+    "SOC-209",
+    "SOC-202",
+    "SOC-201",
+    "SOC-019",
+    "SOC-036",
+    "SOC-038",
+    "SOC-025",
+    "SOC-225",
+    "SOC-024",
+    "SOC-026",
+    "SOC-027",
+    "SOC-010",
+    "SOC-011",
+    "SOC-012"
+   ],
+   "raw_sentences": [
+    {
+     "text": "In 2007, 206 nesting loggerhead turtles (Caretta caretta) were counted at Abalhen Beach on Socotra, and in 2012, 95 turtles were counted.",
+     "kind": "fact",
+     "cites": [
+      "SOC-209"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 64.83,
+   "retrieval_ms": 168.8,
+   "llm_ms": 64659.2,
+   "tokens_in": 1714,
+   "tokens_out": 86
+  },
+  {
+   "id": "H21",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "I can't back that with my sources, so I won't state it.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "spectacled petrel nesting location and population count",
+   "cited_ids": [],
+   "retrieved_ids": [
+    "TDC-202",
+    "TDC-027",
+    "TDC-204",
+    "TDC-025",
+    "TDC-209",
+    "TDC-201",
+    "TDC-205",
+    "TDC-203",
+    "TDC-024",
+    "TDC-026",
+    "TDC-028",
+    "TDC-001",
+    "TDC-002",
+    "TDC-003"
+   ],
+   "raw_sentences": [
+    {
+     "text": "The spectacled petrel (Procellaria conspicillata) nests only on the high western plateau of Inaccessible Island and is listed as Vulnerable (IUCN 3.1) per Wikipedia, with a population estimated at 31,000 to 45,000 birds after downlisting from critically endangered (2000) to vulnerable (2007).",
+     "kind": "fact",
+     "cites": [
+      "TDC-202"
+     ]
+    },
+    {
+     "text": "The spectacled petrel (Procellaria conspicillata) nests only on the high western plateau of Inaccessible Island and is listed as Vulnerable (IUCN 3.1) per Wikipedia, with a population estimated at 31,000 to 45,000 birds after downlisting from critically endangered (2000) to vulnerable (2007).",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "raw_issues": [
+    {
+     "text": "The spectacled petrel (Procellaria conspicillata) nests only on the high western plateau of Inaccessible Island and is listed as Vulnerable (IUCN 3.1) per Wikipedia, with a population estimated at 31,000 to 45,000 birds after downlisting from critically endangered (2000) to vulnerable (2007).",
+     "issues": [
+      "voice sentence longer than 14 words",
+      "voice sentence contains digits",
+      "voice sentence contains name not in sources: Procellaria",
+      "voice sentence contains name not in sources: Inaccessible",
+      "voice sentence contains name not in sources: Island",
+      "voice sentence contains name not in sources: Vulnerable"
+     ]
+    }
+   ],
+   "rejected": [
+    {
+     "text": "The spectacled petrel (Procellaria conspicillata) nests only on the high western plateau of Inaccessible Island and is listed as Vulnerable (IUCN 3.1) per Wikipedia, with a population estimated at 31,000 to 45,000 birds after downlisting from critically endangered (2000) to vulnerable (2007).",
+     "issues": [
+      "voice sentence longer than 14 words",
+      "voice sentence contains digits",
+      "voice sentence contains name not in sources: Procellaria",
+      "voice sentence contains name not in sources: Inaccessible",
+      "voice sentence contains name not in sources: Island",
+      "voice sentence contains name not in sources: Vulnerable"
+     ]
+    },
+    {
+     "text": "IUCN World Heritage Outlook describes the Gough moorhen (Gallinula comeri) as rare on Gough Island after the 2021 mouse eradication operation, with fewer than 20 birds in 2025 and only a single reproductive pair recorded until 2024; the IUCN Outlook says several thousand likely live on Tristan da Cunha, where it was introduced in the 1950s (another section estimates about 41,500 birds there).",
+     "issues": [
+      "voice sentence longer than 14 words",
+      "voice sentence contains digits",
+      "voice sentence contains name not in sources: World",
+      "voice sentence contains name not in sources: Heritage",
+      "voice sentence contains name not in sources: Outlook",
+      "voice sentence contains name not in sources: Gough",
+      "voice sentence contains name not in sources: Gallinula",
+      "voice sentence contains name not in sources: Gough",
+      "voice sentence contains name not in sources: Island",
+      "voice sentence contains name not in sources: Outlook"
+     ]
+    }
+   ],
+   "repaired": true,
+   "llm_called": true,
+   "seconds": 149.01,
+   "retrieval_ms": 87.3,
+   "llm_ms": 148907.4,
+   "tokens_in": 4041,
+   "tokens_out": 478
+  },
+  {
+   "id": "H22",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "The rock lobster vessel MV GeoSearcher sank off the north-west coast of Gough Island with consequences that could not be assessed.",
+     "kind": "fact",
+     "cites": [
+      "TDC-215"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "TDC-215"
+   ],
+   "retrieved_ids": [
+    "TDC-215",
+    "TDC-028",
+    "TDC-039",
+    "TDC-021",
+    "TDC-214",
+    "TDC-225",
+    "TDC-033",
+    "TDC-204"
+   ],
+   "raw_sentences": [
+    {
+     "text": "The rock lobster vessel MV GeoSearcher sank off the north-west coast of Gough Island with consequences that could not be assessed.",
+     "kind": "fact",
+     "cites": [
+      "TDC-215"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 34.69,
+   "retrieval_ms": 100.8,
+   "llm_ms": 34577.2,
+   "tokens_in": 1344,
+   "tokens_out": 64
+  },
+  {
+   "id": "H23",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "My sensors hold nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "The evidence does not contain any information about tourists or their landing on Bouvet Island.",
+   "cited_ids": [],
+   "retrieved_ids": [
+    "BOU-030",
+    "BOU-017",
+    "BOU-023",
+    "BOU-015",
+    "BOU-002",
+    "BOU-204",
+    "BOU-004",
+    "BOU-201"
+   ],
+   "raw_sentences": [
+    {
+     "text": "My sensors hold nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 30.96,
+   "retrieval_ms": 182.1,
+   "llm_ms": 30772.1,
+   "tokens_in": 1243,
+   "tokens_out": 61
+  },
+  {
+   "id": "H25",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "I can't back that with my sources, so I won't state it.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "The cost of a postage stamp on Pitcairn is not mentioned in the provided evidence.",
+   "cited_ids": [],
+   "retrieved_ids": [
+    "PIT-033",
+    "PIT-028",
+    "PIT-004",
+    "PIT-035",
+    "PIT-008",
+    "PIT-208",
+    "PIT-017",
+    "PIT-021"
+   ],
+   "raw_sentences": [
+    {
+     "text": "I am a sensor-equipped field agent of an 'analog planet' and do not have information on the cost of a postage stamp on Pitcairn.",
+     "kind": "voice",
+     "cites": []
+    },
+    {
+     "text": "PIT-017 reports the Bounty mutineers settled Pitcairn in January 1790 with six Polynesian men, twelve Polynesian women and an infant girl, and the ship was burned on 23 January 1790.",
+     "kind": "fact",
+     "cites": [
+      "PIT-017"
+     ]
+    },
+    {
+     "text": "PIT-021 states Pitcairn is a British Overseas Territory, the only one in the Pacific, under a 2010 constitution; the UK keeps responsibility for defence and foreign affairs.",
+     "kind": "fact",
+     "cites": [
+      "PIT-021"
+     ]
+    }
+   ],
+   "raw_issues": [
+    {
+     "text": "I am a sensor-equipped field agent of an 'analog planet' and do not have information on the cost of a postage stamp on Pitcairn.",
+     "issues": [
+      "voice sentence longer than 14 words"
+     ]
+    },
+    {
+     "text": "PIT-017 reports the Bounty mutineers settled Pitcairn in January 1790 with six Polynesian men, twelve Polynesian women and an infant girl, and the ship was burned on 23 January 1790.",
+     "issues": [
+      "numbers not in cited evidence: 017"
+     ]
+    },
+    {
+     "text": "PIT-021 states Pitcairn is a British Overseas Territory, the only one in the Pacific, under a 2010 constitution; the UK keeps responsibility for defence and foreign affairs.",
+     "issues": [
+      "numbers not in cited evidence: 021"
+     ]
+    }
+   ],
+   "rejected": [
+    {
+     "text": "PIT-017 reports the Bounty mutineers settled Pitcairn in January 1790 with six Polynesian men, twelve Polynesian women and an infant girl, and the ship was burned on 23 January 1790.",
+     "issues": [
+      "voice sentence longer than 14 words",
+      "voice sentence contains digits",
+      "voice sentence contains name not in sources: Bounty",
+      "voice sentence contains name not in sources: January",
+      "voice sentence contains name not in sources: Polynesian",
+      "voice sentence contains name not in sources: Polynesian",
+      "voice sentence contains name not in sources: January"
+     ]
+    },
+    {
+     "text": "PIT-021 states Pitcairn is a British Overseas Territory, the only one in the Pacific, under a 2010 constitution; the UK keeps responsibility for defence and foreign affairs.",
+     "issues": [
+      "voice sentence longer than 14 words",
+      "voice sentence contains digits",
+      "voice sentence contains name not in sources: British",
+      "voice sentence contains name not in sources: Overseas",
+      "voice sentence contains name not in sources: Territory",
+      "voice sentence contains name not in sources: Pacific"
+     ]
+    }
+   ],
+   "repaired": true,
+   "llm_called": true,
+   "seconds": 109.07,
+   "retrieval_ms": 116.2,
+   "llm_ms": 108951.8,
+   "tokens_in": 2829,
+   "tokens_out": 396
+  },
+  {
+   "id": "H27",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "Temperature at 2 Meters Maximum (T2M_MAX, C): JUL 28.17",
+     "kind": "fact",
+     "cites": [
+      "POWER-COC-TEMP"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "POWER-COC-TEMP"
+   ],
+   "retrieved_ids": [
+    "POWER-COC-TEMP",
+    "COC-216",
+    "COC-006",
+    "COC-222",
+    "COC-008",
+    "COC-007",
+    "COC-009",
+    "COC-218",
+    "COC-036"
+   ],
+   "raw_sentences": [
+    {
+     "text": "Temperature at 2 Meters Maximum (T2M_MAX, C): JUL 28.17",
+     "kind": "fact",
+     "cites": [
+      "POWER-COC-TEMP"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 51.69,
+   "retrieval_ms": 389.7,
+   "llm_ms": 51275.3,
+   "tokens_in": 1774,
+   "tokens_out": 60
+  },
+  {
+   "id": "H28",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "I do not have information on the number of pups last year.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "number of pups last year",
+   "cited_ids": [],
+   "retrieved_ids": [
+    "GAL-106",
+    "GAL-110",
+    "GAL-103",
+    "GAL-207",
+    "GAL-205",
+    "GAL-107",
+    "GAL-204",
+    "GAL-224"
+   ],
+   "raw_sentences": [
+    {
+     "text": "I do not have information on the number of pups last year.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 11.76,
+   "retrieval_ms": 214.6,
+   "llm_ms": 11544.2,
+   "tokens_in": 1365,
+   "tokens_out": 49
+  },
+  {
+   "id": "H29",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "I lack the specific climate data for the island.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "I cannot make up the temperature for tomorrow on Tristan as the provided evidence does not contain future climate data.",
+   "cited_ids": [],
+   "retrieved_ids": [
+    "POWER-TDC-TEMP",
+    "TDC-007",
+    "TDC-037",
+    "TDC-210",
+    "TDC-214",
+    "TDC-006",
+    "TDC-005",
+    "TDC-219",
+    "TDC-207"
+   ],
+   "raw_sentences": [
+    {
+     "text": "I can't make up the temperature for tomorrow on Tristan as I lack the specific climate data for the island.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "raw_issues": [
+    {
+     "text": "I can't make up the temperature for tomorrow on Tristan as I lack the specific climate data for the island.",
+     "issues": [
+      "voice sentence longer than 14 words"
+     ]
+    }
+   ],
+   "rejected": [],
+   "repaired": true,
+   "llm_called": true,
+   "seconds": 66.31,
+   "retrieval_ms": 153.0,
+   "llm_ms": 66155.0,
+   "tokens_in": 3560,
+   "tokens_out": 133
+  }
+ ]
+}
