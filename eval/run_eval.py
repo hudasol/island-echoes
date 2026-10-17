@@ -33,6 +33,7 @@ from .judge import AnthropicJudge  # noqa: E402
 
 QUESTIONS = Path(__file__).with_name("questions.jsonl")
 DEV_QUESTIONS = Path(__file__).with_name("dev_questions.jsonl")  # tuning set; the 30 above stay frozen
+HELDOUT_QUESTIONS = Path(__file__).with_name("questions_heldout.jsonl")  # 20 dev, 10 sealed (field "split")
 RESULTS = Path(__file__).with_name("results")
 
 
@@ -179,6 +180,7 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--from-run", type=Path, help="re-score a saved run JSON without calling the API for answers")
     ap.add_argument("--ids", help="comma-separated question IDs")
     ap.add_argument("--questions", type=Path, default=QUESTIONS, help="question file (default the frozen 30)")
+    ap.add_argument("--split", choices=["dev", "sealed"], help="only questions whose split field matches")
     ap.add_argument("--workers", type=int, default=None, help="parallel questions (default 1 for local models, else 4)")
     ap.add_argument("--out", type=Path, default=None, help="output path without extension (default eval/results/<label>)")
     ap.add_argument("--provider", help="LLM_PROVIDER for this run: extractive | ollama | llamacpp | huggingface | anthropic")
@@ -192,7 +194,7 @@ def main(argv: list[str] | None = None) -> int:
     overrides = {k: v for k, v in {"llm_provider": args.provider, "llm_model": args.model, "retrieval_mode": args.retrieval, "retrieval_k": args.k}.items() if v}
     settings = settings.model_copy(update=overrides)
     ids = set(args.ids.split(",")) if args.ids else None
-    questions = {q["id"]: q for q in load_questions(ids, args.questions)}
+    questions = {q["id"]: q for q in load_questions(ids, args.questions) if not args.split or q.get("split") == args.split}
     islands = IslandStore.load(settings.islands_dir)
     retriever = build_retriever(settings, islands, SourceStore(settings, islands))
 
@@ -250,6 +252,7 @@ def main(argv: list[str] | None = None) -> int:
             "wall_seconds": round(time.time() - started, 1),
             "judge_model": None,
             "questions_file": args.questions.name,
+            "split": args.split,
         }
 
     if args.judge:
