@@ -1,4 +1,5 @@
-# Island Echoes — build plan
+# Island Echoes build plan
+> The original build plan, kept for history. Figures in it (for example 287 facts) predate the current fact base of 469 facts; see the README for the current state.
 
 ## Goal
 A 3D globe with seven remote islands. Click a pin (or pick from the side panel) to zoom in.
@@ -18,11 +19,11 @@ cited sources. If the sources don't contain the answer, it says so.
 | Bouvet Island | Macaroni penguin | bird |
 
 ## Data sources (and only these)
-1. **Island fact files** — `data/islands/*.json`. 287 atomic, paraphrased facts, each with a
+1. **Island fact files**: `data/islands/*.json`. 287 atomic, paraphrased facts, each with a
    source URL, publisher, evidence note and confidence. Compiled from public web sources.
-2. **NASA POWER** — monthly climatology (temperature, rainfall, wind, humidity) at each pin.
-3. **GBIF** — species backbone match and occurrence counts for each creature.
-4. **NASA GIBS** — imagery tiles on the globe (not used as chat evidence).
+2. **NASA POWER**: monthly climatology (temperature, rainfall, wind, humidity) at each pin.
+3. **GBIF**: species backbone match and occurrence counts for each creature.
+4. **NASA GIBS**: imagery tiles on the globe (not used as chat evidence).
 
 POWER and GBIF responses are cached as committed snapshots in `data/snapshots/` so the app and the
 eval are reproducible and start without network calls; `make snapshot` refreshes them.
@@ -57,7 +58,7 @@ flowchart LR
   secondary sources named on each fact.
 
 ## Eval
-`eval/questions.jsonl`: 30 questions — single-fact, multi-fact, climate (POWER), species (GBIF),
+`eval/questions.jsonl`: 30 questions: single fact, multiple fact, climate (POWER), species (GBIF),
 conflict-handling and unanswerable ones. Each lists expected evidence IDs (or `should_refuse`).
 `eval/run_eval.py` runs the real pipeline and reports:
 - **Groundedness**: share of answer sentences judged supported by their cited evidence

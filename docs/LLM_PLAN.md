@@ -8,11 +8,11 @@ provider, can only say what the cited sources say, and reports its own statistic
 1. **Grounded by construction.** The model never sees anything but retrieved evidence, and every sentence
    it returns is checked (citation exists, numbers and proper nouns appear in the cited text) before a
    user sees it. Unsupported sentences are repaired once, then dropped.
-2. **Zero-cost by default.** No paid key is needed. The deployed site stays model-free; chat is switched
+2. **No cost by default.** No paid key is needed. The deployed site runs without a model; chat is switched
    on with `LLM_PROVIDER` (a local model, a free hosted endpoint, or Anthropic if a key exists).
 3. **Every layer is swappable and measured.** Each choice (retriever, generator, validator) is a config
    value, and the eval reports the same metrics for each, so comparisons are one command.
-4. **Honest numbers.** Tuned sets and held-out sets are labelled separately. Every eval run is stored
+4. **Traceable numbers.** Tuned sets and held out sets are labelled separately. Every eval run is stored
    with its configuration, data hash and git revision, so a number can be traced to what produced it.
 
 ## Layers
@@ -20,7 +20,7 @@ provider, can only say what the cited sources say, and reports its own statistic
 | Layer | Module | What it does | Swap via |
 |---|---|---|---|
 | L0 Data | `app/data/*`, `data/` | 469 cited facts, NASA POWER and GBIF evidence, snapshots | (existing) |
-| L1 Retrieval | `app/data/retrieval.py`, `app/retrieval/` | BM25, dense vectors (bge-small-en-v1.5, precomputed), reciprocal-rank fusion, answerability gate | `RETRIEVAL_MODE=bm25\|dense\|hybrid` |
+| L1 Retrieval | `app/data/retrieval.py`, `app/retrieval/` | BM25, dense vectors (bge-small-en-v1.5, precomputed), reciprocal rank fusion, answerability gate | `RETRIEVAL_MODE=bm25\|dense\|hybrid` |
 | L2 Generation | `app/llm/` | one `AnswerLLM` interface: `extractive` (no model, baseline), `ollama`, `llamacpp`, `huggingface`, `anthropic` | `LLM_PROVIDER` |
 | L3 Guardrails | `app/chat/grounding.py` | citation, number and proper-noun checks, one repair retry, refusal on no evidence | (existing) |
 | L4 Telemetry | `app/telemetry/` | one SQLite row per request: stage latencies, retrieval quality, provider, tokens, validator outcome. Question text is not stored unless `LOG_QUESTIONS=true` | `TELEMETRY=on\|off` |
@@ -37,13 +37,13 @@ Three sets, kept separate:
 - `eval/questions.jsonl` (30): expected fact IDs, required strings, refusal cases. Used for retrieval
   recall and generation correctness.
 - `eval/library_relevance.jsonl` (106): answerable or not, split `tuned` or `heldout`. Used for the
-  answerability gate (false-positive and false-negative rates).
-- `eval/heldout.jsonl` (new): written after the retriever settled and never used for tuning.
+  answerability gate (false positive and false negative rates).
+- `eval/retrieval_gold.jsonl` (58 held out questions with gold fact IDs): written after the retriever settled and never used for tuning.
 
 Metrics (all with 95% Wilson or bootstrap intervals):
 
 - Retrieval: recall@1/3/5/12, MRR, nDCG@5 on gold fact IDs.
-- Gate: false-positive rate on unanswerable questions, empty rate on answerable ones.
+- Gate: false positive rate on unanswerable questions, empty rate on answerable ones.
 - Generation: answered-correctly (required strings present), refusal accuracy, citation precision (cited
   IDs that were retrieved), groundedness (share of kept fact sentences passing every check),
   hallucination rate (unsupported fact sentences before validation), repair rate, drop rate.
@@ -68,7 +68,7 @@ each model that was actually run). Only combinations that were run are reported.
    output through JSON schema for the local ones; tests with recorded responses.
 3. Telemetry and stats: store, middleware hooks, `/api/stats`, CLI.
 4. Eval runs registry and report; run the matrix with whatever model can run for free; write results to
-   the README with the caveat that applies (model size, number of questions, tuned or held-out).
+   the README with the caveat that applies (model size, number of questions, tuned or held out).
 5. UI: chat tab appears only when `chat_enabled`; stats page.
 6. Demo video last.
 
@@ -82,4 +82,4 @@ each model that was actually run). Only combinations that were run are reported.
 
 ## Status
 
-Built and measured: retrieval modes with a held-out gold set, provider layer, telemetry and stats, checkpointed eval runner, report generator, paired comparison, a development set kept apart from the frozen 30, and preregistered local model runs through Ollama (October 2026, see RESULTS.md). Not built: a table-aware or entailment-based verifier, a judge model run (the machine used had less than 16 GB of RAM), a persistent telemetry store for the deployed instance.
+Built and measured: retrieval modes with a held out gold set, provider layer, telemetry and stats, checkpointed eval runner, report generator, paired comparison, a development set kept apart from the frozen 30, and preregistered local model runs through Ollama (October 2026, see RESULTS.md). Not built: a table aware or entailment based verifier, a judge model run (the machine used had less than 16 GB of RAM), a persistent telemetry store for the deployed instance.
