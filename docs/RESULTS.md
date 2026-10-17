@@ -55,6 +55,24 @@ Runs on `eval/dev_questions.jsonl` (20 answerable questions and 5 refusal guards
 | dev-baseline | ollama:qwen2.5:3b-instruct | hybrid (8) | 80% (20/25) [61-91] | 72% (18/25) [52-86] | 71% (15/21) [50-86] | 5% (1/20) [1-24] | 100% (5/5) [57-100] | 9% (2/23) [2-27] | 16% (4/25) [6-35] | 0 | 53 / 86 s | 1696 / 92 |
 | dev-candidate-1 | ollama:qwen2.5:3b-instruct | hybrid (8) | 84% (21/25) [65-94] | 80% (20/25) [61-91] | 76% (16/21) [55-89] | 5% (1/20) [1-24] | 100% (5/5) [57-100] | 0% (0/20) [0-16] | 24% (6/25) [11-43] | 0 | 52 / 97 s | 1908 / 81 |
 
+## Held out set (`eval/questions_heldout.jsonl`)
+
+30 questions written before any model output was seen: 20 for tuning (dev) and 10 sealed, each sealed configuration run once. Dev rows were tuned against; sealed rows are held out. The frozen 30 row with the check on is in the generation table above and is a regression check, because those questions were used for earlier diagnosis.
+
+**Dev (20, tuned against)**
+
+| run | model | retrieval (k) | table check | passed | key-fact recall | source recall | false refusals | refusal accuracy | first-attempt failures | repaired | errored | median / p95 time | tokens in / out per call |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| heldout-dev-off | ollama:qwen2.5:3b-instruct | hybrid (8) | off | 65% (13/20) [43-82] | 48% (10/21) [28-68] | 73% (11/15) [48-89] | 20% (3/15) [7-45] | 80% (4/5) [38-96] | 32% (6/19) [15-54] | 25% (5/20) [11-47] | 0 | 66 / 167 s | 2008 / 119 |
+| heldout-dev-on-2 | ollama:qwen2.5:3b-instruct | hybrid (8) | on | 65% (13/20) [43-82] | 48% (10/21) [28-68] | 53% (8/15) [30-75] | 40% (6/15) [20-64] | 80% (4/5) [38-96] | 47% (9/19) [27-68] | 40% (8/20) [22-61] | 0 | 52 / 149 s | 2271 / 136 |
+| heldout-dev-on | ollama:qwen2.5:3b-instruct | hybrid (8) | on | 65% (13/20) [43-82] | 48% (10/21) [28-68] | 60% (9/15) [36-80] | 40% (6/15) [20-64] | 80% (4/5) [38-96] | 44% (8/18) [25-66] | 45% (9/20) [26-66] | 0 | 95 / 186 s | 2325 / 132 |
+
+**Sealed (10, held out)**
+
+| run | model | retrieval (k) | table check | passed | key-fact recall | source recall | false refusals | refusal accuracy | first-attempt failures | repaired | errored | median / p95 time | tokens in / out per call |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| heldout-sealed-off | ollama:qwen2.5:3b-instruct | hybrid (8) | off | 78% (7/9) [45-94] | 57% (4/7) [25-84] | 67% (4/6) [30-90] | 0% (0/6) [0-39] | 100% (3/3) [44-100] | 0% (0/6) [0-39] | 11% (1/9) [2-44] | 1 | 56 / 126 s | 1741 / 81 |
+
 ## Analysis of the October 2026 local model runs
 
 Hand written; the tables above are generated. Predictions are from `docs/PREREGISTRATION.md`, committed before any
