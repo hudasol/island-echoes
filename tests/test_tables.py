@@ -68,3 +68,14 @@ def test_validator_applies_the_check_only_when_enabled(power):
     on = grounding.check_sentences(sent, {ev.id: ev}, "How windy is it in September?", set())
     off = grounding.check_sentences(sent, {ev.id: ev}, "How windy is it in September?", set(), table_check=False)
     assert on[0].issues and not off[0].issues
+
+
+def test_full_month_names_pass_the_name_check_only_with_the_table_check(power):
+    ev = power("tristan-da-cunha", "POWER-TDC-WIND")
+    sent = [{"text": "The windiest month in NASA's climate data is August, at 8.93 m/s.", "kind": "fact", "cites": [ev.id]}]
+    q = "Which month is the windiest here?"
+    assert grounding.check_sentences(sent, {ev.id: ev}, q, set())[0].ok
+    off = grounding.check_sentences(sent, {ev.id: ev}, q, set(), table_check=False)[0]
+    assert off.issues == ["name not in cited evidence: August"]
+    wrong = [{"text": "The windiest month in NASA's climate data is January, at 6.51 m/s.", "kind": "fact", "cites": [ev.id]}]
+    assert "JAN is not the highest month" in grounding.check_sentences(wrong, {ev.id: ev}, q, set())[0].issues[0]
