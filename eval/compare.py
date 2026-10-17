@@ -42,6 +42,8 @@ ISSUE_KINDS = [
     ("voice sentence too long", r"voice sentence longer"),
     ("voice sentence cited a source", r"voice sentence must not cite"),
     ("empty sentence", r"empty sentence"),
+    ("number from another month or period", r"value in the cited table, not"),
+    ("superlative month not supported", r"is not the (highest|lowest) month"),
 ]
 
 
