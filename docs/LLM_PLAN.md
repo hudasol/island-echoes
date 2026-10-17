@@ -82,4 +82,4 @@ each model that was actually run). Only combinations that were run are reported.
 
 ## Status
 
-Built and measured: retrieval modes with a held-out gold set, provider layer, telemetry and stats, checkpointed eval runner, report generator. Not built: an entailment-based verifier and a judge model run (no free option was run yet), a persistent telemetry store for the deployed instance.
+Built and measured: retrieval modes with a held-out gold set, provider layer, telemetry and stats, checkpointed eval runner, report generator, paired comparison, a development set kept apart from the frozen 30, and preregistered local model runs through Ollama (October 2026, see RESULTS.md). Not built: a table-aware or entailment-based verifier, a judge model run (the machine used had less than 16 GB of RAM), a persistent telemetry store for the deployed instance.

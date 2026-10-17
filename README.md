@@ -159,17 +159,24 @@ Dense and hybrid retrieval find a correct fact more often when the question uses
 
 **2. End to end, no judge model** (`python -m eval.run_eval --provider <name>`). The 30 questions in `eval/questions.jsonl` (11 single-fact, 4 multi-fact, 4 climate, 2 species, 4 source conflicts, 4 unanswerable, 1 prompt injection) run through retrieval, the model and the validator. Scoring is mechanical: required values present, expected evidence cited, unanswerable questions refused, plus how many of the model's fact sentences the validator had to reject on the first attempt (a proxy for hallucination: invented IDs, numbers or names not in the cited text). Runs checkpoint after every answer and resume if interrupted.
 
-| Run (all on free, local hardware) | passed | key facts | refusal accuracy | false refusals | first-attempt validator failures |
-|---|---|---|---|---|---|
-| No model: quote the top sources (`extractive`, keyword retrieval) | 15/30 | 26/41 | 1/5 | 0/25 | 0/83 |
-| Qwen2.5-3B-Instruct Q4, hybrid retrieval, 8 facts | 14/29 | 25/40 | 4/5 | 10/24 | 12/45 (27%) |
+Rows are copied from [docs/RESULTS.md](docs/RESULTS.md); brackets are 95% intervals. Every model run uses Qwen2.5-3B-Instruct (4-bit) at temperature 0 with 8 facts shown, on a laptop CPU.
+
+| Run | passed | false refusals | refusal accuracy | first-attempt failures |
+|---|---|---|---|---|
+| No model: quote the top sources (`extractive`, keyword retrieval) | 50% (15/30) [33-67] | 0% (0/25) [0-13] | 20% (1/5) [4-62] | 0% (0/83) [0-4] |
+| Ollama, keyword retrieval | 77% (23/30) [59-88] | 16% (4/25) [6-35] | 100% (5/5) [57-100] | 8% (3/36) [3-22] |
+| Ollama, hybrid retrieval | 67% (20/30) [49-81] | 20% (5/25) [9-39] | 100% (5/5) [57-100] | 15% (5/34) [6-30] |
+| Ollama, hybrid, after a prompt change that was then reverted | 77% (23/30) [59-88] | 12% (3/25) [4-30] | 100% (5/5) [57-100] | 11% (3/28) [4-27] |
+| llama.cpp, hybrid (earlier run, no constrained decoding) | 48% (14/29) [31-66] | 42% (10/24) [24-61] | 80% (4/5) [38-96] | 27% (12/45) [16-41] |
 
 What this says, honestly:
 
-- A 3B model **did not beat quoting the sources** on pass rate (14/29 against 15/30; intervals roughly 31-66% against 33-67%). It added something the baseline cannot do, refusing questions the sources do not cover (4 of 5 against 1 of 5), and paid for it by refusing 10 of 24 answerable questions.
-- More than a quarter of its fact sentences failed a check on the first try, mostly wrong or malformed citations and numbers or names not in the cited text. The validator removed them, so nothing unsupported was shown, but the answers got shorter. This is the case the validator is built for.
-- One question (Q02) failed because the model returned malformed JSON, and is excluded from the 29.
-- With 30 questions the intervals are wide. These numbers are a regression guard and a comparison between configurations, not a benchmark. No LLM judge has been run, so faithfulness beyond the mechanical checks is not measured. Larger models were not run: the Anthropic API needs paid credit, and the free hosted option (`LLM_PROVIDER=huggingface`) needs a token this build did not have. Both are one setting away and produce a row in the same table.
+- The local model declined every unanswerable or injection question (5 of 5), which quoting the sources cannot do (1 of 5), and answered most answerable ones. Its pass rate is higher than the baseline's, but the 95% intervals overlap, so this is **not claimed as a proven gain**. A paired test on passes gives p = 0.039 for the keyword run, but that comparison was not preregistered and is one of several.
+- Keyword and hybrid retrieval do not differ significantly end to end (paired exact McNemar test: passes p = 0.375, false refusals p = 1.000).
+- A prompt and schema change aimed at false refusals was tried after tuning on a separate 25-question development set. On the frozen 30 it lowered false refusals from 5 to 3 of 25 (p = 0.688, not significant). A manual reading of the changed answers found 2 contradicted sentences against 1 before, and a rule fixed in advance said to revert in that case, so it was reverted. Details are in [docs/RESULTS.md](docs/RESULTS.md).
+- The errors that get through quote a number that is in the cited table but belongs to another month or row (for example the driest month given as the wettest). The mechanical validator cannot see this; a table-aware check or an entailment model would.
+- Predictions for these runs were written before they ran ([docs/PREREGISTRATION.md](docs/PREREGISTRATION.md)). Most missed because they were anchored on the earlier llama.cpp run, which served the same weights without constrained decoding and did much worse. The cause of that difference was not isolated.
+- With 30 questions the intervals are wide, and these questions were used to diagnose problems, so they are a regression guard, not a benchmark. No judge model was run (the machine had less than 16 GB of RAM), so groundedness is measured only by the mechanical checks. Timings were taken on a heavily loaded laptop and are left out of this table; they are in RESULTS.
 
 **3. Library relevance** (`pytest tests/test_library_relevance.py`). 106 questions, 52 answerable and 54 not, guard the no-model library search against returning facts for off-topic questions. Part of this set was used for tuning (see "Library search quality").
 
@@ -189,11 +196,11 @@ app/llm/        answer models behind one interface: extractive, Ollama, llama.cp
 app/chat/       prompts, grounding validator, chat service
 app/telemetry/  per-request SQLite statistics
 data/           islands/*.json fact files, snapshots/ (NASA POWER, GBIF), embeddings/
-eval/           question sets, retrieval and end-to-end eval, metrics, report, stored results
+eval/           question sets (frozen 30, development 25), retrieval and end-to-end eval, paired comparison, report, stored results
 scripts/        snapshot_sources.py, validate_data.py, build_embeddings.py, stats.py
 web/            globe frontend, creature animations, stats page, service worker, vendored globe.gl
 tests/          200+ tests (retrieval, dense, providers, grounding, telemetry, API, web assets, eval metrics)
-docs/           PLAN.md, LLM_PLAN.md, RESULTS.md and screenshots
+docs/           PLAN.md, LLM_PLAN.md, RESULTS.md, PREREGISTRATION.md, EDGE_PROPOSAL.md, OVERNIGHT_LOG.md and screenshots
 ```
 
 ## Retrospective
@@ -207,9 +214,11 @@ docs/           PLAN.md, LLM_PLAN.md, RESULTS.md and screenshots
 - **Naive stemming broke matches** ("tortoises" against "tortoise"), and first-person questions ("what do you eat?") pulled in evidence about the wrong topic when I anchored them to the creature name. Both were fixed with tests.
 - **Some sources disagree** (population figures, assessment years). These are kept as separate facts rather than merged, which makes answers longer but honest.
 
-- **A small local model followed the citation format badly.** The first run of Qwen2.5-3B padded evidence IDs with punctuation (".TDC-019"), so every citation was rejected and the model looked useless. A cleaner for the wrapper characters (the ID itself must still match retrieved evidence) fixed it; a 27% first-attempt failure rate remains, and the model still over-refuses. Measuring before blaming the model mattered.
+- **A small local model followed the citation format badly at first.** The first run of Qwen2.5-3B padded evidence IDs with punctuation (".TDC-019"), so every citation was rejected and the model looked useless. A cleaner for the wrapper characters (the ID itself must still match retrieved evidence) fixed it. Serving the same weights through Ollama with schema constrained output later cut first-attempt failures from 27% to 8 to 15% and false refusals from 42% to 16 to 20%. Measuring before blaming the model mattered.
+- **Predictions anchored on one old run were wrong.** The preregistered predictions assumed the llama.cpp behaviour would carry over; most missed on the optimistic side. They are reported as misses.
+- **A fix that looked better was reverted.** A prompt and schema change lowered false refusals within noise, but a manual reading found one more contradicted sentence among the changed answers. A rule set before the run said to revert, and it was. The mechanical proxy alone would have kept it.
 - **Embeddings helped less than hoped as a gate.** Dense similarity separates answerable from unanswerable questions better than BM25 scores (AUC 0.93 against 0.85 on the 106-question set), but no threshold is clean (at 0.55, 19 of 54 off-topic questions pass), so the library keeps its tuned keyword gate and dense retrieval is used only to rank evidence for the chat.
-- **A long eval run was lost** when the sandbox restarted. The runner now checkpoints every answer and resumes.
+- **A long eval run was lost** when the sandbox restarted. The runner now checkpoints every answer and resumes; this later saved an interrupted run.
 
 **Assumptions**
 
@@ -223,6 +232,7 @@ docs/           PLAN.md, LLM_PLAN.md, RESULTS.md and screenshots
 - Store claims, not paragraphs: break each fact into atomic statements so the validator can check meaning, not only numbers and names.
 - Check meaning, not only words, with a small local entailment model, so a wrong claim built from correct words is caught without a paid judge.
 - Grow the held-out set and have a second person label the gold fact IDs; 58 questions from one annotator leave wide intervals.
+- Add a table-aware check: a number quoted from a NASA table must sit next to the month or field the sentence names. This targets the errors that currently pass.
 - Try a 7B-class free hosted model and a fine-tuned small model on the citation format, then compare in the same table.
 - Add a second, independent verifier model call for every answer instead of only in the eval.
 - Pull Red List statuses from the official API once a token is available.
