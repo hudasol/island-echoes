@@ -70,8 +70,9 @@ def _checked_missing(text: str, question: str, names: set[str]) -> str:
 
 
 class ChatService:
-    def __init__(self, islands: IslandStore, retriever: Retriever, llm: AnswerLLM | None):
+    def __init__(self, islands: IslandStore, retriever: Retriever, llm: AnswerLLM | None, table_check: bool = True):
         self.islands, self.retriever, self.llm = islands, retriever, llm
+        self.table_check = table_check  # label aware number check for NASA POWER tables (app/chat/tables.py)
 
     # ------------------------------------------------------------------
     def respond(
@@ -116,7 +117,7 @@ class ChatService:
         system = prompts.build_system(island, creature)
 
         out = self._attempt(system, message, res.evidence, history, None, meter)
-        checked = grounding.check_sentences(out.get("sentences", []), evidence, message, names)
+        checked = grounding.check_sentences(out.get("sentences", []), evidence, message, names, self.table_check)
         raw = [{"text": c.text, "kind": c.kind, "cites": c.cites} for c in checked]
         raw_issues = [{"text": c.text, "issues": c.issues} for c in checked if c.issues]
         repaired = False
@@ -125,7 +126,7 @@ class ChatService:
             repaired = True
             fb = prompts.repair_feedback([(i["text"], i["issues"]) for i in raw_issues])
             out2 = self._attempt(system, message, res.evidence, history, fb, meter)
-            checked = grounding.check_sentences(out2.get("sentences", []), evidence, message, names)
+            checked = grounding.check_sentences(out2.get("sentences", []), evidence, message, names, self.table_check)
             out = out2
 
         kept = [c for c in checked if c.ok]
