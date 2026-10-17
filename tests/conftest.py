@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import os
 import shutil
 import sys
 from pathlib import Path
@@ -17,6 +18,14 @@ from app.data.retrieval import Retriever  # noqa: E402
 from app.data.sources import SourceStore  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
+
+
+# Keep tests hermetic: a key or provider in the developer's shell or .env must not change what Settings() sees.
+# An environment variable overrides .env in pydantic-settings, so an empty value masks both. This runs when
+# conftest is imported, before test modules (and app.main, which reads settings at import) are collected.
+PROVIDER_ENV = ("ANTHROPIC_API_KEY", "LLM_PROVIDER", "LLM_MODEL", "HF_TOKEN", "OPENAI_API_KEY", "OPENAI_BASE_URL")
+for _name in PROVIDER_ENV:
+    os.environ[_name] = ""
 
 
 @pytest.fixture(scope="session")
