@@ -73,6 +73,18 @@ def _family_codes(text: str, pos: int | None, rows: dict) -> list[str]:
     return codes
 
 
+def is_table_month(word: str, cited_text: str) -> bool:
+    """True if `word` is a full month name whose abbreviation labels a column of a cited POWER table.
+
+    The name check would otherwise reject "August" because the table writes AUG. Accepting it is safe only because
+    table_issues then checks the number and any superlative attached to that month.
+    """
+    if word.lower() not in (f.lower() for f in _FULL):
+        return False
+    lab = _label(word)
+    return any(lab in row for row in parse_rows(cited_text).values())
+
+
 def table_issues(sentence: str, cited_text: str) -> list[str]:
     rows = parse_rows(cited_text)
     if not rows:
