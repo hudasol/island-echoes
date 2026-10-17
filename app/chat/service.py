@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 import time
 from dataclasses import dataclass, field
 
@@ -54,6 +55,18 @@ class _Meter:
     ms: float = 0.0
     tok_in: int = 0
     tok_out: int = 0
+
+
+def _checked_missing(text: str, question: str, names: set[str]) -> str:
+    """The model's free-text `missing` note is shown to users, so it gets the voice-sentence checks: no digits and
+    no names that are not in the question or the island and creature names. A note that fails is replaced."""
+    if re.search(r"\d", text):
+        return ""
+    allowed = {grounding._norm(n) for n in names}
+    q = grounding._norm(question)
+    if any(grounding._norm(n) not in allowed and grounding._norm(n) not in q for n in grounding.proper_nouns(text)):
+        return ""
+    return text
 
 
 class ChatService:
@@ -120,7 +133,7 @@ class ChatService:
         fact_kept = [c for c in kept if c.kind == "fact"]
 
         answered = bool(out.get("answered")) and bool(fact_kept)
-        missing = str(out.get("missing") or "").strip()
+        missing = _checked_missing(str(out.get("missing") or "").strip(), message, names)
         sentences = [Sentence(c.text, c.kind, c.cites) for c in kept]
         if not fact_kept and not any(c.kind == "voice" for c in kept):
             sentences = [Sentence(DROPPED_LINE, "voice", [])]

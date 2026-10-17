@@ -149,3 +149,9 @@ def test_anthropic_client_never_sends_sampling_params_and_maps_billing_errors():
     else:
         raise AssertionError("expected LLMError")
     assert "temperature" not in FakeClient.messages.seen
+
+
+def test_model_missing_note_is_checked_like_a_voice_sentence(store, retriever):
+    invented = reply(voice("My sensors hold nothing on that."), answered=False, missing="Nightingale had 400 visitors in 2019.")
+    r = svc(store, retriever, ScriptedLLM(invented)).respond("socotra", "How many tourists visit the island each year?")
+    assert not r.answered and "400" not in r.missing and "Nightingale" not in r.missing and r.missing
