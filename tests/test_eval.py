@@ -196,3 +196,12 @@ def test_issue_breakdown_counts_each_kind():
     assert got["no citation"] == 1 and got["number not in cited evidence"] == 1
     assert got["name not in cited evidence"] == 1 and got["voice sentence carried digits or names"] == 1
     assert got["empty sentence"] == 1 and got["other"] == 0
+
+
+def test_report_matches_the_committed_results_file():
+    """docs/RESULTS.md must be exactly what eval.report generates from the stored runs."""
+    from eval.report import ROOT, build
+
+    md = build()
+    assert md == (ROOT / "docs" / "RESULTS.md").read_text(encoding="utf-8")
+    assert "## Development set (tuned against: not a held out result)" in md and "| issue |" in md

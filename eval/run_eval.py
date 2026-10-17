@@ -42,8 +42,11 @@ def load_questions(ids: set[str] | None = None, path: Path = QUESTIONS) -> list[
 
 
 def git_sha() -> str:
+    """Short commit of the checkout, with "-dirty" if tracked files differ from it."""
     try:
-        return subprocess.run(["git", "rev-parse", "--short", "HEAD"], cwd=ROOT, capture_output=True, text=True, check=True).stdout.strip()
+        sha = subprocess.run(["git", "rev-parse", "--short", "HEAD"], cwd=ROOT, capture_output=True, text=True, check=True).stdout.strip()
+        dirty = subprocess.run(["git", "status", "--porcelain", "--untracked-files=no"], cwd=ROOT, capture_output=True, text=True, check=True).stdout.strip()
+        return sha + ("-dirty" if dirty else "")
     except Exception:  # noqa: BLE001
         return "unknown"
 
@@ -208,6 +211,7 @@ def main(argv: list[str] | None = None) -> int:
             print("No LLM_PROVIDER set. Use --provider (extractive needs nothing) or --from-run to re-score a saved run.", file=sys.stderr)
             return 2
         service = ChatService(islands, retriever, llm)
+        commit = git_sha()  # stamped before answering, so later commits made while it runs do not appear here
         local = llm.provider in ("ollama", "llamacpp")
         workers = args.workers or (1 if local else 4)
         started = time.time()
@@ -236,7 +240,7 @@ def main(argv: list[str] | None = None) -> int:
         ckpt.unlink(missing_ok=True)
         meta = {
             "timestamp": datetime.now(UTC).isoformat(timespec="seconds"),
-            "commit": git_sha(),
+            "commit": commit,
             "answer_model": f"{llm.provider}:{llm.model}",
             "provider": llm.provider,
             "model": llm.model,
@@ -266,7 +270,7 @@ def main(argv: list[str] | None = None) -> int:
     conflict = {
         s.id: (
             None
-            if not questions[s.id].get("expects_conflict") or not good[s.id].get("judge")
+            if questions[s.id].get("type") != "conflict" or not good[s.id].get("judge")
             else good[s.id]["judge"].get("states_conflict") == "yes"
         )
         for s in scores
