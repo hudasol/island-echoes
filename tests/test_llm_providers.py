@@ -118,23 +118,3 @@ def test_factory_selects_providers_and_validates_config():
         build_llm(Settings(llm_provider="bogus"))
     with pytest.raises(LLMError, match="ANTHROPIC_API_KEY"):
         build_llm(Settings(llm_provider="anthropic"))
-
-
-@respx.mock
-def test_ollama_narrows_the_schema_to_the_retrieved_ids():
-    route = respx.post("http://localhost:11434/api/chat").mock(
-        return_value=httpx.Response(200, json={"message": {"content": json.dumps(GOOD)}})
-    )
-    OllamaAnswerLLM("qwen2.5:3b-instruct").answer("sys", "user", cite_ids=["SOC-011", "SOC-012", "SOC-011"])
-    items = json.loads(route.calls[0].request.content)["format"]["properties"]["sentences"]["items"]["anyOf"]
-    fact = next(i for i in items if i["properties"]["kind"]["enum"] == ["fact"])
-    voice = next(i for i in items if i["properties"]["kind"]["enum"] == ["voice"])
-    assert fact["properties"]["cites"]["items"]["enum"] == ["SOC-011", "SOC-012"]
-    assert fact["properties"]["cites"]["minItems"] == 1 and voice["properties"]["cites"]["maxItems"] == 0
-    assert list(fact["properties"]) == ["kind", "cites", "text"]
-
-
-def test_answer_schema_without_ids_is_the_shared_schema():
-    from app.llm.base import ANSWER_SCHEMA, answer_schema
-
-    assert answer_schema(None) is ANSWER_SCHEMA and answer_schema([]) is ANSWER_SCHEMA

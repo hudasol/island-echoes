@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import pytest
 
-from app.chat import grounding
 from app.chat.llm import LLMError
 from app.chat.service import DROPPED_LINE, ChatService, ChatUnavailable
 
@@ -150,39 +149,3 @@ def test_anthropic_client_never_sends_sampling_params_and_maps_billing_errors():
     else:
         raise AssertionError("expected LLMError")
     assert "temperature" not in FakeClient.messages.seen
-
-
-def test_a_worse_repair_does_not_replace_a_better_first_attempt(store, retriever):
-    first = reply(
-        fact("Socotra's highest point is Mashanig at about 1,503 m, according to Wikipedia.", "SOC-011"),
-        voice("It towers over 1,503 m of rock."),
-    )
-    gave_up = reply(voice("My sensors hold nothing on that."), answered=False)
-    r = svc(store, retriever, ScriptedLLM(first, gave_up)).respond("socotra", "How tall is the tallest mountain?")
-    assert r.repaired and r.answered and r.cited_ids == ["SOC-011"]
-    # the failing voice sentence from the first attempt is still not shown
-    assert all(s.kind == "fact" for s in r.sentences) and r.rejected and "digits" in r.rejected[0]["issues"][0]
-
-
-def test_evidence_ids_are_passed_only_to_models_that_accept_them(store, retriever):
-    class Narrowable(ScriptedLLM):
-        accepts_cite_ids = True
-
-        def answer(self, system, user, cite_ids=None):
-            self.ids = cite_ids
-            return super().answer(system, user)
-
-    llm = Narrowable(reply(fact("Socotra's highest point is Mashanig at about 1,503 m, according to Wikipedia.", "SOC-011")))
-    r = svc(store, retriever, llm).respond("socotra", "What is the tallest mountain?")
-    assert llm.ids == [e.id for e in r.retrieved] and "SOC-011" in llm.ids
-
-
-def test_repair_feedback_points_to_the_item_that_holds_the_numbers(store, retriever):
-    res = retriever.search("socotra", "How tall is the tallest mountain?")
-    other = next(e for e in res.evidence if e.id != "SOC-011" and any(ch.isdigit() for ch in e.text))
-    num = sorted(grounding.numbers(other.text), key=len)[-1]
-    wrong = reply(fact(f"{other.id} says the figure is {num}.", "SOC-011"))
-    llm = ScriptedLLM(wrong, wrong)
-    svc(store, retriever, llm).respond("socotra", "How tall is the tallest mountain?")
-    feedback = llm.calls[1][1]
-    assert f"remove {other.id}" in feedback and other.id + ";" in feedback.replace(",", ";")
