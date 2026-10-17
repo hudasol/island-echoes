@@ -60,15 +60,16 @@ def tokens(run: dict) -> str:
     return f"{sum(r.get('tokens_in', 0) for r in recs) // len(recs)} / {sum(r.get('tokens_out', 0) for r in recs) // len(recs)}"
 
 
-def generation_table(runs: list[dict]) -> str:
-    head = ("| run | model | retrieval (k) | passed | key-fact recall | source recall | false refusals | refusal accuracy "
+def generation_table(runs: list[dict], with_check: bool = False) -> str:
+    head = ("| run | model | retrieval (k) |" + (" table check |" if with_check else "") + " passed | key-fact recall | source recall | false refusals | refusal accuracy "
             "| first-attempt failures | repaired | errored | median / p95 time | tokens in / out per call |")
-    lines = [head, "|" + "---|" * 13]
+    lines = [head, "|" + "---|" * (14 if with_check else 13)]
     for r in runs:
         m, s = r["meta"], r["summary"]
         lines.append(
             f"| {m.get('label', r['_file'])} | {m.get('answer_model')} | {m.get('retrieval_mode', 'bm25')} ({m.get('retrieval_k', 12)}) "
-            f"| {_short(s['questions_passed'])} | {_short(s['key_fact_recall'])} | {_short(s['expected_source_recall'])} "
+            + (f"| {'on' if m.get('table_check') else 'off'} " if with_check else "")
+            + f"| {_short(s['questions_passed'])} | {_short(s['key_fact_recall'])} | {_short(s['expected_source_recall'])} "
             f"| {_short(s['false_refusals'])} | {_short(s['refusal_accuracy'])} | {_short(s['validator_first_pass_failures'])} "
             f"| {_short(s['repaired_answers'])} | {m.get('errored', 0)} | {latency(r)} | {tokens(r)} |"
         )
@@ -122,6 +123,21 @@ def build() -> str:
             generation_table(dev),
             "",
         ]
+    held = load_runs(RESULTS / "heldout")
+    if held:
+        parts += [
+            "## Held out set (`eval/questions_heldout.jsonl`)",
+            "",
+            "30 questions written before any model output was seen: 20 for tuning (dev) and 10 sealed, each sealed "
+            "configuration run once. Dev rows were tuned against; sealed rows are held out. The frozen 30 row with the "
+            "check on is in the generation table above and is a regression check, because those questions were used "
+            "for earlier diagnosis.",
+            "",
+        ]
+        for split, title in (("dev", "Dev (20, tuned against)"), ("sealed", "Sealed (10, held out)")):
+            rows = [r for r in held if r["meta"].get("split") == split]
+            if rows:
+                parts += [f"**{title}**", "", generation_table(rows, with_check=True), ""]
     notes = RESULTS / "NOTES.md"
     if notes.exists():
         parts += [notes.read_text(encoding="utf-8").strip(), ""]
