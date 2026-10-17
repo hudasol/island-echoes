@@ -7,10 +7,11 @@ import pytest
 
 from app.data.sources import SourceStore
 from eval import metrics
-from eval.run_eval import DEV_QUESTIONS, load_questions, main, render_markdown
+from eval.run_eval import DEV_QUESTIONS, HELDOUT_QUESTIONS, load_questions, main, render_markdown
 
 QUESTIONS = load_questions()
 DEV = load_questions(path=DEV_QUESTIONS)
+HELDOUT = load_questions(path=HELDOUT_QUESTIONS)
 
 
 def evidence_text(store, source_store, island_slug, ev_id):
@@ -81,6 +82,36 @@ def test_dev_set_is_separate_from_the_frozen_thirty():
 
 @pytest.mark.parametrize("q", DEV, ids=lambda q: q["id"])
 def test_dev_questions_are_well_formed_and_grounded(q, store, real_settings):
+    store.get(q["island"]).creature(q.get("creature"))
+    for p in q["must_include"] + q.get("forbidden", []):
+        re.compile(p)
+    if q["should_refuse"]:
+        assert q["forbidden"], q["id"]
+        for pat in q["forbidden"]:
+            for f in store.get(q["island"]).facts:
+                assert not re.search(pat, f.statement), f"{q['id']}: {f.id} already contains the 'forbidden' value"
+    else:
+        assert q["expected_ids"] and q["must_include"], q["id"]
+        ss = SourceStore(real_settings, store, http=object())
+        texts = " ".join(evidence_text(store, ss, q["island"], i) for i in q["expected_ids"])
+        for pat in q["must_include"]:
+            assert re.search(pat, texts, re.I), f"{q['id']}: /{pat}/ not in expected sources"
+
+
+def test_heldout_set_is_split_and_separate_from_earlier_sets():
+    """Written before any model output; 20 for tuning, 10 sealed. It must share nothing with the earlier sets."""
+    assert len(HELDOUT) == 30 and len({q["id"] for q in HELDOUT}) == 30
+    assert sum(q["split"] == "dev" for q in HELDOUT) == 20 and sum(q["split"] == "sealed" for q in HELDOUT) == 10
+    earlier = QUESTIONS + DEV
+    assert not {q["question"].lower() for q in HELDOUT} & {q["question"].lower() for q in earlier}
+    assert not {i for q in HELDOUT for i in q["expected_ids"]} & {i for q in earlier for i in q["expected_ids"]}
+    for split in ("dev", "sealed"):
+        part = [q for q in HELDOUT if q["split"] == split]
+        assert any(q["should_refuse"] for q in part) and any(q["type"] == "climate" for q in part)
+
+
+@pytest.mark.parametrize("q", HELDOUT, ids=lambda q: q["id"])
+def test_heldout_questions_are_well_formed_and_grounded(q, store, real_settings):
     store.get(q["island"]).creature(q.get("creature"))
     for p in q["must_include"] + q.get("forbidden", []):
         re.compile(p)
