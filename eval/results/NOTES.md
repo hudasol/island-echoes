@@ -125,3 +125,68 @@ The remaining errors are of a kind the mechanical validator cannot catch: a valu
 belongs to a different row or month. A table-aware check (the number must sit next to the month or field the sentence
 names) or a small entailment model would target them directly. Prompt changes alone moved the false refusal rate
 within noise and did not reduce these errors.
+
+## Analysis of the label aware number check (18 October 2026)
+
+Predictions and the keep or revert rule are in `docs/PREREGISTRATION_2.md`, committed before the check was built.
+All runs: Qwen2.5-3B-Instruct through Ollama, hybrid retrieval, 8 facts, temperature 0. The check was reverted under
+that rule; the code on main again matches run B.
+
+### What the check did
+
+It bound each number quoted from a NASA POWER table to the month, annual period or parameter written next to it,
+and required a month called wettest, driest and so on to be its row's maximum or minimum (code at `5c42102`, reverted
+in `c308b71`; the replay script is at `ff9d866`). Every time it fired in a run, the claim it stopped was wrong when
+read against the table: frozen Q18 (October called the wettest month, at the annual value 7.75; the wettest is
+August, 13.4), sealed H06 (October called the most humid month, at November's value 79.43), and dev H02, H04 and
+H05 (wrong driest, coldest and wettest months).
+
+The replay over 264 stored fact sentences (`eval/results/table_check_replay.md`) rejected 3 distinct sentences, all
+genuine errors on reading, and no supported sentence.
+
+During tuning on the 20 dev questions, two changes were made: failure messages name the correct cell, which did not
+help, and a month written in full ("August") is accepted by the name check when its abbreviation labels a cited
+table column, which removed a false rejection that the earlier validator also makes (dev H01 is refused with the
+check off for this reason).
+
+### Predictions against measurements
+
+| Prediction | Predicted | Measured | Result |
+|---|---|---|---|
+| P1. The replay rejects D08 (D1) and Q18 (C) | both rejected | both rejected, plus C Q19 first attempt (also an error) | hit |
+| P2. At most 2 false rejections in the replay | at most 2 | 0 | hit |
+| P3. Sealed: passes and false refusals differ by at most 1; none significant | small difference | paired on 9: passes 7/9 both, answered 6/6 both, refusals 3/3 both, p = 1.000 | hit |
+| P4. Frozen with the check against run B: passed 18 to 23, false refusals 3 to 7, refusal accuracy 5/5, nothing significant | as stated | passed 20/30 (B 20/30), false refusals 6/25 (B 5/25), refusal accuracy 5/5, McNemar p = 1.000 for both | hit |
+| P5. The check fires on 1 to 4 frozen questions | 1 to 4 | 1 (Q18) | hit |
+| P6. No significant aggregate gain | none | none | hit |
+
+The sealed baseline has 9 scored questions: H06 errored there after an Ollama read timeout, and a single logged
+repeat with the check off (`eval/results/heldout-retry/`) timed out again in the repair step, so it stays excluded.
+
+### Keep or revert
+
+| Condition | Result |
+|---|---|
+| 1. No new contradicted or unsupported shown sentence in a check on run | **failed.** Sealed: the only differing sentence pair (H20) is supported in both. Frozen: of 13 sentences only in the check on run, 11 are supported, 1 is partly supported (Q14 widens "0 living or captive animals inside the search box" to "no living or captive Pinta Island tortoises have been recorded") and 1 is unsupported (Q24 adds "Pitcairn is the only inhabited island of its territory", which its cited fact does not say). Of 10 sentences only in run B, 9 are supported and 1 is contradicted (Q20, which the check on run states correctly). |
+| 2. Answered not lower by more than 1 (sealed) or 2 (frozen); refusal accuracy not lower | passed (sealed 6/6 against 6/6; frozen 19/25 against 20/25; refusal accuracy equal) |
+| 3. At most 2 false rejections in the replay | passed (0) |
+| 4. Tests pass unchanged, with and without a dummy key | passed |
+
+Condition 1 failed, so the check was reverted. The unsupported Q24 sentence cites prose, not a table, so the check
+did not cause it: it comes from variation between runs (run B was made two days earlier, under different load and
+with two parallel model slots). The rule compares a new run with an old one and cannot separate such variation from
+an effect of the change. A fairer rule would compare check on and check off runs made the same day on the same
+questions, and would count unsupported sentences in both directions. That design change is recorded here rather than
+applied after the fact.
+
+### Dev results (tuned against)
+
+| Run | passed | false refusals | refusal accuracy |
+|---|---|---|---|
+| dev, check off | 13/20 | 3/15 | 4/5 |
+| dev, check on, iteration 1 | 13/20 | 6/15 | 4/5 |
+| dev, check on, iteration 2 (correct cell named) | 13/20 | 6/15 | 4/5 |
+| dev, check on, iteration 3 (table months accepted) | 15/20 | 4/15 | 4/5 |
+
+With the check off, dev H02, H04 and H05 showed a wrong month as the answer; with the check on they were declined
+instead. The 3B model rarely recovered the right month on repair even when the failure message named it.
