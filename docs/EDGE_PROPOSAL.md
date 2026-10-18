@@ -51,7 +51,7 @@ attempts before anything was shown.
 What they do not show. A prompt change that lowered refusals (5 to 3 of 25, p = 0.688) was reverted because a
 manual reading found one more contradicted sentence among the changed answers. The errors that remain quote a
 number that is in the cited table but belongs to another month or row, which the mechanical validator cannot see.
-Timings were taken on a heavily loaded laptop and are not a performance claim.
+A table aware check that targets those errors stopped five wrong claims and no correct ones on a fresh question set, but was also reverted under its preregistered rule, which could not separate run to run variation from its effect. Timings were taken on a heavily loaded laptop and are not a performance claim.
 
 ## 4. What is not yet proven
 
