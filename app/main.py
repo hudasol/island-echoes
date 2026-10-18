@@ -118,7 +118,7 @@ def create_app(settings: Settings | None = None, service: ChatService | None = N
     sources = SourceStore(settings, islands)
     if service is None:
         llm = build_llm(settings)
-        service = ChatService(islands, build_retriever(settings, islands, sources), llm, settings.table_check)
+        service = ChatService(islands, build_retriever(settings, islands, sources), llm)
     retriever = service.retriever
     telemetry = Telemetry(settings.telemetry_path, settings.telemetry, settings.log_questions)
     app_started = time.time()

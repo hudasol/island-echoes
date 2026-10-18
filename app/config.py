@@ -32,7 +32,6 @@ class Settings(BaseSettings):
     embeddings_path: Path = ROOT / "data" / "embeddings" / "bge-small-en-v1.5.npz"
     retrieval_k: int = 12  # facts shown to the model (fewer = faster on small local models)
     dense_min_sim: float = 0.55  # cosine floor for the dense side of the answerability gate
-    table_check: bool = True  # bind numbers to the month or period they name in NASA POWER tables
 
     telemetry: bool = True
     log_questions: bool = False  # store question text (off by default: only a hash and length are kept)
