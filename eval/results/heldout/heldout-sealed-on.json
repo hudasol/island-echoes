@@ -1,0 +1,558 @@
+{
+ "meta": {
+  "timestamp": "2026-10-17T23:55:56+00:00",
+  "commit": "c5caef1",
+  "answer_model": "ollama:qwen2.5:3b-instruct",
+  "provider": "ollama",
+  "model": "qwen2.5:3b-instruct",
+  "retrieval_mode": "hybrid",
+  "retrieval_k": 8,
+  "facts_hash": "491e9b1e2b6592e8",
+  "wall_seconds": 625.9,
+  "judge_model": null,
+  "questions_file": "questions_heldout.jsonl",
+  "split": "sealed",
+  "table_check": true,
+  "errored": 0,
+  "label": "heldout-sealed-on"
+ },
+ "summary": {
+  "questions": 10,
+  "judged_questions": 0,
+  "fact_sentences_judged": 0,
+  "groundedness": {
+   "k": 0,
+   "n": 0
+  },
+  "partially_supported": {
+   "k": 0,
+   "n": 0
+  },
+  "hallucination_rate": {
+   "k": 0,
+   "n": 0
+  },
+  "answers_with_hallucination": {
+   "k": 0,
+   "n": 10
+  },
+  "refusal_accuracy": {
+   "k": 3,
+   "n": 3
+  },
+  "false_refusals": {
+   "k": 1,
+   "n": 7
+  },
+  "key_fact_recall": {
+   "k": 4,
+   "n": 9
+  },
+  "expected_source_recall": {
+   "k": 5,
+   "n": 7
+  },
+  "validator_first_pass_failures": {
+   "k": 1,
+   "n": 7
+  },
+  "repaired_answers": {
+   "k": 2,
+   "n": 10
+  },
+  "conflicts_reported": {
+   "k": 0,
+   "n": 0
+  },
+  "questions_passed": {
+   "k": 7,
+   "n": 10
+  }
+ },
+ "records": [
+  {
+   "id": "H03",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "In July, the wind speed at 10 meters (WS10M) was 13.14 m/s.",
+     "kind": "fact",
+     "cites": [
+      "POWER-SOC-WIND"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "POWER-SOC-WIND"
+   ],
+   "retrieved_ids": [
+    "POWER-SOC-WIND",
+    "SOC-008",
+    "SOC-005",
+    "SOC-002",
+    "SOC-023",
+    "SOC-212",
+    "SOC-213",
+    "SOC-208",
+    "SOC-009"
+   ],
+   "raw_sentences": [
+    {
+     "text": "In July, the wind speed at 10 meters (WS10M) was 13.14 m/s.",
+     "kind": "fact",
+     "cites": [
+      "POWER-SOC-WIND"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 42.95,
+   "retrieval_ms": 141.6,
+   "llm_ms": 42809.1,
+   "tokens_in": 1586,
+   "tokens_out": 64
+  },
+  {
+   "id": "H06",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "The annual value is 79.33%.",
+     "kind": "fact",
+     "cites": [
+      "POWER-COC-HUMID"
+     ]
+    }
+   ],
+   "missing": "The retrieved sources do not directly answer this question.",
+   "cited_ids": [
+    "POWER-COC-HUMID"
+   ],
+   "retrieved_ids": [
+    "POWER-COC-HUMID",
+    "COC-008",
+    "COC-217",
+    "COC-218",
+    "COC-032",
+    "COC-022",
+    "COC-206",
+    "COC-014",
+    "COC-039"
+   ],
+   "raw_sentences": [
+    {
+     "text": "The air is most humid in October (OCT) with an annual value of 79.43%.",
+     "kind": "fact",
+     "cites": [
+      "POWER-COC-HUMID"
+     ]
+    }
+   ],
+   "raw_issues": [
+    {
+     "text": "The air is most humid in October (OCT) with an annual value of 79.43%.",
+     "issues": [
+      "79.43 is the NOV value in the cited table, not ANN (RH2M ANN is 79.33)",
+      "OCT is not the highest month in the cited table (in RH2M it is APR at 80.92)"
+     ]
+    }
+   ],
+   "rejected": [
+    {
+     "text": "The air is most humid in April (APR) with an annual value of 80.92%.",
+     "issues": [
+      "80.92 is the APR value in the cited table, not ANN (RH2M ANN is 79.33)"
+     ]
+    }
+   ],
+   "repaired": true,
+   "llm_called": true,
+   "seconds": 115.65,
+   "retrieval_ms": 60.0,
+   "llm_ms": 115587.5,
+   "tokens_in": 3334,
+   "tokens_out": 198
+  },
+  {
+   "id": "H09",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "The wettest month is August (about 175 mm over 26 rainy days) and the driest is January (about 93 mm over 18 rainy days)",
+     "kind": "fact",
+     "cites": [
+      "TDC-217"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "TDC-217"
+   ],
+   "retrieved_ids": [
+    "POWER-TDC-PRECIP",
+    "TDC-217",
+    "TDC-008",
+    "TDC-219",
+    "TDC-003",
+    "TDC-216",
+    "TDC-212",
+    "TDC-203",
+    "TDC-020"
+   ],
+   "raw_sentences": [
+    {
+     "text": "The wettest month is August (about 175 mm over 26 rainy days) and the driest is January (about 93 mm over 18 rainy days)",
+     "kind": "fact",
+     "cites": [
+      "TDC-217"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 53.24,
+   "retrieval_ms": 46.0,
+   "llm_ms": 53196.9,
+   "tokens_in": 1557,
+   "tokens_out": 77
+  },
+  {
+   "id": "H10",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "In September, the Precipitation Corrected (PRECTOTCORR) is 0.23 mm/day.",
+     "kind": "fact",
+     "cites": [
+      "POWER-GAL-PRECIP"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "POWER-GAL-PRECIP"
+   ],
+   "retrieved_ids": [
+    "POWER-GAL-PRECIP",
+    "GAL-219",
+    "GAL-007",
+    "GAL-008",
+    "GAL-206",
+    "GAL-002",
+    "GAL-201",
+    "GAL-016",
+    "GAL-204"
+   ],
+   "raw_sentences": [
+    {
+     "text": "In September, the Precipitation Corrected (PRECTOTCORR) is 0.23 mm/day.",
+     "kind": "fact",
+     "cites": [
+      "POWER-GAL-PRECIP"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 52.89,
+   "retrieval_ms": 55.9,
+   "llm_ms": 52831.2,
+   "tokens_in": 1543,
+   "tokens_out": 63
+  },
+  {
+   "id": "H13",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "USS Yorktown evacuated the survivors of the Mexican garrison from Clipperton in 1917.",
+     "kind": "fact",
+     "cites": [
+      "CLI-018"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "CLI-018"
+   ],
+   "retrieved_ids": [
+    "CLI-018",
+    "CLI-205",
+    "CLI-207",
+    "CLI-202",
+    "CLI-020",
+    "CLI-004",
+    "CLI-225",
+    "CLI-226"
+   ],
+   "raw_sentences": [
+    {
+     "text": "USS Yorktown evacuated the survivors of the Mexican garrison from Clipperton in 1917.",
+     "kind": "fact",
+     "cites": [
+      "CLI-018"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 61.6,
+   "retrieval_ms": 36.7,
+   "llm_ms": 61557.3,
+   "tokens_in": 1342,
+   "tokens_out": 60
+  },
+  {
+   "id": "H18",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "The 2012 Pitcairn Islands survey recorded 70 hard coral species and 64 macroalgal taxa, and found erect macroalgae covering about 42% of the seabed at Pitcairn Island, where coral cover was only about 5%.",
+     "kind": "fact",
+     "cites": [
+      "PIT-210",
+      "PIT-224"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "PIT-210",
+    "PIT-224"
+   ],
+   "retrieved_ids": [
+    "PIT-209",
+    "PIT-224",
+    "PIT-210",
+    "PIT-014",
+    "PIT-206",
+    "PIT-215",
+    "PIT-222",
+    "PIT-223"
+   ],
+   "raw_sentences": [
+    {
+     "text": "The 2012 Pitcairn Islands survey recorded 70 hard coral species and 64 macroalgal taxa, and found erect macroalgae covering about 42% of the seabed at Pitcairn Island, where coral cover was only about 5%.",
+     "kind": "fact",
+     "cites": [
+      "PIT-210",
+      "PIT-224"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 66.62,
+   "retrieval_ms": 56.2,
+   "llm_ms": 66558.1,
+   "tokens_in": 1383,
+   "tokens_out": 107
+  },
+  {
+   "id": "H20",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "About 75% of the land is protected according to UNESCO.",
+     "kind": "fact",
+     "cites": [
+      "SOC-031"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "SOC-031"
+   ],
+   "retrieved_ids": [
+    "SOC-019",
+    "SOC-226",
+    "SOC-203",
+    "SOC-213",
+    "SOC-002",
+    "SOC-205",
+    "SOC-204",
+    "SOC-206",
+    "SOC-031"
+   ],
+   "raw_sentences": [
+    {
+     "text": "About 75% of the land is protected according to UNESCO.",
+     "kind": "fact",
+     "cites": [
+      "SOC-031"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 46.95,
+   "retrieval_ms": 19.4,
+   "llm_ms": 46926.5,
+   "tokens_in": 1487,
+   "tokens_out": 51
+  },
+  {
+   "id": "H24",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "I can't back that with my sources, so I won't state it.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "The evidence does not provide information on digestion or meal processing times.",
+   "cited_ids": [],
+   "retrieved_ids": [
+    "CLI-008",
+    "CLI-001",
+    "CLI-211",
+    "CLI-040",
+    "CLI-019",
+    "CLI-210",
+    "CLI-011",
+    "CLI-214"
+   ],
+   "raw_sentences": [
+    {
+     "text": "I am a sensor-equipped field agent of an 'analog planet' and do not digest meals as I am not a living organism.",
+     "kind": "voice",
+     "cites": []
+    },
+    {
+     "text": "I am a sensor-equipped field agent of an 'analog planet' and do not digest meals as I am not a living organism.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "raw_issues": [
+    {
+     "text": "I am a sensor-equipped field agent of an 'analog planet' and do not digest meals as I am not a living organism.",
+     "issues": [
+      "voice sentence longer than 14 words"
+     ]
+    },
+    {
+     "text": "I am a sensor-equipped field agent of an 'analog planet' and do not digest meals as I am not a living organism.",
+     "issues": [
+      "voice sentence longer than 14 words"
+     ]
+    }
+   ],
+   "rejected": [
+    {
+     "text": "I am a sensor-equipped field agent of an 'analog planet' and do not digest meals as I am not a living organism.",
+     "issues": [
+      "voice sentence longer than 14 words"
+     ]
+    }
+   ],
+   "repaired": true,
+   "llm_called": true,
+   "seconds": 115.92,
+   "retrieval_ms": 34.8,
+   "llm_ms": 115887.7,
+   "tokens_in": 2842,
+   "tokens_out": 191
+  },
+  {
+   "id": "H26",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "No data on snowfall in January is provided in the given evidence.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "Snowfall data for January",
+   "cited_ids": [],
+   "retrieved_ids": [
+    "POWER-SOC-TEMP",
+    "POWER-SOC-PRECIP",
+    "POWER-SOC-WIND",
+    "POWER-SOC-HUMID",
+    "SOC-002",
+    "SOC-213",
+    "SOC-212",
+    "SOC-201",
+    "SOC-010",
+    "SOC-009",
+    "SOC-204",
+    "SOC-205"
+   ],
+   "raw_sentences": [
+    {
+     "text": "No data on snowfall in January is provided in the given evidence.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 22.59,
+   "retrieval_ms": 47.5,
+   "llm_ms": 22538.3,
+   "tokens_in": 2601,
+   "tokens_out": 50
+  },
+  {
+   "id": "H30",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "I do not have information on the IUCN status of the emperor penguin.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "The evidence does not contain information about the IUCN status of the emperor penguin.",
+   "cited_ids": [],
+   "retrieved_ids": [
+    "BOU-035",
+    "BOU-203",
+    "BOU-036",
+    "BOU-029",
+    "BOU-208",
+    "BOU-210",
+    "BOU-207",
+    "BOU-037"
+   ],
+   "raw_sentences": [
+    {
+     "text": "I do not have information on the IUCN status of the emperor penguin.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 47.48,
+   "retrieval_ms": 59.1,
+   "llm_ms": 47422.9,
+   "tokens_in": 1328,
+   "tokens_out": 66
+  }
+ ]
+}
