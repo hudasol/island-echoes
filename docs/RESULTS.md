@@ -216,10 +216,13 @@ that rule; the code on main again matches run B.
 
 It bound each number quoted from a NASA POWER table to the month, annual period or parameter written next to it,
 and required a month called wettest, driest and so on to be its row's maximum or minimum (code at `5c42102`, reverted
-in `c308b71`; the replay script is at `ff9d866`). Every time it fired in a run, the claim it stopped was wrong when
-read against the table: frozen Q18 (October called the wettest month, at the annual value 7.75; the wettest is
-August, 13.4), sealed H06 (October called the most humid month, at November's value 79.43), and dev H02, H04 and
-H05 (wrong driest, coldest and wettest months).
+in `c308b71`; the replay script is at `ff9d866`). On first attempts it fired on 5 questions and each claim it rejected was wrong when read against the table: dev
+H02, H04 and H05 (tuned against: wrong driest, coldest and wettest months), frozen Q18 (October called the wettest
+month, at the annual value 7.75; the wettest is August, 13.4) and sealed H06 (October called the most humid month, at
+November's value 79.43). In one repair attempt it also rejected a sentence with the right answer in the wrong words:
+sealed H06's retry said "most humid in April (APR) with an annual value of 80.92%". April and 80.92 are correct, but
+80.92 is April's value, not the annual one (79.33), so the rejection is right by the letter and cost a correct month
+answer. That is the one sealed false refusal with the check on.
 
 The replay over 264 stored fact sentences (`eval/results/table_check_replay.md`) rejected 3 distinct sentences, all
 genuine errors on reading, and no supported sentence.
@@ -228,6 +231,21 @@ During tuning on the 20 dev questions, two changes were made: failure messages n
 help, and a month written in full ("August") is accepted by the name check when its abbreviation labels a cited
 table column, which removed a false rejection that the earlier validator also makes (dev H01 is refused with the
 check off for this reason).
+
+**Deviation from the preregistration.** The preregistration says the check "only adds failures; it never makes a
+failing sentence pass". The month name change does make some name check failures pass, so the configuration run on
+the sealed and frozen questions differs from runs S-off and B by more than the check. The dev gain from 13/20 to
+15/20 comes from this relaxation (H01) and from variation between runs (H15, a prose question), not from the check
+itself. The replay ran before this change and tests only the check.
+
+**First attempt failure rate (H) with and without the new issue kinds**, as promised in the preregistration: frozen
+with the check, 20% (7/35) with them and 17% (6/35) without; sealed with the check, 1/7 and 0/7; dev iteration 3, 6/19
+and 3/19. Only the figures without the new kinds are comparable with runs where the check is off.
+
+**Exposure of the sealed baseline.** The sealed run with the check off was committed at `7c36932` (03:06) and, through
+`b87b837` (03:28), rendered into RESULTS.md before dev iteration 3 ran and before the configuration was frozen. Its
+output was not opened during tuning, but the repository cannot show that. It is a run with the check off, so it could
+not have guided the check's tuning directly.
 
 ### Predictions against measurements
 
@@ -247,7 +265,7 @@ repeat with the check off (`eval/results/heldout-retry/`) timed out again in the
 
 | Condition | Result |
 |---|---|
-| 1. No new contradicted or unsupported shown sentence in a check on run | **failed.** Sealed: the only differing sentence pair (H20) is supported in both. Frozen: of 13 sentences only in the check on run, 11 are supported, 1 is partly supported (Q14 widens "0 living or captive animals inside the search box" to "no living or captive Pinta Island tortoises have been recorded") and 1 is unsupported (Q24 adds "Pitcairn is the only inhabited island of its territory", which its cited fact does not say). Of 10 sentences only in run B, 9 are supported and 1 is contradicted (Q20, which the check on run states correctly). |
+| 1. No new contradicted or unsupported shown sentence in a check on run | **failed.** Sealed: the differing shown sentences (H20 in both runs, and H06 "The annual value is 79.33%." in the check on run) are all supported. Frozen: of 13 sentences only in the check on run, 11 are supported, 1 is partly supported (Q14 widens "0 living or captive animals inside the search box" to "no living or captive Pinta Island tortoises have been recorded") and 1 is unsupported (Q24 adds "Pitcairn is the only inhabited island of its territory", which its cited fact does not say). Of 10 sentences only in run B, 9 are supported and 1 is contradicted (Q20, which the check on run states correctly). |
 | 2. Answered not lower by more than 1 (sealed) or 2 (frozen); refusal accuracy not lower | passed (sealed 6/6 against 6/6; frozen 19/25 against 20/25; refusal accuracy equal) |
 | 3. At most 2 false rejections in the replay | passed (0) |
 | 4. Tests pass unchanged, with and without a dummy key | passed |
