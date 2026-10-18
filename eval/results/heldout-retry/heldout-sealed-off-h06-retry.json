@@ -1,0 +1,78 @@
+{
+ "meta": {
+  "timestamp": "2026-10-18T00:05:56+00:00",
+  "commit": "c5caef1-dirty",
+  "answer_model": "ollama:qwen2.5:3b-instruct",
+  "provider": "ollama",
+  "model": "qwen2.5:3b-instruct",
+  "retrieval_mode": "hybrid",
+  "retrieval_k": 8,
+  "facts_hash": "491e9b1e2b6592e8",
+  "wall_seconds": 461.0,
+  "judge_model": null,
+  "questions_file": "questions_heldout.jsonl",
+  "split": "sealed",
+  "table_check": false,
+  "errored": 1,
+  "label": "heldout-sealed-off-h06-retry"
+ },
+ "summary": {
+  "questions": 0,
+  "judged_questions": 0,
+  "fact_sentences_judged": 0,
+  "groundedness": {
+   "k": 0,
+   "n": 0
+  },
+  "partially_supported": {
+   "k": 0,
+   "n": 0
+  },
+  "hallucination_rate": {
+   "k": 0,
+   "n": 0
+  },
+  "answers_with_hallucination": {
+   "k": 0,
+   "n": 0
+  },
+  "refusal_accuracy": {
+   "k": 0,
+   "n": 0
+  },
+  "false_refusals": {
+   "k": 0,
+   "n": 0
+  },
+  "key_fact_recall": {
+   "k": 0,
+   "n": 0
+  },
+  "expected_source_recall": {
+   "k": 0,
+   "n": 0
+  },
+  "validator_first_pass_failures": {
+   "k": 0,
+   "n": 0
+  },
+  "repaired_answers": {
+   "k": 0,
+   "n": 0
+  },
+  "conflicts_reported": {
+   "k": 0,
+   "n": 0
+  },
+  "questions_passed": {
+   "k": 0,
+   "n": 0
+  }
+ },
+ "records": [
+  {
+   "id": "H06",
+   "error": "Ollama is not reachable at http://localhost:11434 (ReadTimeout). Is it running?"
+  }
+ ]
+}
