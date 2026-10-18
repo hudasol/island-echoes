@@ -167,6 +167,7 @@ Rows are copied from [docs/RESULTS.md](docs/RESULTS.md); brackets are 95% interv
 | Ollama, keyword retrieval | 77% (23/30) [59-88] | 16% (4/25) [6-35] | 100% (5/5) [57-100] | 8% (3/36) [3-22] |
 | Ollama, hybrid retrieval | 67% (20/30) [49-81] | 20% (5/25) [9-39] | 100% (5/5) [57-100] | 15% (5/34) [6-30] |
 | Ollama, hybrid, after a prompt change that was then reverted | 77% (23/30) [59-88] | 12% (3/25) [4-30] | 100% (5/5) [57-100] | 11% (3/28) [4-27] |
+| Ollama, hybrid, with a table check that was then reverted | 67% (20/30) [49-81] | 24% (6/25) [11-43] | 100% (5/5) [57-100] | 20% (7/35) [10-36] |
 | llama.cpp, hybrid (earlier run, no constrained decoding) | 48% (14/29) [31-66] | 42% (10/24) [24-61] | 80% (4/5) [38-96] | 27% (12/45) [16-41] |
 
 What this says:
@@ -174,7 +175,16 @@ What this says:
 - The local model declined every unanswerable or injection question (5 of 5, against 1 of 5 for quoting the sources) and answered most answerable ones. With only five such questions the intervals overlap ([57-100] against [4-62]; paired p = 0.125), so the refusal difference is not proven either. Its pass rate is higher than the baseline's, but the 95% intervals overlap, so this is **not claimed as a proven gain**. A paired test on passes gives p = 0.039 for the keyword run, but that comparison was not preregistered and is one of several.
 - Keyword and hybrid retrieval do not differ significantly end to end (paired exact McNemar test: passes p = 0.375, false refusals p = 1.000).
 - A prompt and schema change aimed at false refusals was tried after tuning on a separate development set of 25 questions. It did not meet the preregistered rule for keeping a change (development false refusals stayed at 1 of 20) and was run once on the frozen 30 anyway, as a recorded deviation. There it lowered false refusals from 5 to 3 of 25 (p = 0.688, not significant). A manual reading of the changed answers found 2 contradicted sentences against 1 before, and a rule fixed in advance said to revert in that case, so it was reverted. Details are in [docs/RESULTS.md](docs/RESULTS.md).
-- The errors that get through quote a number that is in the cited table but belongs to another month or row (for example the driest month given as the wettest). The mechanical validator cannot see this; a table aware check or an entailment model would.
+- The errors that get through quote a number that is in the cited table but belongs to another month or row (for example the driest month given as the wettest). A table aware check was built for this and tested against a fresh question set ([docs/PREREGISTRATION_2.md](docs/PREREGISTRATION_2.md)). Every time it fired it stopped a wrong claim, and it changed no aggregate result significantly. It was reverted because the frozen run with it on contained one new unsupported sentence that has nothing to do with tables; the rule written in advance did not separate run to run variation from an effect of the check. Details are in RESULTS.
+
+Fresh held out questions (`eval/questions_heldout.jsonl`, 10 sealed, each configuration run once, hybrid retrieval):
+
+| Run | passed | false refusals | refusal accuracy |
+|---|---|---|---|
+| Table check off (one question errored) | 78% (7/9) [45-94] | 0% (0/6) [0-39] | 100% (3/3) [44-100] |
+| Table check on | 70% (7/10) [40-89] | 14% (1/7) [3-51] | 100% (3/3) [44-100] |
+
+Paired on the 9 questions scored in both, the two configurations give identical results (McNemar p = 1.000).
 - Predictions for these runs were written before they ran ([docs/PREREGISTRATION.md](docs/PREREGISTRATION.md)). Most missed because they were anchored on the earlier llama.cpp run, which served the same weights without constrained decoding and did much worse. The cause of that difference was not isolated.
 - With 30 questions the intervals are wide, and these questions were used to diagnose problems, so they are a regression guard, not a benchmark. No judge model was run (the machine had less than 16 GB of RAM), so groundedness is measured only by the mechanical checks. Timings were taken on a heavily loaded laptop and are left out of this table; they are in RESULTS.
 
@@ -196,11 +206,11 @@ app/llm/        answer models behind one interface: extractive, Ollama, llama.cp
 app/chat/       prompts, grounding validator, chat service
 app/telemetry/  per-request SQLite statistics
 data/           islands/*.json fact files, snapshots/ (NASA POWER, GBIF), embeddings/
-eval/           question sets (frozen 30, development 25), retrieval and end-to-end eval, paired comparison, report, stored results
+eval/           question sets (frozen 30, development 25, held out 30), retrieval and end-to-end eval, paired comparison, report, stored results
 scripts/        snapshot_sources.py, validate_data.py, build_embeddings.py, stats.py
 web/            globe frontend, creature animations, stats page, service worker, vendored globe.gl
 tests/          200+ tests (retrieval, dense, providers, grounding, telemetry, API, web assets, eval metrics)
-docs/           PLAN.md, LLM_PLAN.md, RESULTS.md, PREREGISTRATION.md, EDGE_PROPOSAL.md, OVERNIGHT_LOG.md and screenshots
+docs/           PLAN.md, LLM_PLAN.md, RESULTS.md, PREREGISTRATION.md, PREREGISTRATION_2.md, EDGE_PROPOSAL.md, OVERNIGHT_LOG.md and screenshots
 ```
 
 ## Retrospective
@@ -216,6 +226,7 @@ docs/           PLAN.md, LLM_PLAN.md, RESULTS.md, PREREGISTRATION.md, EDGE_PROPO
 
 - **A small local model followed the citation format badly at first.** The first run of Qwen2.5-3B padded evidence IDs with punctuation (".TDC-019"), so every citation was rejected and the model looked useless. A cleaner for the wrapper characters (the ID itself must still match retrieved evidence) fixed it. Serving the same weights through Ollama with schema constrained output later coincided with first attempt failures of 8 to 15% instead of 27% and false refusals of 16 to 20% instead of 42%; the cause was not isolated. Measuring before blaming the model mattered.
 - **Predictions anchored on one old run were wrong.** The preregistered predictions assumed the llama.cpp behaviour would carry over; most missed on the optimistic side. They are reported as misses.
+- **A check that worked was reverted by its own rule.** The table aware check stopped five wrong month claims and no correct ones, but the rule fixed in advance compared its run with a two day old baseline, and one unrelated unsupported sentence in the new run triggered a revert. The rule was kept as written; the lesson is in how the next rule is designed.
 - **A fix that looked better was reverted.** A prompt and schema change lowered false refusals within noise, but a manual reading found one more contradicted sentence among the changed answers. A rule set before the run said to revert, and it was. The mechanical proxy alone would have kept it.
 - **Embeddings helped less than hoped as a gate.** Dense similarity separates answerable from unanswerable questions better than BM25 scores (AUC 0.93 against 0.85 on the 106-question set), but no threshold is clean (at 0.55, 19 of 54 off topic questions pass; measured once, and the script and output are not stored in this repository), so the library keeps its tuned keyword gate and dense retrieval is used only to rank evidence for the chat.
 - **A long eval run was lost** when the machine restarted. The runner now checkpoints every answer and resumes; this later saved an interrupted run.
@@ -232,7 +243,7 @@ docs/           PLAN.md, LLM_PLAN.md, RESULTS.md, PREREGISTRATION.md, EDGE_PROPO
 - Store claims, not paragraphs: break each fact into atomic statements so the validator can check meaning, not only numbers and names.
 - Check meaning, not only words, with a small local entailment model, so a wrong claim built from correct words is caught without a paid judge.
 - Grow the held out set and have a second person label the gold fact IDs; 58 questions from one annotator leave wide intervals.
-- Add a table-aware check: a number quoted from a NASA table must sit next to the month or field the sentence names. This targets the errors that currently pass.
+- Bring back the table aware check (it stopped only wrong claims when tested) under a fairer rule: compare runs with and without it made the same day on the same questions, and count unsupported sentences in both directions.
 - Try a 7B-class free hosted model and a fine-tuned small model on the citation format, then compare in the same table.
 - Add a second, independent verifier model call for every answer instead of only in the eval.
 - Pull Red List statuses from the official API once a token is available.
