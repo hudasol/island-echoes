@@ -166,7 +166,7 @@ def render_markdown(meta: dict, summary: dict, scores: list[metrics.QuestionScor
     lines += [
         "## Limits of this eval",
         "",
-        "- 30 hand-written questions over 7 islands: a small sample, so intervals are wide; treat results as a regression guard, not a benchmark.",
+        f"- {summary['questions']} handwritten questions over the islands: a small sample, so intervals are wide; treat results as a regression guard, not a benchmark.",
         "- The judge is an LLM. When it is the same model family as the answerer it can be lenient; set `JUDGE_MODEL` to a different model for a harsher check.",
         "- Source facts were compiled from public web pages and many rest on one secondary source. Groundedness measures fidelity to those facts, not that the facts are true.",
         "- Number and name checks are mechanical; number words (\"two\") and subtle causal claims are only caught by the judge.",

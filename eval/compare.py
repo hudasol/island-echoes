@@ -20,7 +20,7 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
 from eval import metrics  # noqa: E402
-from eval.run_eval import DEV_QUESTIONS, QUESTIONS, load_questions  # noqa: E402
+from eval.run_eval import DEV_QUESTIONS, HELDOUT_QUESTIONS, QUESTIONS, load_questions  # noqa: E402
 
 
 def mcnemar_exact(b: int, c: int) -> float:
@@ -100,7 +100,8 @@ def main(argv: list[str] | None = None) -> int:
         print(__doc__, file=sys.stderr)
         return 2
     a, b = (json.loads(Path(p).read_text(encoding="utf-8")) for p in argv)
-    path = DEV_QUESTIONS if a["meta"].get("questions_file") == DEV_QUESTIONS.name else QUESTIONS
+    files = {p.name: p for p in (QUESTIONS, DEV_QUESTIONS, HELDOUT_QUESTIONS)}
+    path = files.get(a["meta"].get("questions_file") or "", QUESTIONS)
     questions = {q["id"]: q for q in load_questions(path=path)}
     print(compare(a, b, questions))
     return 0
