@@ -12,7 +12,6 @@ import unicodedata
 from dataclasses import dataclass, field
 
 from ..data.models import Evidence
-from .tables import is_table_month, table_issues
 
 NUM_RE = re.compile(r"(?<![A-Za-z])\d[\d,]*(?:\.\d+)?")
 WORD_RE = re.compile(r"[A-Za-zÀ-ÿØøÆæ][A-Za-zÀ-ÿØøÆæ'’\-]*")
@@ -61,7 +60,6 @@ def check_sentences(
     evidence: dict[str, Evidence],
     question: str,
     allowed_names: set[str],
-    table_check: bool = True,
 ) -> list[CheckedSentence]:
     q_norm = _norm(question)
     allowed = {_norm(n) for n in allowed_names}
@@ -108,12 +106,7 @@ def check_sentences(
             # allow a plural/possessive or a name echoed from the question
             if re.search(r"\b" + re.escape(nn.rstrip("s")), cited_norm) or nn in q_norm:
                 continue
-            # a month written out in full where the cited table writes it as a label (checked by table_issues)
-            if table_check and is_table_month(n, cited_text):
-                continue
             cs.issues.append(f"name not in cited evidence: {n}")
-        if table_check:
-            cs.issues.extend(table_issues(text, cited_text))
     return checked
 
 
