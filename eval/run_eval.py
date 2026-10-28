@@ -263,7 +263,7 @@ def main(argv: list[str] | None = None) -> int:
         if not settings.anthropic_api_key:
             print("--judge needs ANTHROPIC_API_KEY.", file=sys.stderr)
             return 2
-        judge = AnthropicJudge(settings.anthropic_api_key, settings.judge_model)
+        judge = AnthropicJudge(settings.anthropic_api_key.get_secret_value(), settings.judge_model)
         todo = [(q, recs[q["id"]]) for q in questions.values() if "error" not in recs.get(q["id"], {"error": 1})]
         with ThreadPoolExecutor(max_workers=args.workers) as pool:
             for (_q, rec), j in zip(todo, pool.map(lambda t: judge_one(judge, service, *t), todo), strict=True):

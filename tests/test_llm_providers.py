@@ -118,3 +118,101 @@ def test_factory_selects_providers_and_validates_config():
         build_llm(Settings(llm_provider="bogus"))
     with pytest.raises(LLMError, match="ANTHROPIC_API_KEY"):
         build_llm(Settings(llm_provider="anthropic"))
+
+
+# ---- secrets, llama.cpp and Anthropic wrappers (no model and no network) -------------------------------------
+def test_api_keys_are_not_shown_when_settings_are_printed():
+    s = Settings(anthropic_api_key="sk-secret-1", hf_token="hf_secret_2", openai_api_key="oa-secret-3")
+    shown = repr(s) + str(s.model_dump())
+    assert not any(k in shown for k in ("sk-secret-1", "hf_secret_2", "oa-secret-3"))
+    assert s.anthropic_api_key.get_secret_value() == "sk-secret-1"
+
+
+def test_llamacpp_reports_a_missing_model_file(tmp_path, monkeypatch):
+    import sys
+    import types
+
+    from app.llm.llamacpp import LlamaCppAnswerLLM
+
+    monkeypatch.setitem(sys.modules, "llama_cpp", types.SimpleNamespace(Llama=object))
+    with pytest.raises(LLMError, match="not found"):
+        LlamaCppAnswerLLM(str(tmp_path / "missing.gguf"))
+
+
+def test_llamacpp_reads_json_and_usage(tmp_path, monkeypatch):
+    import sys
+    import types
+
+    from app.llm.llamacpp import LlamaCppAnswerLLM
+
+    class FakeLlama:
+        def __init__(self, **kwargs):
+            self.kwargs = kwargs
+
+        def create_chat_completion(self, **kwargs):
+            assert kwargs["temperature"] == 0 and kwargs["response_format"]["type"] == "json_object"
+            return {"usage": {"prompt_tokens": 11, "completion_tokens": 5}, "choices": [{"message": {"content": json.dumps(GOOD)}}]}
+
+    model = tmp_path / "tiny-q4.gguf"
+    model.write_bytes(b"x")
+    monkeypatch.setitem(sys.modules, "llama_cpp", types.SimpleNamespace(Llama=FakeLlama))
+    llm = LlamaCppAnswerLLM(str(model))
+    assert llm.model == "tiny-q4"
+    assert llm.answer("system", "user")["answered"] is True
+    assert (llm.last_usage.input_tokens, llm.last_usage.output_tokens) == (11, 5)
+
+
+def test_llamacpp_wraps_runtime_failures(tmp_path, monkeypatch):
+    import sys
+    import types
+
+    from app.llm.llamacpp import LlamaCppAnswerLLM
+
+    class Broken:
+        def __init__(self, **kwargs):
+            pass
+
+        def create_chat_completion(self, **kwargs):
+            raise RuntimeError("out of memory")
+
+    model = tmp_path / "m.gguf"
+    model.write_bytes(b"x")
+    monkeypatch.setitem(sys.modules, "llama_cpp", types.SimpleNamespace(Llama=Broken))
+    with pytest.raises(LLMError, match="RuntimeError"):
+        LlamaCppAnswerLLM(str(model)).answer("s", "u")
+
+
+def test_anthropic_wrapper_returns_the_tool_input_and_maps_credit_errors():
+    from app.llm.anthropic_llm import AnthropicAnswerLLM
+
+    class Block:
+        type, name, input = "tool_use", "answer", GOOD
+
+    class Resp:
+        content = [Block()]
+        usage = type("U", (), {"input_tokens": 7, "output_tokens": 3})()
+
+    class ApiError(Exception):
+        pass
+
+    class Messages:
+        def __init__(self, result):
+            self.result = result
+
+        def create(self, **kwargs):
+            assert kwargs["tool_choice"]["name"] == "answer"
+            if isinstance(self.result, Exception):
+                raise self.result
+            return self.result
+
+    llm = AnthropicAnswerLLM.__new__(AnthropicAnswerLLM)
+    llm._anthropic = type("A", (), {"APIError": ApiError})
+    llm.model, llm.max_tokens = "m", 100
+    from app.llm.base import Usage
+
+    llm.last_usage = Usage()
+    llm.client = type("C", (), {"messages": Messages(Resp())})()
+    assert llm.answer("s", "u")["answered"] is True and llm.last_usage.input_tokens == 7
+    llm.client = type("C", (), {"messages": Messages(ApiError("Your credit balance is too low"))})()
+    with pytest.raises(LLMError, match="no credit"):
+        llm.answer("s", "u")

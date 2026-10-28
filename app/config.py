@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
+from pydantic import SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -12,13 +13,13 @@ class Settings(BaseSettings):
 
     model_config = SettingsConfigDict(env_file=ROOT / ".env", extra="ignore")
 
-    anthropic_api_key: str | None = None
+    anthropic_api_key: SecretStr | None = None
     llm_provider: str | None = None  # off | extractive | ollama | llamacpp | huggingface | openai-compat | anthropic
     llm_model: str | None = None  # model name for the chosen provider (each has a sensible default)
     ollama_url: str = "http://localhost:11434"
-    hf_token: str | None = None  # free Hugging Face token, only for LLM_PROVIDER=huggingface
+    hf_token: SecretStr | None = None  # free Hugging Face token, only for LLM_PROVIDER=huggingface
     openai_base_url: str | None = None
-    openai_api_key: str | None = None
+    openai_api_key: SecretStr | None = None
     llamacpp_model_path: Path | None = None
     anthropic_model: str = "claude-sonnet-5-5"
     judge_model: str = "claude-sonnet-5-5"
