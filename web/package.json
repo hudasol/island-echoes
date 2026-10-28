@@ -1,8 +1,10 @@
 {
   "name": "island-echoes-web",
   "private": true,
+  "type": "module",
   "description": "Builds the 3D globe bundle served from web/vendor. The bundle is committed, so running the app needs no Node.",
   "scripts": {
+    "test": "node --test src/*.test.mjs",
     "build": "esbuild src/globe.js --bundle --minify --format=iife --global-name=IE3D --target=es2020 --legal-comments=none --outfile=vendor/globe.bundle.js"
   },
   "dependencies": {
