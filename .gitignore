@@ -26,3 +26,4 @@ eval/.scratch/
 brag-output/
 *.mp4
 eval/results/.*.partial.jsonl
+.coverage

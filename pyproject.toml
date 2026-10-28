@@ -19,7 +19,7 @@ ml = ["numpy>=1.26", "fastembed>=0.4,<1"]
 Repository = "https://github.com/hudasol/island-echoes"
 
 [tool.setuptools]
-packages = ["app", "app.chat", "app.data", "app.llm", "app.retrieval", "app.telemetry"]
+packages = ["app", "app.chat", "app.data", "app.llm", "app.retrieval", "app.routes", "app.telemetry"]
 
 [tool.setuptools.dynamic]
 version = { attr = "app.__version__" }
