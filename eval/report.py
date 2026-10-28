@@ -165,8 +165,8 @@ def build() -> str:
         parts += [
             "## Baselines (frozen 30 questions)",
             "",
-            "Every system answers the same 30 questions and is scored by the same code. Rows in the first table were run in one "
-            "session with one serving stack (llama.cpp, Qwen2.5-3B-Instruct 4-bit, temperature 0), so they differ only in the "
+            "Every system answers the same 30 questions and is scored by the same code. Rows in the first table that use a "
+            "model were run with one model and one serving stack (named in the model column), so they differ only in the "
             "component named in the first column. *Answers with a number or name found in no source* checks every fact sentence "
             "against all the facts, NASA POWER and GBIF text of its island, with no use of citations. It is a lower bound on "
             "unsupported content: a sentence made only of words from the sources can still be wrong, and a model "

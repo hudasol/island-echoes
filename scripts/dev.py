@@ -35,7 +35,7 @@ TASKS: dict[str, tuple[str, list[list[str]]]] = {
     "snapshot": ("refresh the NASA POWER and GBIF snapshots", [["scripts/snapshot_sources.py"]]),
     "embeddings": ("rebuild fact embeddings (installs the optional packages)", [ML, ["-m", "scripts.build_embeddings"]]),
     "eval-retrieval": ("compare keyword, dense and hybrid retrieval", [ML, ["-m", "eval.retrieval_eval"]]),
-    "eval-baselines": ("run the model free baselines", [["-m", "eval.baselines"]]),
+    "eval-offline": ("score the refuse-all baseline and the extractive system, no model", [["-m", "eval.run_eval", "--system", "refuse-all"]]),
     "bench": ("measure request latency of the library and chat endpoints", [["-m", "scripts.bench"]]),
     "report": ("regenerate docs/RESULTS.md from the stored runs", [["-m", "eval.report"]]),
     "stats": ("print usage statistics from the telemetry database", [["-m", "scripts.stats"]]),
