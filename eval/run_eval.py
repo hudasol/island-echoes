@@ -4,6 +4,7 @@
     python -m eval.run_eval --from-run eval/results/latest.json   # re-score a saved run, no API calls
     python -m eval.run_eval --ids Q01,Q26          # subset
     python -m eval.run_eval --questions eval/dev_questions.jsonl --provider ollama   # development set
+    python -m eval.run_eval --system closed-book --provider ollama   # a baseline from eval/baselines.py
 """
 
 from __future__ import annotations
@@ -29,6 +30,7 @@ from app.retrieval.dense import fact_texts, texts_hash  # noqa: E402
 from app.retrieval.factory import build_retriever  # noqa: E402
 
 from . import metrics  # noqa: E402
+from .baselines import SYSTEMS, make_service  # noqa: E402
 from .judge import AnthropicJudge  # noqa: E402
 
 QUESTIONS = Path(__file__).with_name("questions.jsonl")
@@ -188,6 +190,7 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--retrieval", choices=["bm25", "dense", "hybrid"], help="retrieval mode for this run")
     ap.add_argument("--k", type=int, help="facts shown to the model (default RETRIEVAL_K, 12)")
     ap.add_argument("--label", help="name of the run (default provider-model-retrieval)")
+    ap.add_argument("--system", choices=SYSTEMS, default="full", help="what answers the questions: the real pipeline or a baseline (see eval/baselines.py)")
     args = ap.parse_args(argv)
 
     settings = get_settings()
@@ -205,16 +208,16 @@ def main(argv: list[str] | None = None) -> int:
         service = ChatService(islands, retriever, None)
     else:
         try:
-            llm = build_llm(settings)
+            llm = None if args.system == "refuse-all" else build_llm(settings)
         except LLMError as exc:
             print(f"{exc}", file=sys.stderr)
             return 2
-        if llm is None:
+        if llm is None and args.system != "refuse-all":
             print("No LLM_PROVIDER set. Use --provider (extractive needs nothing) or --from-run to re-score a saved run.", file=sys.stderr)
             return 2
-        service = ChatService(islands, retriever, llm)
+        service = make_service(args.system, islands, retriever, llm)
         commit = git_sha()  # stamped before answering, so later commits made while it runs do not appear here
-        local = llm.provider in ("ollama", "llamacpp")
+        local = getattr(llm, "provider", "") in ("ollama", "llamacpp")
         workers = args.workers or (1 if local else 4)
         started = time.time()
         # checkpoint every answer so a killed run resumes instead of starting over
@@ -243,10 +246,11 @@ def main(argv: list[str] | None = None) -> int:
         meta = {
             "timestamp": datetime.now(UTC).isoformat(timespec="seconds"),
             "commit": commit,
-            "answer_model": f"{llm.provider}:{llm.model}",
-            "provider": llm.provider,
-            "model": llm.model,
-            "retrieval_mode": retriever.mode,
+            "answer_model": f"{llm.provider}:{llm.model}" if llm else "none:refuse-all",
+            "provider": llm.provider if llm else "none",
+            "model": llm.model if llm else "refuse-all",
+            "system": args.system,
+            "retrieval_mode": retriever.mode if args.system in ("full", "unvalidated") else "none",
             "retrieval_k": retriever.k,
             "facts_hash": texts_hash(fact_texts(islands)),
             "wall_seconds": round(time.time() - started, 1),
@@ -280,7 +284,8 @@ def main(argv: list[str] | None = None) -> int:
     }
     summary = metrics.summarise(scores, conflict)
 
-    label = args.label or "-".join(str(meta.get(k) or "") for k in ("provider", "model", "retrieval_mode")).replace("/", "_").replace(":", "_")
+    default_label = "-".join(str(meta.get(k) or "") for k in ("provider", "model", "retrieval_mode")).replace("/", "_").replace(":", "_")
+    label = args.label or (default_label if meta.get("system", "full") == "full" else f"{meta['system']}-{default_label}")
     meta["label"] = label
     out = args.out or (RESULTS / label)
     out.parent.mkdir(parents=True, exist_ok=True)
