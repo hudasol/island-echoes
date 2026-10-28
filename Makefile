@@ -56,3 +56,4 @@ stats: install
 	$(BIN)/python -m scripts.stats
 report: install
 	$(BIN)/python -m eval.report
+	$(BIN)/python -m eval.summary

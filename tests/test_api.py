@@ -236,3 +236,19 @@ def test_conservation_endpoint_returns_the_gbif_category(settings, store, retrie
     assert body["category"] == "Extinct" and body["code"] == "EX" and body["source_url"].startswith("https://www.gbif.org/")
     assert c.get("/api/islands/galapagos/conservation", params={"creature": "nobody"}).status_code == 404
     assert c.get("/api/islands/atlantis/conservation").status_code == 404
+
+
+def test_overview_counts_match_the_fact_files(settings, store, retriever):
+    body = client_with(settings, store, retriever, None).get("/api/overview").json()
+    assert body["totals"]["facts"] == sum(len(i.facts) for i in store.islands.values())
+    assert body["totals"]["islands"] == 7 and body["totals"]["creatures"] == 8
+    row = next(r for r in body["islands"] if r["slug"] == "socotra")
+    assert row["facts"] == len(store.get("socotra").facts)
+    assert sum(row["confidence"].values()) == row["facts"]
+    assert row["creatures"][0]["status_code"] == "VU" and row["power_as_of"]
+
+
+def test_evaluation_endpoint_serves_the_committed_summary(settings, store, retriever):
+    body = client_with(settings, store, retriever, None).get("/api/evaluation").json()
+    assert {r["system"] for r in body["baselines"]} >= {"refuse-all", "full"}
+    assert body["retrieval"]["heldout"]["n"] > 0

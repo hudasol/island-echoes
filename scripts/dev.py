@@ -37,7 +37,7 @@ TASKS: dict[str, tuple[str, list[list[str]]]] = {
     "eval-retrieval": ("compare keyword, dense and hybrid retrieval", [ML, ["-m", "eval.retrieval_eval"]]),
     "eval-offline": ("score the refuse-all baseline and the extractive system, no model", [["-m", "eval.run_eval", "--system", "refuse-all"]]),
     "bench": ("measure request latency of the library and chat endpoints", [["-m", "scripts.bench"]]),
-    "report": ("regenerate docs/RESULTS.md from the stored runs", [["-m", "eval.report"]]),
+    "report": ("regenerate docs/RESULTS.md and data/evaluation.json from the stored runs", [["-m", "eval.report"], ["-m", "eval.summary"]]),
     "stats": ("print usage statistics from the telemetry database", [["-m", "scripts.stats"]]),
     "check": ("lint, types, validate and test: what CI runs", [["-m", "ruff", "check", "."], ["-m", "mypy"], ["scripts/validate_data.py"], ["-m", "pytest"]]),
 }

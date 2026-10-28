@@ -1,11 +1,13 @@
 from __future__ import annotations
 
+import json
 import time
 
-from fastapi import APIRouter, Query, Request
+from fastapi import APIRouter, HTTPException, Query, Request
 
 from .. import __version__
 from ..deps import Deps
+from ..overview import build_overview
 
 
 def router(d: Deps) -> APIRouter:
@@ -40,5 +42,22 @@ def router(d: Deps) -> APIRouter:
     def data_changes():
         """Values that changed when live NASA POWER or GBIF data replaced older data on this server."""
         return {"changes": d.sources.recent_changes()}
+
+    overview_cache: dict = {}
+
+    @r.get("/api/overview")
+    def overview():
+        """What the data set holds per island, and how old the external data is."""
+        if not overview_cache:
+            overview_cache.update(build_overview(d.settings, d.islands))
+        return overview_cache
+
+    @r.get("/api/evaluation")
+    def evaluation():
+        """Stored evaluation numbers: retrieval on the gold sets and the end to end baselines."""
+        path = d.settings.evaluation_path
+        if not path.exists():
+            raise HTTPException(404, "No evaluation summary is installed.")
+        return json.loads(path.read_text(encoding="utf-8"))
 
     return r

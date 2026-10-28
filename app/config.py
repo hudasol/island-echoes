@@ -38,6 +38,7 @@ class Settings(BaseSettings):
     log_questions: bool = False  # store question text (off by default: only a hash and length are kept)
     telemetry_path: Path = ROOT / "data" / "cache" / "telemetry.db"
 
+    evaluation_path: Path = ROOT / "data" / "evaluation.json"
     narrations_path: Path = ROOT / "data" / "narrations.json"
     islands_dir: Path = ROOT / "data" / "islands"
     snapshots_dir: Path = ROOT / "data" / "snapshots"

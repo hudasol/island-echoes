@@ -236,3 +236,11 @@ def test_report_matches_the_committed_results_file():
     md = build()
     assert md == (ROOT / "docs" / "RESULTS.md").read_text(encoding="utf-8")
     assert "## Development set (tuned against: not a held out result)" in md and "| issue |" in md
+
+
+def test_evaluation_summary_matches_the_stored_runs():
+    import json
+
+    from eval import summary
+
+    assert json.loads(summary.OUT.read_text(encoding="utf-8")) == summary.build()
