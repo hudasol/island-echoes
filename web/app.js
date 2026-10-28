@@ -46,7 +46,7 @@
     S.layer = l;
     document.querySelectorAll("#layer-buttons button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.id === l.id)));
     $("layer-note").textContent = l.note.replace("{d}", l.time || "") + " Source: NASA GIBS.";
-    $("attribution").textContent = `Imagery: ${l.label}${l.time ? `, ${l.time}` : ""}, NASA GIBS. Climate: NASA POWER. Species records: GBIF. Not a NASA product.`;
+    $("attribution").textContent = `Imagery: ${l.label}${l.time ? `, ${l.time}` : ""}, NASA GIBS. Climate: NASA POWER. Species records: GBIF.`;
     if (globe) { globe.globeTileEngineClearCache?.(); globe.globeTileEngineMaxLevel(Math.min(l.matrix - 1, 8)); globe.globeTileEngineUrl(tileUrl(l)); }
   }
   function initGlobe(host) {
