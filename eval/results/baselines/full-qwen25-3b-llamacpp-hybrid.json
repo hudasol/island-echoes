@@ -1,0 +1,2032 @@
+{
+ "meta": {
+  "timestamp": "2026-10-28T17:03:56+00:00",
+  "commit": "4b2b4ae",
+  "answer_model": "llamacpp:qwen2.5-3b-instruct-q4_k_m",
+  "provider": "llamacpp",
+  "model": "qwen2.5-3b-instruct-q4_k_m",
+  "system": "full",
+  "retrieval_mode": "hybrid",
+  "retrieval_k": 12,
+  "facts_hash": "491e9b1e2b6592e8",
+  "wall_seconds": 4968.5,
+  "judge_model": null,
+  "questions_file": "questions.jsonl",
+  "split": null,
+  "errored": 0,
+  "label": "full-qwen25-3b-llamacpp-hybrid"
+ },
+ "summary": {
+  "questions": 30,
+  "judged_questions": 0,
+  "fact_sentences_judged": 0,
+  "groundedness": {
+   "k": 0,
+   "n": 0
+  },
+  "partially_supported": {
+   "k": 0,
+   "n": 0
+  },
+  "hallucination_rate": {
+   "k": 0,
+   "n": 0
+  },
+  "answers_with_hallucination": {
+   "k": 0,
+   "n": 30
+  },
+  "refusal_accuracy": {
+   "k": 5,
+   "n": 5
+  },
+  "false_refusals": {
+   "k": 8,
+   "n": 25
+  },
+  "key_fact_recall": {
+   "k": 30,
+   "n": 41
+  },
+  "expected_source_recall": {
+   "k": 26,
+   "n": 41
+  },
+  "validator_first_pass_failures": {
+   "k": 11,
+   "n": 48
+  },
+  "repaired_answers": {
+   "k": 11,
+   "n": 30
+  },
+  "conflicts_reported": {
+   "k": 0,
+   "n": 0
+  },
+  "questions_passed": {
+   "k": 19,
+   "n": 30
+  }
+ },
+ "records": [
+  {
+   "id": "Q01",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "On Tristan da Cunha the endemic Tristan moorhen is extinct, eight Gough moorhens released at Sandy Point in 1956 colonised the island, and the South American silver porgy (Diplodus argenteus), thought to have sought refuge there after a 2006 oil-platform wreck, is suspected of consuming components of the kelp forest.",
+     "kind": "fact",
+     "cites": [
+      "TDC-225"
+     ]
+    },
+    {
+     "text": "The Tristan albatross (Diomedea dabbenena) is listed as Critically Endangered, a status reached in 2008 after earlier being Endangered.",
+     "kind": "fact",
+     "cites": [
+      "TDC-033"
+     ]
+    }
+   ],
+   "missing": "The retrieved sources do not directly answer this question.",
+   "cited_ids": [
+    "TDC-225",
+    "TDC-033"
+   ],
+   "retrieved_ids": [
+    "TDC-019",
+    "TDC-225",
+    "TDC-207",
+    "TDC-033",
+    "TDC-021",
+    "TDC-205",
+    "TDC-012",
+    "TDC-202",
+    "TDC-206",
+    "TDC-208",
+    "TDC-214",
+    "TDC-020",
+    "TDC-014",
+    "TDC-013",
+    "TDC-030",
+    "TDC-029",
+    "TDC-226"
+   ],
+   "raw_sentences": [
+    {
+     "text": "264 islanders left when the volcano threatened in October 1961.",
+     "kind": "fact",
+     "cites": [
+      "TDC-019"
+     ]
+    },
+    {
+     "text": "All 264 islanders left when the volcano threatened in October 1961.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "raw_issues": [
+    {
+     "text": "All 264 islanders left when the volcano threatened in October 1961.",
+     "issues": [
+      "voice sentence contains digits",
+      "voice sentence contains name not in sources: October"
+     ]
+    }
+   ],
+   "rejected": [
+    {
+     "text": "When the volcano threatened in October 1961, all 264 islanders left.",
+     "issues": [
+      "voice sentence contains digits",
+      "voice sentence contains name not in sources: October"
+     ]
+    }
+   ],
+   "repaired": true,
+   "llm_called": true,
+   "seconds": 252.87,
+   "retrieval_ms": 64.8,
+   "llm_ms": 252804.6,
+   "tokens_in": 4386,
+   "tokens_out": 343
+  },
+  {
+   "id": "Q02",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "The Bounty mutineers settled Pitcairn in January 1790",
+     "kind": "fact",
+     "cites": [
+      "PIT-017"
+     ]
+    },
+    {
+     "text": "The ship was burned on 23 January 1790",
+     "kind": "fact",
+     "cites": [
+      "PIT-017"
+     ]
+    }
+   ],
+   "missing": "The exact date of the ship's burning is not provided in the evidence.",
+   "cited_ids": [
+    "PIT-017"
+   ],
+   "retrieved_ids": [
+    "PIT-017",
+    "PIT-013",
+    "PIT-020",
+    "PIT-033",
+    "PIT-035",
+    "PIT-021",
+    "PIT-002",
+    "PIT-028",
+    "PIT-004",
+    "PIT-208",
+    "PIT-016",
+    "PIT-008"
+   ],
+   "raw_sentences": [
+    {
+     "text": "The Bounty mutineers settled Pitcairn in January 1790",
+     "kind": "fact",
+     "cites": []
+    },
+    {
+     "text": "The ship was burned on 23 January 1790",
+     "kind": "fact",
+     "cites": []
+    }
+   ],
+   "raw_issues": [
+    {
+     "text": "The Bounty mutineers settled Pitcairn in January 1790",
+     "issues": [
+      "fact sentence has no citation"
+     ]
+    },
+    {
+     "text": "The ship was burned on 23 January 1790",
+     "issues": [
+      "fact sentence has no citation"
+     ]
+    }
+   ],
+   "rejected": [],
+   "repaired": true,
+   "llm_called": true,
+   "seconds": 157.1,
+   "retrieval_ms": 28.3,
+   "llm_ms": 157067.2,
+   "tokens_in": 3285,
+   "tokens_out": 194
+  },
+  {
+   "id": "Q03",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "The 2021 Census recorded 593 people in the Cocos (Keeling) Islands.",
+     "kind": "fact",
+     "cites": [
+      "COC-022"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "COC-022"
+   ],
+   "retrieved_ids": [
+    "COC-022",
+    "COC-019",
+    "COC-023",
+    "COC-001",
+    "COC-010",
+    "COC-034",
+    "COC-207",
+    "COC-225",
+    "COC-224",
+    "COC-209",
+    "COC-208",
+    "COC-003",
+    "COC-021"
+   ],
+   "raw_sentences": [
+    {
+     "text": "The 2021 Census recorded 593 people in the Cocos (Keeling) Islands",
+     "kind": "fact",
+     "cites": [
+      "COC-022"
+     ]
+    },
+    {
+     "text": "61.2% spoke Malay at home and 65.6% reported Islam as their religion",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "raw_issues": [
+    {
+     "text": "61.2% spoke Malay at home and 65.6% reported Islam as their religion",
+     "issues": [
+      "voice sentence contains digits",
+      "voice sentence contains name not in sources: Malay",
+      "voice sentence contains name not in sources: Islam"
+     ]
+    }
+   ],
+   "rejected": [],
+   "repaired": true,
+   "llm_called": true,
+   "seconds": 155.97,
+   "retrieval_ms": 19.1,
+   "llm_ms": 155945.9,
+   "tokens_in": 3582,
+   "tokens_out": 160
+  },
+  {
+   "id": "Q04",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "Hoq Cave, about 1.5 km inland on the northeast coast, holds inscriptions in six scripts, including Brahmi, Greek and Ethiopic Ge'ez, dating from the 1st to 6th centuries CE.",
+     "kind": "fact",
+     "cites": [
+      "SOC-016"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "SOC-016"
+   ],
+   "retrieved_ids": [
+    "SOC-016",
+    "SOC-013",
+    "SOC-022",
+    "SOC-214",
+    "SOC-203",
+    "SOC-225",
+    "SOC-201",
+    "SOC-004",
+    "SOC-224",
+    "SOC-209",
+    "SOC-019",
+    "SOC-017"
+   ],
+   "raw_sentences": [
+    {
+     "text": "Hoq Cave, about 1.5 km inland on the northeast coast, holds inscriptions in six scripts, including Brahmi, Greek and Ethiopic Ge'ez, dating from the 1st to 6th centuries CE.",
+     "kind": "fact",
+     "cites": [
+      "SOC-016"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 118.19,
+   "retrieval_ms": 18.7,
+   "llm_ms": 118171.1,
+   "tokens_in": 1666,
+   "tokens_out": 85
+  },
+  {
+   "id": "Q05",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "Lonesome George was found dead on 24 June 2012 by his caretaker Fausto Llerena after about 40 years of care.",
+     "kind": "fact",
+     "cites": [
+      "GAL-033"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "GAL-033"
+   ],
+   "retrieved_ids": [
+    "GAL-033",
+    "GAL-032",
+    "GAL-225",
+    "GAL-209",
+    "GAL-224",
+    "GAL-211",
+    "GAL-202",
+    "GAL-203",
+    "GAL-207",
+    "GAL-226",
+    "GAL-002",
+    "GAL-034"
+   ],
+   "raw_sentences": [
+    {
+     "text": "Lonesome George was found dead on 24 June 2012 by his caretaker Fausto Llerena after about 40 years of care.",
+     "kind": "fact",
+     "cites": [
+      "GAL-033"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 111.55,
+   "retrieval_ms": 15.6,
+   "llm_ms": 111536.6,
+   "tokens_in": 1700,
+   "tokens_out": 73
+  },
+  {
+   "id": "Q06",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "I feed mainly on sardines plus crustaceans, squid, lanternfish and octopus, and foraging trips can reach 10-15 km from shore and last several days.",
+     "kind": "fact",
+     "cites": [
+      "GAL-105"
+     ]
+    },
+    {
+     "text": "My foraging trips can reach 10-15 km from shore.",
+     "kind": "fact",
+     "cites": [
+      "GAL-105"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "GAL-105"
+   ],
+   "retrieved_ids": [
+    "GAL-105",
+    "GAL-001",
+    "GAL-107",
+    "GAL-029",
+    "GAL-214",
+    "GAL-212",
+    "GAL-204",
+    "GAL-203",
+    "GAL-210",
+    "GAL-104",
+    "GAL-215",
+    "GAL-209",
+    "GAL-024",
+    "GAL-025",
+    "GAL-026",
+    "GAL-002",
+    "GAL-003",
+    "GAL-004"
+   ],
+   "raw_sentences": [
+    {
+     "text": "I feed mainly on sardines plus crustaceans, squid, lanternfish and octopus, and foraging trips can reach 10-15 km from shore and last several days.",
+     "kind": "fact",
+     "cites": [
+      "GAL-105"
+     ]
+    },
+    {
+     "text": "My foraging trips can reach 10-15 km from shore.",
+     "kind": "fact",
+     "cites": [
+      "GAL-105"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 160.97,
+   "retrieval_ms": 19.3,
+   "llm_ms": 160952.2,
+   "tokens_in": 2066,
+   "tokens_out": 118
+  },
+  {
+   "id": "Q07",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "The macaroni penguin (Eudyptes chrysolophus) is listed as Vulnerable on the IUCN Red List, based on a 2020 assessment.",
+     "kind": "fact",
+     "cites": [
+      "BOU-035"
+     ]
+    },
+    {
+     "text": "Wikipedia says the macaroni penguin is globally Vulnerable on the IUCN Red List and lists Bouvet Island among the islands it occupies.",
+     "kind": "fact",
+     "cites": [
+      "BOU-036"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "BOU-035",
+    "BOU-036"
+   ],
+   "retrieved_ids": [
+    "BOU-035",
+    "BOU-036",
+    "BOU-203",
+    "BOU-037",
+    "BOU-039",
+    "BOU-027",
+    "BOU-038",
+    "BOU-029",
+    "BOU-210",
+    "BOU-207",
+    "BOU-032",
+    "BOU-208"
+   ],
+   "raw_sentences": [
+    {
+     "text": "The macaroni penguin (Eudyptes chrysolophus) is listed as Vulnerable on the IUCN Red List, based on a 2020 assessment.",
+     "kind": "fact",
+     "cites": [
+      "BOU-035"
+     ]
+    },
+    {
+     "text": "Wikipedia says the macaroni penguin is globally Vulnerable on the IUCN Red List and lists Bouvet Island among the islands it occupies.",
+     "kind": "fact",
+     "cites": [
+      "BOU-036"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 132.0,
+   "retrieval_ms": 20.8,
+   "llm_ms": 131980.5,
+   "tokens_in": 1557,
+   "tokens_out": 133
+  },
+  {
+   "id": "Q08",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "After the 2021 mouse operation, Tristan albatross breeding success on Gough reached 76 percent in 2022, up from a mouse-affected average of 32 percent.",
+     "kind": "fact",
+     "cites": [
+      "TDC-038"
+     ]
+    }
+   ],
+   "missing": "The evidence does not contain specific information about the breeding success change after the mouse operation on Gough Island.",
+   "cited_ids": [
+    "TDC-038"
+   ],
+   "retrieved_ids": [
+    "TDC-038",
+    "TDC-205",
+    "TDC-034",
+    "TDC-209",
+    "TDC-036",
+    "TDC-202",
+    "TDC-201",
+    "TDC-204",
+    "TDC-203",
+    "TDC-035",
+    "TDC-225",
+    "TDC-026",
+    "TDC-027",
+    "TDC-223",
+    "TDC-222"
+   ],
+   "raw_sentences": [
+    {
+     "text": "After the 2021 mouse operation, Tristan albatross breeding success on Gough reached 76 percent in 2022, up from a mouse-affected average of 32 percent.",
+     "kind": "fact",
+     "cites": [
+      "TDC-038"
+     ]
+    },
+    {
+     "text": "In May 2008 the Tristan albatross was recategorised Critically Endangered by BirdLife International on behalf of IUCN because of mouse predation of chicks on Gough Island.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "raw_issues": [
+    {
+     "text": "In May 2008 the Tristan albatross was recategorised Critically Endangered by BirdLife International on behalf of IUCN because of mouse predation of chicks on Gough Island.",
+     "issues": [
+      "voice sentence longer than 14 words",
+      "voice sentence contains digits",
+      "voice sentence contains name not in sources: May",
+      "voice sentence contains name not in sources: Critically",
+      "voice sentence contains name not in sources: Endangered",
+      "voice sentence contains name not in sources: BirdLife",
+      "voice sentence contains name not in sources: International"
+     ]
+    }
+   ],
+   "rejected": [
+    {
+     "text": "In May 2008 the Tristan albatross was recategorised Critically Endangered by BirdLife International on behalf of IUCN because of mouse predation of chicks on Gough Island.",
+     "issues": [
+      "voice sentence longer than 14 words",
+      "voice sentence contains digits",
+      "voice sentence contains name not in sources: May",
+      "voice sentence contains name not in sources: Critically",
+      "voice sentence contains name not in sources: Endangered",
+      "voice sentence contains name not in sources: BirdLife",
+      "voice sentence contains name not in sources: International"
+     ]
+    }
+   ],
+   "repaired": true,
+   "llm_called": true,
+   "seconds": 239.15,
+   "retrieval_ms": 26.1,
+   "llm_ms": 239122.0,
+   "tokens_in": 4210,
+   "tokens_out": 301
+  },
+  {
+   "id": "Q09",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "A 2024 peer-reviewed survey estimated about 1,568 Pitcairn reed warblers.",
+     "kind": "fact",
+     "cites": [
+      "PIT-034"
+     ]
+    },
+    {
+     "text": "According to a 2024 population survey, the Pitcairn reed warbler was found in all habitats surveyed on Pitcairn and appeared most abundant in stands of introduced rose apple (Syzygium jambos).",
+     "kind": "fact",
+     "cites": [
+      "PIT-035"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "PIT-034",
+    "PIT-035"
+   ],
+   "retrieved_ids": [
+    "PIT-203",
+    "PIT-202",
+    "PIT-036",
+    "PIT-204",
+    "PIT-201",
+    "PIT-224",
+    "PIT-023",
+    "PIT-223",
+    "PIT-035",
+    "PIT-030",
+    "PIT-034",
+    "PIT-206"
+   ],
+   "raw_sentences": [
+    {
+     "text": "A 2024 peer-reviewed survey estimated about 1,568 Pitcairn reed warblers.",
+     "kind": "fact",
+     "cites": [
+      "PIT-034"
+     ]
+    },
+    {
+     "text": "According to a 2024 population survey, the Pitcairn reed warbler was found in all habitats surveyed on Pitcairn and appeared most abundant in stands of introduced rose apple (Syzygium jambos).",
+     "kind": "fact",
+     "cites": [
+      "PIT-035"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 141.77,
+   "retrieval_ms": 13.0,
+   "llm_ms": 141761.1,
+   "tokens_in": 1732,
+   "tokens_out": 136
+  },
+  {
+   "id": "Q10",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "I can't back that with my sources, so I won't state it.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "The provided evidence does not contain specific information on why Clipperton matters to silvertip sharks.",
+   "cited_ids": [],
+   "retrieved_ids": [
+    "CLI-034",
+    "CLI-037",
+    "CLI-028",
+    "CLI-033",
+    "CLI-202",
+    "CLI-035",
+    "CLI-038",
+    "CLI-201",
+    "CLI-039",
+    "CLI-204",
+    "CLI-036",
+    "CLI-203"
+   ],
+   "raw_sentences": [
+    {
+     "text": "The silvertip shark (Carcharhinus albimarginatus) is listed as Vulnerable and is a qualifying species for the Clipperton shark and ray area.",
+     "kind": "fact",
+     "cites": []
+    },
+    {
+     "text": "Clipperton is designated an Important Shark and Ray Area covering about 9.35 km2 from the surface to 100 m depth, based on silvertip and Galapagos shark nursery use.",
+     "kind": "fact",
+     "cites": []
+    },
+    {
+     "text": "A 2016 baited-video survey recorded Galapagos sharks on 83% of deployments and silvertip sharks on 33% at Clipperton.",
+     "kind": "fact",
+     "cites": []
+    }
+   ],
+   "raw_issues": [
+    {
+     "text": "The silvertip shark (Carcharhinus albimarginatus) is listed as Vulnerable and is a qualifying species for the Clipperton shark and ray area.",
+     "issues": [
+      "fact sentence has no citation"
+     ]
+    },
+    {
+     "text": "Clipperton is designated an Important Shark and Ray Area covering about 9.35 km2 from the surface to 100 m depth, based on silvertip and Galapagos shark nursery use.",
+     "issues": [
+      "fact sentence has no citation"
+     ]
+    },
+    {
+     "text": "A 2016 baited-video survey recorded Galapagos sharks on 83% of deployments and silvertip sharks on 33% at Clipperton.",
+     "issues": [
+      "fact sentence has no citation"
+     ]
+    }
+   ],
+   "rejected": [
+    {
+     "text": "The silvertip shark (Carcharhinus albimarginatus) is listed as Vulnerable and is a qualifying species for the Clipperton shark and ray area.",
+     "issues": [
+      "fact sentence has no citation"
+     ]
+    },
+    {
+     "text": "Clipperton is designated an Important Shark and Ray Area covering about 9.35 km2 from the surface to 100 m depth, based on silvertip and Galapagos shark nursery use.",
+     "issues": [
+      "fact sentence has no citation"
+     ]
+    },
+    {
+     "text": "A 2016 baited-video survey recorded Galapagos sharks on 83% of deployments and silvertip sharks on 33% at Clipperton.",
+     "issues": [
+      "fact sentence has no citation"
+     ]
+    }
+   ],
+   "repaired": true,
+   "llm_called": true,
+   "seconds": 253.07,
+   "retrieval_ms": 17.0,
+   "llm_ms": 253049.3,
+   "tokens_in": 3410,
+   "tokens_out": 386
+  },
+  {
+   "id": "Q11",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "I live in foothills, plateaus and deep ravines, usually at 150-800 m, and need cliffs for nesting.",
+     "kind": "fact",
+     "cites": [
+      "SOC-036"
+     ]
+    },
+    {
+     "text": "My nesting cliffs are cliffs.",
+     "kind": "fact",
+     "cites": [
+      "SOC-036"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "SOC-036"
+   ],
+   "retrieved_ids": [
+    "SOC-036",
+    "SOC-202",
+    "SOC-209",
+    "SOC-204",
+    "SOC-203",
+    "SOC-201",
+    "SOC-038",
+    "SOC-034",
+    "SOC-025",
+    "SOC-206",
+    "SOC-207",
+    "SOC-205",
+    "SOC-024",
+    "SOC-026",
+    "SOC-027",
+    "SOC-001",
+    "SOC-002",
+    "SOC-003"
+   ],
+   "raw_sentences": [
+    {
+     "text": "I live in foothills, plateaus and deep ravines, usually at 150-800 m, and need cliffs for nesting.",
+     "kind": "fact",
+     "cites": [
+      "SOC-036"
+     ]
+    },
+    {
+     "text": "My nesting cliffs are cliffs.",
+     "kind": "fact",
+     "cites": [
+      "SOC-036"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 152.23,
+   "retrieval_ms": 12.6,
+   "llm_ms": 152215.8,
+   "tokens_in": 2092,
+   "tokens_out": 99
+  },
+  {
+   "id": "Q12",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "The 1961 evacuees were taken to England; after the 1962 Royal Society expedition judged the settlement largely intact, most islanders returned in 1963, the first group in April and the rest in November.",
+     "kind": "fact",
+     "cites": [
+      "TDC-020",
+      "TDC-022"
+     ]
+    },
+    {
+     "text": "Earth tremors from August 1961 preceded a lava dome that formed on 10 October 1961 a few hundred feet east of the village.",
+     "kind": "fact",
+     "cites": [
+      "TDC-014"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "TDC-020",
+    "TDC-022",
+    "TDC-014"
+   ],
+   "retrieved_ids": [
+    "TDC-019",
+    "TDC-020",
+    "TDC-014",
+    "TDC-022",
+    "TDC-224",
+    "TDC-215",
+    "TDC-225",
+    "TDC-017",
+    "TDC-206",
+    "TDC-218",
+    "TDC-003",
+    "TDC-226"
+   ],
+   "raw_sentences": [
+    {
+     "text": "When the volcano threatened in October 1961, all 264 islanders left, spent a night on Nightingale Island, and were carried by the Dutch liner Tjisadane to Cape Town, then on to England.",
+     "kind": "fact",
+     "cites": [
+      "TDC-019"
+     ]
+    },
+    {
+     "text": "After the 1962 Royal Society expedition judged the settlement largely intact, most islanders returned in 1963, the first group in April and the rest in November.",
+     "kind": "fact",
+     "cites": [
+      "TDC-020"
+     ]
+    },
+    {
+     "text": "The 1961 evacuees were taken to England; after the 1962 Royal Society expedition judged the settlement largely intact, most islanders returned in 1963, the first group in April and the rest in November.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "raw_issues": [
+    {
+     "text": "The 1961 evacuees were taken to England; after the 1962 Royal Society expedition judged the settlement largely intact, most islanders returned in 1963, the first group in April and the rest in November.",
+     "issues": [
+      "voice sentence longer than 14 words",
+      "voice sentence contains digits",
+      "voice sentence contains name not in sources: England",
+      "voice sentence contains name not in sources: Royal",
+      "voice sentence contains name not in sources: Society",
+      "voice sentence contains name not in sources: April",
+      "voice sentence contains name not in sources: November"
+     ]
+    }
+   ],
+   "rejected": [],
+   "repaired": true,
+   "llm_called": true,
+   "seconds": 262.56,
+   "retrieval_ms": 26.0,
+   "llm_ms": 262529.0,
+   "tokens_in": 3635,
+   "tokens_out": 375
+  },
+  {
+   "id": "Q13",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "The islands became an Australian territory on 23 November 1955 under the Cocos (Keeling) Islands Act 1955.",
+     "kind": "fact",
+     "cites": [
+      "COC-019"
+     ]
+    },
+    {
+     "text": "In a 1984 UN-supervised self-determination vote, 229 of 261 eligible voters chose full integration with Australia.",
+     "kind": "fact",
+     "cites": [
+      "COC-020"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "COC-019",
+    "COC-020"
+   ],
+   "retrieved_ids": [
+    "COC-023",
+    "COC-019",
+    "COC-021",
+    "COC-022",
+    "COC-033",
+    "COC-216",
+    "COC-224",
+    "COC-020",
+    "COC-035",
+    "COC-211",
+    "COC-010",
+    "COC-032"
+   ],
+   "raw_sentences": [
+    {
+     "text": "The islands became an Australian territory on 23 November 1955 under the Cocos (Keeling) Islands Act 1955.",
+     "kind": "fact",
+     "cites": [
+      "COC-019"
+     ]
+    },
+    {
+     "text": "In a 1984 UN-supervised self-determination vote, 229 of 261 eligible voters chose full integration with Australia.",
+     "kind": "fact",
+     "cites": [
+      "COC-020"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 131.2,
+   "retrieval_ms": 34.7,
+   "llm_ms": 131160.7,
+   "tokens_in": 1592,
+   "tokens_out": 128
+  },
+  {
+   "id": "Q14",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "My lineage, the Pinta Island tortoise (Chelonoidis abingdonii), is listed as Extinct on the IUCN Red List.",
+     "kind": "fact",
+     "cites": [
+      "GBIF-GAL-pinta-island-tortoise-IUCN"
+     ]
+    },
+    {
+     "text": "Non-native plant species, rats, feral goats, cats, and introduced insects harm native wildlife.",
+     "kind": "fact",
+     "cites": [
+      "GAL-028",
+      "GAL-029"
+     ]
+    },
+    {
+     "text": "Goats introduced to Pinta in 1958 stripped vegetation, and Pinta was declared goat-free in 2003.",
+     "kind": "fact",
+     "cites": [
+      "GAL-034"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "GBIF-GAL-pinta-island-tortoise-IUCN",
+    "GAL-028",
+    "GAL-029",
+    "GAL-034"
+   ],
+   "retrieved_ids": [
+    "GBIF-GAL-pinta-island-tortoise-SPECIES",
+    "GBIF-GAL-pinta-island-tortoise-OCC",
+    "GBIF-GAL-pinta-island-tortoise-IUCN",
+    "GAL-037",
+    "GAL-032",
+    "GAL-036",
+    "GAL-034",
+    "GAL-209",
+    "GAL-207",
+    "GAL-208",
+    "GAL-201",
+    "GAL-210",
+    "GAL-206",
+    "GAL-203",
+    "GAL-226",
+    "GAL-028",
+    "GAL-029"
+   ],
+   "raw_sentences": [
+    {
+     "text": "My lineage, the Pinta Island tortoise (Chelonoidis abingdonii), is listed as Extinct on the IUCN Red List.",
+     "kind": "fact",
+     "cites": [
+      "GBIF-GAL-pinta-island-tortoise-IUCN"
+     ]
+    },
+    {
+     "text": "Non-native plant species, rats, feral goats, cats, and introduced insects harm native wildlife.",
+     "kind": "fact",
+     "cites": [
+      "GAL-028",
+      "GAL-029"
+     ]
+    },
+    {
+     "text": "Goats introduced to Pinta in 1958 stripped vegetation, and Pinta was declared goat-free in 2003.",
+     "kind": "fact",
+     "cites": [
+      "GAL-034"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 196.94,
+   "retrieval_ms": 20.7,
+   "llm_ms": 196918.9,
+   "tokens_in": 2256,
+   "tokens_out": 186
+  },
+  {
+   "id": "Q15",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "A Norwegian expedition led by Harald Horntvedt claimed the island on 1 December 1927, and a royal resolution of 23 January 1928 placed it under Norwegian sovereignty.",
+     "kind": "fact",
+     "cites": [
+      "BOU-019",
+      "BOU-020"
+     ]
+    }
+   ],
+   "missing": "The retrieved sources do not directly answer this question.",
+   "cited_ids": [
+    "BOU-019",
+    "BOU-020"
+   ],
+   "retrieved_ids": [
+    "BOU-226",
+    "BOU-033",
+    "BOU-023",
+    "BOU-019",
+    "BOU-002",
+    "BOU-020",
+    "BOU-018",
+    "BOU-217",
+    "BOU-213",
+    "BOU-036",
+    "BOU-208",
+    "BOU-214",
+    "BOU-034"
+   ],
+   "raw_sentences": [
+    {
+     "text": "A Norwegian expedition led by Harald Horntvedt claimed the island on 1 December 1927, and a royal resolution of 23 January 1928 placed it under Norwegian sovereignty.",
+     "kind": "fact",
+     "cites": [
+      "BOU-019"
+     ]
+    },
+    {
+     "text": "Bouvet Island covers about 49 km2, according to the Norwegian Polar Institute.",
+     "kind": "fact",
+     "cites": [
+      "BOU-020"
+     ]
+    },
+    {
+     "text": "Norwegian authorities call Bouvetøya the world's most remote nature reserve, protected since 1971.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "raw_issues": [
+    {
+     "text": "Bouvet Island covers about 49 km2, according to the Norwegian Polar Institute.",
+     "issues": [
+      "numbers not in cited evidence: 49",
+      "name not in cited evidence: Polar",
+      "name not in cited evidence: Institute"
+     ]
+    },
+    {
+     "text": "Norwegian authorities call Bouvetøya the world's most remote nature reserve, protected since 1971.",
+     "issues": [
+      "voice sentence contains digits"
+     ]
+    }
+   ],
+   "rejected": [
+    {
+     "text": "Norwegian authorities call Bouvetøya the world's most remote nature reserve, protected since 1971.",
+     "issues": [
+      "voice sentence contains digits"
+     ]
+    }
+   ],
+   "repaired": true,
+   "llm_called": true,
+   "seconds": 227.88,
+   "retrieval_ms": 14.6,
+   "llm_ms": 227864.6,
+   "tokens_in": 3338,
+   "tokens_out": 319
+  },
+  {
+   "id": "Q16",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "Temperature at 2 Meters (T2M, C) ANN is 26.28.",
+     "kind": "fact",
+     "cites": [
+      "POWER-SOC-TEMP"
+     ]
+    },
+    {
+     "text": "Precipitation Corrected (PRECTOTCORR, mm/day) ANN is 0.36.",
+     "kind": "fact",
+     "cites": [
+      "POWER-SOC-PRECIP"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "POWER-SOC-TEMP",
+    "POWER-SOC-PRECIP"
+   ],
+   "retrieved_ids": [
+    "POWER-SOC-TEMP",
+    "POWER-SOC-PRECIP",
+    "SOC-218",
+    "SOC-007",
+    "SOC-006",
+    "SOC-222",
+    "SOC-005",
+    "SOC-212",
+    "SOC-002",
+    "SOC-008",
+    "SOC-213",
+    "SOC-009",
+    "SOC-216",
+    "SOC-011"
+   ],
+   "raw_sentences": [
+    {
+     "text": "Temperature at 2 Meters (T2M, C) ANN is 26.28.",
+     "kind": "fact",
+     "cites": [
+      "POWER-SOC-TEMP"
+     ]
+    },
+    {
+     "text": "Precipitation Corrected (PRECTOTCORR, mm/day) ANN is 0.36.",
+     "kind": "fact",
+     "cites": [
+      "POWER-SOC-PRECIP"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 165.79,
+   "retrieval_ms": 24.6,
+   "llm_ms": 165761.3,
+   "tokens_in": 2306,
+   "tokens_out": 104
+  },
+  {
+   "id": "Q17",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "Wind Speed at 10 Meters (WS10M, m/s): JAN 9.36, FEB 10.18, MAR 10.47, APR 10.41, MAY 10.59, JUN 10.67, JUL 11.21, AUG 11.03, SEP 10.69, OCT 10.62, NOV 10.11, DEC 9.54, ANN 10.41.",
+     "kind": "fact",
+     "cites": [
+      "POWER-BOU-WIND"
+     ]
+    },
+    {
+     "text": "Relative Humidity at 2 Meters (RH2M, %): JAN 90.82, FEB 90.15, MAR 88.86, APR 88.32, MAY 86.33, JUN 86.2, JUL 86.22, AUG 87.46, SEP 87.51, OCT 88.37, NOV 90.11, DEC 90.86, ANN 88.43.",
+     "kind": "fact",
+     "cites": [
+      "POWER-BOU-HUMID"
+     ]
+    },
+    {
+     "text": "ANN is the annual value exactly as POWER reports it.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "POWER-BOU-WIND",
+    "POWER-BOU-HUMID"
+   ],
+   "retrieved_ids": [
+    "POWER-BOU-WIND",
+    "POWER-BOU-HUMID",
+    "BOU-214",
+    "BOU-004",
+    "BOU-002",
+    "BOU-209",
+    "BOU-220",
+    "BOU-005",
+    "BOU-217",
+    "BOU-001",
+    "BOU-006",
+    "BOU-216",
+    "BOU-008",
+    "BOU-218"
+   ],
+   "raw_sentences": [
+    {
+     "text": "Wind Speed at 10 Meters (WS10M, m/s): JAN 9.36, FEB 10.18, MAR 10.47, APR 10.41, MAY 10.59, JUN 10.67, JUL 11.21, AUG 11.03, SEP 10.69, OCT 10.62, NOV 10.11, DEC 9.54, ANN 10.41.",
+     "kind": "fact",
+     "cites": [
+      "POWER-BOU-WIND"
+     ]
+    },
+    {
+     "text": "Relative Humidity at 2 Meters (RH2M, %): JAN 90.82, FEB 90.15, MAR 88.86, APR 88.32, MAY 86.33, JUN 86.2, JUL 86.22, AUG 87.46, SEP 87.51, OCT 88.37, NOV 90.11, DEC 90.86, ANN 88.43.",
+     "kind": "fact",
+     "cites": [
+      "POWER-BOU-HUMID"
+     ]
+    },
+    {
+     "text": "ANN is the annual value exactly as POWER reports it.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 242.73,
+   "retrieval_ms": 13.6,
+   "llm_ms": 242715.8,
+   "tokens_in": 1959,
+   "tokens_out": 333
+  },
+  {
+   "id": "Q18",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "PRECIPITATION CORRECTED (PRECTOTCORR, mm/day): JAN 3.44, FEB 2.2, MAR 1.42, APR 4.09, MAY 10.42, JUN 11.81, JUL 13.2, AUG 13.4, SEP 11.61, OCT 10, NOV 7.18, DEC 3.86, ANN 7.75.",
+     "kind": "fact",
+     "cites": [
+      "POWER-CLI-PRECIP"
+     ]
+    },
+    {
+     "text": "JUN has the most rain, with 11.81 mm/day.",
+     "kind": "fact",
+     "cites": [
+      "POWER-CLI-PRECIP"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "POWER-CLI-PRECIP"
+   ],
+   "retrieved_ids": [
+    "POWER-CLI-PRECIP",
+    "CLI-006",
+    "CLI-219",
+    "CLI-005",
+    "CLI-216",
+    "CLI-215",
+    "CLI-218",
+    "CLI-217",
+    "CLI-036",
+    "CLI-211",
+    "CLI-207",
+    "CLI-212",
+    "CLI-002"
+   ],
+   "raw_sentences": [
+    {
+     "text": "PRECIPITATION CORRECTED (PRECTOTCORR, mm/day): JAN 3.44, FEB 2.2, MAR 1.42, APR 4.09, MAY 10.42, JUN 11.81, JUL 13.2, AUG 13.4, SEP 11.61, OCT 10, NOV 7.18, DEC 3.86, ANN 7.75.",
+     "kind": "fact",
+     "cites": [
+      "POWER-CLI-PRECIP"
+     ]
+    },
+    {
+     "text": "JUN has the most rain, with 11.81 mm/day.",
+     "kind": "fact",
+     "cites": [
+      "POWER-CLI-PRECIP"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 171.2,
+   "retrieval_ms": 16.8,
+   "llm_ms": 171180.3,
+   "tokens_in": 1907,
+   "tokens_out": 192
+  },
+  {
+   "id": "Q19",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "The sources do not contain the warmest month's name.",
+     "kind": "voice",
+     "cites": []
+    },
+    {
+     "text": "Temperature at 2 Meters Maximum (T2M_MAX, C): JAN 28.87, FEB 29.3, MAR 29.39, APR 29.7, MAY 29.41, JUN 28.83, JUL 28.17, AUG 27.74, SEP 28.14, OCT 27.75, NOV 28.2, DEC 28.31, ANN 29.7.",
+     "kind": "fact",
+     "cites": [
+      "POWER-COC-TEMP"
+     ]
+    }
+   ],
+   "missing": "The warmest month is not explicitly named in the evidence.",
+   "cited_ids": [
+    "POWER-COC-TEMP"
+   ],
+   "retrieved_ids": [
+    "POWER-COC-TEMP",
+    "COC-006",
+    "COC-216",
+    "COC-217",
+    "COC-007",
+    "COC-008",
+    "COC-009",
+    "COC-222",
+    "COC-218",
+    "COC-022",
+    "COC-033",
+    "COC-001",
+    "COC-032"
+   ],
+   "raw_sentences": [
+    {
+     "text": "Temperature at 2 Meters Maximum (T2M_MAX, C): JAN 28.87, FEB 29.3, MAR 29.39, APR 29.7, MAY 29.41, JUN 28.83, JUL 28.17, AUG 27.74, SEP 28.14, OCT 27.75, NOV 28.2, DEC 28.31, ANN 29.7.",
+     "kind": "fact",
+     "cites": [
+      "POWER-COC-TEMP"
+     ]
+    },
+    {
+     "text": "The warmest month is June.",
+     "kind": "fact",
+     "cites": [
+      "POWER-COC-TEMP"
+     ]
+    },
+    {
+     "text": "The annual value is 29.7.",
+     "kind": "fact",
+     "cites": [
+      "POWER-COC-TEMP"
+     ]
+    }
+   ],
+   "raw_issues": [
+    {
+     "text": "The warmest month is June.",
+     "issues": [
+      "name not in cited evidence: June"
+     ]
+    }
+   ],
+   "rejected": [],
+   "repaired": true,
+   "llm_called": true,
+   "seconds": 283.56,
+   "retrieval_ms": 21.1,
+   "llm_ms": 283538.0,
+   "tokens_in": 4316,
+   "tokens_out": 417
+  },
+  {
+   "id": "Q20",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "I can't provide the number of GBIF records worldwide for the Galápagos sea lion.",
+     "kind": "voice",
+     "cites": []
+    },
+    {
+     "text": "I can't provide the number of GBIF records near the Galápagos Islands.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "The evidence does not contain the specific counts of GBIF records for the Galápagos sea lion worldwide or near the islands.",
+   "cited_ids": [],
+   "retrieved_ids": [
+    "GBIF-GAL-galapagos-sea-lion-SPECIES",
+    "GBIF-GAL-galapagos-sea-lion-OCC",
+    "GBIF-GAL-galapagos-sea-lion-IUCN",
+    "GAL-104",
+    "GAL-101",
+    "GAL-103",
+    "GAL-109",
+    "GAL-105",
+    "GAL-108",
+    "GAL-102",
+    "GAL-110",
+    "GAL-222",
+    "GAL-220",
+    "GAL-221",
+    "GAL-005"
+   ],
+   "raw_sentences": [
+    {
+     "text": "GBIF holds 8,306 occurrence records worldwide for the Galápagos sea lion.",
+     "kind": "fact",
+     "cites": [
+      "GBIF-GAL-galapagos-sea-lion-OCC] (GBIF · confidence high · as of 2026-10-09"
+     ]
+    },
+    {
+     "text": "Inside a search box around Galápagos Islands spanning latitude -3.5 to 2.5 and longitude -93.5 to -87.5 (±3.0° around the pin) it holds 8,169 records.",
+     "kind": "fact",
+     "cites": [
+      "GBIF-GAL-galapagos-sea-lion-OCC] (GBIF · confidence high · as of 2026-10-09"
+     ]
+    }
+   ],
+   "raw_issues": [
+    {
+     "text": "GBIF holds 8,306 occurrence records worldwide for the Galápagos sea lion.",
+     "issues": [
+      "cites evidence that was not retrieved: GBIF-GAL-galapagos-sea-lion-OCC] (GBIF · confidence high · as of 2026-10-09"
+     ]
+    },
+    {
+     "text": "Inside a search box around Galápagos Islands spanning latitude -3.5 to 2.5 and longitude -93.5 to -87.5 (±3.0° around the pin) it holds 8,169 records.",
+     "issues": [
+      "cites evidence that was not retrieved: GBIF-GAL-galapagos-sea-lion-OCC] (GBIF · confidence high · as of 2026-10-09"
+     ]
+    }
+   ],
+   "rejected": [],
+   "repaired": true,
+   "llm_called": true,
+   "seconds": 238.95,
+   "retrieval_ms": 25.3,
+   "llm_ms": 238921.0,
+   "tokens_in": 4173,
+   "tokens_out": 307
+  },
+  {
+   "id": "Q21",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "I am the Napoleon wrasse (Cheilinus undulatus)",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "no missing information",
+   "cited_ids": [],
+   "retrieved_ids": [
+    "GBIF-COC-napoleon-wrasse-SPECIES",
+    "GBIF-COC-napoleon-wrasse-OCC",
+    "GBIF-COC-napoleon-wrasse-IUCN",
+    "COC-034",
+    "COC-016",
+    "COC-206",
+    "COC-204",
+    "COC-225",
+    "COC-205",
+    "COC-224",
+    "COC-207",
+    "COC-226",
+    "COC-223",
+    "COC-035",
+    "COC-037"
+   ],
+   "raw_sentences": [
+    {
+     "text": "my taxonomic family is Labridae, I have a GBIF usage key of 2383313",
+     "kind": "fact",
+     "cites": []
+    },
+    {
+     "text": "my GBIF usage key is 2383313",
+     "kind": "fact",
+     "cites": []
+    }
+   ],
+   "raw_issues": [
+    {
+     "text": "my taxonomic family is Labridae, I have a GBIF usage key of 2383313",
+     "issues": [
+      "fact sentence has no citation"
+     ]
+    },
+    {
+     "text": "my GBIF usage key is 2383313",
+     "issues": [
+      "fact sentence has no citation"
+     ]
+    }
+   ],
+   "rejected": [
+    {
+     "text": "my taxonomic family is Labridae, I have a GBIF usage key of 2383313",
+     "issues": [
+      "fact sentence has no citation"
+     ]
+    }
+   ],
+   "repaired": true,
+   "llm_called": true,
+   "seconds": 184.23,
+   "retrieval_ms": 22.6,
+   "llm_ms": 184203.2,
+   "tokens_in": 4247,
+   "tokens_out": 180
+  },
+  {
+   "id": "Q22",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "Socotra's highest point is Mashanig in the Hajhir Mountains at about 1,503 m.",
+     "kind": "fact",
+     "cites": [
+      "SOC-011"
+     ]
+    },
+    {
+     "text": "The highest mountain on Socotra is Mashanig.",
+     "kind": "fact",
+     "cites": [
+      "SOC-011"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "SOC-011"
+   ],
+   "retrieved_ids": [
+    "SOC-011",
+    "SOC-206",
+    "SOC-205",
+    "SOC-032",
+    "SOC-207",
+    "SOC-214",
+    "SOC-204",
+    "SOC-014",
+    "SOC-010",
+    "SOC-201",
+    "SOC-003",
+    "SOC-202",
+    "SOC-012",
+    "SOC-013"
+   ],
+   "raw_sentences": [
+    {
+     "text": "Socotra's highest point is Mashanig in the Hajhir Mountains at about 1,503 m.",
+     "kind": "fact",
+     "cites": [
+      "SOC-011"
+     ]
+    },
+    {
+     "text": "The highest mountain on Socotra is Mashanig.",
+     "kind": "fact",
+     "cites": [
+      "SOC-011"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 125.78,
+   "retrieval_ms": 15.1,
+   "llm_ms": 125761.3,
+   "tokens_in": 1801,
+   "tokens_out": 98
+  },
+  {
+   "id": "Q23",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "About 93% of Bouvetøya is permanent ice; ice-free ground includes the Nyrøysa platform (about 700 m long and 25-40 m high) and 150-350 m cliffs, with only non-vascular vegetation on coastal cliffs, capes, boulder beaches, nunatak ridges and the summit plateau.",
+     "kind": "fact",
+     "cites": [
+      "BOU-222"
+     ]
+    },
+    {
+     "text": "89% of the island is covered by glaciers or ice according to Norwegian sources.",
+     "kind": "fact",
+     "cites": [
+      "BOU-012"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "BOU-222",
+    "BOU-012"
+   ],
+   "retrieved_ids": [
+    "BOU-215",
+    "BOU-002",
+    "BOU-218",
+    "BOU-217",
+    "BOU-222",
+    "BOU-214",
+    "BOU-220",
+    "BOU-216",
+    "BOU-012",
+    "BOU-005",
+    "BOU-212",
+    "BOU-219"
+   ],
+   "raw_sentences": [
+    {
+     "text": "About 93% of Bouvetøya is permanent ice; ice-free ground includes the Nyrøysa platform (about 700 m long and 25-40 m high) and 150-350 m cliffs, with only non-vascular vegetation on coastal cliffs, capes, boulder beaches, nunatak ridges and the summit plateau.",
+     "kind": "fact",
+     "cites": [
+      "BOU-222"
+     ]
+    },
+    {
+     "text": "89% of the island is covered by glaciers or ice according to Norwegian sources.",
+     "kind": "fact",
+     "cites": [
+      "BOU-012"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 142.62,
+   "retrieval_ms": 19.9,
+   "llm_ms": 142595.4,
+   "tokens_in": 1631,
+   "tokens_out": 162
+  },
+  {
+   "id": "Q24",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "Pitcairn is about 4.5 km2, roughly 3.5 km long and 1.8 km wide according to one source (others give 5 km2 or 450 ha).",
+     "kind": "fact",
+     "cites": [
+      "PIT-012"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "PIT-012"
+   ],
+   "retrieved_ids": [
+    "PIT-216",
+    "PIT-012",
+    "PIT-004",
+    "PIT-024",
+    "PIT-003",
+    "PIT-224",
+    "PIT-001",
+    "PIT-020",
+    "PIT-008",
+    "PIT-033",
+    "PIT-010",
+    "PIT-223"
+   ],
+   "raw_sentences": [
+    {
+     "text": "Pitcairn is about 4.5 km2, roughly 3.5 km long and 1.8 km wide according to one source (others give 5 km2 or 450 ha).",
+     "kind": "fact",
+     "cites": [
+      "PIT-012"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 108.93,
+   "retrieval_ms": 11.8,
+   "llm_ms": 108921.1,
+   "tokens_in": 1655,
+   "tokens_out": 84
+  },
+  {
+   "id": "Q25",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "The Australian government describes the climate as tropical and very humid, with temperatures of 23-30 °C, about 2,000 mm of rain a year mostly from January to August, and south-east trade winds most of the year.",
+     "kind": "fact",
+     "cites": [
+      "COC-008"
+     ]
+    },
+    {
+     "text": "At Cocos Island Airport, rainfall averages about 1,970 mm per year (records from 1901), peaking in April at about 243 mm and bottoming out in October at about 79 mm.",
+     "kind": "fact",
+     "cites": [
+      "COC-005"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "COC-008",
+    "COC-005"
+   ],
+   "retrieved_ids": [
+    "POWER-COC-PRECIP",
+    "COC-005",
+    "COC-008",
+    "COC-218",
+    "COC-007",
+    "COC-217",
+    "COC-221",
+    "COC-211",
+    "COC-009",
+    "COC-209",
+    "COC-001",
+    "COC-002",
+    "COC-203"
+   ],
+   "raw_sentences": [
+    {
+     "text": "The Australian government describes the climate as tropical and very humid, with temperatures of 23-30 °C, about 2,000 mm of rain a year mostly from January to August, and south-east trade winds most of the year.",
+     "kind": "fact",
+     "cites": [
+      "COC-008"
+     ]
+    },
+    {
+     "text": "At Cocos Island Airport, rainfall averages about 1,970 mm per year (records from 1901), peaking in April at about 243 mm and bottoming out in October at about 79 mm.",
+     "kind": "fact",
+     "cites": [
+      "COC-005"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 161.88,
+   "retrieval_ms": 20.3,
+   "llm_ms": 161860.2,
+   "tokens_in": 1929,
+   "tokens_out": 167
+  },
+  {
+   "id": "Q26",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "My sensors hold nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "The name of the current mayor is not provided in the evidence.",
+   "cited_ids": [],
+   "retrieved_ids": [
+    "PIT-022",
+    "PIT-201",
+    "PIT-018",
+    "PIT-216",
+    "PIT-021",
+    "PIT-204",
+    "PIT-033",
+    "PIT-202",
+    "PIT-205",
+    "PIT-214",
+    "PIT-206",
+    "PIT-218"
+   ],
+   "raw_sentences": [
+    {
+     "text": "My sensors hold nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 98.6,
+   "retrieval_ms": 12.2,
+   "llm_ms": 98588.9,
+   "tokens_in": 1699,
+   "tokens_out": 56
+  },
+  {
+   "id": "Q27",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "My instruments searched my field notes, NASA climate readings and species records and found nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "Nothing in the curated island notes, NASA POWER data or GBIF records relates to this question.",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": false,
+   "seconds": 0.02,
+   "retrieval_ms": 19.5,
+   "llm_ms": 0.0,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q28",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "My sensors hold nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "The evidence does not contain information on the number of tourists visiting Socotra each year.",
+   "cited_ids": [],
+   "retrieved_ids": [
+    "SOC-218",
+    "SOC-206",
+    "SOC-032",
+    "SOC-207",
+    "SOC-204",
+    "SOC-205",
+    "SOC-201",
+    "SOC-203",
+    "SOC-226",
+    "SOC-034",
+    "SOC-010",
+    "SOC-030"
+   ],
+   "raw_sentences": [
+    {
+     "text": "My sensors hold nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 99.14,
+   "retrieval_ms": 12.6,
+   "llm_ms": 99131.5,
+   "tokens_in": 1671,
+   "tokens_out": 61
+  },
+  {
+   "id": "Q29",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "My sensors hold nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "The evidence does not contain information about Lonesome George's age when he died.",
+   "cited_ids": [],
+   "retrieved_ids": [
+    "GAL-033",
+    "GAL-216",
+    "GAL-014",
+    "GAL-221",
+    "GAL-218",
+    "GAL-219",
+    "GAL-215",
+    "GAL-029",
+    "GAL-013",
+    "GAL-225",
+    "GAL-211",
+    "GAL-016"
+   ],
+   "raw_sentences": [
+    {
+     "text": "Lonesome George was found dead on 24 June 2012 by his caretaker Fausto Llerena after about 40 years of care.",
+     "kind": "fact",
+     "cites": [
+      "GAL-033"
+     ]
+    },
+    {
+     "text": "Lonesome George was found dead on 24 June 2012.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "raw_issues": [
+    {
+     "text": "Lonesome George was found dead on 24 June 2012.",
+     "issues": [
+      "voice sentence contains digits",
+      "voice sentence contains name not in sources: June"
+     ]
+    }
+   ],
+   "rejected": [],
+   "repaired": true,
+   "llm_called": true,
+   "seconds": 144.1,
+   "retrieval_ms": 11.9,
+   "llm_ms": 144085.1,
+   "tokens_in": 3192,
+   "tokens_out": 167
+  },
+  {
+   "id": "Q30",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "My sensors hold nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "The evidence does not contain information on the hatching month of penguins' eggs.",
+   "cited_ids": [],
+   "retrieved_ids": [
+    "BOU-201",
+    "BOU-029",
+    "BOU-032",
+    "BOU-039",
+    "BOU-204",
+    "BOU-202",
+    "BOU-027",
+    "BOU-210",
+    "BOU-035",
+    "BOU-221",
+    "BOU-025",
+    "BOU-009"
+   ],
+   "raw_sentences": [
+    {
+     "text": "My sensors hold nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 107.58,
+   "retrieval_ms": 15.5,
+   "llm_ms": 107563.5,
+   "tokens_in": 1784,
+   "tokens_out": 60
+  }
+ ]
+}

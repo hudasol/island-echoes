@@ -1,0 +1,944 @@
+{
+ "meta": {
+  "timestamp": "2026-10-28T14:28:53+00:00",
+  "commit": "4b2b4ae",
+  "answer_model": "llamacpp:qwen2.5-3b-instruct-q4_k_m",
+  "provider": "llamacpp",
+  "model": "qwen2.5-3b-instruct-q4_k_m",
+  "system": "closed-book",
+  "retrieval_mode": "none",
+  "retrieval_k": 12,
+  "facts_hash": "491e9b1e2b6592e8",
+  "wall_seconds": 1535.2,
+  "judge_model": null,
+  "questions_file": "questions.jsonl",
+  "split": null,
+  "errored": 0,
+  "label": "closed-book-qwen25-3b-llamacpp-hybrid"
+ },
+ "summary": {
+  "questions": 30,
+  "judged_questions": 0,
+  "fact_sentences_judged": 0,
+  "groundedness": {
+   "k": 0,
+   "n": 0
+  },
+  "partially_supported": {
+   "k": 0,
+   "n": 0
+  },
+  "hallucination_rate": {
+   "k": 0,
+   "n": 0
+  },
+  "answers_with_hallucination": {
+   "k": 2,
+   "n": 30
+  },
+  "refusal_accuracy": {
+   "k": 2,
+   "n": 5
+  },
+  "false_refusals": {
+   "k": 15,
+   "n": 25
+  },
+  "key_fact_recall": {
+   "k": 6,
+   "n": 41
+  },
+  "expected_source_recall": {
+   "k": 0,
+   "n": 41
+  },
+  "validator_first_pass_failures": {
+   "k": 0,
+   "n": 0
+  },
+  "repaired_answers": {
+   "k": 0,
+   "n": 30
+  },
+  "conflicts_reported": {
+   "k": 0,
+   "n": 0
+  },
+  "questions_passed": {
+   "k": 4,
+   "n": 30
+  }
+ },
+ "records": [
+  {
+   "id": "Q01",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "I do not have specific information on the number of islanders who left due to the volcano threat in 1961.",
+     "kind": "voice",
+     "cites": []
+    },
+    {
+     "text": "The exact number of islanders who evacuated is not documented in my records.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "I do not have the specific number of islanders who left due to the volcano threat in 1961. My knowledge is limited to my presence and the conditions on the island.",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 62.7,
+   "retrieval_ms": 0.0,
+   "llm_ms": 62701.7,
+   "tokens_in": 232,
+   "tokens_out": 125
+  },
+  {
+   "id": "Q02",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "The Bounty mutineers reached Pitcairn in April 1790.",
+     "kind": "fact",
+     "cites": []
+    },
+    {
+     "text": "I do not have specific information about the arrival date.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "I do not have the exact date when the mutineers arrived on Pitcairn Island. My knowledge is limited to the Pitcairn reed warbler and my observations on the island.",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 58.97,
+   "retrieval_ms": 0.0,
+   "llm_ms": 58968.3,
+   "tokens_in": 229,
+   "tokens_out": 116
+  },
+  {
+   "id": "Q03",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "I am a Napoleon wrasse of Cocos (Keeling) Islands and do not have information on the population of the islands.",
+     "kind": "fact",
+     "cites": []
+    },
+    {
+     "text": "I do not have the population data for the Cocos (Keeling) Islands.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "I do not have the population data for the Cocos (Keeling) Islands.",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 53.23,
+   "retrieval_ms": 0.0,
+   "llm_ms": 53234.4,
+   "tokens_in": 226,
+   "tokens_out": 106
+  },
+  {
+   "id": "Q04",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "I do not know the specific scripts inscribed in Hoq Cave.",
+     "kind": "voice",
+     "cites": []
+    },
+    {
+     "text": "The inscriptions in Hoq Cave are believed to be in the Hoq language, a local dialect.",
+     "kind": "fact",
+     "cites": []
+    }
+   ],
+   "missing": "I do not have information on the exact scripts used in Hoq Cave.",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 48.0,
+   "retrieval_ms": 0.0,
+   "llm_ms": 47995.1,
+   "tokens_in": 221,
+   "tokens_out": 96
+  },
+  {
+   "id": "Q05",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "Lonesome George, the last known Pinta Island tortoise, passed away on June 24, 2012.",
+     "kind": "fact",
+     "cites": []
+    },
+    {
+     "text": "He was a symbol of hope for the recovery of his species.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "I do not have detailed information about the circumstances of Lonesome George's passing or the efforts to recover his species.",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 55.67,
+   "retrieval_ms": 0.0,
+   "llm_ms": 55670.5,
+   "tokens_in": 222,
+   "tokens_out": 111
+  },
+  {
+   "id": "Q06",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "I primarily feed on fish, squid, and crustaceans that I catch close to the shore, within a few kilometers.",
+     "kind": "fact",
+     "cites": []
+    },
+    {
+     "text": "I rarely venture far from the shore, as my diet consists mainly of marine life found in shallow waters.",
+     "kind": "fact",
+     "cites": []
+    }
+   ],
+   "missing": "}",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 47.01,
+   "retrieval_ms": 0.0,
+   "llm_ms": 47005.5,
+   "tokens_in": 232,
+   "tokens_out": 92
+  },
+  {
+   "id": "Q07",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "Macaroni penguins are not currently listed as endangered, but they face threats from climate change and human activities.",
+     "kind": "fact",
+     "cites": []
+    },
+    {
+     "text": "Settle down, I'm here to report on my island.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "}",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 43.63,
+   "retrieval_ms": 0.0,
+   "llm_ms": 43631.1,
+   "tokens_in": 221,
+   "tokens_out": 82
+  },
+  {
+   "id": "Q08",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "I do not have specific information about breeding success changes after the mouse operation on Gough Island.",
+     "kind": "voice",
+     "cites": []
+    },
+    {
+     "text": "My breeding success is not directly related to the mouse operation on Gough Island.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "I do not have details on how my breeding success changed after the mouse operation on Gough Island.",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 48.52,
+   "retrieval_ms": 0.0,
+   "llm_ms": 48516.1,
+   "tokens_in": 226,
+   "tokens_out": 101
+  },
+  {
+   "id": "Q09",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "I am the last known Pitcairn reed warbler (Acrocephalus vaughani) on Pitcairn Island.",
+     "kind": "fact",
+     "cites": []
+    },
+    {
+     "text": "No other reed warblers have been sighted on Pitcairn Island since my last report.",
+     "kind": "fact",
+     "cites": []
+    }
+   ],
+   "missing": "",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 47.15,
+   "retrieval_ms": 0.0,
+   "llm_ms": 47151.1,
+   "tokens_in": 223,
+   "tokens_out": 96
+  },
+  {
+   "id": "Q10",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "Clipperton Island is a crucial habitat for silvertip sharks, providing a safe breeding ground and a rich food source.",
+     "kind": "fact",
+     "cites": []
+    },
+    {
+     "text": "The island's unique ecosystem supports a diverse array of marine life, attracting sharks from various regions.",
+     "kind": "fact",
+     "cites": []
+    },
+    {
+     "text": "Sharks use Clipperton as a resting spot during their long migrations, ensuring their survival and reproductive success.",
+     "kind": "fact",
+     "cites": []
+    }
+   ],
+   "missing": "",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 61.22,
+   "retrieval_ms": 0.0,
+   "llm_ms": 61224.7,
+   "tokens_in": 225,
+   "tokens_out": 128
+  },
+  {
+   "id": "Q11",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "I live on Socotra Island, and I nest in the trees and rocky cliffs.",
+     "kind": "fact",
+     "cites": []
+    },
+    {
+     "text": "I am a bird of prey that prefers to live in the wild, away from human settlements.",
+     "kind": "fact",
+     "cites": []
+    }
+   ],
+   "missing": "",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 42.61,
+   "retrieval_ms": 0.0,
+   "llm_ms": 42613.7,
+   "tokens_in": 218,
+   "tokens_out": 83
+  },
+  {
+   "id": "Q12",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "The islanders were evacuated in 1961 due to a volcanic eruption on the island, and they returned in 1963.",
+     "kind": "fact",
+     "cites": []
+    },
+    {
+     "text": "The evacuation was a precautionary measure to ensure the safety of the islanders.",
+     "kind": "fact",
+     "cites": []
+    }
+   ],
+   "missing": "}",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 44.3,
+   "retrieval_ms": 0.0,
+   "llm_ms": 44303.4,
+   "tokens_in": 231,
+   "tokens_out": 92
+  },
+  {
+   "id": "Q13",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "The Cocos (Keeling) Islands became Australian territory through a treaty signed in 1978.",
+     "kind": "fact",
+     "cites": []
+    },
+    {
+     "text": "In 1984, residents voted to remain a British dependency.",
+     "kind": "fact",
+     "cites": []
+    },
+    {
+     "text": "Residents voted to remain a British dependency in 1984.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "The Cocos (Keeling) Islands became Australian territory through a treaty signed in 1978, and in 1984, residents voted to remain a British dependency.",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 69.54,
+   "retrieval_ms": 0.0,
+   "llm_ms": 69538.0,
+   "tokens_in": 238,
+   "tokens_out": 151
+  },
+  {
+   "id": "Q14",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "My lineage faces threats such as habitat loss, invasive species, and climate change. Some of my descendants survive on other islands in the Galápagos archipelago.",
+     "kind": "fact",
+     "cites": []
+    },
+    {
+     "text": "I, Pinta Island tortoise, am a part of the Chelonoidis abingdonii lineage.",
+     "kind": "fact",
+     "cites": []
+    }
+   ],
+   "missing": "}",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 49.55,
+   "retrieval_ms": 0.0,
+   "llm_ms": 49550.2,
+   "tokens_in": 229,
+   "tokens_out": 103
+  },
+  {
+   "id": "Q15",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "Norway claimed Bouvet Island for itself in 1928.",
+     "kind": "fact",
+     "cites": []
+    },
+    {
+     "text": "Today, Bouvet Island is protected under the Antarctic Treaty System.",
+     "kind": "fact",
+     "cites": []
+    }
+   ],
+   "missing": "I do not have specific information on who claimed Bouvet for Norway or the exact details of how it is protected today. These details would require additional research beyond my current knowledge.",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 54.4,
+   "retrieval_ms": 0.0,
+   "llm_ms": 54395.1,
+   "tokens_in": 228,
+   "tokens_out": 109
+  },
+  {
+   "id": "Q16",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "I do not have direct access to NASA's climate data for Socotra Island.",
+     "kind": "voice",
+     "cites": []
+    },
+    {
+     "text": "To find the annual average temperature and daily rainfall, one would need to consult the latest climate data from NASA or other meteorological sources.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "I do not have the specific data you are looking for. Please refer to the latest climate data from NASA or other meteorological sources for accurate information.",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 57.04,
+   "retrieval_ms": 0.0,
+   "llm_ms": 57035.2,
+   "tokens_in": 230,
+   "tokens_out": 120
+  },
+  {
+   "id": "Q17",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "I am the Macaroni penguin of Bouvet Island, but I do not have specific information about windiness and humidity from NASA.",
+     "kind": "voice",
+     "cites": []
+    },
+    {
+     "text": "I do not have data on wind speed or humidity levels from NASA's observations.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "I do not have the specific information requested about windiness and humidity from NASA's records.",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 51.43,
+   "retrieval_ms": 0.0,
+   "llm_ms": 51428.8,
+   "tokens_in": 226,
+   "tokens_out": 108
+  },
+  {
+   "id": "Q18",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "I am a Silvertip shark of Clipperton Island and do not have access to NASA's climate data or information about rainfall amounts.",
+     "kind": "voice",
+     "cites": []
+    },
+    {
+     "text": "I am a Silvertip shark of Clipperton Island and do not have access to NASA's climate data or information about rainfall amounts.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "I am a Silvertip shark of Clipperton Island and do not have access to NASA's climate data or information about rainfall amounts.",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 60.94,
+   "retrieval_ms": 0.0,
+   "llm_ms": 60941.9,
+   "tokens_in": 232,
+   "tokens_out": 130
+  },
+  {
+   "id": "Q19",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "I am the Napoleon wrasse (Cheilinus undulatus) of Cocos (Keeling) Islands, and I do not have access to NASA's climate data.",
+     "kind": "voice",
+     "cites": []
+    },
+    {
+     "text": "My island experiences a tropical climate with warm temperatures year-round.",
+     "kind": "fact",
+     "cites": []
+    }
+   ],
+   "missing": "I do not have the specific information about which month is the warmest here based on NASA's climate data.",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 56.15,
+   "retrieval_ms": 0.0,
+   "llm_ms": 56153.7,
+   "tokens_in": 227,
+   "tokens_out": 115
+  },
+  {
+   "id": "Q20",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "GBIF holds records worldwide, but I do not have specific numbers for sea lions near the islands.",
+     "kind": "voice",
+     "cites": []
+    },
+    {
+     "text": "I do not have the specific number of sea lion records near the islands.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "To provide accurate numbers of sea lion records near the islands, I would need to consult GBIF data specifically for the Galápagos Islands.",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 54.24,
+   "retrieval_ms": 0.0,
+   "llm_ms": 54237.8,
+   "tokens_in": 233,
+   "tokens_out": 110
+  },
+  {
+   "id": "Q21",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "My taxonomic family is Cheilinidae and my GBIF usage key is 10988.",
+     "kind": "fact",
+     "cites": []
+    },
+    {
+     "text": "I am the Napoleon wrasse (Cheilinus undulatus) of Cocos (Keeling) Islands.",
+     "kind": "fact",
+     "cites": []
+    }
+   ],
+   "missing": "}",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 46.03,
+   "retrieval_ms": 0.0,
+   "llm_ms": 46030.0,
+   "tokens_in": 225,
+   "tokens_out": 93
+  },
+  {
+   "id": "Q22",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "The highest mountain on Socotra is Socotra Mountain, which stands at approximately 1,913 meters (6,276 feet) above sea level.",
+     "kind": "fact",
+     "cites": []
+    },
+    {
+     "text": "Socotra Mountain is the dominant feature of the island's landscape.",
+     "kind": "fact",
+     "cites": []
+    }
+   ],
+   "missing": "",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 47.22,
+   "retrieval_ms": 0.0,
+   "llm_ms": 47222.6,
+   "tokens_in": 227,
+   "tokens_out": 97
+  },
+  {
+   "id": "Q23",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "Bouvet Island is almost entirely covered by ice, with only a small, rocky peninsula exposed.",
+     "kind": "fact",
+     "cites": []
+    },
+    {
+     "text": "The ice cover varies seasonally, but it is always extensive.",
+     "kind": "fact",
+     "cites": []
+    }
+   ],
+   "missing": "I do not have specific data on the exact percentage of the island covered by ice. The ice cover is extensive, but I do not have precise figures.",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 53.85,
+   "retrieval_ms": 0.0,
+   "llm_ms": 53848.3,
+   "tokens_in": 223,
+   "tokens_out": 110
+  },
+  {
+   "id": "Q24",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "Pitcairn Island is approximately 1.5 square kilometers in size.",
+     "kind": "fact",
+     "cites": []
+    },
+    {
+     "text": "The island is quite small, making it a challenging environment for wildlife.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "}",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 40.14,
+   "retrieval_ms": 0.0,
+   "llm_ms": 40141.0,
+   "tokens_in": 225,
+   "tokens_out": 77
+  },
+  {
+   "id": "Q25",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "The islands receive an average of 150 to 200 inches of rain per year.",
+     "kind": "fact",
+     "cites": []
+    },
+    {
+     "text": "Precipitation levels can vary significantly from year to year.",
+     "kind": "fact",
+     "cites": []
+    }
+   ],
+   "missing": "I do not have specific data on the exact amount of rain each year, but the average is around 150 to 200 inches.",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 54.51,
+   "retrieval_ms": 0.0,
+   "llm_ms": 54513.3,
+   "tokens_in": 222,
+   "tokens_out": 110
+  },
+  {
+   "id": "Q26",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "I do not have information about the current mayor of Pitcairn Island.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "I do not know the name of the current mayor of Pitcairn Island.",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 36.55,
+   "retrieval_ms": 0.0,
+   "llm_ms": 36548.0,
+   "tokens_in": 225,
+   "tokens_out": 63
+  },
+  {
+   "id": "Q27",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "I weigh approximately 12.5 kilograms, which is typical for a Tristan albatross.",
+     "kind": "fact",
+     "cites": []
+    }
+   ],
+   "missing": "",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 29.71,
+   "retrieval_ms": 0.0,
+   "llm_ms": 29706.4,
+   "tokens_in": 217,
+   "tokens_out": 50
+  },
+  {
+   "id": "Q28",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "I do not have specific data on the number of tourists visiting Socotra each year.",
+     "kind": "voice",
+     "cites": []
+    },
+    {
+     "text": "The Socotra buzzard, as a field agent, focuses on the natural environment and wildlife of the island, not on tourism statistics.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "To provide accurate information on the number of tourists visiting Socotra each year, we would need to consult tourism records or reports from the island's administration.",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 61.42,
+   "retrieval_ms": 0.0,
+   "llm_ms": 61422.9,
+   "tokens_in": 221,
+   "tokens_out": 123
+  },
+  {
+   "id": "Q29",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "I, Lonesome George, the Pinta Island tortoise, was 100 years old when I died.",
+     "kind": "fact",
+     "cites": []
+    },
+    {
+     "text": "I, Lonesome George, was the last known individual of my species, Chelonoidis abingdonii, on Pinta Island.",
+     "kind": "fact",
+     "cites": []
+    }
+   ],
+   "missing": "I do not have the exact age at which I died, only that I was 100 years old when I passed away.",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 62.15,
+   "retrieval_ms": 0.0,
+   "llm_ms": 62152.7,
+   "tokens_in": 225,
+   "tokens_out": 128
+  },
+  {
+   "id": "Q30",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "My eggs hatch in the month of February.",
+     "kind": "fact",
+     "cites": []
+    },
+    {
+     "text": "I lay my eggs in early February and hatch them in mid-February.",
+     "kind": "fact",
+     "cites": []
+    }
+   ],
+   "missing": "",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": true,
+   "seconds": 37.34,
+   "retrieval_ms": 0.0,
+   "llm_ms": 37339.4,
+   "tokens_in": 235,
+   "tokens_out": 70
+  }
+ ]
+}

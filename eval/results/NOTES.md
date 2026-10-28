@@ -208,3 +208,16 @@ applied after the fact.
 
 With the check off, dev H02, H04 and H05 showed a wrong month as the answer; with the check on they were declined
 instead. The 3B model rarely recovered the right month on repair even when the failure message named it.
+
+## Baselines on the frozen 30 (28 October 2026)
+
+Four systems, one model (Qwen2.5-3B-Instruct 4 bit, served by llama.cpp, temperature 0), hybrid retrieval where retrieval is used. Run from a clean checkout at commit 4b2b4ae. Table: docs/RESULTS.md, section Baselines.
+
+Findings, as measured:
+
+- Sources matter far more than anything else. The model alone passes 4 of 30 and states a number or name found in no source in 4 of its 12 answers. With retrieval it passes 19 to 25 of 30.
+- The grounding validator did what it was built for and removed the unsupported content (1 of 26 answers with an unsupported number or name without it, 0 of 17 with it), but on this small model it also declined many answerable questions (8 of 25 against 0 of 25) and lowered key fact recall from 37 of 41 to 30 of 41. On this model and this question set, the unvalidated system passes more questions (25 against 19). The difference in unsupported content is one answer, so it is not statistically supported; the cost in false refusals is.
+- Refusal accuracy is 5 of 5 with the validator and 4 of 5 without it, again a one question difference.
+- The validator stays on by default because the product promise is that every sentence is cited and checked. This table shows the price of that promise on a 3B model. A larger model should refuse less often, which this run does not test.
+
+Limits: 30 questions, wide intervals, one model, one run per system. Serving differs from the earlier Ollama rows, which is why those rows are shown separately. The question set was used while building the validator, so the validated row is not an untouched test.

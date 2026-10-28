@@ -71,6 +71,9 @@ Every system answers the same 30 questions and is scored by the same code. Rows 
 | system | model | retrieval | passed | false refusals | refusal accuracy | key-fact recall | answers with a number or name found in no source | median / p95 time |
 |---|---|---|---|---|---|---|---|---|
 | always refuse | none:refuse-all | none (12) | 17% (5/30) [7-34] | 100% (25/25) [87-100] | 100% (5/5) [57-100] | 0% (0/41) [0-9] | n/a (no answers) | n/a |
+| model alone, no sources | llamacpp:qwen2.5-3b-instruct-q4_k_m | none (12) | 13% (4/30) [5-30] | 60% (15/25) [41-77] | 40% (2/5) [12-77] | 15% (6/41) [7-28] | 33% (4/12) [14-61] | 53 / 63 s |
+| retrieval + model, no validator | llamacpp:qwen2.5-3b-instruct-q4_k_m | hybrid (12) | 83% (25/30) [66-93] | 0% (0/25) [0-13] | 80% (4/5) [38-96] | 90% (37/41) [77-96] | 4% (1/26) [1-19] | 146 / 205 s |
+| retrieval + model + validator | llamacpp:qwen2.5-3b-instruct-q4_k_m | hybrid (12) | 63% (19/30) [46-78] | 32% (8/25) [17-52] | 100% (5/5) [57-100] | 73% (30/41) [58-84] | 0% (0/17) [0-18] | 157 / 263 s |
 
 Reference rows from an earlier session (Ollama serving), included for context only; they are not matched with the table above:
 
