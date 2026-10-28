@@ -103,7 +103,7 @@ def test_stats_page_is_served_and_csp_safe(tmp_settings, store, retriever):
     page = c.get("/stats.html")
     assert page.status_code == 200 and "<script src=\"/stats.js\">" in page.text
     assert "onclick" not in page.text and "<script>" not in page.text  # CSP is script-src 'self'
-    assert c.get("/stats.js").status_code == 200 and c.get("/stats.css").status_code == 200
+    assert c.get("/stats.js").status_code == 200 and c.get("/ops.css").status_code == 200
     assert c.get("/api/stats").json()["events"] == 0
 
 

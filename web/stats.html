@@ -3,25 +3,50 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Island Echoes statistics</title>
-<link rel="stylesheet" href="/style.css">
-<link rel="stylesheet" href="/stats.css">
+<title>Island Echoes: operations and evaluation</title>
+<meta name="theme-color" content="#E8EDEB">
+<link rel="stylesheet" href="/fonts.css">
+<link rel="stylesheet" href="/ops.css">
 </head>
-<body class="stats-page">
-<a class="skip" href="#main">Skip to the statistics</a>
-<main id="main">
-  <header>
-    <h1>Island Echoes statistics</h1>
-    <p class="muted">Usage and answer quality measured by this server. Question text is not stored unless the operator turned that on. This server forgets its history when it restarts.</p>
-    <p><a href="/">Back to the globe</a>
-      <label class="range">Window
-        <select id="days"><option value="1">1 day</option><option value="7" selected>7 days</option><option value="30">30 days</option></select>
-      </label></p>
-  </header>
-  <p id="status" role="status" class="muted">Loading…</p>
-  <section id="cards" class="cards" hidden></section>
-  <section id="tables" hidden></section>
+<body>
+<a class="skip" href="#main">Skip to the content</a>
+<header class="top">
+  <div class="wrap">
+    <a class="back" href="/">Island Echoes</a>
+    <nav aria-label="Sections"><a href="#data">Data</a><a href="#retrieval">Retrieval</a><a href="#answers">Answers</a><a href="#traffic">Traffic</a></nav>
+  </div>
+</header>
+<main id="main" class="wrap">
+  <h1>Operations and evaluation</h1>
+  <p class="deck" id="deck">Reading the server.</p>
+
+  <section id="data" aria-labelledby="h-data">
+    <h2 id="h-data">Data set</h2>
+    <p class="lead">Facts per island by confidence label, with the age of the external data each island draws on.</p>
+    <div id="data-body"></div>
+  </section>
+
+  <section id="retrieval" aria-labelledby="h-ret">
+    <h2 id="h-ret">Retrieval</h2>
+    <p class="lead">Whether a question's gold fact appears in the first five results. Bars show the 95% interval. Random, file order and word overlap rankings are floors.</p>
+    <div id="retrieval-body"></div>
+  </section>
+
+  <section id="answers" aria-labelledby="h-ans">
+    <h2 id="h-ans">Answers</h2>
+    <p class="lead">Thirty frozen questions, identical scoring. Each row changes one component.</p>
+    <div id="answers-body"></div>
+  </section>
+
+  <section id="traffic" aria-labelledby="h-traffic">
+    <h2 id="h-traffic">Traffic on this server</h2>
+    <p class="lead"><label for="days">Window</label>
+      <select id="days"><option value="1">1 day</option><option value="7" selected>7 days</option><option value="30">30 days</option></select>
+      Question text is not stored. The record is cleared when the server restarts.</p>
+    <div id="traffic-body"></div>
+  </section>
 </main>
+<footer class="wrap foot"><span id="build"></span> <a href="/api/docs">API reference</a> <a href="https://github.com/hudasol/island-echoes">Source</a></footer>
 <script src="/stats.js"></script>
 </body>
 </html>
