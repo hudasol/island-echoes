@@ -60,3 +60,5 @@ thead .n { font-family: var(--sans); }
 @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
 @media (forced-colors: active) { .stack i, .range .ci, .range .pt { background: CanvasText; } }
 @media (max-width: 720px) { tbody th { min-width: 118px; } .sub { display: none; } }
+
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }

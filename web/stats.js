@@ -19,7 +19,7 @@
     const t = el("table");
     if (opts.caption) t.append(el("caption", null, opts.caption));
     const thead = el("thead"), hr = el("tr");
-    head.forEach(([label, cls]) => { const th = el("th", cls, label); th.scope = "col"; hr.append(th); });
+    head.forEach(([label, cls]) => { const th = el("th", cls); if (cls && cls.includes("sr-col")) th.append(el("span", "sr", label)); else th.textContent = label; th.scope = "col"; hr.append(th); });
     thead.append(hr); t.append(thead);
     const tb = el("tbody");
     rows.forEach((r) => {
@@ -69,7 +69,7 @@
   /* ---------------- retrieval ---------------- */
   function retrievalTable(set, name, caption) {
     const head = [["Ranking"], ["hit@1", "n"], ["hit@5 with 95% interval"], ["", "n"], ["MRR", "n"]];
-    head[3] = ["", "n hide-sm"];
+    head[3] = ["Value", "n hide-sm sr-col"];
     const ordered = [...set.modes].sort((a, b) => (FLOORS.has(a.mode) - FLOORS.has(b.mode)));
     const rows = ordered.map((m) => ({
       cls: FLOORS.has(m.mode) ? "floor" : "",
@@ -103,7 +103,7 @@
     if (!rows.length) { $("answers-body").replaceChildren(el("p", "empty", "No end to end runs are stored.")); return; }
     const model = rows.find((r) => r.system === "full")?.model || "";
     $("answers-body").dataset.model = model;
-    const head = [["System"], ["Questions passed, 95% interval"], ["", "n hide-sm"], ["False refusals", "n"], ["Refusal accuracy", "n hide-sm"], ["Key fact recall", "n hide-sm"]];
+    const head = [["System"], ["Questions passed, 95% interval"], ["Value", "n hide-sm sr-col"], ["False refusals", "n"], ["Refusal accuracy", "n hide-sm"], ["Key fact recall", "n hide-sm"]];
     const body = rows.map((r) => {
       const p = r.passed, [lo, hi] = wilson(p.k, p.n);
       return {
