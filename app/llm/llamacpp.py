@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import logging
 from pathlib import Path
+from typing import Any, cast
 
 from .base import ANSWER_SCHEMA, JSON_INSTRUCTION, LLMError, Usage, parse_answer_json
 
@@ -38,6 +39,7 @@ class LlamaCppAnswerLLM:
             )
         except Exception as exc:  # noqa: BLE001 - llama.cpp raises plain ValueError/RuntimeError
             raise LLMError(f"llama.cpp failed: {exc.__class__.__name__}") from exc
-        u = r.get("usage") or {}
+        reply = cast(dict[str, Any], r)  # stream is off, so this is the complete response, not an iterator
+        u = reply.get("usage") or {}
         self.last_usage = Usage(u.get("prompt_tokens", 0), u.get("completion_tokens", 0))
-        return parse_answer_json(r["choices"][0]["message"]["content"])
+        return parse_answer_json(reply["choices"][0]["message"]["content"] or "")

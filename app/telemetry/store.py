@@ -10,7 +10,9 @@ import hashlib
 import sqlite3
 import threading
 import time
+import weakref
 from pathlib import Path
+from typing import Any
 
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS events (
@@ -70,9 +72,10 @@ class Telemetry:
         self._lock = threading.Lock()
         self._conn: sqlite3.Connection | None = None
         self.started = time.time()
-        if self.enabled:
+        if self.enabled and self.path:
             Path(self.path).parent.mkdir(parents=True, exist_ok=True)
             self._conn = sqlite3.connect(self.path, check_same_thread=False)
+            weakref.finalize(self, self._conn.close)
             self._conn.execute("PRAGMA journal_mode=WAL")
             self._conn.executescript(SCHEMA)
             row = self._conn.execute("SELECT MIN(ts) FROM events").fetchone()
@@ -81,7 +84,7 @@ class Telemetry:
     def record(self, route: str, question: str = "", **fields) -> None:
         if not self._conn:
             return
-        row = {c: None for c in COLUMNS}
+        row: dict[str, Any] = {c: None for c in COLUMNS}
         row.update(ts=time.time(), route=route, status=fields.pop("status", "ok"))
         row["qhash"], row["qlen"] = (qhash(question), len(question)) if question else (None, None)
         if self.log_questions and question:

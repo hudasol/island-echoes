@@ -13,6 +13,7 @@ import csv
 import json
 import sqlite3
 import sys
+from contextlib import closing
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -74,9 +75,8 @@ def main() -> int:
             print(f"No telemetry database at {path} yet. Use the app first.", file=sys.stderr)
             return 1
         if a.csv:
-            con = sqlite3.connect(path)
-            cur = con.execute("SELECT * FROM events ORDER BY ts")
-            with a.csv.open("w", newline="", encoding="utf-8") as f:
+            with closing(sqlite3.connect(path)) as con, a.csv.open("w", newline="", encoding="utf-8") as f:
+                cur = con.execute("SELECT * FROM events ORDER BY ts")
                 w = csv.writer(f)
                 w.writerow([d[0] for d in cur.description])
                 w.writerows(cur)

@@ -66,7 +66,7 @@ def check_sentences(
     checked: list[CheckedSentence] = []
     for s in raw_sentences[:MAX_FACT_SENTENCES + 4]:
         text = str(s.get("text", "")).strip()
-        kind = s.get("kind") if s.get("kind") in ("fact", "voice") else "fact"
+        kind = "voice" if s.get("kind") == "voice" else "fact"
         cites = [str(c).strip() for c in (s.get("cites") or []) if str(c).strip()]
         cs = CheckedSentence(text=text, kind=kind, cites=cites)
         checked.append(cs)

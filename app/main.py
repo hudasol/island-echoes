@@ -3,6 +3,7 @@ from __future__ import annotations
 import logging
 import math
 import time
+from typing import get_args
 
 from fastapi import FastAPI, HTTPException, Query, Request
 from fastapi.responses import FileResponse, JSONResponse
@@ -36,7 +37,7 @@ from .schemas import (
 )
 from .telemetry import Telemetry
 
-CATEGORIES = set(Category.__args__)
+CATEGORIES = set(get_args(Category))
 log = logging.getLogger("island_echoes.access")
 if not log.handlers:
     _h = logging.StreamHandler()

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import logging
+from typing import Any
 
 from .base import ANSWER_TOOL, LLMError, Usage
 
@@ -22,7 +23,7 @@ class AnthropicAnswerLLM:
         self.last_usage = Usage()
 
     def answer(self, system: str, user: str) -> dict:
-        kwargs = dict(
+        kwargs: dict[str, Any] = dict(
             model=self.model,
             max_tokens=self.max_tokens,
             system=system,

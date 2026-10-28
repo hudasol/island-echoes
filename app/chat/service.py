@@ -3,6 +3,7 @@ from __future__ import annotations
 import re
 import time
 from dataclasses import dataclass, field
+from typing import Any
 
 from ..data.islands import IslandStore
 from ..data.models import Evidence
@@ -94,7 +95,7 @@ class ChatService:
         res = self.retriever.search(island.slug, query, creature.slug)
         retrieval_ms = (time.perf_counter() - t0) * 1000
         meter = _Meter()
-        base = dict(
+        base: dict[str, Any] = dict(
             island=island.slug, creature=creature.slug, retrieved=res.evidence, notes=list(res.notes),
             retrieval_ms=retrieval_ms, retrieval_mode=getattr(self.retriever, "mode", "bm25"),
             provider=getattr(self.llm, "provider", ""), model=getattr(self.llm, "model", ""),
@@ -123,7 +124,7 @@ class ChatService:
 
         if raw_issues:
             repaired = True
-            fb = prompts.repair_feedback([(i["text"], i["issues"]) for i in raw_issues])
+            fb = prompts.repair_feedback([(str(i["text"]), list(i["issues"])) for i in raw_issues])
             out2 = self._attempt(system, message, res.evidence, history, fb, meter)
             checked = grounding.check_sentences(out2.get("sentences", []), evidence, message, names)
             out = out2

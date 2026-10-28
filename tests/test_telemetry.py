@@ -1,5 +1,6 @@
 import sqlite3
 import time
+from contextlib import closing
 
 from fastapi.testclient import TestClient
 
@@ -27,11 +28,13 @@ def test_question_text_is_not_stored_by_default(tmp_path):
     p = tmp_path / "t.db"
     t = Telemetry(p)
     t.record("chat", "How tall is the volcano?", island="tristan-da-cunha", answered=True, total_ms=10)
-    row = sqlite3.connect(p).execute("SELECT question, qhash, qlen FROM events").fetchone()
+    with closing(sqlite3.connect(p)) as con:
+        row = con.execute("SELECT question, qhash, qlen FROM events").fetchone()
     assert row[0] is None and len(row[1]) == 12 and row[2] == len("How tall is the volcano?")
     t2 = Telemetry(tmp_path / "q.db", log_questions=True)
     t2.record("chat", "How tall is the volcano?", island="x")
-    assert sqlite3.connect(tmp_path / "q.db").execute("SELECT question FROM events").fetchone()[0].startswith("How tall")
+    with closing(sqlite3.connect(tmp_path / "q.db")) as con:
+        assert con.execute("SELECT question FROM events").fetchone()[0].startswith("How tall")
 
 
 def test_same_question_gets_same_hash_regardless_of_case_and_spacing(tmp_path):

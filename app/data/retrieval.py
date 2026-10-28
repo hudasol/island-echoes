@@ -148,9 +148,9 @@ def expand(query: str, vocab: set[str] | None = None) -> list[str]:
         if re.search(pat, q):
             for w in words:
                 toks.extend(tokenize(w))
-    words = set(re.findall(r"[a-z]+", q))
+    q_words = set(re.findall(r"[a-z]+", q))
     for country, adjective in DEMONYMS:
-        if country in words or adjective in words:
+        if country in q_words or adjective in q_words:
             toks.extend(tokenize(f"{country} {adjective}"))
     # "1500s" / "1990s": match any indexed year in that range
     if vocab:
