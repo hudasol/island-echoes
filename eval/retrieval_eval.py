@@ -1,10 +1,11 @@
 """Retrieval eval: how well do bm25, dense and hybrid rank the gold facts?
 
-    python -m eval.retrieval_eval [--modes bm25,dense,hybrid] [--out eval/results/retrieval.json]
+    python -m eval.retrieval_eval [--modes bm25,dense,hybrid,random,file-order,overlap] [--out eval/results/retrieval.json]
 
 Sets (all with gold fact ids):
   heldout - eval/retrieval_gold.jsonl, written after the keyword retriever was tuned, paraphrased on purpose
   dev     - the fact-id questions of eval/questions.jsonl (the keyword retriever was developed against these)
+random, file-order and overlap are floors from eval/baselines.py (see there).
 Gold ids are single-annotator. Live NASA POWER / GBIF items are routed by intent, not ranked, so they
 are not part of this ranking eval.
 """
@@ -27,6 +28,7 @@ from app.data.islands import IslandStore  # noqa: E402
 from app.data.retrieval import Retriever  # noqa: E402
 from app.data.sources import SourceStore  # noqa: E402
 from app.retrieval.dense import DenseIndex, fact_texts  # noqa: E402
+from eval import baselines  # noqa: E402
 
 KS = (1, 3, 5, 12)
 
@@ -82,8 +84,21 @@ def build_retriever(modes: list[str]) -> Retriever:
     return Retriever(store, sources, dense=dense, mode="hybrid" if dense else "bm25")
 
 
+def baseline_ranking(mode: str, retr: Retriever, q: dict, gold: set[str]) -> tuple[dict, list[str]]:
+    """Score one question under a floor ranker. Random is the mean over many shuffles, so its score is an expectation."""
+    pool = baselines.candidates(retr, q["island"], q.get("creature"))
+    if mode == "random":
+        runs = [baselines.rank_random(pool, seed) for seed in range(baselines.RANDOM_SEEDS)]
+        per_seed = [score_question([e.id for e in r], gold) for r in runs]
+        return baselines.mean_scores(per_seed), [e.id for e in runs[0]]
+    ranked = baselines.rank_file_order(pool) if mode == "file-order" else baselines.rank_overlap(pool, q["question"])
+    ids = [e.id for e in ranked]
+    return score_question(ids, gold), ids
+
+
 def run(modes: list[str]) -> dict:
-    retr = build_retriever(modes)
+    model_modes = [m for m in modes if m not in baselines.RETRIEVAL_BASELINES]
+    retr = build_retriever(model_modes or ["bm25"])
     sets = load_sets()
     result: dict = {"modes": modes, "sets": {}}
     for name, qs in sets.items():
@@ -91,9 +106,12 @@ def run(modes: list[str]) -> dict:
         for mode in modes:
             per_q, detail = [], []
             for q in qs:
-                ranked, _ = retr.rank(q["island"], q["question"], q.get("creature"), mode=mode)
-                ids = [e.id for e in ranked]
-                sc = score_question(ids, set(q["gold"]))
+                if mode in baselines.RETRIEVAL_BASELINES:
+                    sc, ids = baseline_ranking(mode, retr, q, set(q["gold"]))
+                else:
+                    ranked, _ = retr.rank(q["island"], q["question"], q.get("creature"), mode=mode)
+                    ids = [e.id for e in ranked]
+                    sc = score_question(ids, set(q["gold"]))
                 per_q.append(sc)
                 detail.append({"id": q["id"], "gold": q["gold"], "top5": ids[:5], "hit@5": sc["hit@5"]})
             result["sets"][name][mode] = {"summary": summarize(per_q), "questions": detail}
@@ -102,6 +120,22 @@ def run(modes: list[str]) -> dict:
 
 def _cell(m: dict) -> str:
     return f"{m['mean']:.2f} [{m['ci95'][0]:.2f}-{m['ci95'][1]:.2f}]"
+
+
+PAIRS = (("overlap", "bm25"), ("overlap", "hybrid"), ("bm25", "hybrid"), ("bm25", "dense"))
+
+
+def paired_hit5(by_mode: dict, a: str, b: str) -> dict | None:
+    """Exact McNemar test on whether the first five results contain a gold fact, for the questions both modes answered."""
+    from eval.compare import mcnemar_exact
+
+    if a not in by_mode or b not in by_mode:
+        return None
+    qa = {d["id"]: d["hit@5"] for d in by_mode[a]["questions"]}
+    qb = {d["id"]: d["hit@5"] for d in by_mode[b]["questions"]}
+    only_a = sum(1 for i in qa if qa[i] > qb[i])
+    only_b = sum(1 for i in qa if qa[i] < qb[i])
+    return {"a": a, "b": b, "only_a": only_a, "only_b": only_b, "p": mcnemar_exact(only_a, only_b)}
 
 
 def to_markdown(res: dict) -> str:
@@ -114,12 +148,18 @@ def to_markdown(res: dict) -> str:
             cells = [_cell(s[m]) for m in ("hit@1", "hit@3", "hit@5", "recall@12", "mrr", "ndcg5")]
             lines.append(f"| {mode} | " + " | ".join(cells) + " |")
         lines.append("")
+        pairs = [x for x in (paired_hit5(by_mode, a, b) for a, b in PAIRS) if x]
+        if pairs and name == "heldout":
+            lines += ["Paired comparison of hit@5 on the held out set (exact McNemar test; the two counts are the questions only one mode got right):", "",
+                      "| first | second | only first right | only second right | p |", "|---|---|---|---|---|"]
+            lines += [f"| {x['a']} | {x['b']} | {x['only_a']} | {x['only_b']} | {x['p']:.3f} |" for x in pairs]
+            lines.append("")
     return "\n".join(lines)
 
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--modes", default="bm25,dense,hybrid")
+    ap.add_argument("--modes", default="bm25,dense,hybrid,random,file-order,overlap")
     ap.add_argument("--out", default=str(ROOT / "eval" / "results" / "retrieval.json"))
     a = ap.parse_args()
     res = run(a.modes.split(","))
