@@ -220,7 +220,7 @@ mark { background: #f4b63f55; color: inherit; border-radius: 2px; }
 .report:hover { color: var(--tide-dark); }
 
 /* ---------- sun position readout ---------- */
-.sun-readout { position: absolute; right: 12px; top: 12px; margin: 0; font: 400 12px var(--mono); color: var(--on-dark-soft); letter-spacing: .01em; pointer-events: none; }
+.sun-readout { position: absolute; right: 10px; top: 10px; margin: 0; font: 400 12px var(--mono); color: var(--on-dark); background: rgba(11,28,38,.82); padding: 2px 8px; border-radius: 4px; letter-spacing: .01em; pointer-events: none; }
 
 /* ---------- start view ---------- */
 .console-empty { padding: 28px 26px 32px; }
