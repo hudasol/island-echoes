@@ -136,3 +136,11 @@ class LibraryOut(BaseModel):
     notes: list[str]
     quality: str = "browse"
     partial_ids: list[str] = []
+
+
+class ConservationOut(BaseModel):
+    category: str
+    code: str
+    iucn_taxon_id: str | None = None
+    source_url: str
+    as_of: str

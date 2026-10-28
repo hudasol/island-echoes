@@ -89,7 +89,7 @@ CLIMATE_GENERIC = {"climate", "weather", "season", "seasons", "seasonal", "month
 SPECIES_INTENT = {
     "gbif", "records", "record", "sightings", "sighting", "occurrence", "occurrences", "observed",
     "observations", "observation", "taxonomy", "classification", "family", "genus", "kingdom",
-    "phylum", "usagekey", "lineage", "backbone", "scientific",
+    "phylum", "usagekey", "lineage", "backbone", "scientific", "iucn",
 }
 FIRST_PERSON = {"you", "your", "yours", "yourself"}
 

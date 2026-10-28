@@ -21,6 +21,7 @@ from .retrieval.factory import build_retriever
 from .schemas import (
     ChatRequest,
     ChatResponse,
+    ConservationOut,
     CreatureOut,
     Dropped,
     EvidenceOut,
@@ -204,6 +205,23 @@ def create_app(settings: Settings | None = None, service: ChatService | None = N
             return SensorsOut(**sources.power_summary(isl), warning=location_warning(isl, c))
         except SourceUnavailable:
             raise HTTPException(503, "NASA POWER data is unavailable right now.") from None
+
+    @app.get("/api/islands/{slug}/conservation", response_model=ConservationOut)
+    def conservation(slug: str, request: Request, creature: str | None = None):
+        """The IUCN Red List category that GBIF holds for the creature. 404 when GBIF has none."""
+        read_limiter.check(caller(request))
+        isl = _island(slug)
+        try:
+            c = isl.creature(creature)
+        except KeyError:
+            raise HTTPException(404, f"Unknown creature {creature!r}") from None
+        try:
+            found = sources.conservation(isl, c.slug)
+        except SourceUnavailable:
+            raise HTTPException(503, "GBIF data is unavailable right now.") from None
+        if found is None:
+            raise HTTPException(404, "GBIF holds no IUCN category for this creature.")
+        return found
 
     @app.get("/api/islands/{slug}/narration", response_model=NarrationOut)
     def narration(slug: str, creature: str | None = None):

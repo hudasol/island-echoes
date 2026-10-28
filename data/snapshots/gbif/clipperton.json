@@ -39,6 +39,13 @@
     "min_lon": -110.22,
     "max_lon": -108.22,
     "half_width_deg": 1.0
+   },
+   "iucn": {
+    "category": "VULNERABLE",
+    "code": "VU",
+    "iucn_taxon_id": "161526",
+    "scientific_name": "Carcharhinus albimarginatus (Rüppell, 1837)",
+    "retrieved": "2026-10-28"
    }
   }
  }

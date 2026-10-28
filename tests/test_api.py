@@ -226,3 +226,13 @@ def test_spoofed_forwarded_for_does_not_reset_the_limit(tmp_settings):
         c.get("/api/library/search", params={"island": "bouvet", "q": "ice"}, headers={"x-forwarded-for": f"9.9.9.{i}, 203.0.113.9"})
     r = c.get("/api/library/search", params={"island": "bouvet", "q": "ice"}, headers={"x-forwarded-for": "9.9.9.77, 203.0.113.9"})
     assert r.status_code == 429
+
+
+def test_conservation_endpoint_returns_the_gbif_category(settings, store, retriever):
+    c = client_with(settings, store, retriever, None)
+    r = c.get("/api/islands/galapagos/conservation", params={"creature": "pinta-island-tortoise"})
+    assert r.status_code == 200
+    body = r.json()
+    assert body["category"] == "Extinct" and body["code"] == "EX" and body["source_url"].startswith("https://www.gbif.org/")
+    assert c.get("/api/islands/galapagos/conservation", params={"creature": "nobody"}).status_code == 404
+    assert c.get("/api/islands/atlantis/conservation").status_code == 404

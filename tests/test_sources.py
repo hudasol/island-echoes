@@ -42,6 +42,34 @@ def test_gbif_evidence_for_each_creature(store, real_settings):
     assert "records" in lion[1].text
 
 
+def test_gbif_iucn_category_agrees_with_the_fact_files(store, real_settings):
+    """The official category GBIF republishes must match the status each creature is shown with."""
+    ss = SourceStore(real_settings, store, http=object())
+    checked = 0
+    for isl in store.islands.values():
+        for c in isl.creatures:
+            found = ss.conservation(isl, c.slug)
+            assert found is not None, c.slug
+            assert c.iucn_status.lower().startswith(found["category"].lower()), (c.slug, c.iucn_status, found)
+            ev = [e for e in ss.gbif_evidence(isl, c.slug) if e.id.endswith("-IUCN")]
+            assert len(ev) == 1 and found["category"] in ev[0].text and found["code"] in ev[0].text
+            assert ev[0].source_url.startswith("https://www.gbif.org/species/")
+            checked += 1
+    assert checked == 8
+
+
+def test_conservation_is_none_without_a_gbif_category(tmp_settings, store):
+    import json
+
+    path = tmp_settings.snapshots_dir / "gbif" / "bouvet.json"
+    doc = json.loads(path.read_text(encoding="utf-8"))
+    doc["creatures"]["macaroni-penguin"]["iucn"] = None
+    path.write_text(json.dumps(doc), encoding="utf-8")
+    ss = SourceStore(tmp_settings, store, http=object())
+    assert ss.conservation(store.get("bouvet"), "macaroni-penguin") is None
+    assert not any(e.id.endswith("-IUCN") for e in ss.gbif_evidence(store.get("bouvet"), "macaroni-penguin"))
+
+
 @respx.mock
 def test_stale_snapshot_is_refreshed_live_and_cached(tmp_settings, store):
     age_snapshot(tmp_settings.snapshots_dir / "power" / "bouvet.json", days=90)

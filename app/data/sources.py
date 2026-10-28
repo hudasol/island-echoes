@@ -249,7 +249,7 @@ class SourceStore:
             else match_url
         )
         base = f"GBIF-{island.prefix}-{creature.slug}"
-        return [
+        out = [
             Evidence(
                 id=f"{base}-SPECIES",
                 kind="gbif",
@@ -277,3 +277,37 @@ class SourceStore:
                 as_of=doc["fetched_at"][:10],
             ),
         ]
+        iucn = data.get("iucn")
+        if iucn and m.get("usageKey"):
+            out.append(
+                Evidence(
+                    id=f"{base}-IUCN",
+                    kind="gbif",
+                    island=island.slug,
+                    subject=creature.slug,
+                    category="conservation",
+                    title=f"IUCN Red List category via GBIF · {creature.common_name}",
+                    text=gbif_mod.iucn_text(creature.common_name, iucn),
+                    source_url=f"https://www.gbif.org/species/{m['usageKey']}",
+                    source_title="GBIF species page (IUCN Red List category)",
+                    publisher="GBIF, republishing the IUCN Red List",
+                    as_of=iucn.get("retrieved") or doc["fetched_at"][:10],
+                )
+            )
+        return out
+
+    def conservation(self, island: Island, creature_slug: str | None) -> dict | None:
+        """The official IUCN category for a creature as held by GBIF, with where it came from, or None."""
+        creature = island.creature(creature_slug)
+        doc = self._resolve("gbif", island, self.fetch_gbif_doc)
+        data = (doc["creatures"].get(creature.slug) or {})
+        iucn, m = data.get("iucn"), data.get("match") or {}
+        if not iucn or not m.get("usageKey"):
+            return None
+        return {
+            "category": gbif_mod.category_label(iucn["category"]),
+            "code": iucn["code"],
+            "iucn_taxon_id": iucn.get("iucn_taxon_id"),
+            "source_url": f"https://www.gbif.org/species/{m['usageKey']}",
+            "as_of": iucn.get("retrieved") or doc["fetched_at"][:10],
+        }

@@ -39,6 +39,13 @@
     "min_lon": 52.42,
     "max_lon": 55.42,
     "half_width_deg": 1.5
+   },
+   "iucn": {
+    "category": "VULNERABLE",
+    "code": "VU",
+    "iucn_taxon_id": "22732235",
+    "scientific_name": "Buteo socotraensis Porter & Kirwan, 2010",
+    "retrieved": "2026-10-28"
    }
   }
  }

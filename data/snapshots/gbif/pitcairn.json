@@ -39,6 +39,13 @@
     "min_lon": -132.1067,
     "max_lon": -128.1067,
     "half_width_deg": 2.0
+   },
+   "iucn": {
+    "category": "ENDANGERED",
+    "code": "EN",
+    "iucn_taxon_id": "22714832",
+    "scientific_name": "Acrocephalus vaughani (Sharpe, 1900)",
+    "retrieved": "2026-10-28"
    }
   }
  }

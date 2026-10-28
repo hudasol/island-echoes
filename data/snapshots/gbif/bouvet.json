@@ -39,6 +39,13 @@
     "min_lon": 2.3333,
     "max_lon": 4.3333,
     "half_width_deg": 1.0
+   },
+   "iucn": {
+    "category": "VULNERABLE",
+    "code": "VU",
+    "iucn_taxon_id": "22697793",
+    "scientific_name": "Eudyptes chrysolophus (Brandt, 1837)",
+    "retrieved": "2026-10-28"
    }
   }
  }

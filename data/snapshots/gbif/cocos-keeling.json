@@ -37,6 +37,13 @@
     "min_lon": 95.8283,
     "max_lon": 97.8283,
     "half_width_deg": 1.0
+   },
+   "iucn": {
+    "category": "ENDANGERED",
+    "code": "EN",
+    "iucn_taxon_id": "4592",
+    "scientific_name": "Cheilinus undulatus Rüppell, 1835",
+    "retrieved": "2026-10-28"
    }
   }
  }

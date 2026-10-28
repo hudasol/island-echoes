@@ -37,6 +37,13 @@
     "min_lon": -93.5,
     "max_lon": -87.5,
     "half_width_deg": 3.0
+   },
+   "iucn": {
+    "category": "EXTINCT",
+    "code": "EX",
+    "iucn_taxon_id": "9017",
+    "scientific_name": "Chelonoidis abingdonii (Günther, 1877)",
+    "retrieved": "2026-10-28"
    }
   },
   "galapagos-sea-lion": {
@@ -77,6 +84,13 @@
     "min_lon": -93.5,
     "max_lon": -87.5,
     "half_width_deg": 3.0
+   },
+   "iucn": {
+    "category": "ENDANGERED",
+    "code": "EN",
+    "iucn_taxon_id": "41668",
+    "scientific_name": "Zalophus wollebaeki Sivertsen, 1953",
+    "retrieved": "2026-10-28"
    }
   }
  }

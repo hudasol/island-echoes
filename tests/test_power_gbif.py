@@ -72,6 +72,12 @@ def test_gbif_fetch_counts_global_and_local():
                   "family": "Labridae", "genus": "Cheilinus"},
         )
     )
+    respx.get(f"{gbif.GBIF}/species/2383313/iucnRedListCategory").mock(
+        return_value=httpx.Response(
+            200,
+            json={"category": "ENDANGERED", "code": "EN", "iucnTaxonID": "4592", "scientificName": "Cheilinus undulatus Rüppell, 1835"},
+        )
+    )
     counts = [5480, 23, 12, 11, 0, 23]  # global, local, observations, specimens, living, usable
     occ = respx.get(f"{gbif.GBIF}/occurrence/search").mock(
         side_effect=[httpx.Response(200, json={"count": c}) for c in counts]
@@ -83,6 +89,7 @@ def test_gbif_fetch_counts_global_and_local():
     assert occ.calls[2].request.url.params["hasGeospatialIssue"] == "false"
     assert "HUMAN_OBSERVATION" in str(occ.calls[2].request.url)
     assert d["box"]["half_width_deg"] == 1.0
+    assert d["iucn"]["code"] == "EN" and d["iucn"]["iucn_taxon_id"] == "4592"
 
 
 @respx.mock
@@ -122,3 +129,22 @@ def test_gbif_text_states_box_and_caveat():
     }
     text = gbif.occurrence_text("thing", "Isle", d)
     assert "1,234" in text and "5 records" in text and "±2.0°" in text and "not true abundance" in text
+
+
+@respx.mock
+def test_iucn_category_is_none_when_gbif_has_no_assessment():
+    respx.get(f"{gbif.GBIF}/species/1/iucnRedListCategory").mock(return_value=httpx.Response(404))
+    with httpx.Client() as client:
+        assert gbif.fetch_iucn(client, 1) is None
+
+
+@respx.mock
+def test_iucn_category_is_none_when_the_call_fails():
+    respx.get(f"{gbif.GBIF}/species/2/iucnRedListCategory").mock(side_effect=httpx.ConnectError("down"))
+    with httpx.Client() as client:
+        assert gbif.fetch_iucn(client, 2) is None
+
+
+def test_iucn_text_names_the_category_and_what_gbif_does_not_carry():
+    t = gbif.iucn_text("Tristan albatross", {"category": "CRITICALLY_ENDANGERED", "code": "CR", "iucn_taxon_id": "22728364", "scientific_name": "Diomedea dabbenena"})
+    assert "Critically Endangered (CR)" in t and "22728364" in t and "not the assessment year" in t

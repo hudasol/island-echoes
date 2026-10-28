@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import time
+from datetime import UTC, datetime
 
 import httpx
 
@@ -25,6 +26,41 @@ def _get(client: httpx.Client, url: str, params: dict, tries: int = 6) -> httpx.
             return r
         time.sleep(min(float(r.headers.get("retry-after", 0) or 0) or 2 * (attempt + 1), 20))
     raise RuntimeError("unreachable")
+
+
+def fetch_iucn(client: httpx.Client, usage_key: int) -> dict | None:
+    """The IUCN Red List category GBIF holds for a taxon, or None when GBIF has none (404) or the call fails.
+
+    GBIF republishes the category and the IUCN taxon ID, not the assessment year or the criteria."""
+    try:
+        r = client.get(f"{GBIF}/species/{usage_key}/iucnRedListCategory")
+    except httpx.HTTPError:
+        return None
+    if r.status_code != 200:
+        return None
+    d = r.json()
+    if not d.get("category") or not d.get("code"):
+        return None
+    return {
+        "category": d["category"],
+        "code": d["code"],
+        "iucn_taxon_id": d.get("iucnTaxonID"),
+        "scientific_name": d.get("scientificName"),
+        "retrieved": datetime.now(UTC).date().isoformat(),
+    }
+
+
+def category_label(category: str) -> str:
+    """GBIF writes CRITICALLY_ENDANGERED; readers expect Critically Endangered."""
+    return category.replace("_", " ").title()
+
+
+def iucn_text(creature_common: str, iucn: dict) -> str:
+    return (
+        f"GBIF records the IUCN Red List category of the {creature_common} ({iucn.get('scientific_name')}) as "
+        f"{category_label(iucn['category'])} ({iucn['code']}), IUCN taxon ID {iucn.get('iucn_taxon_id')}. "
+        f"GBIF republishes the category only, not the assessment year or the criteria."
+    )
 
 
 def _box_wkt(lat: float, lon: float, deg: float) -> str:
@@ -58,8 +94,9 @@ def fetch_creature(
         m = _get(client, f"{GBIF}/species/match", {"name": scientific_name})
         match = m.json()
         key = match.get("usageKey")
-        out: dict = {"match": match, "global_count": None, "local_count": None, "local_breakdown": None}
+        out: dict = {"match": match, "global_count": None, "local_count": None, "local_breakdown": None, "iucn": None}
         if key:
+            out["iucn"] = fetch_iucn(client, key)
             g = _get(client, f"{GBIF}/occurrence/search", {"taxonKey": key, "limit": 0})
             out["global_count"] = g.json().get("count")
             loc = _get(

@@ -39,6 +39,13 @@
     "min_lon": -16.3,
     "max_lon": -8.3,
     "half_width_deg": 4.0
+   },
+   "iucn": {
+    "category": "CRITICALLY_ENDANGERED",
+    "code": "CR",
+    "iucn_taxon_id": "22728364",
+    "scientific_name": "Diomedea dabbenena Mathews, 1929",
+    "retrieved": "2026-10-28"
    }
   }
  }
