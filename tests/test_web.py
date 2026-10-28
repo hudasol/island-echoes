@@ -110,3 +110,9 @@ def test_stats_page_is_served_and_csp_safe(tmp_settings, store, retriever):
 def test_chat_box_follows_the_server_not_a_query_flag():
     js = (WEB / "app.js").read_text()
     assert "has(\"claude\")" not in js and "h.chat_enabled" in js
+
+
+def test_start_view_has_the_site_ledger_and_reads_the_overview_endpoint():
+    html = (WEB / "index.html").read_text()
+    assert 'id="ledger"' in html and 'id="ledger-total"' in html
+    assert "/api/overview" in (WEB / "app.js").read_text()

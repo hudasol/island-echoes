@@ -221,3 +221,33 @@ mark { background: #f4b63f55; color: inherit; border-radius: 2px; }
 
 /* ---------- sun position readout ---------- */
 .sun-readout { position: absolute; right: 12px; top: 12px; margin: 0; font: 400 12px var(--mono); color: var(--on-dark-soft); letter-spacing: .01em; pointer-events: none; }
+
+/* ---------- start view ---------- */
+.console-empty { padding: 28px 26px 32px; }
+.console-empty h2 { font: 500 28px/1.1 var(--serif); letter-spacing: -0.01em; }
+.console-empty .lede { margin-top: 6px; max-width: 40ch; }
+.ledger { width: 100%; border-collapse: collapse; margin-top: 18px; font-size: 14px; }
+.ledger th, .ledger td { text-align: left; font-weight: 400; vertical-align: top; padding: 7px 8px 7px 0; border-top: 1px solid #b9c6c6; }
+.ledger thead th { border-top: 0; border-bottom: 1px solid var(--text); font: 500 11.5px var(--sans); text-transform: uppercase; letter-spacing: .06em; color: var(--text-soft); padding-bottom: 5px; }
+.ledger tbody th { font: 500 16px/1.2 var(--serif); }
+.ledger tbody th .linklike { text-decoration: none; font: inherit; text-align: left; }
+.ledger tbody th .linklike:hover { text-decoration: underline; }
+.ledger .terr { display: block; font: 400 12px var(--sans); color: var(--text-soft); margin-top: 1px; }
+.ledger .num { text-align: right; font-family: var(--mono); font-variant-numeric: tabular-nums; padding-right: 2px; }
+.ledger tfoot th, .ledger tfoot td { border-top: 1px solid var(--text); font-weight: 500; padding-top: 6px; }
+.ledger .code { font: 500 12px var(--mono); border: 1px solid currentColor; border-radius: 3px; padding: 0 5px; }
+.ledger-note { margin-top: 10px; font: 400 12px var(--mono); color: var(--text-soft); }
+.method { margin: 22px 0 0; display: grid; grid-template-columns: 70px 1fr; gap: 10px 14px; font-size: 14px; }
+.method dt { font: 500 11.5px var(--sans); text-transform: uppercase; letter-spacing: .06em; color: var(--text-soft); padding-top: 3px; }
+.method dd { margin: 0; }
+.ledger-links { margin-top: 22px; font-size: 14px; }
+.ledger-links a { color: var(--tide-dark); }
+.ledger { table-layout: fixed; }
+.ledger th:nth-child(1) { width: 38%; }
+.ledger th:nth-child(2) { width: 32%; }
+.ledger th:nth-child(3) { width: 15%; }
+.ledger th:nth-child(4) { width: 15%; text-align: right; }
+.ledger tbody th, .ledger td { padding-right: 10px; }
+.ledger .num { padding-right: 0; }
+.ledger tbody tr.group + tr td { border-top: 0; padding-top: 0; }
+.ledger-note { max-width: 46ch; }

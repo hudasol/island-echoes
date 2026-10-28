@@ -41,8 +41,20 @@
 
   <aside id="console" class="console" aria-label="Field agent" tabindex="-1">
     <div class="console-empty" id="console-empty">
-      <h2>No island selected</h2>
-      <p>Pick a pin on the globe or an island in the list. The creature there will report in.</p>
+      <h2>Field sites</h2>
+      <p class="lede">Seven islands, eight creatures. Select a row, a pin or an island in the list.</p>
+      <table class="ledger" id="ledger" aria-label="Field sites">
+        <thead><tr><th scope="col">Site</th><th scope="col">Creature</th><th scope="col">Status</th><th scope="col" class="num">Facts</th></tr></thead>
+        <tbody></tbody>
+        <tfoot><tr><th scope="row" colspan="3">Total</th><td class="num" id="ledger-total"></td></tr></tfoot>
+      </table>
+      <p class="ledger-note" id="ledger-note"></p>
+      <dl class="method">
+        <dt>Library</dt><dd>Every entry carries its source, publisher and retrieval date. A search the sources cannot answer returns nothing.</dd>
+        <dt>Climate</dt><dd>NASA POWER 2001 to 2020 monthly means for the grid cell around each island.</dd>
+        <dt>Species</dt><dd>GBIF records and the IUCN Red List category GBIF holds for each creature.</dd>
+      </dl>
+      <p class="ledger-links"><a href="/stats.html">Operations and evaluation</a> · <a href="/api/docs">API reference</a></p>
     </div>
     <div class="console-body" id="console-body" hidden>
       <button class="sheet-handle" id="sheet-handle" type="button" aria-label="Expand or collapse the field agent panel"></button>

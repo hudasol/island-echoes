@@ -90,6 +90,32 @@
     document.querySelectorAll(".pin").forEach((p) => p.setAttribute("aria-pressed", String(p.dataset.slug === isl.slug)));
   }
 
+  /* ---------------- start view ---------------- */
+  const shortTerritory = (t) => t.split(/ \(|, /)[0];
+  function renderStart(ov) {
+    const tbody = document.querySelector("#ledger tbody"); tbody.replaceChildren();
+    ov.islands.forEach((isl) => {
+      isl.creatures.forEach((c, i) => {
+        const tr = el("tr"), site = el("th"); site.scope = "row";
+        if (i === 0) {
+          const b = el("button", "linklike", isl.name); b.type = "button"; b.addEventListener("click", () => select(isl.slug)); site.append(b);
+          site.append(el("span", "terr", shortTerritory(isl.territory)));
+          site.rowSpan = isl.creatures.length;
+        }
+        const chip = el("span", "code", c.status_code || "n/a"); if (c.status) chip.title = c.status;
+        const status = el("td"); status.append(chip);
+        const name = el("td", null, c.name);
+        if (i === 0) { tr.append(site, name, status, el("td", "num", String(isl.facts))); tr.lastChild.rowSpan = isl.creatures.length; }
+        else tr.append(name, status);
+        if (i === 0 && isl.creatures.length > 1) tr.classList.add("group");
+        tbody.append(tr);
+      });
+    });
+    $("ledger-total").textContent = String(ov.totals.facts);
+    const dates = [...new Set(ov.islands.flatMap((i) => [i.power_as_of, i.gbif_as_of]).filter(Boolean))].sort();
+    $("ledger-note").textContent = `${ov.totals.distinct_sources} distinct sources. NASA POWER and GBIF data dated ${dates[0]}${dates.length > 1 ? ` to ${dates[dates.length - 1]}` : ""}.`;
+  }
+
   /* ---------------- island list ---------------- */
   function buildIndex() {
     const ul = $("island-list");
@@ -462,6 +488,7 @@
     try { S.islands = await api("/api/islands"); }
     catch (e) { $("globe-error").hidden = false; $("globe-error").textContent = "Could not reach the Island Echoes server. " + e.message; return; }
     buildIndex(); initGlobe($("globe"));
+    api("/api/overview").then(renderStart).catch(() => { $("ledger").hidden = true; });
     api("/api/health").then((h) => {
       $("chat-details").hidden = !h.chat_enabled;
       if (h.chat_enabled && $("chat-model")) $("chat-model").textContent = `Model: ${h.llm}. Retrieval: ${h.retrieval_mode}.`;
