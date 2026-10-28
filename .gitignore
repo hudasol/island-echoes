@@ -27,3 +27,4 @@ brag-output/
 *.mp4
 eval/results/.*.partial.jsonl
 .coverage
+web/node_modules/

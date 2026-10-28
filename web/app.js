@@ -20,7 +20,7 @@
 
   const statusCode = (s) => /^critically/i.test(s) ? "CR" : /^endangered/i.test(s) ? "EN" : /^vulnerable/i.test(s) ? "VU" : /^extinct in the wild/i.test(s) ? "EW" : /^extinct/i.test(s) ? "EX" : /^near/i.test(s) ? "NT" : "";
   const S = { tab: "agent", lib: { q: "", cat: "" }, islands: [], island: null, creature: null, layer: LAYERS[0], paused: reduced, history: [], busy: false, narration: null, sensorSeq: 0, statusSeq: 0 };
-  let globe = null;
+  let globe = null, night = null;
 
   const el = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
   const ISSUES = "https://github.com/hudasol/island-echoes/issues/new";
@@ -51,7 +51,7 @@
   }
   function initGlobe(host) {
     try {
-      globe = Globe({ animateIn: !reduced })(host)
+      globe = IE3D.Globe({ animateIn: !reduced })(host)
         .backgroundColor("rgba(0,0,0,0)")
         .atmosphereColor("#2C8C99").atmosphereAltitude(0.18)
         .globeTileEngineMaxLevel(6)
@@ -68,14 +68,23 @@
       const c = globe.controls(); c.autoRotate = !reduced; c.autoRotateSpeed = 0.35; c.minDistance = 140; c.enableDamping = true;
       const resize = () => globe.width(host.clientWidth).height(host.clientHeight);
       new ResizeObserver(resize).observe(host); resize();
+      night = IE3D.createNightLayer(globe);
+      updateSun(); setInterval(updateSun, 60000);
       applyLayer(S.layer);
     } catch (err) {
       const e = $("globe-error"); e.hidden = false; e.textContent = "The 3D globe needs WebGL, which this browser has not enabled. The island list and field agent still work.";
     }
   }
+  const fmtDeg = (v, pos, neg) => `${Math.abs(v).toFixed(1)}° ${v >= 0 ? pos : neg}`;
+  function updateSun() {
+    if (!night) return;
+    const now = new Date(), p = night.update(now);
+    $("sun-readout").textContent = `${now.toISOString().slice(11, 16)} UTC · sun overhead at ${fmtDeg(p.lat, "N", "S")}, ${fmtDeg(p.lon, "E", "W")}`;
+  }
   function flyTo(isl) {
     if (!globe) return;
     globe.controls().autoRotate = false;
+    night?.setStrength(0.3);
     globe.pointOfView({ lat: isl.lat, lng: isl.lon, altitude: 0.8 }, reduced ? 0 : 1800);
     globe.ringsData([isl]).ringLat("lat").ringLng("lon");
     document.querySelectorAll(".pin").forEach((p) => p.setAttribute("aria-pressed", String(p.dataset.slug === isl.slug)));
@@ -442,7 +451,7 @@
       $("console").classList.remove("open"); $("console-body").hidden = true; $("console-empty").hidden = false;
       document.querySelectorAll(".island-btn").forEach((b) => b.setAttribute("aria-current", "false"));
       document.querySelectorAll(".pin").forEach((p) => p.setAttribute("aria-pressed", "false"));
-      globe?.ringsData([]); history.replaceState(null, "", location.pathname); back?.focus();
+      globe?.ringsData([]); night?.setStrength(1); history.replaceState(null, "", location.pathname); back?.focus();
     });
     $("sheet-handle").addEventListener("click", () => $("console").classList.toggle("min"));
     document.addEventListener("visibilitychange", () => { if (document.hidden) speechSynthesis?.cancel?.(); });

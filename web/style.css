@@ -218,3 +218,6 @@ mark { background: #f4b63f55; color: inherit; border-radius: 2px; }
 .warning { background: #F6E3B4; color: #3a2a00; border-radius: 6px; padding: 6px 9px; }
 .report { color: var(--text-soft); font-size: 12.5px; }
 .report:hover { color: var(--tide-dark); }
+
+/* ---------- sun position readout ---------- */
+.sun-readout { position: absolute; right: 12px; top: 12px; margin: 0; font: 400 12px var(--mono); color: var(--on-dark-soft); letter-spacing: .01em; pointer-events: none; }

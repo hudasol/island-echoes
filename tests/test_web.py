@@ -19,7 +19,7 @@ def _client(tmp_settings):
 def test_shell_pages_are_served(tmp_settings):
     c = _client(tmp_settings)
     assert "Island Echoes" in c.get("/").text
-    for p in ("/app.js", "/style.css", "/creatures.js", "/vendor/globe.gl.min.js", "/icons/icon-512.png"):
+    for p in ("/app.js", "/style.css", "/creatures.js", "/vendor/globe.bundle.js", "/icons/icon-512.png"):
         assert c.get(p).status_code == 200, p
 
 
