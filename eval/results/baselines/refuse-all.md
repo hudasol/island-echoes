@@ -1,6 +1,6 @@
 # Eval results
 
-- Run: 2026-10-28T14:02:34+00:00 · commit `77f82eb-dirty` · answer model `none:refuse-all` · judge `not run`
+- Run: 2026-10-28T14:02:45+00:00 · commit `0e2ddcd` · answer model `none:refuse-all` · judge `not run`
 - Questions: 30 (0 errored and excluded) · data snapshots as committed
 
 ## Headline
