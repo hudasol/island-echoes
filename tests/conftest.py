@@ -30,7 +30,9 @@ for _name in PROVIDER_ENV:
 
 @pytest.fixture(scope="session")
 def real_settings() -> Settings:
-    return Settings(anthropic_api_key=None, telemetry=False)
+    # The committed snapshots must count as fresh whatever the date, or the suite starts failing 30 days after
+    # they were taken. Staleness itself is tested on copies with aged timestamps (see tmp_settings).
+    return Settings(anthropic_api_key=None, telemetry=False, source_ttl_days=36500)
 
 
 @pytest.fixture(scope="session")
@@ -43,6 +45,13 @@ def tmp_settings(tmp_path) -> Settings:
     """Settings whose snapshots/cache live in a temp dir (islands stay the real ones)."""
     snaps = tmp_path / "snapshots"
     shutil.copytree(ROOT / "data" / "snapshots", snaps)
+    from datetime import datetime
+
+    now = datetime.now(UTC).isoformat(timespec="seconds")
+    for f in snaps.glob("*/*.json"):  # copies start fresh; tests that need old data age them with age_snapshot
+        doc = json.loads(f.read_text(encoding="utf-8"))
+        doc["fetched_at"] = now
+        f.write_text(json.dumps(doc), encoding="utf-8")
     return Settings(
         anthropic_api_key=None,
         snapshots_dir=snaps,
