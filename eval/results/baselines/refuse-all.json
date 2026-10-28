@@ -1,0 +1,794 @@
+{
+ "meta": {
+  "timestamp": "2026-10-28T14:02:34+00:00",
+  "commit": "77f82eb-dirty",
+  "answer_model": "none:refuse-all",
+  "provider": "none",
+  "model": "refuse-all",
+  "system": "refuse-all",
+  "retrieval_mode": "none",
+  "retrieval_k": 12,
+  "facts_hash": "491e9b1e2b6592e8",
+  "wall_seconds": 0.0,
+  "judge_model": null,
+  "questions_file": "questions.jsonl",
+  "split": null,
+  "errored": 0,
+  "label": "refuse-all-none-refuse-all-none"
+ },
+ "summary": {
+  "questions": 30,
+  "judged_questions": 0,
+  "fact_sentences_judged": 0,
+  "groundedness": {
+   "k": 0,
+   "n": 0
+  },
+  "partially_supported": {
+   "k": 0,
+   "n": 0
+  },
+  "hallucination_rate": {
+   "k": 0,
+   "n": 0
+  },
+  "answers_with_hallucination": {
+   "k": 0,
+   "n": 30
+  },
+  "refusal_accuracy": {
+   "k": 5,
+   "n": 5
+  },
+  "false_refusals": {
+   "k": 25,
+   "n": 25
+  },
+  "key_fact_recall": {
+   "k": 0,
+   "n": 41
+  },
+  "expected_source_recall": {
+   "k": 0,
+   "n": 41
+  },
+  "validator_first_pass_failures": {
+   "k": 0,
+   "n": 0
+  },
+  "repaired_answers": {
+   "k": 0,
+   "n": 30
+  },
+  "conflicts_reported": {
+   "k": 0,
+   "n": 0
+  },
+  "questions_passed": {
+   "k": 5,
+   "n": 30
+  }
+ },
+ "records": [
+  {
+   "id": "Q01",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "My instruments searched my field notes, NASA climate readings and species records and found nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "This baseline declines every question.",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": false,
+   "seconds": 0.0,
+   "retrieval_ms": 0.0,
+   "llm_ms": 0.0,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q02",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "My instruments searched my field notes, NASA climate readings and species records and found nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "This baseline declines every question.",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": false,
+   "seconds": 0.0,
+   "retrieval_ms": 0.0,
+   "llm_ms": 0.0,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q03",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "My instruments searched my field notes, NASA climate readings and species records and found nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "This baseline declines every question.",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": false,
+   "seconds": 0.0,
+   "retrieval_ms": 0.0,
+   "llm_ms": 0.0,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q04",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "My instruments searched my field notes, NASA climate readings and species records and found nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "This baseline declines every question.",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": false,
+   "seconds": 0.0,
+   "retrieval_ms": 0.0,
+   "llm_ms": 0.0,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q05",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "My instruments searched my field notes, NASA climate readings and species records and found nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "This baseline declines every question.",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": false,
+   "seconds": 0.0,
+   "retrieval_ms": 0.0,
+   "llm_ms": 0.0,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q06",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "My instruments searched my field notes, NASA climate readings and species records and found nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "This baseline declines every question.",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": false,
+   "seconds": 0.0,
+   "retrieval_ms": 0.0,
+   "llm_ms": 0.0,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q07",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "My instruments searched my field notes, NASA climate readings and species records and found nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "This baseline declines every question.",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": false,
+   "seconds": 0.0,
+   "retrieval_ms": 0.0,
+   "llm_ms": 0.0,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q08",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "My instruments searched my field notes, NASA climate readings and species records and found nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "This baseline declines every question.",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": false,
+   "seconds": 0.0,
+   "retrieval_ms": 0.0,
+   "llm_ms": 0.0,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q09",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "My instruments searched my field notes, NASA climate readings and species records and found nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "This baseline declines every question.",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": false,
+   "seconds": 0.0,
+   "retrieval_ms": 0.0,
+   "llm_ms": 0.0,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q10",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "My instruments searched my field notes, NASA climate readings and species records and found nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "This baseline declines every question.",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": false,
+   "seconds": 0.0,
+   "retrieval_ms": 0.0,
+   "llm_ms": 0.0,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q11",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "My instruments searched my field notes, NASA climate readings and species records and found nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "This baseline declines every question.",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": false,
+   "seconds": 0.0,
+   "retrieval_ms": 0.0,
+   "llm_ms": 0.0,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q12",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "My instruments searched my field notes, NASA climate readings and species records and found nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "This baseline declines every question.",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": false,
+   "seconds": 0.0,
+   "retrieval_ms": 0.0,
+   "llm_ms": 0.0,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q13",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "My instruments searched my field notes, NASA climate readings and species records and found nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "This baseline declines every question.",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": false,
+   "seconds": 0.0,
+   "retrieval_ms": 0.0,
+   "llm_ms": 0.0,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q14",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "My instruments searched my field notes, NASA climate readings and species records and found nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "This baseline declines every question.",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": false,
+   "seconds": 0.0,
+   "retrieval_ms": 0.0,
+   "llm_ms": 0.0,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q15",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "My instruments searched my field notes, NASA climate readings and species records and found nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "This baseline declines every question.",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": false,
+   "seconds": 0.0,
+   "retrieval_ms": 0.0,
+   "llm_ms": 0.0,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q16",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "My instruments searched my field notes, NASA climate readings and species records and found nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "This baseline declines every question.",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": false,
+   "seconds": 0.0,
+   "retrieval_ms": 0.0,
+   "llm_ms": 0.0,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q17",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "My instruments searched my field notes, NASA climate readings and species records and found nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "This baseline declines every question.",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": false,
+   "seconds": 0.0,
+   "retrieval_ms": 0.0,
+   "llm_ms": 0.0,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q18",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "My instruments searched my field notes, NASA climate readings and species records and found nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "This baseline declines every question.",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": false,
+   "seconds": 0.0,
+   "retrieval_ms": 0.0,
+   "llm_ms": 0.0,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q19",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "My instruments searched my field notes, NASA climate readings and species records and found nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "This baseline declines every question.",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": false,
+   "seconds": 0.0,
+   "retrieval_ms": 0.0,
+   "llm_ms": 0.0,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q20",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "My instruments searched my field notes, NASA climate readings and species records and found nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "This baseline declines every question.",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": false,
+   "seconds": 0.0,
+   "retrieval_ms": 0.0,
+   "llm_ms": 0.0,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q21",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "My instruments searched my field notes, NASA climate readings and species records and found nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "This baseline declines every question.",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": false,
+   "seconds": 0.0,
+   "retrieval_ms": 0.0,
+   "llm_ms": 0.0,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q22",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "My instruments searched my field notes, NASA climate readings and species records and found nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "This baseline declines every question.",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": false,
+   "seconds": 0.0,
+   "retrieval_ms": 0.0,
+   "llm_ms": 0.0,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q23",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "My instruments searched my field notes, NASA climate readings and species records and found nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "This baseline declines every question.",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": false,
+   "seconds": 0.0,
+   "retrieval_ms": 0.0,
+   "llm_ms": 0.0,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q24",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "My instruments searched my field notes, NASA climate readings and species records and found nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "This baseline declines every question.",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": false,
+   "seconds": 0.0,
+   "retrieval_ms": 0.0,
+   "llm_ms": 0.0,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q25",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "My instruments searched my field notes, NASA climate readings and species records and found nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "This baseline declines every question.",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": false,
+   "seconds": 0.0,
+   "retrieval_ms": 0.0,
+   "llm_ms": 0.0,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q26",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "My instruments searched my field notes, NASA climate readings and species records and found nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "This baseline declines every question.",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": false,
+   "seconds": 0.0,
+   "retrieval_ms": 0.0,
+   "llm_ms": 0.0,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q27",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "My instruments searched my field notes, NASA climate readings and species records and found nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "This baseline declines every question.",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": false,
+   "seconds": 0.0,
+   "retrieval_ms": 0.0,
+   "llm_ms": 0.0,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q28",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "My instruments searched my field notes, NASA climate readings and species records and found nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "This baseline declines every question.",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": false,
+   "seconds": 0.0,
+   "retrieval_ms": 0.0,
+   "llm_ms": 0.0,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q29",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "My instruments searched my field notes, NASA climate readings and species records and found nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "This baseline declines every question.",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": false,
+   "seconds": 0.0,
+   "retrieval_ms": 0.0,
+   "llm_ms": 0.0,
+   "tokens_in": 0,
+   "tokens_out": 0
+  },
+  {
+   "id": "Q30",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "My instruments searched my field notes, NASA climate readings and species records and found nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "This baseline declines every question.",
+   "cited_ids": [],
+   "retrieved_ids": [],
+   "raw_sentences": [],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "llm_called": false,
+   "seconds": 0.0,
+   "retrieval_ms": 0.0,
+   "llm_ms": 0.0,
+   "tokens_in": 0,
+   "tokens_out": 0
+  }
+ ]
+}

@@ -64,6 +64,21 @@ First-attempt validator issues by kind, summed over each run (a sentence can hav
 | number from another month or period | 0 | 0 | 0 | 0 | 0 | 1 | 0 |
 | superlative month not supported | 0 | 0 | 0 | 0 | 0 | 1 | 0 |
 
+## Baselines (frozen 30 questions)
+
+Every system answers the same 30 questions and is scored by the same code. Rows in the first table that use a model were run with one model and one serving stack (named in the model column), so they differ only in the component named in the first column. *Answers with a number or name found in no source* checks every fact sentence against all the facts, NASA POWER and GBIF text of its island, with no use of citations. It is a lower bound on unsupported content: a sentence made only of words from the sources can still be wrong, and a model that quotes a true fact missing from the sources is counted too.
+
+| system | model | retrieval | passed | false refusals | refusal accuracy | key-fact recall | answers with a number or name found in no source | median / p95 time |
+|---|---|---|---|---|---|---|---|---|
+| always refuse | none:refuse-all | none (12) | 17% (5/30) [7-34] | 100% (25/25) [87-100] | 100% (5/5) [57-100] | 0% (0/41) [0-9] | n/a (no answers) | n/a |
+
+Reference rows from an earlier session (Ollama serving), included for context only; they are not matched with the table above:
+
+| system | model | retrieval | passed | false refusals | refusal accuracy | key-fact recall | answers with a number or name found in no source | median / p95 time |
+|---|---|---|---|---|---|---|---|---|
+| retrieval only, quotes the top sources | extractive:top-evidence | bm25 (12) | 50% (15/30) [33-67] | 0% (0/25) [0-13] | 20% (1/5) [4-62] | 63% (26/41) [48-76] | 3% (1/29) [1-17] | 0 / 0 s |
+| retrieval + model + validator | ollama:qwen2.5:3b-instruct | bm25 (8) | 77% (23/30) [59-88] | 16% (4/25) [6-35] | 100% (5/5) [57-100] | 76% (31/41) [61-86] | 0% (0/21) [0-15] | 81 / 147 s |
+
 ## Development set (tuned against: not a held out result)
 
 Runs on `eval/dev_questions.jsonl` (20 answerable questions and 5 refusal guards), used to choose changes. These numbers were optimised against and say little about unseen questions.
