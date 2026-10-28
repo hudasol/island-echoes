@@ -72,7 +72,7 @@ flowchart LR
 | Telemetry | `app/telemetry/` | `TELEMETRY=off`, `LOG_QUESTIONS=true` |
 | Evaluation | `eval/` | `make eval-retrieval`, `make eval-baseline`, `python -m eval.run_eval --provider ...` |
 
-The design plan is in [docs/LLM_PLAN.md](docs/LLM_PLAN.md).
+The design plan is in [docs/research/LLM_PLAN.md](docs/research/LLM_PLAN.md).
 
 **Grounding rules, enforced in code (`app/chat/grounding.py`):**
 
@@ -175,7 +175,7 @@ What this says:
 - The local model declined every unanswerable or injection question (5 of 5, against 1 of 5 for quoting the sources) and answered most answerable ones. With only five such questions the intervals overlap ([57-100] against [4-62]; paired p = 0.125), so the refusal difference is not proven either. Its pass rate is higher than the baseline's, but the 95% intervals overlap, so this is **not claimed as a proven gain**. A paired test on passes gives p = 0.039 for the keyword run, but that comparison was not preregistered and is one of several.
 - Keyword and hybrid retrieval do not differ significantly end to end (paired exact McNemar test: passes p = 0.375, false refusals p = 1.000).
 - A prompt and schema change aimed at false refusals was tried after tuning on a separate development set of 25 questions. It did not meet the preregistered rule for keeping a change (development false refusals stayed at 1 of 20) and was run once on the frozen 30 anyway, as a recorded deviation. There it lowered false refusals from 5 to 3 of 25 (p = 0.688, not significant). A manual reading of the changed answers found 2 contradicted sentences against 1 before, and a rule fixed in advance said to revert in that case, so it was reverted. Details are in [docs/RESULTS.md](docs/RESULTS.md).
-- The errors that get through quote a number that is in the cited table but belongs to another month or row (for example the driest month given as the wettest). A table aware check was built for this and tested against a fresh question set ([docs/PREREGISTRATION_2.md](docs/PREREGISTRATION_2.md)). Its first attempt rejections were all wrong claims (3 on tuned dev questions, 1 frozen, 1 sealed), but in one sealed repair it rejected an answer with the right month and value because the sentence called that value annual, and it changed no aggregate result significantly. Tuning also relaxed the name check for month names, a deviation from the preregistration. It was reverted because the frozen run with it on contained one new unsupported sentence that has nothing to do with tables; the rule written in advance did not separate run to run variation from an effect of the check. Details are in RESULTS.
+- The errors that get through quote a number that is in the cited table but belongs to another month or row (for example the driest month given as the wettest). A table aware check was built for this and tested against a fresh question set ([docs/research/PREREGISTRATION_2.md](docs/research/PREREGISTRATION_2.md)). Its first attempt rejections were all wrong claims (3 on tuned dev questions, 1 frozen, 1 sealed), but in one sealed repair it rejected an answer with the right month and value because the sentence called that value annual, and it changed no aggregate result significantly. Tuning also relaxed the name check for month names, a deviation from the preregistration. It was reverted because the frozen run with it on contained one new unsupported sentence that has nothing to do with tables; the rule written in advance did not separate run to run variation from an effect of the check. Details are in RESULTS.
 
 Fresh held out questions (`eval/questions_heldout.jsonl`, 10 sealed, each configuration run once, hybrid retrieval):
 
@@ -185,7 +185,7 @@ Fresh held out questions (`eval/questions_heldout.jsonl`, 10 sealed, each config
 | Table check on | 70% (7/10) [40-89] | 14% (1/7) [3-51] | 100% (3/3) [44-100] |
 
 Paired on the 9 questions scored in both, the two configurations give identical results (McNemar p = 1.000).
-- Predictions for these runs were written before they ran ([docs/PREREGISTRATION.md](docs/PREREGISTRATION.md)). Most missed because they were anchored on the earlier llama.cpp run, which served the same weights without constrained decoding and did much worse. The cause of that difference was not isolated.
+- Predictions for these runs were written before they ran ([docs/research/PREREGISTRATION.md](docs/research/PREREGISTRATION.md)). Most missed because they were anchored on the earlier llama.cpp run, which served the same weights without constrained decoding and did much worse. The cause of that difference was not isolated.
 - With 30 questions the intervals are wide, and these questions were used to diagnose problems, so they are a regression guard, not a benchmark. No judge model was run (the machine had less than 16 GB of RAM), so groundedness is measured only by the mechanical checks. Timings were taken on a heavily loaded laptop and are left out of this table; they are in RESULTS.
 
 **3. Library relevance** (`pytest tests/test_library_relevance.py`). 106 questions, 52 answerable and 54 not, guard the no-model library search against returning facts for off topic questions. Part of this set was used for tuning (see "Library search quality").

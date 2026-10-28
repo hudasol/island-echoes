@@ -80,7 +80,7 @@ Runs on `eval/dev_questions.jsonl` (20 answerable questions and 5 refusal guards
 
 ## Analysis of the October 2026 local model runs
 
-Hand written; the tables above are generated. Predictions are from `docs/PREREGISTRATION.md`, committed before any
+Hand written; the tables above are generated. Predictions are from `docs/research/PREREGISTRATION.md`, committed before any
 of these runs. No judge model was run (the machine has 13.9 GB of RAM, below the 16 GB set in the plan), so
 groundedness (G) and hallucination (H) are the mechanical proxies defined there: H is the share of first-attempt
 fact sentences failing a validator check, G is 1 − H. Neither measures semantic faithfulness.
@@ -208,7 +208,7 @@ within noise and did not reduce these errors.
 
 ## Analysis of the label aware number check (18 October 2026)
 
-Predictions and the keep or revert rule are in `docs/PREREGISTRATION_2.md`, committed before the check was built.
+Predictions and the keep or revert rule are in `docs/research/PREREGISTRATION_2.md`, committed before the check was built.
 All runs: Qwen2.5-3B-Instruct through Ollama, hybrid retrieval, 8 facts, temperature 0. The check was reverted under
 that rule; the code on main again matches run B.
 

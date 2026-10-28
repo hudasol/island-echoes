@@ -79,7 +79,7 @@ Further predictions:
 - `docs/RESULTS.md` will carry a table of every prediction above against the measured value, marked hit or miss.
 - A miss is reported as measured, with a one line explanation if one is evident, and is not hidden or rerun.
 - A run is repeated only after an infrastructure failure (process crash, Ollama down), and the repeat is logged in
-  `docs/OVERNIGHT_LOG.md`.
+  `docs/research/EVALUATION_LOG.md`.
 - Numbers from the development set are labelled as tuned. Numbers on the frozen 30 for C are a single
   run after tuning, on questions the tuning never saw, but the frozen 30 were used to diagnose the problem in the earlier run, so
   they are reported as a regression check, not as a fully held out result.

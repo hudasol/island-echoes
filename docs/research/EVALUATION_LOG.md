@@ -1,4 +1,4 @@
-# Overnight log, 16 October 2026
+# Evaluation log, 16 to 18 October 2026
 
 Record of the evaluation session of 16 and 17 October 2026 on a laptop. Times are local. Entries are in the order they happened.
 
