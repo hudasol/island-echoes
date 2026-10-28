@@ -12,6 +12,7 @@
     "three": "0.186.1"
   },
   "devDependencies": {
+    "axe-core": "^4.10.3",
     "esbuild": "0.25.12"
   }
 }
