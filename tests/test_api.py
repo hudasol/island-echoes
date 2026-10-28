@@ -30,6 +30,13 @@ def test_health_reports_chat_state(settings, store, retriever):
     assert off["chat_enabled"] is False and on["chat_enabled"] is True and on["islands"] == 7
 
 
+def test_health_reports_the_package_version(settings, store, retriever):
+    from app import __version__
+
+    body = client_with(settings, store, retriever, None).get("/api/health").json()
+    assert body["version"] == __version__
+
+
 def test_islands_listing_and_detail(settings, store, retriever):
     c = client_with(settings, store, retriever, None)
     items = c.get("/api/islands").json()

@@ -34,7 +34,7 @@ eval: install
 
 # Deterministic checks only on recorded answers (no API calls)
 eval-offline: install
-	$(BIN)/python -m eval.run_eval --from-run eval/results/latest.json
+	$(BIN)/python -m eval.run_eval --from-run eval/results/qwen25-3b-ollama-bm25.json
 
 # ---- LLM layer (no paid key needed) ----
 # Rebuild fact embeddings after editing data/islands (needs: pip install -r requirements-ml.txt)

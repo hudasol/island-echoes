@@ -8,6 +8,7 @@ from fastapi import FastAPI, HTTPException, Query, Request
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 
+from . import __version__
 from .chat.service import ChatResult, ChatService, ChatUnavailable
 from .config import Settings, get_settings
 from .data.islands import IslandStore
@@ -129,7 +130,7 @@ def create_app(settings: Settings | None = None, service: ChatService | None = N
         return client_key(request, settings.trusted_proxy_hops)
     saved_narrations = load_saved(settings.narrations_path)
 
-    app = FastAPI(title="Island Echoes", version="1.0.0", docs_url="/api/docs", openapi_url="/api/openapi.json")
+    app = FastAPI(title="Island Echoes", version=__version__, docs_url="/api/docs", openapi_url="/api/openapi.json")
     app.state.service = service
 
     @app.middleware("http")
@@ -153,6 +154,7 @@ def create_app(settings: Settings | None = None, service: ChatService | None = N
     def health():
         return {
             "status": "ok",
+            "version": __version__,
             "chat_enabled": service.llm is not None,
             "islands": len(islands.islands),
             "retrieval_mode": getattr(retriever, "mode", "bm25"),
