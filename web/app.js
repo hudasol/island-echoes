@@ -19,7 +19,7 @@
   };
 
   const statusCode = (s) => /^critically/i.test(s) ? "CR" : /^endangered/i.test(s) ? "EN" : /^vulnerable/i.test(s) ? "VU" : /^extinct in the wild/i.test(s) ? "EW" : /^extinct/i.test(s) ? "EX" : /^near/i.test(s) ? "NT" : "";
-  const S = { tab: "agent", lib: { q: "", cat: "" }, islands: [], island: null, creature: null, layer: LAYERS[0], paused: reduced, history: [], busy: false, narration: null, sensorSeq: 0 };
+  const S = { tab: "agent", lib: { q: "", cat: "" }, islands: [], island: null, creature: null, layer: LAYERS[0], paused: reduced, history: [], busy: false, narration: null, sensorSeq: 0, statusSeq: 0 };
   let globe = null;
 
   const el = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
@@ -127,6 +127,7 @@
     const code = statusCode(c.iucn_status), chip = $("status-chip");
     chip.textContent = STATUS[code] || c.iucn_status; chip.dataset.s = code;
     $("status-detail").textContent = `Status as reported: ${c.iucn_status}. ${c.status_note || ""}`;
+    loadOfficialStatus(S.island, slug);
     const cv = $("creature-canvas");
     cv.setAttribute("aria-label", `Decorative animation of a ${c.common_name} (${c.scientific_name}), a ${c.creature_type}. The facts are in the text below.`);
     Creatures.start(cv, c.creature_type, S.paused);
@@ -135,6 +136,20 @@
     loadNarration();
     loadSensors(S.island, slug);
     runLibrary(true);
+  }
+
+  /* The IUCN category GBIF holds for the creature, shown beside the status the fact files report. */
+  async function loadOfficialStatus(isl, creature) {
+    const box = $("status-official"), seq = ++S.statusSeq;
+    box.hidden = true; box.replaceChildren();
+    try {
+      const d = await api(`/api/islands/${isl.slug}/conservation?creature=${encodeURIComponent(creature)}`);
+      if (seq !== S.statusSeq) return;
+      const a = el("a", null, "GBIF species page");
+      a.href = d.source_url; a.target = "_blank"; a.rel = "noopener noreferrer";
+      box.append(`IUCN Red List category held by GBIF: ${d.category} (${d.code}), retrieved ${d.as_of}. Category only: GBIF does not carry the assessment year. `, a, ".");
+      box.hidden = false;
+    } catch (_) { /* no category on record, or GBIF data unavailable: the line stays hidden */ }
   }
 
   /* ---------------- sensors ---------------- */
