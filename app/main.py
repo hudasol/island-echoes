@@ -44,7 +44,7 @@ def versioned(rt: APIRouter) -> APIRouter:
     v1 = APIRouter()
     for route in rt.routes:
         if isinstance(route, APIRoute) and route.path.startswith("/api/"):
-            v1.add_api_route("/api/v1/" + route.path[len("/api/"):], route.endpoint, methods=list(route.methods), response_model=route.response_model,
+            v1.add_api_route("/api/v1/" + route.path[len("/api/"):], route.endpoint, methods=list(route.methods or []), response_model=route.response_model,
                              response_class=route.response_class, name="v1." + route.name, summary=route.summary)
     return v1
 
