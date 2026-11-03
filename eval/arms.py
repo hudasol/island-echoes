@@ -60,6 +60,15 @@ def derive(rec: dict, arm: str, evidence: dict, ranked: list, question: str) -> 
     return out
 
 
+def overlay_climate(rec: dict, tool, island, question: str) -> dict:
+    """Replace the record with the tool's answer when the tool routes the question; otherwise keep it."""
+    hit = tool.answer(island, question)
+    if hit is None:
+        return rec
+    return {**rec, "answered": True, "sentences": hit.sentences, "cited_ids": hit.evidence_ids, "llm_called": False, "rejected": [],
+            "repaired": False, "notes": [*rec.get("notes", []), f"climate tool: {hit.route}"], "llm_ms": 0.0}
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("run", type=Path)
@@ -67,6 +76,7 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--questions", type=Path, required=True)
     ap.add_argument("--out", type=Path, required=True)
     ap.add_argument("--retrieval", default="hybrid")
+    ap.add_argument("--climate", action="store_true", help="overlay the deterministic climate tool on questions it routes")
     args = ap.parse_args(argv)
 
     from app.config import get_settings
@@ -79,12 +89,20 @@ def main(argv: list[str] | None = None) -> int:
     retriever = build_retriever(settings, islands, SourceStore(settings, islands))
     qs = {json.loads(line)["id"]: json.loads(line) for line in args.questions.read_text(encoding="utf-8").splitlines() if line.strip()}
     saved = json.loads(args.run.read_text(encoding="utf-8"))
+    tool = None
+    if args.climate:
+        from app.data.climate_tool import ClimateTool
+
+        tool = ClimateTool(islands, retriever.sources)
     records = []
     for rec in saved["records"]:
         q = qs[rec["id"]]
         res = retriever.search(q["island"], q["question"], q.get("creature"))
-        records.append(derive(rec, args.arm, {e.id: e for e in res.evidence}, res.evidence, " ".join(q["question"].split())))
-    meta = {**saved["meta"], "arm": args.arm, "derived_from": args.run.name, "label": args.out.stem}
+        out = derive(rec, args.arm, {e.id: e for e in res.evidence}, res.evidence, " ".join(q["question"].split()))
+        if tool is not None:
+            out = overlay_climate(out, tool, islands.get(q["island"]), " ".join(q["question"].split()))
+        records.append(out)
+    meta = {**saved["meta"], "arm": args.arm, "derived_from": args.run.name, "label": args.out.stem, "climate_tool_overlay": bool(tool)}
     args.out.write_text(json.dumps({"meta": meta, "records": records}, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     print(f"wrote {args.out} ({len(records)} records, arm {args.arm})")
     return 0

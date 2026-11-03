@@ -32,3 +32,14 @@ def test_replayed_arms_match_live_runs(store, retriever):
         assert [s["text"] for s in got["sentences"]] == [s.text for s in want.sentences]
     raw = arms.derive(rec, "unvalidated", ev, res.evidence, question)
     assert raw["answered"] and "1,900" in raw["sentences"][0]["text"]
+
+
+def test_climate_overlay_replaces_only_routed_questions(store, retriever):
+    from app.data.climate_tool import ClimateTool
+
+    tool = ClimateTool(store, retriever.sources)
+    base = {"id": "X", "answered": False, "sentences": [], "cited_ids": [], "llm_called": True}
+    routed = arms.overlay_climate(base, tool, store.get("clipperton"), "Which month has the most rain on Clipperton Island in NASA POWER?")
+    assert routed["answered"] and not routed["llm_called"] and "August" in routed["sentences"][0]["text"]
+    kept = arms.overlay_climate(base, tool, store.get("clipperton"), "How old is Clipperton Rock?")
+    assert kept is base
