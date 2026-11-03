@@ -50,6 +50,28 @@
     $("attribution").textContent = `Imagery: ${l.label}${l.time ? `, ${l.time}` : ""}, NASA GIBS. Climate: NASA POWER. Species records: GBIF.`;
     if (globe) { globe.globeTileEngineClearCache?.(); globe.globeTileEngineMaxLevel(Math.min(l.matrix - 1, 8)); globe.globeTileEngineUrl(tileUrl(l)); }
   }
+  // The 2 MB globe bundle loads after the page is usable, and only on request when the device signals low power.
+  function lowPower() {
+    const c = navigator.connection || {};
+    return Boolean(c.saveData) || (navigator.deviceMemory && navigator.deviceMemory <= 2) || (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 2 && /^(slow-2g|2g|3g)$/.test(c.effectiveType || ""));
+  }
+  function loadBundle() {
+    if (window.IE3D) return Promise.resolve();
+    return new Promise((ok, fail) => {
+      const s = document.createElement("script"); s.src = "vendor/globe.bundle.js"; s.async = true;
+      s.onload = ok; s.onerror = () => fail(new Error("bundle")); document.head.append(s);
+    });
+  }
+  function startGlobe(host) {
+    const go = () => loadBundle().then(() => initGlobe(host)).catch(() => { const e = $("globe-error"); e.hidden = false; e.textContent = T("no_webgl", "The 3D globe needs WebGL."); });
+    if (lowPower()) {
+      const b = el("button", "quiet globe-load", T("globe_load", "Load the 3D globe"));
+      b.type = "button"; b.setAttribute("data-i18n", "globe_load");
+      b.addEventListener("click", () => { b.remove(); go(); });
+      host.append(b); return;
+    }
+    (window.requestIdleCallback || ((f) => setTimeout(f, 200)))(go, { timeout: 1500 });
+  }
   function initGlobe(host) {
     try {
       globe = IE3D.Globe({ animateIn: !reduced })(host)
@@ -489,7 +511,7 @@
     wire();
     try { S.islands = await api("/api/islands"); }
     catch (e) { $("globe-error").hidden = false; $("globe-error").textContent = T("server_fail", "Could not reach the Island Echoes server.") + " " + e.message; return; }
-    buildIndex(); initGlobe($("globe"));
+    buildIndex(); startGlobe($("globe"));
     api("/api/overview").then(renderStart).catch(() => { $("ledger").hidden = true; });
     api("/api/health").then((h) => {
       $("chat-details").hidden = !h.chat_enabled;

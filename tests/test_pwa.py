@@ -23,3 +23,11 @@ def test_page_offers_the_update_and_reloads_once():
 def test_educator_pages_are_network_first_and_cached_for_offline_use():
     sw = (WEB / "sw.js").read_text(encoding="utf-8")
     assert '"/educator/"' in sw and "/educator.css" in sw
+
+
+def test_globe_bundle_is_loaded_after_the_page_is_usable() -> None:
+    """The 2 MB bundle must not block first paint, and low power devices load it only on request."""
+    html = (WEB / "index.html").read_text(encoding="utf-8")
+    app = (WEB / "app.js").read_text(encoding="utf-8")
+    assert "globe.bundle.js" not in html
+    assert "function loadBundle" in app and "function lowPower" in app and "saveData" in app
