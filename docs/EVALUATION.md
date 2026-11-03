@@ -11,6 +11,32 @@ The evaluation answers three separate questions: does the right fact reach the m
 | `eval/questions_heldout.jsonl` | 30 | Questions written after the design was fixed. Ten are sealed. |
 | `eval/retrieval_gold.jsonl` | 58 | Paraphrased questions with gold fact IDs, for retrieval. |
 | `eval/library_relevance.jsonl` | 106 | 52 answerable and 54 unanswerable questions for the no model library search. |
+| `eval/v3/test.jsonl` | 150 | Sealed synthetic test set for version 1.2 (112 answerable, 38 to refuse). Written by a local model from the fact files, gold constructed from the same facts. Hashes in `eval/v3/SHA256SUMS`. |
+| `eval/v3/dev.jsonl` | 55 | Synthetic development set for the climate route. |
+
+## Sealed synthetic evaluation (version 1.2)
+
+Plan, hashes and predictions were committed before any system ran on the sealed set (`docs/research/PREREGISTRATION_3.md`, with dated addenda). The tables are generated in [RESULTS.md](RESULTS.md). All questions are synthetic and the second labeller is a model, so every agreement figure here is model to model.
+
+Main result, Qwen2.5 3B Instruct (4 bit, llama.cpp, hybrid retrieval, 8 facts, temperature 0), 140 of 150 questions scored (ten returned malformed JSON):
+
+| Arm | Passed | False refusals | Refusal accuracy |
+|---|---|---|---|
+| Retrieval and model, no validator | 65% | 10% | 100% |
+| Validator, rejected sentences dropped (1.1 behaviour, default) | 54% | 40% | 100% |
+| Validator, rejected sentences replaced by the cited source sentence | 58% | 34% | 100% |
+
+Decisions under the preregistered keep rules:
+
+* **Extractive fallback** lowers false refusals by 6 points, not the 10 required. The paired test favours it (6 questions to 0, exact McNemar p = 0.031), but the rule fails, so it stays available and off by default.
+* **Climate route** answers all 28 scored climate questions correctly (the model alone: 9 to 11 of 28 pass, with 8 to 12 answered but incomplete or wrong). As run, it also answered four questions about places not in the library from the selected island's table, which lowered refusal accuracy to 89%. The rule fails, so it stays off by default. The defect was fixed afterwards (Addendum 3, post hoc); with the fix, refusal accuracy is 100% and 94 to 98 of 140 questions pass, reported as post hoc rows only.
+* **Model size.** On the fixed 27 shared questions, 7B and 3B pass the same number (14 of 27; one question each way). The 1.5B model passes 4 of 42 against 19 for 3B; it refuses most answerable questions. Models above 7B do not fit the 8 GB machine.
+* **Closed book** passes 7 of 46 (15%), against 23 for the 3B pipeline on the same questions.
+* **Entailment check** (optional, off by default): on 117 first attempt sentences, fewer than the 200 planned, because the 3B run produced no more fact sentences. It flagged 62 as not entailed against 12 for the validator, and agreed with the second labeller far less (kappa 0.14) than the validator did (kappa 0.47). It is too strict to turn on and stays off.
+
+Predictions against results: 4 hits (P4, P5, P6, P8) and 8 misses (P1, P2, P3, P7, P9, P10, P11, P12). The full table with measured values is in `docs/OVERNIGHT_REPORT.md`.
+
+Earlier claims: the retrieval figure (hybrid hit@5 0.90), the frozen 30 results and the statement that the validator declines more answerable questions than the unvalidated system all survive the larger set. The statement that the validator "removes unsupported claims" survives only weakly, because the unvalidated arm had one answer with a claim outside the sources in 92.
 
 ## Baselines
 
