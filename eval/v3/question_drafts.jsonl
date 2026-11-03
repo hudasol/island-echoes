@@ -166,3 +166,13 @@
 {"fact": "TDC-203", "island": "tristan-da-cunha", "subject": "island", "question": "What is the penguin species' conservation status on Tristan da Cunha?"}
 {"fact": "COC-212", "island": "cocos-keeling", "subject": "island", "question": "What is the name of the island where the seawater reverse osmosis plant is located?"}
 {"fact": "SOC-039", "island": "socotra", "subject": "socotra-buzzard", "question": "How many occurrence records of Buteo socotraensis are there in GBIF?"}
+{"fact": "CLI-019", "island": "clipperton", "subject": "island", "question": "When did France take formal possession of Clipperton Island?"}
+{"fact": "GAL-106", "island": "galapagos", "subject": "galapagos-sea-lion", "question": "What is the gestation period for a female on the Galápagos Islands?"}
+{"fact": "CLI-017", "island": "clipperton", "subject": "island", "question": "When were American workers removed from Clipperton Island?"}
+{"fact": "CLI-205", "island": "clipperton", "subject": "island", "question": "What is endemic to Clipperton Island?"}
+{"fact": "COC-029", "island": "cocos-keeling", "subject": "island", "question": "How much is the sea level projected to rise by 2070?"}
+{"fact": "GAL-101", "island": "galapagos", "subject": "galapagos-sea-lion", "question": "When was the Galápagos sea lion listed as Endangered?"}
+{"fact": "SOC-015", "island": "socotra", "subject": "island", "question": "What is the name of the island that remains on the African plate?"}
+{"fact": "BOU-001", "island": "bouvet", "subject": "island", "question": "Where is Bouvet Island located?"}
+{"fact": "SOC-004", "island": "socotra", "subject": "island", "question": "How many islands are part of the World Heritage property described by UNESCO?"}
+{"fact": "GAL-109", "island": "galapagos", "subject": "galapagos-sea-lion", "question": "What is the annual monitoring cruise that surveys sea lions and fur seals at 30 breeding sites on 14 islands and samples animals to assess health?"}
