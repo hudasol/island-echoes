@@ -32,7 +32,7 @@ def test_html_and_script_keys_exist() -> None:
     t = _tables()["en"]
     html = (WEB / "index.html").read_text(encoding="utf-8")
     keys = set(re.findall(r'data-i18n(?:-aria|-ph)?="([a-z_]+)"', html))
-    keys |= set(re.findall(r'\bT\("([a-z_]+)"', (WEB / "app.js").read_text(encoding="utf-8")))
+    keys |= set(re.findall(r'\bT\("([a-z_]+)",', (WEB / "app.js").read_text(encoding="utf-8")))
     assert keys and keys <= set(t), sorted(keys - set(t))
 
 
@@ -45,3 +45,11 @@ def test_no_banned_punctuation() -> None:
 def test_script_is_cached_for_offline_use() -> None:
     assert "/i18n.js" in (WEB / "sw.js").read_text(encoding="utf-8")
     assert '<script src="i18n.js">' in (WEB / "index.html").read_text(encoding="utf-8")
+
+
+def test_dynamic_key_families_exist() -> None:
+    t = _tables()["en"]
+    for code in ("CR", "EN", "VU", "EX", "EW", "NT", "LC", "DD"):
+        assert f"st_{code}" in t
+    for layer in ("truecolor", "relief", "night", "sst"):
+        assert f"layer_{layer}" in t and f"layer_{layer}_note" in t
