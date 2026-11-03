@@ -1,0 +1,1341 @@
+{
+ "components": {
+  "schemas": {
+   "ChatRequest": {
+    "properties": {
+     "creature": {
+      "anyOf": [
+       {
+        "maxLength": 60,
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Creature"
+     },
+     "history": {
+      "items": {
+       "$ref": "#/components/schemas/Turn"
+      },
+      "maxItems": 8,
+      "title": "History",
+      "type": "array"
+     },
+     "island": {
+      "maxLength": 40,
+      "title": "Island",
+      "type": "string"
+     },
+     "message": {
+      "maxLength": 500,
+      "minLength": 1,
+      "title": "Message",
+      "type": "string"
+     }
+    },
+    "required": [
+     "island",
+     "message"
+    ],
+    "title": "ChatRequest",
+    "type": "object"
+   },
+   "ChatResponse": {
+    "properties": {
+     "answered": {
+      "title": "Answered",
+      "type": "boolean"
+     },
+     "creature": {
+      "title": "Creature",
+      "type": "string"
+     },
+     "evidence": {
+      "items": {
+       "$ref": "#/components/schemas/EvidenceOut"
+      },
+      "title": "Evidence",
+      "type": "array"
+     },
+     "grounding": {
+      "$ref": "#/components/schemas/GroundingOut"
+     },
+     "island": {
+      "title": "Island",
+      "type": "string"
+     },
+     "missing": {
+      "title": "Missing",
+      "type": "string"
+     },
+     "sentences": {
+      "items": {
+       "$ref": "#/components/schemas/SentenceOut"
+      },
+      "title": "Sentences",
+      "type": "array"
+     }
+    },
+    "required": [
+     "island",
+     "creature",
+     "answered",
+     "sentences",
+     "missing",
+     "evidence",
+     "grounding"
+    ],
+    "title": "ChatResponse",
+    "type": "object"
+   },
+   "ConservationOut": {
+    "properties": {
+     "as_of": {
+      "title": "As Of",
+      "type": "string"
+     },
+     "category": {
+      "title": "Category",
+      "type": "string"
+     },
+     "code": {
+      "title": "Code",
+      "type": "string"
+     },
+     "iucn_taxon_id": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Iucn Taxon Id"
+     },
+     "source_url": {
+      "title": "Source Url",
+      "type": "string"
+     }
+    },
+    "required": [
+     "category",
+     "code",
+     "source_url",
+     "as_of"
+    ],
+    "title": "ConservationOut",
+    "type": "object"
+   },
+   "CreatureOut": {
+    "properties": {
+     "common_name": {
+      "title": "Common Name",
+      "type": "string"
+     },
+     "creature_type": {
+      "title": "Creature Type",
+      "type": "string"
+     },
+     "iucn_status": {
+      "title": "Iucn Status",
+      "type": "string"
+     },
+     "scientific_name": {
+      "title": "Scientific Name",
+      "type": "string"
+     },
+     "slug": {
+      "title": "Slug",
+      "type": "string"
+     },
+     "status_note": {
+      "title": "Status Note",
+      "type": "string"
+     }
+    },
+    "required": [
+     "slug",
+     "common_name",
+     "scientific_name",
+     "creature_type",
+     "iucn_status",
+     "status_note"
+    ],
+    "title": "CreatureOut",
+    "type": "object"
+   },
+   "Dropped": {
+    "properties": {
+     "issues": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Issues",
+      "type": "array"
+     },
+     "text": {
+      "title": "Text",
+      "type": "string"
+     }
+    },
+    "required": [
+     "text",
+     "issues"
+    ],
+    "title": "Dropped",
+    "type": "object"
+   },
+   "EvidenceOut": {
+    "properties": {
+     "as_of": {
+      "title": "As Of",
+      "type": "string"
+     },
+     "category": {
+      "default": "",
+      "title": "Category",
+      "type": "string"
+     },
+     "cited": {
+      "title": "Cited",
+      "type": "boolean"
+     },
+     "confidence": {
+      "title": "Confidence",
+      "type": "string"
+     },
+     "id": {
+      "title": "Id",
+      "type": "string"
+     },
+     "kind": {
+      "enum": [
+       "fact",
+       "power",
+       "gbif"
+      ],
+      "title": "Kind",
+      "type": "string"
+     },
+     "publisher": {
+      "title": "Publisher",
+      "type": "string"
+     },
+     "source_title": {
+      "title": "Source Title",
+      "type": "string"
+     },
+     "source_url": {
+      "title": "Source Url",
+      "type": "string"
+     },
+     "subject": {
+      "default": "island",
+      "title": "Subject",
+      "type": "string"
+     },
+     "text": {
+      "title": "Text",
+      "type": "string"
+     },
+     "title": {
+      "title": "Title",
+      "type": "string"
+     }
+    },
+    "required": [
+     "id",
+     "kind",
+     "title",
+     "text",
+     "source_url",
+     "source_title",
+     "publisher",
+     "as_of",
+     "confidence",
+     "cited"
+    ],
+    "title": "EvidenceOut",
+    "type": "object"
+   },
+   "FactOut": {
+    "properties": {
+     "category": {
+      "title": "Category",
+      "type": "string"
+     },
+     "confidence": {
+      "title": "Confidence",
+      "type": "string"
+     },
+     "id": {
+      "title": "Id",
+      "type": "string"
+     },
+     "publisher": {
+      "title": "Publisher",
+      "type": "string"
+     },
+     "source_url": {
+      "title": "Source Url",
+      "type": "string"
+     },
+     "statement": {
+      "title": "Statement",
+      "type": "string"
+     },
+     "subject": {
+      "title": "Subject",
+      "type": "string"
+     }
+    },
+    "required": [
+     "id",
+     "category",
+     "subject",
+     "statement",
+     "publisher",
+     "source_url",
+     "confidence"
+    ],
+    "title": "FactOut",
+    "type": "object"
+   },
+   "GroundingOut": {
+    "properties": {
+     "cited": {
+      "title": "Cited",
+      "type": "integer"
+     },
+     "dropped": {
+      "items": {
+       "$ref": "#/components/schemas/Dropped"
+      },
+      "title": "Dropped",
+      "type": "array"
+     },
+     "llm_called": {
+      "title": "Llm Called",
+      "type": "boolean"
+     },
+     "notes": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Notes",
+      "type": "array"
+     },
+     "repaired": {
+      "title": "Repaired",
+      "type": "boolean"
+     },
+     "retrieved": {
+      "title": "Retrieved",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "retrieved",
+     "cited",
+     "repaired",
+     "llm_called",
+     "dropped",
+     "notes"
+    ],
+    "title": "GroundingOut",
+    "type": "object"
+   },
+   "HTTPValidationError": {
+    "properties": {
+     "detail": {
+      "items": {
+       "$ref": "#/components/schemas/ValidationError"
+      },
+      "title": "Detail",
+      "type": "array"
+     }
+    },
+    "title": "HTTPValidationError",
+    "type": "object"
+   },
+   "IslandDetail": {
+    "properties": {
+     "alt_names": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Alt Names",
+      "type": "array"
+     },
+     "conflicts": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Conflicts",
+      "type": "array"
+     },
+     "creatures": {
+      "items": {
+       "$ref": "#/components/schemas/CreatureOut"
+      },
+      "title": "Creatures",
+      "type": "array"
+     },
+     "fact_count": {
+      "title": "Fact Count",
+      "type": "integer"
+     },
+     "facts": {
+      "items": {
+       "$ref": "#/components/schemas/FactOut"
+      },
+      "title": "Facts",
+      "type": "array"
+     },
+     "gaps": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Gaps",
+      "type": "array"
+     },
+     "lat": {
+      "title": "Lat",
+      "type": "number"
+     },
+     "lon": {
+      "title": "Lon",
+      "type": "number"
+     },
+     "name": {
+      "title": "Name",
+      "type": "string"
+     },
+     "pin_note": {
+      "title": "Pin Note",
+      "type": "string"
+     },
+     "slug": {
+      "title": "Slug",
+      "type": "string"
+     },
+     "territory": {
+      "title": "Territory",
+      "type": "string"
+     }
+    },
+    "required": [
+     "slug",
+     "name",
+     "alt_names",
+     "lat",
+     "lon",
+     "pin_note",
+     "territory",
+     "creatures",
+     "fact_count",
+     "gaps",
+     "conflicts",
+     "facts"
+    ],
+    "title": "IslandDetail",
+    "type": "object"
+   },
+   "IslandSummary": {
+    "properties": {
+     "alt_names": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Alt Names",
+      "type": "array"
+     },
+     "conflicts": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Conflicts",
+      "type": "array"
+     },
+     "creatures": {
+      "items": {
+       "$ref": "#/components/schemas/CreatureOut"
+      },
+      "title": "Creatures",
+      "type": "array"
+     },
+     "fact_count": {
+      "title": "Fact Count",
+      "type": "integer"
+     },
+     "gaps": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Gaps",
+      "type": "array"
+     },
+     "lat": {
+      "title": "Lat",
+      "type": "number"
+     },
+     "lon": {
+      "title": "Lon",
+      "type": "number"
+     },
+     "name": {
+      "title": "Name",
+      "type": "string"
+     },
+     "pin_note": {
+      "title": "Pin Note",
+      "type": "string"
+     },
+     "slug": {
+      "title": "Slug",
+      "type": "string"
+     },
+     "territory": {
+      "title": "Territory",
+      "type": "string"
+     }
+    },
+    "required": [
+     "slug",
+     "name",
+     "alt_names",
+     "lat",
+     "lon",
+     "pin_note",
+     "territory",
+     "creatures",
+     "fact_count",
+     "gaps",
+     "conflicts"
+    ],
+    "title": "IslandSummary",
+    "type": "object"
+   },
+   "LibraryOut": {
+    "properties": {
+     "category": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Category"
+     },
+     "counts": {
+      "additionalProperties": {
+       "type": "integer"
+      },
+      "title": "Counts",
+      "type": "object"
+     },
+     "island": {
+      "title": "Island",
+      "type": "string"
+     },
+     "notes": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Notes",
+      "type": "array"
+     },
+     "partial_ids": {
+      "default": [],
+      "items": {
+       "type": "string"
+      },
+      "title": "Partial Ids",
+      "type": "array"
+     },
+     "quality": {
+      "default": "browse",
+      "title": "Quality",
+      "type": "string"
+     },
+     "query": {
+      "title": "Query",
+      "type": "string"
+     },
+     "results": {
+      "items": {
+       "$ref": "#/components/schemas/EvidenceOut"
+      },
+      "title": "Results",
+      "type": "array"
+     },
+     "total": {
+      "title": "Total",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "island",
+     "query",
+     "category",
+     "total",
+     "counts",
+     "results",
+     "notes"
+    ],
+    "title": "LibraryOut",
+    "type": "object"
+   },
+   "NarrationOut": {
+    "properties": {
+     "creature": {
+      "title": "Creature",
+      "type": "string"
+     },
+     "creature_type": {
+      "title": "Creature Type",
+      "type": "string"
+     },
+     "evidence": {
+      "items": {
+       "$ref": "#/components/schemas/EvidenceOut"
+      },
+      "title": "Evidence",
+      "type": "array"
+     },
+     "island": {
+      "title": "Island",
+      "type": "string"
+     },
+     "sentences": {
+      "items": {
+       "$ref": "#/components/schemas/SentenceOut"
+      },
+      "title": "Sentences",
+      "type": "array"
+     }
+    },
+    "required": [
+     "island",
+     "creature",
+     "creature_type",
+     "sentences",
+     "evidence"
+    ],
+    "title": "NarrationOut",
+    "type": "object"
+   },
+   "SensorOut": {
+    "properties": {
+     "evidence_id": {
+      "title": "Evidence Id",
+      "type": "string"
+     },
+     "key": {
+      "title": "Key",
+      "type": "string"
+     },
+     "label": {
+      "title": "Label",
+      "type": "string"
+     },
+     "monthly": {
+      "items": {
+       "anyOf": [
+        {
+         "type": "number"
+        },
+        {
+         "type": "null"
+        }
+       ]
+      },
+      "title": "Monthly",
+      "type": "array"
+     },
+     "unit": {
+      "title": "Unit",
+      "type": "string"
+     },
+     "value": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Value"
+     }
+    },
+    "required": [
+     "key",
+     "label",
+     "unit",
+     "value",
+     "monthly",
+     "evidence_id"
+    ],
+    "title": "SensorOut",
+    "type": "object"
+   },
+   "SensorsOut": {
+    "properties": {
+     "as_of": {
+      "title": "As Of",
+      "type": "string"
+     },
+     "cell_lat": {
+      "title": "Cell Lat",
+      "type": "number"
+     },
+     "cell_lon": {
+      "title": "Cell Lon",
+      "type": "number"
+     },
+     "island": {
+      "title": "Island",
+      "type": "string"
+     },
+     "items": {
+      "items": {
+       "$ref": "#/components/schemas/SensorOut"
+      },
+      "title": "Items",
+      "type": "array"
+     },
+     "period": {
+      "title": "Period",
+      "type": "string"
+     },
+     "warning": {
+      "default": "",
+      "title": "Warning",
+      "type": "string"
+     }
+    },
+    "required": [
+     "island",
+     "as_of",
+     "period",
+     "cell_lat",
+     "cell_lon",
+     "items"
+    ],
+    "title": "SensorsOut",
+    "type": "object"
+   },
+   "SentenceOut": {
+    "properties": {
+     "cites": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Cites",
+      "type": "array"
+     },
+     "kind": {
+      "enum": [
+       "fact",
+       "voice"
+      ],
+      "title": "Kind",
+      "type": "string"
+     },
+     "text": {
+      "title": "Text",
+      "type": "string"
+     }
+    },
+    "required": [
+     "text",
+     "kind",
+     "cites"
+    ],
+    "title": "SentenceOut",
+    "type": "object"
+   },
+   "Turn": {
+    "properties": {
+     "role": {
+      "enum": [
+       "user",
+       "agent"
+      ],
+      "title": "Role",
+      "type": "string"
+     },
+     "text": {
+      "maxLength": 600,
+      "title": "Text",
+      "type": "string"
+     }
+    },
+    "required": [
+     "role",
+     "text"
+    ],
+    "title": "Turn",
+    "type": "object"
+   },
+   "ValidationError": {
+    "properties": {
+     "ctx": {
+      "title": "Context",
+      "type": "object"
+     },
+     "input": {
+      "title": "Input"
+     },
+     "loc": {
+      "items": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "integer"
+        }
+       ]
+      },
+      "title": "Location",
+      "type": "array"
+     },
+     "msg": {
+      "title": "Message",
+      "type": "string"
+     },
+     "type": {
+      "title": "Error Type",
+      "type": "string"
+     }
+    },
+    "required": [
+     "loc",
+     "msg",
+     "type"
+    ],
+    "title": "ValidationError",
+    "type": "object"
+   }
+  }
+ },
+ "info": {
+  "description": "Read only access to the sourced island library, NASA POWER readings, GBIF records and the educator sheets. Version 1 of the API lives under /api/v1.",
+  "title": "Island Echoes",
+  "version": "1.1.0"
+ },
+ "openapi": "3.1.0",
+ "paths": {
+  "/api/v1/chat": {
+   "post": {
+    "operationId": "v1_chat_api_v1_chat_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/ChatRequest"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ChatResponse"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "V1.Chat"
+   }
+  },
+  "/api/v1/data-changes": {
+   "get": {
+    "description": "Values that changed when live NASA POWER or GBIF data replaced older data on this server.",
+    "operationId": "v1_data_changes_api_v1_data_changes_get",
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      },
+      "description": "Successful Response"
+     }
+    },
+    "summary": "V1.Data Changes"
+   }
+  },
+  "/api/v1/evaluation": {
+   "get": {
+    "description": "Stored evaluation numbers: retrieval on the gold sets and the end to end baselines.",
+    "operationId": "v1_evaluation_api_v1_evaluation_get",
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      },
+      "description": "Successful Response"
+     }
+    },
+    "summary": "V1.Evaluation"
+   }
+  },
+  "/api/v1/health": {
+   "get": {
+    "operationId": "v1_health_api_v1_health_get",
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      },
+      "description": "Successful Response"
+     }
+    },
+    "summary": "V1.Health"
+   }
+  },
+  "/api/v1/islands": {
+   "get": {
+    "operationId": "v1_list_islands_api_v1_islands_get",
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "$ref": "#/components/schemas/IslandSummary"
+         },
+         "title": "Response V1 List Islands Api V1 Islands Get",
+         "type": "array"
+        }
+       }
+      },
+      "description": "Successful Response"
+     }
+    },
+    "summary": "V1.List Islands"
+   }
+  },
+  "/api/v1/islands/{slug}": {
+   "get": {
+    "operationId": "v1_island_detail_api_v1_islands__slug__get",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "slug",
+      "required": true,
+      "schema": {
+       "title": "Slug",
+       "type": "string"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/IslandDetail"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "V1.Island Detail"
+   }
+  },
+  "/api/v1/islands/{slug}/conservation": {
+   "get": {
+    "description": "The IUCN Red List category that GBIF holds for the creature. 404 when GBIF has none.",
+    "operationId": "v1_conservation_api_v1_islands__slug__conservation_get",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "slug",
+      "required": true,
+      "schema": {
+       "title": "Slug",
+       "type": "string"
+      }
+     },
+     {
+      "in": "query",
+      "name": "creature",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Creature"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ConservationOut"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "V1.Conservation"
+   }
+  },
+  "/api/v1/islands/{slug}/educator": {
+   "get": {
+    "operationId": "v1_educator_json_api_v1_islands__slug__educator_get",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "slug",
+      "required": true,
+      "schema": {
+       "title": "Slug",
+       "type": "string"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "V1.Educator Json"
+   }
+  },
+  "/api/v1/islands/{slug}/narration": {
+   "get": {
+    "operationId": "v1_narration_api_v1_islands__slug__narration_get",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "slug",
+      "required": true,
+      "schema": {
+       "title": "Slug",
+       "type": "string"
+      }
+     },
+     {
+      "in": "query",
+      "name": "creature",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Creature"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/NarrationOut"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "V1.Narration"
+   }
+  },
+  "/api/v1/islands/{slug}/sensors": {
+   "get": {
+    "operationId": "v1_sensors_api_v1_islands__slug__sensors_get",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "slug",
+      "required": true,
+      "schema": {
+       "title": "Slug",
+       "type": "string"
+      }
+     },
+     {
+      "in": "query",
+      "name": "creature",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Creature"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/SensorsOut"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "V1.Sensors"
+   }
+  },
+  "/api/v1/library/search": {
+   "get": {
+    "operationId": "v1_library_search_api_v1_library_search_get",
+    "parameters": [
+     {
+      "in": "query",
+      "name": "island",
+      "required": true,
+      "schema": {
+       "title": "Island",
+       "type": "string"
+      }
+     },
+     {
+      "in": "query",
+      "name": "q",
+      "required": false,
+      "schema": {
+       "default": "",
+       "maxLength": 200,
+       "title": "Q",
+       "type": "string"
+      }
+     },
+     {
+      "in": "query",
+      "name": "category",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Category"
+      }
+     },
+     {
+      "in": "query",
+      "name": "creature",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Creature"
+      }
+     },
+     {
+      "in": "query",
+      "name": "limit",
+      "required": false,
+      "schema": {
+       "default": 40,
+       "maximum": 100,
+       "minimum": 1,
+       "title": "Limit",
+       "type": "integer"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/LibraryOut"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "V1.Library Search"
+   }
+  },
+  "/api/v1/overview": {
+   "get": {
+    "description": "What the data set holds per island, and how old the external data is.",
+    "operationId": "v1_overview_api_v1_overview_get",
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      },
+      "description": "Successful Response"
+     }
+    },
+    "summary": "V1.Overview"
+   }
+  },
+  "/api/v1/stats": {
+   "get": {
+    "description": "Aggregate usage and quality numbers. No question text is ever returned unless LOG_QUESTIONS is on.",
+    "operationId": "v1_stats_api_v1_stats_get",
+    "parameters": [
+     {
+      "in": "query",
+      "name": "days",
+      "required": false,
+      "schema": {
+       "default": 7,
+       "exclusiveMinimum": 0,
+       "maximum": 365,
+       "title": "Days",
+       "type": "number"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "V1.Stats"
+   }
+  }
+ }
+}

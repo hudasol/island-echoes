@@ -22,7 +22,8 @@ class RateLimiter:
         if day != self._day:
             self._day, self._today = day, 0
         if self._today >= self.daily_cap:
-            raise HTTPException(429, "The daily chat budget for this demo is used up. Try again tomorrow.")
+            wait = int(86400 - (self._wall() % 86400)) + 1
+            raise HTTPException(429, "The daily chat budget for this demo is used up. Try again tomorrow.", headers={"Retry-After": str(wait)})
         now = self._clock()
         if len(self._hits) > 10_000:  # forget keys that have gone quiet so memory stays bounded
             for k in [k for k, v in self._hits.items() if not v or now - v[-1] > 60]:
@@ -31,7 +32,7 @@ class RateLimiter:
         while q and now - q[0] > 60:
             q.popleft()
         if len(q) >= self.per_minute:
-            raise HTTPException(429, self.minute_message)
+            raise HTTPException(429, self.minute_message, headers={"Retry-After": str(max(1, int(60 - (now - q[0])) + 1))})
         q.append(now)
         self._today += 1
 

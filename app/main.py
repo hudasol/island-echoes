@@ -3,8 +3,10 @@ from __future__ import annotations
 import logging
 import time
 
-from fastapi import FastAPI, Request
+from fastapi import APIRouter, FastAPI, Request
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
+from fastapi.routing import APIRoute
 from fastapi.staticfiles import StaticFiles
 
 from . import __version__
@@ -37,6 +39,16 @@ CSP = (
 )
 
 
+def versioned(rt: APIRouter) -> APIRouter:
+    """The same routes under /api/v1. The unversioned /api paths stay as aliases for existing clients."""
+    v1 = APIRouter()
+    for route in rt.routes:
+        if isinstance(route, APIRoute) and route.path.startswith("/api/"):
+            v1.add_api_route("/api/v1/" + route.path[len("/api/"):], route.endpoint, methods=list(route.methods), response_model=route.response_model,
+                             response_class=route.response_class, name="v1." + route.name, summary=route.summary)
+    return v1
+
+
 def create_app(settings: Settings | None = None, service: ChatService | None = None) -> FastAPI:
     settings = settings or get_settings()
     island_store = IslandStore.load(settings.islands_dir)
@@ -58,7 +70,10 @@ def create_app(settings: Settings | None = None, service: ChatService | None = N
         saved_narrations=load_saved(settings.narrations_path),
     )
 
-    app = FastAPI(title="Island Echoes", version=__version__, docs_url="/api/docs", openapi_url="/api/openapi.json")
+    app = FastAPI(title="Island Echoes", version=__version__, docs_url="/api/docs", openapi_url="/api/v1/openapi.json",
+                  description="Read only access to the sourced island library, NASA POWER readings, GBIF records and the educator sheets. Version 1 of the API lives under /api/v1.")
+    # Public read only data: any site may fetch it with GET (the embeddable widget does). Chat is a POST and is not opened.
+    app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["GET"], allow_headers=[], expose_headers=["Retry-After"], max_age=3600)
     app.state.service = service
 
     @app.middleware("http")
@@ -79,7 +94,9 @@ def create_app(settings: Settings | None = None, service: ChatService | None = N
         return resp
 
     for module in (meta, islands, library, chat):
-        app.include_router(module.router(deps))
+        rt = module.router(deps)
+        app.include_router(rt, include_in_schema=False)
+        app.include_router(versioned(rt))
 
     if settings.web_dir.exists():
         @app.get("/sw.js", include_in_schema=False)
