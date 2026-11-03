@@ -12,7 +12,7 @@ hardware the organisation controls, and it must leave a record that an overseer 
 ## 2. What exists today
 
 Island Echoes is a working, open source prototype that meets these requirements on a small public domain: seven
-remote islands, 469 facts each linked to a public source, NASA POWER climatology and GBIF species records. It is
+remote islands, 474 facts each linked to a public source, NASA POWER climatology and GBIF species records. It is
 deliberately modest in scope so that every number in it can be checked.
 
 | Layer | What it does | Status |
@@ -57,7 +57,7 @@ A table aware check that targets those errors rejected five wrong first attempts
 
 - **Semantic faithfulness.** The validator checks citations, numbers and names mechanically. A wrong claim built
   from correct words passes. No judge model or human rating has been run on the local model's answers.
-- **Scale.** 469 facts over seven sites. Retrieval quality and latency on tens of thousands of documents are
+- **Scale.** 474 facts over seven sites. Retrieval quality and latency on tens of thousands of documents are
   untested.
 - **Users.** No study with analysts or field staff has been done; usefulness is assumed, not measured.
 - **Independent labels.** Gold answers were written by one person.

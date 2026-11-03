@@ -11,7 +11,7 @@ Live: <https://island-echoes.onrender.com>
 - **Globe.** NASA GIBS imagery on a three.js globe (true colour, relief, night lights, sea surface temperature) with a day and night layer computed from the sun's position.
 - **Field sites.** Seven islands and eight creatures, listed with official IUCN codes, fact counts and data dates. Each creature has an animated scene and a spoken field report.
 - **Climate readings.** NASA POWER 2001 to 2020 monthly means for the grid cell around each island.
-- **Library.** 469 sourced facts across twelve categories. Every entry shows its publisher, link, retrieval date and confidence label. Search needs no model and no key.
+- **Library.** 474 sourced facts across twelve categories. Every entry shows its publisher, link, retrieval date and confidence label. Search needs no model and no key.
 - **Species records.** GBIF occurrence counts and the IUCN Red List category GBIF holds for each creature.
 - **Chat.** Optional. The creature answers in the first person; each factual sentence cites retrieved evidence and passes a mechanical validator before it reaches the screen. Works with a free local model.
 - **Educator sheets.** `/educator/<island>` prints to a two page sheet with cited facts, monthly climate readings and discussion questions.

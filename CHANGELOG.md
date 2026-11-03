@@ -8,6 +8,12 @@ Moved published numbers (all regenerated from stored runs by code):
   against a developer's live local cache of NASA POWER and GBIF responses; the report now reads only the committed snapshots, so
   the number can be reproduced from a fresh clone and in continuous integration.
 
+- Library: 469 facts become 474. Five facts from a French National Assembly report (2016) were added to Clipperton, with page
+  quotations in the evidence notes: the 1858 act of possession, the arbitration dates, area, a distance and the conflicting
+  dates of the first landing. One new conflict is logged. Fact embeddings were rebuilt.
+- RESULTS.md, retrieval table: the headline hybrid hit@5 on the 58 held out questions is unchanged at 0.90; hybrid hit@3 moves from
+  0.81 to 0.79 and some interval ends move by 0.01 after the library grew. The stored sealed runs used the 469 fact library and keep it.
+
 Added so far: Arabic interface, shareable field report, educator sheets, public read only API under `/api/v1`, offline
 shell updates, climate tool and lossless validation fallback behind settings (off by default), scheduled uptime and freshness checks.
 
