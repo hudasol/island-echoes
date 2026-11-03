@@ -14,6 +14,11 @@ Live: <https://island-echoes.onrender.com>
 - **Library.** 469 sourced facts across twelve categories. Every entry shows its publisher, link, retrieval date and confidence label. Search needs no model and no key.
 - **Species records.** GBIF occurrence counts and the IUCN Red List category GBIF holds for each creature.
 - **Chat.** Optional. The creature answers in the first person; each factual sentence cites retrieved evidence and passes a mechanical validator before it reaches the screen. Works with a free local model.
+- **Educator sheets.** `/educator/<island>` prints to a two page sheet with cited facts, monthly climate readings and discussion questions.
+- **Field reports.** `/report/<island>/<creature>` is a static, cited page with an image card, a retrieval date and the IUCN code. No script, no cookie, no tracker.
+- **Public API and embed.** Read only routes under `/api/v1` with CORS for GET, an OpenAPI document in `docs/openapi.json`, and an embeddable search widget (`web/embed.js`). See [docs/API.md](docs/API.md).
+- **Arabic interface.** A language switch changes the interface to Arabic with a right to left layout. Only interface text is translated; facts, citations and source titles stay in the language of the source.
+- **Offline shell.** A service worker keeps the interface usable offline and offers an update when a new version is ready. The 2 MB globe bundle loads after the page is usable, and only on request on devices that signal data saving or little memory.
 - **Operations page.** `/stats.html` shows the data set, retrieval results with intervals, the end to end baselines and live traffic.
 
 | Island | Creature | Category |
