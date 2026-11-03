@@ -70,6 +70,25 @@ class ClimateTool:
                 out.append(isl)
         return out
 
+    def _names_unknown_place(self, question: str) -> bool:
+        """True when the question asks about a capitalised place that is not in the library.
+
+        The route would otherwise answer about the island the person has selected, which is a wrong island. A place
+        counts as known when it matches the name or an alternative name of a library island.
+        """
+        known = {_norm(re.sub(r"\(.*?\)", "", n)).replace("islands", "").replace("island", "").strip()
+                 for isl in self.islands.islands.values() for n in [isl.name, *isl.alt_names]}
+        known = {k for k in known if len(k) >= 4}
+        skip = {m.lower() for m in MONTH_FULL} | {"nasa", "power", "the", "gbif", "iucn", "earth"}
+        for m in re.finditer(r"\b(?:on|in|at|of|for|from|around)\s+(?:the\s+)?([A-Z][\w'-]+(?:\s+[A-Z][\w'-]+)*)", question):
+            words = [_norm(re.sub(r"['’]s$", "", w)) for w in m.group(1).split()]
+            phrase = " ".join(w for w in words if w not in {"island", "islands"})
+            if not phrase or phrase in skip or words[0] in skip:
+                continue
+            if not any(phrase.startswith(k) or k.startswith(phrase) for k in known):
+                return True
+        return False
+
     @staticmethod
     def _months_in(question: str) -> list[int]:
         q = question.lower()
@@ -101,6 +120,8 @@ class ClimateTool:
         if not SOURCE_HINT.search(q):
             return None
         named = self._islands_named(question)
+        if not named and self._names_unknown_place(question):
+            return None
         months = self._months_in(question)
 
         for pat, kind, key, word in EXTREMES:
