@@ -141,3 +141,18 @@ file at this point. Second labeller result, recorded here because it is a measur
 system: of 68 retrieval type items, the labeller's set equals the constructed gold in 45 (66%), covers it in 58 (85%), and the mean Jaccard
 overlap is 0.775; in 9 items the gold fact was not among the 12 candidates it was shown. This is a miss on P10 (at least
 85% exact match) and is reported as such; it does not change any other prediction.
+
+Addendum 2, 3 November 2026, written after the 3B run on the sealed set had started and before any result of it was read.
+Measured speed on the 2 vCPU machine is about 150 to 180 seconds per question for the 3B model, so the plan above for the
+other runs cannot finish. The following replaces the plan for the three secondary runs; the primary 3B run on all 150
+questions is unchanged.
+
+| Run | Questions | Fixed by |
+|---|---|---|
+| Qwen2.5 3B, closed book | 50 | every third question of `test.jsonl` in file order (`eval/v3/subset50.txt`; 16 single fact, 10 climate, 5 multiple fact, 5 unanswerable, 5 not in the library, 4 prompt injection, 3 species, 2 source conflict) |
+| Qwen2.5 1.5B, full pipeline | the same 50 | `eval/v3/subset50.txt` |
+| Qwen2.5 7B, full pipeline | 30 | every fifth question (`eval/v3/subset30.txt`; 9 single fact, 6 climate, 3 multiple fact, 3 unanswerable, 3 not in the library, 3 prompt injection, 2 species, 1 source conflict) |
+
+Comparisons with the 3B model for these runs use the same questions from the 3B run, as paired tests on that subset.
+With 30 and 50 questions the intervals are wide, and P11 and P12 will be reported with that caveat. If time runs out, runs
+are stopped in the order 7B, then 1.5B, and what was completed is reported with the exact count.
