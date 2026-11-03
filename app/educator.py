@@ -119,7 +119,7 @@ def render_html(sheet: dict) -> str:
     r = sheet["readings"]
     if r:
         out.append(f"<section><h2>NASA POWER readings</h2><p class=\"blurb\">{_e(r['period'])}. Grid cell centred at {r['cell'][0]}, {r['cell'][1]}. Retrieved {_e(r['as_of'])}.</p>")
-        out.append("<div class=\"scroll\"><table><thead><tr><th scope=\"col\">Reading</th>" + "".join(f"<th scope=\"col\" class=\"n\">{m}</th>" for m in MONTHS) + "<th scope=\"col\" class=\"n\">Year</th></tr></thead><tbody>")
+        out.append("<div class=\"scroll\" tabindex=\"0\" role=\"region\" aria-label=\"Monthly readings table\"><table><thead><tr><th scope=\"col\">Reading</th>" + "".join(f"<th scope=\"col\" class=\"n\">{m}</th>" for m in MONTHS) + "<th scope=\"col\" class=\"n\">Year</th></tr></thead><tbody>")
         for i in r["items"]:
             cells = "".join(f"<td class=\"n\">{'' if v is None else f'{v:g}'}</td>" for v in i["monthly"])
             ann = "" if i["annual"] is None else f"{i['annual']:g}"

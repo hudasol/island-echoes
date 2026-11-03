@@ -57,12 +57,22 @@ def states(page, base: str):
         page.wait_for_selector("#data-body table")
         page.wait_for_timeout(800)
 
+    def educator():
+        page.goto(base + "/educator/socotra")
+        page.wait_for_selector("ol.refs li")
+
+    def embed():
+        page.goto(base + "/embed-demo.html")
+        page.wait_for_timeout(500)
+
     return [
         ("Start view", start),
         ("Island, field agent tab", island),
         ("Island, library tab", library),
         ("Credits dialog", about),
         ("Operations page", ops),
+        ("Educator sheet", educator),
+        ("Embed demo", embed),
     ]
 
 
@@ -115,7 +125,7 @@ def main() -> int:
         "- The island list is a keyboard alternative to the globe; tabs and creature switching work by keyboard.",
         "- Motion can be paused, and `prefers-reduced-motion` starts it paused.",
         "- Colour pairs, focus rings, forced colours and increased contrast modes are styled explicitly.",
-        "- Tables on the start view and the operations page use real headers and row scopes, and plots carry text labels.",
+        "- Tables on the start view, the operations page and the educator sheet use real headers and row scopes, and plots carry text labels.",
     ]
     OUT.write_text("\n".join(lines) + "\n", encoding="utf-8")
     print("\n".join(lines))
