@@ -65,6 +65,19 @@ def states(page, base: str):
         page.goto(base + "/embed-demo.html")
         page.wait_for_timeout(500)
 
+    def arabic():
+        page.goto(base + "/")
+        page.wait_for_selector("#ledger tbody tr", state="attached")
+        page.click("#lang-toggle")
+        page.wait_for_timeout(500)
+
+    def arabic_island():
+        arabic()
+        page.goto(base + "/#socotra")
+        page.reload()
+        page.wait_for_selector("#island-name:not(:empty)")
+        page.wait_for_timeout(600)
+
     return [
         ("Start view", start),
         ("Island, field agent tab", island),
@@ -73,6 +86,8 @@ def states(page, base: str):
         ("Operations page", ops),
         ("Educator sheet", educator),
         ("Embed demo", embed),
+        ("Arabic interface, start view", arabic),
+        ("Arabic interface, island", arabic_island),
     ]
 
 
@@ -125,7 +140,8 @@ def main() -> int:
         "- The island list is a keyboard alternative to the globe; tabs and creature switching work by keyboard.",
         "- Motion can be paused, and `prefers-reduced-motion` starts it paused.",
         "- Colour pairs, focus rings, forced colours and increased contrast modes are styled explicitly.",
-        "- Tables on the start view, the operations page and the educator sheet use real headers and row scopes, and plots carry text labels.",
+        "- An Arabic interface (right to left) is available from the language button. Only interface text is translated; facts, citations and source titles stay in the language of the source.
+- Tables on the start view, the operations page and the educator sheet use real headers and row scopes, and plots carry text labels.",
     ]
     OUT.write_text("\n".join(lines) + "\n", encoding="utf-8")
     print("\n".join(lines))

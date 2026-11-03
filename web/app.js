@@ -1,6 +1,7 @@
 (() => {
   "use strict";
   const $ = (id) => document.getElementById(id);
+  const T = (k, fb) => (window.I18N ? window.I18N.t(k, fb) : fb);
   const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const GIBS = "https://gibs.earthdata.nasa.gov/wmts/epsg3857/best";
   const dayAgo = (n) => new Date(Date.now() - n * 864e5).toISOString().slice(0, 10);
@@ -72,7 +73,7 @@
       updateSun(); setInterval(updateSun, 60000);
       applyLayer(S.layer);
     } catch (err) {
-      const e = $("globe-error"); e.hidden = false; e.textContent = "The 3D globe needs WebGL, which this browser has not enabled. The island list and field agent still work.";
+      const e = $("globe-error"); e.hidden = false; e.textContent = T("no_webgl", "The 3D globe needs WebGL.");
     }
   }
   const fmtDeg = (v, pos, neg) => `${Math.abs(v).toFixed(1)}° ${v >= 0 ? pos : neg}`;
@@ -201,7 +202,7 @@
   }
   async function loadSensors(isl, creature) {
     const seq = ++S.sensorSeq, grid = $("sensor-grid"), note = $("sensor-note");
-    grid.replaceChildren(); note.textContent = "Reading NASA POWER…"; $("sensor-warning").hidden = true;
+    grid.replaceChildren(); note.textContent = T("reading", "Reading NASA POWER…"); $("sensor-warning").hidden = true;
     try {
       const d = await api(`/api/islands/${isl.slug}/sensors${creature ? `?creature=${encodeURIComponent(creature)}` : ""}`);
       if (seq !== S.sensorSeq) return;
@@ -216,7 +217,7 @@
       $("sensor-warning").textContent = d.warning || ""; $("sensor-warning").hidden = !d.warning;
     } catch (e) {
       if (seq !== S.sensorSeq) return;
-      note.textContent = "Sensor readings are unavailable right now. " + e.message;
+      note.textContent = T("sensor_fail", "Sensor readings are unavailable right now.") + " " + e.message;
     }
   }
 
@@ -260,7 +261,7 @@
 
   /* ---------------- narration ---------------- */
   async function loadNarration() {
-    const t = $("narration-text"); t.textContent = "Tuning in…"; S.narration = null;
+    const t = $("narration-text"); t.textContent = T("tuning", "Tuning in…"); S.narration = null;
     speechSynthesis?.cancel?.();
     const isl = S.island.slug, cr = S.creature.slug;
     try {
@@ -271,14 +272,14 @@
       renderSentences(t, d.sentences, ev, flash);
       const det = el("details", "evidence"); det.append(el("summary", "muted small", `Sources for this report (${ev.length})`)); det.append(...box.children); t.append(det);
       det.addEventListener("toggle", () => {});
-    } catch (e) { t.textContent = "The field report could not be loaded. " + e.message; }
+    } catch (e) { t.textContent = T("report_fail", "The field report could not be loaded.") + " " + e.message; }
   }
   function speak() {
     if (!("speechSynthesis" in window) || !S.narration) return;
-    if (speechSynthesis.speaking) { speechSynthesis.cancel(); $("speak").textContent = "Read aloud"; return; }
+    if (speechSynthesis.speaking) { speechSynthesis.cancel(); $("speak").textContent = T("read_aloud", "Read aloud"); return; }
     const u = new SpeechSynthesisUtterance(S.narration.sentences.map((s) => s.text).join(" "));
-    u.rate = 0.95; u.onend = u.onerror = () => ($("speak").textContent = "Read aloud");
-    speechSynthesis.speak(u); $("speak").textContent = "Stop";
+    u.rate = 0.95; u.onend = u.onerror = () => ($("speak").textContent = T("read_aloud", "Read aloud"));
+    speechSynthesis.speak(u); $("speak").textContent = T("stop", "Stop");
   }
 
 
@@ -318,7 +319,7 @@
   async function runLibrary(first) {
     if (!S.island) return;
     const seq = ++libSeq, { q, cat } = S.lib, box = $("lib-results"), sum = $("lib-summary");
-    sum.textContent = "Searching…";
+    sum.textContent = T("searching", "Searching…");
     const params = new URLSearchParams({ island: S.island.slug, q, limit: "60" });
     if (cat) params.set("category", cat);
     if (S.creature) params.set("creature", S.creature.slug);
@@ -338,11 +339,11 @@
           : "No entries in this category."));
         sum.textContent = d.notes.join(". ");
       } else {
-        sum.textContent = `${d.total} ${d.total === 1 ? "entry" : "entries"}${q ? ` for "${q}"` : ""}${cat ? ` in ${CAT_LABEL[cat]}` : ""}. ` + d.notes.join(". ");
+        sum.textContent = `${d.total} ${d.total === 1 ? T("entry_one", "entry") : T("entry_many", "entries")}${q ? ` for "${q}"` : ""}${cat ? ` in ${CAT_LABEL[cat]}` : ""}. ` + d.notes.join(". ");
         const part = new Set(d.partial_ids || []); d.results.forEach((e, i) => box.append(libCard(e, q, i + 1, part.has(e.id))));
         if (d.quality === "partial") sum.textContent = "Closest entries only. They match part of your question, and the library may not answer it. " + sum.textContent;
       }
-    } catch (e) { if (seq === libSeq) { sum.textContent = ""; box.replaceChildren(el("p", "lib-empty", "The library could not be loaded. " + e.message)); } }
+    } catch (e) { if (seq === libSeq) { sum.textContent = ""; box.replaceChildren(el("p", "lib-empty", T("lib_fail", "The library could not be loaded.") + " " + e.message)); } }
   }
   function libIdeas() {
     const box = $("lib-suggestions"); if (box.childElementCount) return;
@@ -469,7 +470,7 @@
     $("speak").addEventListener("click", speak);
     if (!("speechSynthesis" in window)) $("speak").hidden = true;
     const pb = $("pause-anim");
-    const syncPause = () => { pb.setAttribute("aria-pressed", String(S.paused)); pb.textContent = S.paused ? "Play motion" : "Pause motion"; };
+    const syncPause = () => { pb.setAttribute("aria-pressed", String(S.paused)); pb.textContent = S.paused ? T("play", "Play motion") : T("pause", "Pause motion"); };
     pb.addEventListener("click", () => { S.paused = !S.paused; Creatures.setPaused(S.paused); syncPause(); });
     syncPause();
     $("close-console").addEventListener("click", () => {
@@ -486,7 +487,7 @@
   async function boot() {
     wire();
     try { S.islands = await api("/api/islands"); }
-    catch (e) { $("globe-error").hidden = false; $("globe-error").textContent = "Could not reach the Island Echoes server. " + e.message; return; }
+    catch (e) { $("globe-error").hidden = false; $("globe-error").textContent = T("server_fail", "Could not reach the Island Echoes server.") + " " + e.message; return; }
     buildIndex(); initGlobe($("globe"));
     api("/api/overview").then(renderStart).catch(() => { $("ledger").hidden = true; });
     api("/api/health").then((h) => {

@@ -14,63 +14,64 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<a class="skip" href="#console">Skip to the field agent</a>
+<a class="skip" href="#console" data-i18n="skip">Skip to the field agent</a>
 <noscript><p class="noscript">Island Echoes needs JavaScript to show the globe and the library.</p></noscript>
 <div class="app" id="app">
-  <nav class="index" aria-label="Islands">
+  <nav class="index" aria-label="Islands" data-i18n-aria="nav_islands">
     <header class="brand">
       <h1>Island Echoes</h1>
-      <p>Seven remote islands. One creature on each, speaking only from sources.</p>
+      <p data-i18n="tagline">Seven remote islands. One creature on each, speaking only from sources.</p>
     </header>
     <ul id="island-list" class="island-list"></ul>
-    <section class="layers" aria-label="NASA GIBS imagery">
-      <h2>Satellite layer</h2>
+    <section class="layers" aria-label="NASA GIBS imagery" data-i18n-aria="gibs">
+      <h2 data-i18n="layer_h">Satellite layer</h2>
       <div id="layer-buttons" class="layer-buttons" role="group" aria-label="Satellite layer"></div>
       <p id="layer-note" class="layer-note"></p>
     </section>
-    <button id="open-about" class="quiet about-btn" type="button">About the data and credits</button>
+    <button id="open-about" class="quiet about-btn" type="button" data-i18n="about_btn">About the data and credits</button>
+    <button id="lang-toggle" class="quiet about-btn" type="button" lang="ar" aria-label="Switch language to Arabic">العربية</button>
   </nav>
 
   <main class="stage">
     <div id="globe" class="globe" role="group" aria-label="Interactive 3D globe. The island list offers the same choices by keyboard."></div>
     <p id="sun-readout" class="sun-readout" aria-live="off"></p>
-    <p id="globe-hint" class="globe-hint">Drag to turn the globe. Choose an island to fly there.</p>
+    <p id="globe-hint" class="globe-hint" data-i18n="globe_hint">Drag to turn the globe. Choose an island to fly there.</p>
     <p id="globe-error" class="globe-error" hidden role="alert"></p>
     <p id="attribution" class="attribution">Imagery: NASA GIBS. Climate: NASA POWER. Species records: GBIF.</p>
   </main>
 
-  <aside id="console" class="console" aria-label="Field agent" tabindex="-1">
+  <aside id="console" class="console" aria-label="Field agent" data-i18n-aria="field_agent" tabindex="-1">
     <div class="console-empty" id="console-empty">
-      <h2>Field sites</h2>
-      <p class="lede">Seven islands, eight creatures. Select a row, a pin or an island in the list.</p>
+      <h2 data-i18n="sites_h">Field sites</h2>
+      <p class="lede" data-i18n="lede">Seven islands, eight creatures. Select a row, a pin or an island in the list.</p>
       <table class="ledger" id="ledger" aria-label="Field sites">
-        <thead><tr><th scope="col">Site</th><th scope="col">Creature</th><th scope="col">Status</th><th scope="col" class="num">Facts</th></tr></thead>
+        <thead><tr><th scope="col" data-i18n="th_site">Site</th><th scope="col" data-i18n="th_creature">Creature</th><th scope="col" data-i18n="th_status">Status</th><th scope="col" class="num" data-i18n="th_facts">Facts</th></tr></thead>
         <tbody></tbody>
-        <tfoot><tr><th scope="row" colspan="3">Total</th><td class="num" id="ledger-total"></td></tr></tfoot>
+        <tfoot><tr><th scope="row" colspan="3" data-i18n="total">Total</th><td class="num" id="ledger-total"></td></tr></tfoot>
       </table>
       <p class="ledger-note" id="ledger-note"></p>
       <dl class="method">
-        <dt>Library</dt><dd>Every entry carries its source, publisher and retrieval date. A search the sources cannot answer returns nothing.</dd>
-        <dt>Climate</dt><dd>NASA POWER 2001 to 2020 monthly means for the grid cell around each island.</dd>
-        <dt>Species</dt><dd>GBIF records and the IUCN Red List category GBIF holds for each creature.</dd>
+        <dt data-i18n="dt_library">Library</dt><dd data-i18n="dd_library">Every entry carries its source, publisher and retrieval date. A search the sources cannot answer returns nothing.</dd>
+        <dt data-i18n="dt_climate">Climate</dt><dd data-i18n="dd_climate">NASA POWER 2001 to 2020 monthly means for the grid cell around each island.</dd>
+        <dt data-i18n="dt_species">Species</dt><dd data-i18n="dd_species">GBIF records and the IUCN Red List category GBIF holds for each creature.</dd>
       </dl>
-      <p class="ledger-links"><a href="/stats.html">Operations and evaluation</a> · <a href="/api/docs">API reference</a></p>
+      <p class="ledger-links"><a href="/stats.html" data-i18n="ops_link">Operations and evaluation</a> · <a href="/api/docs" data-i18n="api_link">API reference</a></p>
     </div>
     <div class="console-body" id="console-body" hidden>
-      <button class="sheet-handle" id="sheet-handle" type="button" aria-label="Expand or collapse the field agent panel"></button>
+      <button class="sheet-handle" id="sheet-handle" type="button" aria-label="Expand or collapse the field agent panel" data-i18n-aria="sheet_handle"></button>
       <header class="agent-head">
         <div>
           <h2 id="island-name" tabindex="-1"></h2>
           <p id="island-territory" class="muted"></p>
-          <details class="pin-details"><summary class="small muted">About this pin</summary><p id="pin-note" class="small muted"></p></details>
-          <p class="small"><a id="educator-link" href="/educator/" target="_blank" rel="noopener">Educator sheet</a></p>
+          <details class="pin-details"><summary class="small muted" data-i18n="pin_summary">About this pin</summary><p id="pin-note" class="small muted"></p></details>
+          <p class="small"><a id="educator-link" href="/educator/" target="_blank" rel="noopener" data-i18n="educator">Educator sheet</a></p>
         </div>
-        <button id="close-console" class="quiet" type="button">Close</button>
+        <button id="close-console" class="quiet" type="button" data-i18n="close">Close</button>
       </header>
 
       <div class="panel-tabs" role="tablist" aria-label="Island panel">
-        <button id="tab-agent" type="button" role="tab" aria-selected="true" aria-controls="pane-agent">Field agent</button>
-        <button id="tab-library" type="button" role="tab" aria-selected="false" aria-controls="pane-library">Library</button>
+        <button id="tab-agent" type="button" role="tab" aria-selected="true" aria-controls="pane-agent" data-i18n="tab_agent">Field agent</button>
+        <button id="tab-library" type="button" role="tab" aria-selected="false" aria-controls="pane-library" data-i18n="tab_library">Library</button>
       </div>
 
       <div id="pane-agent" class="pane" role="tabpanel" aria-labelledby="tab-agent">
@@ -81,61 +82,61 @@
         <div class="window-bar">
           <span id="creature-name" class="creature-name"></span>
           <span id="status-chip" class="chip"></span>
-          <button id="pause-anim" class="quiet" type="button" aria-pressed="false">Pause motion</button>
+          <button id="pause-anim" class="quiet" type="button" aria-pressed="false" data-i18n="pause">Pause motion</button>
         </div>
       </div>
       <p id="status-detail" class="muted small"></p>
       <p id="status-official" class="muted small" hidden></p>
 
       <section class="sensors" aria-label="NASA POWER sensor readouts">
-        <h3>Climate readings</h3>
+        <h3 data-i18n="climate_h">Climate readings</h3>
         <div id="sensor-grid" class="sensor-grid"></div>
         <p id="sensor-note" class="muted small" aria-live="polite"></p>
         <p id="sensor-warning" class="warning small" role="note" hidden></p>
-        <p class="muted small">Each value describes a NASA POWER grid cell about 55 km by 70 km, which is larger than the island, so it blends land and open sea. It describes the area, not a station on the shore.</p>
+        <p class="muted small" data-i18n="cell_note">Each value describes a NASA POWER grid cell about 55 km by 70 km, which is larger than the island, so it blends land and open sea. It describes the area, not a station on the shore.</p>
       </section>
 
       <section class="narration" aria-label="Narration">
         <div class="narration-head">
-          <h3>Field report</h3>
-          <button id="speak" class="quiet" type="button">Read aloud</button>
+          <h3 data-i18n="report_h">Field report</h3>
+          <button id="speak" class="quiet" type="button" data-i18n="read_aloud">Read aloud</button>
         </div>
         <div id="narration-text" class="narration-text"></div>
       </section>
 
       <section class="ask" id="ask" aria-label="Learn facts from the library">
-        <h3>Learn facts from the library</h3>
+        <h3 data-i18n="learn_h">Learn facts from the library</h3>
         <div id="ask-suggestions" class="suggestions"></div>
         <div id="ask-log" class="log" aria-live="polite"></div>
         <form id="ask-form" class="chat-form" autocomplete="off">
-          <label class="sr" for="ask-input">Your question</label>
-          <input id="ask-input" maxlength="200" placeholder="Ask about climate, water, species or history" required>
-          <button type="submit" id="ask-send">Search</button>
+          <label class="sr" for="ask-input" data-i18n="your_question">Your question</label>
+          <input id="ask-input" maxlength="200" placeholder="Ask about climate, water, species or history" data-i18n-ph="ask_ph" required>
+          <button type="submit" id="ask-send" data-i18n="search">Search</button>
         </form>
-        <p class="muted small">Answers come only from the library's sourced entries. If the library has nothing on your question, it says so. <button type="button" class="linklike" id="open-library">Browse the whole library</button></p>
+        <p class="muted small"><span data-i18n="ask_note">Answers come only from the library's sourced entries. If the library has nothing on your question, it says so.</span> <button type="button" class="linklike" id="open-library" data-i18n="browse">Browse the whole library</button></p>
       </section>
 
       <details class="chat" id="chat-details" hidden>
-        <summary>Ask the creature</summary>
+        <summary data-i18n="ask_creature">Ask the creature</summary>
         <div id="suggestions" class="suggestions"></div>
         <div id="log" class="log" aria-live="polite"></div>
         <form id="chat-form" class="chat-form" autocomplete="off">
-          <label class="sr" for="chat-input">Your question</label>
-          <input id="chat-input" maxlength="500" placeholder="Ask about climate, history, or the species" required>
-          <button type="submit" id="send">Ask</button>
+          <label class="sr" for="chat-input" data-i18n="your_question">Your question</label>
+          <input id="chat-input" maxlength="500" placeholder="Ask about climate, history, or the species" data-i18n-ph="chat_ph" required>
+          <button type="submit" id="send" data-i18n="ask">Ask</button>
         </form>
-        <p class="muted small">Answers use only the sources shown. If the sources are silent, the creature says so. <span id="chat-model"></span> <a href="/stats.html">Usage statistics</a></p>
+        <p class="muted small"><span data-i18n="chat_note">Answers use only the sources shown. If the sources are silent, the creature says so.</span> <span id="chat-model"></span> <a href="/stats.html" data-i18n="usage">Usage statistics</a></p>
       </details>
       </div>
 
       <div id="pane-library" class="pane" role="tabpanel" aria-labelledby="tab-library" hidden>
       <section class="library" aria-label="Island library">
-        <h3>Island library</h3>
-        <p class="muted small" id="library-intro">Every entry is a sourced fact. Search by topic, or filter by category.</p>
+        <h3 data-i18n="lib_h">Island library</h3>
+        <p class="muted small" id="library-intro" data-i18n="lib_intro">Every entry is a sourced fact. Search by topic, or filter by category.</p>
         <form id="library-form" class="chat-form" role="search" autocomplete="off">
-          <label class="sr" for="library-input">Search this island's library</label>
-          <input id="library-input" type="search" maxlength="200" placeholder="Try: coral bleaching, rainfall, endangered birds">
-          <button type="submit">Search</button>
+          <label class="sr" for="library-input" data-i18n="lib_label">Search this island's library</label>
+          <input id="library-input" type="search" maxlength="200" placeholder="Try: coral bleaching, rainfall, endangered birds" data-i18n-ph="lib_ph">
+          <button type="submit" data-i18n="search">Search</button>
         </form>
         <div id="lib-suggestions" class="suggestions"></div>
         <div id="lib-cats" class="cats" role="group" aria-label="Filter by category"></div>
@@ -147,7 +148,7 @@
     </div>
   </aside>
 </div>
-<div id="update-banner" class="update-banner" role="status" hidden>A new version of Island Echoes is ready. <button id="update-reload" class="quiet" type="button">Reload</button></div>
+<div id="update-banner" class="update-banner" role="status" hidden><span data-i18n="update">A new version of Island Echoes is ready.</span> <button id="update-reload" class="quiet" type="button" data-i18n="reload">Reload</button></div>
 <dialog id="about" class="about" aria-labelledby="about-title">
   <form method="dialog" class="about-close"><button class="quiet" aria-label="Close about and credits">Close</button></form>
   <h2 id="about-title">Data and credits</h2>
@@ -170,6 +171,7 @@
   <h3>Found a mistake?</h3>
   <p>Report it on <a href="https://github.com/hudasol/island-echoes/issues" target="_blank" rel="noopener noreferrer">the project's issue tracker</a>.</p>
 </dialog>
+<script src="i18n.js"></script>
 <script src="vendor/globe.bundle.js"></script>
 <script src="creatures.js"></script>
 <script src="app.js"></script>

@@ -4,20 +4,24 @@ Automated audit with axe-core 4.10.3 (WCAG 2.0 to 2.2 A and AA rules plus best p
 
 | State | Viewport | Violations | Rules passed | Needs review |
 |---|---|---|---|---|
-| Start view | desktop | 0 | 45 | 1 |
-| Island, field agent tab | desktop | 0 | 47 | 1 |
-| Island, library tab | desktop | 0 | 45 | 1 |
+| Start view | desktop | 0 | 46 | 1 |
+| Island, field agent tab | desktop | 0 | 48 | 1 |
+| Island, library tab | desktop | 0 | 46 | 1 |
 | Credits dialog | desktop | 0 | 20 | 0 |
 | Operations page | desktop | 0 | 45 | 0 |
 | Educator sheet | desktop | 0 | 42 | 0 |
 | Embed demo | desktop | 0 | 33 | 0 |
-| Start view | phone | 0 | 38 | 1 |
-| Island, field agent tab | phone | 0 | 46 | 1 |
-| Island, library tab | phone | 0 | 45 | 1 |
+| Arabic interface, start view | desktop | 0 | 46 | 1 |
+| Arabic interface, island | desktop | 0 | 48 | 1 |
+| Start view | phone | 0 | 39 | 1 |
+| Island, field agent tab | phone | 0 | 47 | 1 |
+| Island, library tab | phone | 0 | 46 | 1 |
 | Credits dialog | phone | 0 | 21 | 0 |
 | Operations page | phone | 0 | 45 | 1 |
 | Educator sheet | phone | 0 | 43 | 1 |
 | Embed demo | phone | 0 | 33 | 0 |
+| Arabic interface, start view | phone | 0 | 39 | 1 |
+| Arabic interface, island | phone | 0 | 47 | 1 |
 
 ## Built in
 
