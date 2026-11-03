@@ -34,6 +34,10 @@ class Settings(BaseSettings):
     retrieval_k: int = 12  # facts shown to the model (fewer = faster on small local models)
     dense_min_sim: float = 0.55  # cosine floor for the dense side of the answerability gate
 
+    validator_fallback: str = "drop"  # drop (version 1.1) | extractive: replace a rejected sentence with its source sentence
+    climate_tool: bool = False  # answer numeric NASA POWER questions from the stored tables instead of the model
+    month_names_ok: bool = False  # treat month names as allowed words in the name check
+
     telemetry: bool = True
     log_questions: bool = False  # store question text (off by default: only a hash and length are kept)
     telemetry_path: Path = ROOT / "data" / "cache" / "telemetry.db"

@@ -71,6 +71,11 @@ def answer_one(service: ChatService, q: dict) -> dict:
                 "raw_issues": r.raw_issues,
                 "rejected": r.rejected,
                 "repaired": r.repaired,
+                "second_sentences": r.second_sentences,
+                "replaced": r.replaced,
+                "first_answered": r.first_answered,
+                "model_answered": r.model_answered,
+                "notes": r.notes,
                 "llm_called": r.llm_called,
                 "seconds": round(time.time() - t0, 2),
                 "retrieval_ms": round(r.retrieval_ms, 1),
@@ -190,11 +195,18 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--retrieval", choices=["bm25", "dense", "hybrid"], help="retrieval mode for this run")
     ap.add_argument("--k", type=int, help="facts shown to the model (default RETRIEVAL_K, 12)")
     ap.add_argument("--label", help="name of the run (default provider-model-retrieval)")
+    ap.add_argument("--fallback", choices=["drop", "extractive"], help="what replaces a sentence the validator rejects (default drop, as in 1.1)")
+    ap.add_argument("--climate-tool", action="store_true", help="answer numeric NASA POWER questions from the stored tables")
+    ap.add_argument("--month-names", action="store_true", help="treat month names as allowed words in the name check")
     ap.add_argument("--system", choices=SYSTEMS, default="full", help="what answers the questions: the real pipeline or a baseline (see eval/baselines.py)")
     args = ap.parse_args(argv)
 
     settings = get_settings()
-    overrides = {k: v for k, v in {"llm_provider": args.provider, "llm_model": args.model, "retrieval_mode": args.retrieval, "retrieval_k": args.k}.items() if v}
+    overrides = {k: v for k, v in {"llm_provider": args.provider, "llm_model": args.model, "retrieval_mode": args.retrieval, "retrieval_k": args.k, "validator_fallback": args.fallback}.items() if v}
+    if args.climate_tool:
+        overrides["climate_tool"] = True
+    if args.month_names:
+        overrides["month_names_ok"] = True
     settings = settings.model_copy(update=overrides)
     ids = set(args.ids.split(",")) if args.ids else None
     questions = {q["id"]: q for q in load_questions(ids, args.questions) if not args.split or q.get("split") == args.split}
@@ -215,7 +227,8 @@ def main(argv: list[str] | None = None) -> int:
         if llm is None and args.system != "refuse-all":
             print("No LLM_PROVIDER set. Use --provider (extractive needs nothing) or --from-run to re-score a saved run.", file=sys.stderr)
             return 2
-        service = make_service(args.system, islands, retriever, llm)
+        options = dict(fallback=settings.validator_fallback, climate=settings.climate_tool, month_names_ok=settings.month_names_ok) if args.system == "full" else {}
+        service = make_service(args.system, islands, retriever, llm, **options)
         commit = git_sha()  # stamped before answering, so later commits made while it runs do not appear here
         local = getattr(llm, "provider", "") in ("ollama", "llamacpp")
         workers = args.workers or (1 if local else 4)
@@ -252,6 +265,7 @@ def main(argv: list[str] | None = None) -> int:
             "system": args.system,
             "retrieval_mode": retriever.mode if args.system in ("full", "unvalidated") else "none",
             "retrieval_k": retriever.k,
+            "flags": {"fallback": settings.validator_fallback, "climate_tool": settings.climate_tool, "month_names_ok": settings.month_names_ok},
             "facts_hash": texts_hash(fact_texts(islands)),
             "wall_seconds": round(time.time() - started, 1),
             "judge_model": None,

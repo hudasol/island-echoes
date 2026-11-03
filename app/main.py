@@ -42,7 +42,10 @@ def create_app(settings: Settings | None = None, service: ChatService | None = N
     island_store = IslandStore.load(settings.islands_dir)
     sources = SourceStore(settings, island_store)
     if service is None:
-        service = ChatService(island_store, build_retriever(settings, island_store, sources), build_llm(settings))
+        service = ChatService(
+            island_store, build_retriever(settings, island_store, sources), build_llm(settings),
+            fallback=settings.validator_fallback, climate=settings.climate_tool, month_names_ok=settings.month_names_ok,
+        )
     deps = Deps(
         settings=settings,
         islands=island_store,

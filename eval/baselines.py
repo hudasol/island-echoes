@@ -175,12 +175,12 @@ def _call(llm, system: str, user: str, meter: _Meter) -> dict:
     return {"answered": bool(out.get("answered")), "sentences": list(out.get("sentences") or []), "missing": str(out.get("missing") or "")}
 
 
-def make_service(system: str, islands: IslandStore, retriever: Retriever, llm):
-    """The object run_eval answers questions with. `full` is the production service."""
+def make_service(system: str, islands: IslandStore, retriever: Retriever, llm, **options):
+    """The object run_eval answers questions with. `full` is the production service; `options` are its flags."""
     from app.chat.service import ChatService
 
     if system == "full":
-        return ChatService(islands, retriever, llm)
+        return ChatService(islands, retriever, llm, **options)
     if system == "refuse-all":
         return RefuseAllService(islands, retriever)
     if system == "closed-book":
