@@ -5,8 +5,8 @@ from pathlib import Path
 from fastapi import APIRouter, HTTPException, Request
 from fastapi.responses import FileResponse, HTMLResponse, Response
 
-from ..data.sources import SourceUnavailable
 from .. import fieldreport
+from ..data.sources import SourceUnavailable
 from ..deps import Deps
 from ..educator import build_sheet, render_html
 from ..narration import narration_for

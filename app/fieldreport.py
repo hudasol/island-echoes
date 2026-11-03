@@ -24,7 +24,8 @@ def _e(x: object) -> str:
 
 def build_report(island: Island, creature: Creature, store: IslandStore, sources: SourceStore, saved: dict) -> dict:
     sentences = narration_for(store, island, creature, saved)
-    facts, refs = [], []
+    facts: list[dict] = []
+    refs: list[dict] = []
     for s in sentences:
         if s["kind"] != "fact":
             continue
@@ -39,7 +40,7 @@ def build_report(island: Island, creature: Creature, store: IslandStore, sources
         iucn = sources.conservation(island, creature.slug)
     except SourceUnavailable:
         iucn = None
-    retrieved = sorted({r["retrieved"] for r in refs})
+    retrieved = sorted({str(r["retrieved"]) for r in refs})
     return {
         "island": island.slug, "island_name": island.name, "creature": creature.slug, "name": creature.common_name,
         "scientific": creature.scientific_name, "type": creature.creature_type, "iucn": iucn,
