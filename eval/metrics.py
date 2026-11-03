@@ -96,9 +96,11 @@ def score_question(question: dict, rec: dict) -> QuestionScore:
         if ok and judged and bad:
             ok, detail = False, "refused but added an unsupported claim"
     else:
-        ok = rec["answered"] and kt == kh and (not judged or bad == 0)
+        ok = rec["answered"] and kt == kh and (not judged or bad == 0) and not forbidden_hit(question, rec)
         if not rec["answered"]:
             detail = "false refusal"
+        elif forbidden_hit(question, rec):
+            detail = "asserted a forbidden value"
         elif kt != kh:
             detail = f"missing key facts ({kh}/{kt})"
         elif judged and bad:
