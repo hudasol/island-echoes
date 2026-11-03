@@ -76,6 +76,7 @@ Sealed question hashes: `eval/v3/SHA256SUMS`.
 * Frozen 30 re-run on the new models: not repeated.
 * Local container build and a Lighthouse run on a free machine: not run locally; the CI container job and Lighthouse job passed on the runner.
 * Tag `v1.2.0` and the GitHub release: both were attempted and refused by the environment (HTTP 403 for tag pushes and for release creation). The release notes are the 1.2.0 section of `CHANGELOG.md`; the version in `app/__init__.py` and `docs/openapi.json` is 1.2.0.
+* Live site on 1.2.0: checked at the end of the session. `/api/health` answers 200 and reports seven islands, but `/i18n.js`, `/educator/` and `/api/v1/*` return 404, so the hosted service is still running an earlier build. The hosting account was not changed (outside the allowed scope), so a redeploy of `main` is still needed for the 1.2.0 features to appear online.
 * Entailment check on 200 or more sentences: 117 measured.
 * mypy on `eval/` and `scripts/`: 14 errors, not gated (KI-9).
 

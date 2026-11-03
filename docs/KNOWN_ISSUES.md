@@ -19,3 +19,4 @@ misled by; low means cosmetic or contained. Status: fixed, open, or accepted wit
 | KI-11 | medium | `app/data/climate_tool.py` | As run, the climate route answered four questions about places not in the library from the selected island. Fixed after the sealed results were read and reported as post hoc. | fixed |
 | KI-12 | low | `eval/results/v3/nli.json` | The entailment check was measured on 117 sentences, fewer than the 200 planned, because the 3B run produced no more fact sentences. | accepted |
 | KI-13 | low | `data/islands/` | Not added: new islands or creatures. The seven island count is built into the interface, tests and evaluation sets, and each fact needs a source fetched at the time. Five Clipperton facts were added. | open |
+| KI-14 | high | hosted service | At the end of the 1.2.0 session the live site still served an earlier build: the Arabic interface assets, educator pages and `/api/v1` returned 404. The hosting account was not modified. | open |
