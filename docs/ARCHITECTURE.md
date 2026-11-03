@@ -27,6 +27,10 @@ flowchart LR
 | Models | `app/llm/` | One `AnswerLLM` interface and six providers. |
 | Guardrails | `app/chat/grounding.py` | The checks every provider's output passes. |
 | Service | `app/chat/service.py` | Retrieve, ask, validate, repair once, assemble the reply. |
+| Climate route | `app/data/climate_tool.py` | Optional. Answers numeric NASA POWER questions (extremes, a month, a year, two islands) from the stored table with no model. Off by default (`CLIMATE_TOOL`). |
+| Final sentences | `app/chat/finalise.py` | What happens to a sentence the validator still rejects after one repair: `drop` (1.1 behaviour, default) or `extractive`, which swaps in the verbatim cited source sentence (`VALIDATOR_FALLBACK`). |
+| Pages | `app/educator.py`, `app/fieldreport.py` | Educator sheet per island and a shareable field report with an image card per creature. Static HTML, no script, no tracker. |
+| Public API | `app/main.py` | The read routes are mirrored under `/api/v1` with CORS for GET and the OpenAPI document `docs/openapi.json`. See [API.md](API.md). |
 | Telemetry | `app/telemetry/` | One SQLite row per request. No question text unless enabled. |
 
 Imports run in one direction: routes depend on the service and data layers, never the reverse. `app/deps.py` carries the objects built in `create_app` (settings, stores, limiters) to the route modules.
@@ -37,7 +41,7 @@ Imports run in one direction: routes depend on the service and data layers, neve
 2. The model answers through a structured schema: sentences marked `fact` or `voice`, each fact listing the IDs it cites.
 3. A fact sentence is rejected when it has no citation, cites an ID that was not retrieved, contains a number that is absent from the cited evidence, or names a person or place that is absent from the cited evidence and the question.
 4. Voice sentences carry no information: at most 14 words, no digits, no names.
-5. Rejected sentences go back to the model once with the reasons. Anything still failing is dropped. If nothing survives, the reply is a fixed line saying the sources are silent.
+5. Rejected sentences go back to the model once with the reasons. Anything still failing is dropped, or, with `VALIDATOR_FALLBACK=extractive`, replaced by the source sentence it was meant to cite. If nothing survives, the reply is a fixed line saying the sources are silent.
 6. Questions that share no words with the island's sources are refused without calling the model.
 
 The validator checks words and numbers, not meaning. A sentence built from correct words can still be wrong; the evaluation measures this separately (see [EVALUATION.md](EVALUATION.md)).
@@ -48,7 +52,7 @@ Each island and creature has a committed snapshot under `data/snapshots/`. A req
 
 ## Front end
 
-`web/` is plain HTML, CSS and JavaScript with no framework. The globe bundle (`web/vendor/globe.bundle.js`) is built from `web/src/` with esbuild and committed, so running the app needs no Node. A service worker caches the shell for offline use.
+`web/` is plain HTML, CSS and JavaScript with no framework. The globe bundle (`web/vendor/globe.bundle.js`) is built from `web/src/` with esbuild and committed, so running the app needs no Node. A service worker caches the shell for offline use and tells the person when a new version is ready. The globe bundle loads after the page is usable, and only on request when the device signals data saving, little memory or a slow connection. `web/i18n.js` holds the English and Arabic interface strings (right to left); facts, citations and source titles stay in the language of the source.
 
 ## Configuration
 
