@@ -1,9 +1,13 @@
 from __future__ import annotations
 
+from pathlib import Path
+
 from fastapi import APIRouter, HTTPException, Request
+from fastapi.responses import FileResponse, HTMLResponse
 
 from ..data.sources import SourceUnavailable
 from ..deps import Deps
+from ..educator import build_sheet, render_html
 from ..narration import narration_for
 from ..presenters import evidence_out, location_warning, summary
 from ..schemas import ConservationOut, FactOut, IslandDetail, IslandSummary, NarrationOut, SensorsOut, SentenceOut
@@ -66,5 +70,19 @@ def router(d: Deps) -> APIRouter:
             sentences=[SentenceOut(**s) for s in sentences],
             evidence=[evidence_out(e, True) for e in ev],
         )
+
+    @r.get("/api/islands/{slug}/educator")
+    def educator_json(slug: str):
+        isl = d.island(slug)
+        return build_sheet(isl, d.islands, d.sources)
+
+    @r.get("/educator/{slug}", response_class=HTMLResponse)
+    def educator_page(slug: str):
+        if slug.endswith(".pdf"):
+            pdf = Path(d.settings.web_dir) / "educator" / slug
+            if pdf.name != slug or not pdf.exists():
+                raise HTTPException(404, "No PDF has been built for this island.")
+            return FileResponse(pdf, media_type="application/pdf")
+        return HTMLResponse(render_html(build_sheet(d.island(slug), d.islands, d.sources)))
 
     return r
