@@ -111,6 +111,21 @@ Runs on `eval/dev_questions.jsonl` (20 answerable questions and 5 refusal guards
 | heldout-sealed-off | ollama:qwen2.5:3b-instruct | hybrid (8) | off | 78% (7/9) [45-94] | 57% (4/7) [25-84] | 67% (4/6) [30-90] | 0% (0/6) [0-39] | 100% (3/3) [44-100] | 0% (0/6) [0-39] | 11% (1/9) [2-44] | 1 | 56 / 126 s | 1741 / 81 |
 | heldout-sealed-on | ollama:qwen2.5:3b-instruct | hybrid (8) | on | 70% (7/10) [40-89] | 44% (4/9) [19-73] | 71% (5/7) [36-92] | 14% (1/7) [3-51] | 100% (3/3) [44-100] | 14% (1/7) [3-51] | 20% (2/10) [6-51] | 0 | 53 / 116 s | 1900 / 92 |
 
+## Sealed synthetic evaluation (150 questions, preregistration 3)
+
+All 150 questions are **synthetic**: written by a local model from the fact files, with gold constructed from the same facts (112 answerable, 38 that should be refused). Brackets are 95% Wilson intervals. Sources of the plan, the hashes and the predictions are in `docs/research/PREREGISTRATION_3.md`. These numbers are not comparable with the frozen 30, which were written by hand.
+
+| System | Passed | False refusals (of answerable) | Refusal accuracy (of should refuse) | Key fact recall | Answers with a claim outside the sources |
+|---|---|---|---|---|---|
+| Always refuse | 25% (38/150) [19-33] | 100% (112/112) [97-100] | 100% (38/38) [91-100] | 0% (0/148) [0-3] | n/a |
+
+### Passes by question type
+
+| System | climate (30) | conflict (5) | injection (12) | multi (15) | not_in_library (15) | single (48) | species (10) | unanswerable (15) |
+|---|---|---|---|---|---|---|---|---|
+| Always refuse | 0 | 0 | 8 | 0 | 15 | 0 | 0 | 15 |
+
+
 ## Analysis of the October 2026 local model runs
 
 Hand written; the tables above are generated. Predictions are from `docs/research/PREREGISTRATION.md`, committed before any

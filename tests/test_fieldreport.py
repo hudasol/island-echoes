@@ -17,7 +17,7 @@ def test_report_page_is_cited_and_trackerless() -> None:
     assert "<script" not in body and "analytics" not in body.lower()
     assert re.search(r"\[\d+\]", body) and "Retrieved" in body and "IUCN" in body
     assert "not a NASA product" in body
-    assert "—" not in body
+    assert "\u2014" not in body
 
 
 def test_card_is_valid_svg_with_date_and_code() -> None:

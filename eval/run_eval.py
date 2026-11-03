@@ -163,12 +163,12 @@ def render_markdown(meta: dict, summary: dict, scores: list[metrics.QuestionScor
         lines += ["", "## Failures", ""]
         for s in fails:
             q, rec = questions[s.id], recs[s.id]
-            lines += [f"**{s.id}** ({s.detail}) — _{q['question']}_", "", "> " + (metrics.answer_text(rec) or "(no answer)").replace("\n", " "), ""]
+            lines += [f"**{s.id}** ({s.detail}): _{q['question']}_", "", "> " + (metrics.answer_text(rec) or "(no answer)").replace("\n", " "), ""]
             reasons = rec.get("judge", {}).get("reasons", {})
             for i, why in reasons.items():
                 v = rec["judge"]["verdicts"].get(i)
                 if v in ("unsupported", "contradicted", "partially_supported"):
-                    lines.append(f"- sentence {i}: {v} — {why}")
+                    lines.append(f"- sentence {i}: {v}: {why}")
             lines.append("")
     lines += [
         "## Limits of this eval",

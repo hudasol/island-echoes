@@ -39,7 +39,7 @@ def test_html_and_script_keys_exist() -> None:
 def test_no_banned_punctuation() -> None:
     for name in ("en", "ar"):
         for k, v in _tables()[name].items():
-            assert "—" not in v and "–" not in v, (name, k)
+            assert "\u2014" not in v and "\u2013" not in v, (name, k)
 
 
 def test_script_is_cached_for_offline_use() -> None:

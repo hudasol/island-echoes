@@ -1,4 +1,4 @@
-# secrets — never commit
+# secrets - never commit
 .env
 .env.*
 !.env.example
@@ -28,3 +28,4 @@ brag-output/
 eval/results/.*.partial.jsonl
 .coverage
 web/node_modules/
+.lighthouseci/
