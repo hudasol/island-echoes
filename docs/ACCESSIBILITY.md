@@ -30,3 +30,9 @@ Automated audit with axe-core 4.10.3 (WCAG 2.0 to 2.2 A and AA rules plus best p
 - Colour pairs, focus rings, forced colours and increased contrast modes are styled explicitly.
 - An Arabic interface (right to left) is available from the language button. Only interface text is translated; facts, citations and source titles stay in the language of the source.
 - Tables on the start view, the operations page and the educator sheet use real headers and row scopes, and plots carry text labels.
+
+## Performance and device support
+
+- The 2 MB globe bundle loads after the page is usable. Devices that ask to save data, report 2 GB of memory or less, or have two cores or fewer on a slow connection get a button to load the globe instead; the island list, library and chat work without it.
+- The service worker caches the interface so the shell opens offline. Fact and chat requests need the server.
+- CI runs Lighthouse on a mobile profile. The accessibility floor (0.95) and best practices floor (0.9) pass. The performance score and total blocking time warnings fire on the CI runner, where the globe is drawn by software rendering; they are not tightened into errors because that measurement does not describe a phone with a GPU. No field measurement on real phones has been made.
