@@ -1,6 +1,16 @@
 # Roadmap
 
-Last reviewed 28 October 2026.
+Last reviewed 3 November 2026.
+
+## Shipped in 1.2.0
+
+| Area | Change |
+|---|---|
+| Evaluation | A preregistered sealed set of 150 synthetic questions with a development set, a second model labeller, Wilson intervals and exact paired tests; 1.5B, 3B and 7B models; closed book and always refuse baselines. |
+| Pipeline | A source sentence fallback and a deterministic climate route, both off by default because they did not meet their preregistered rules; an optional entailment check, off by default. |
+| Data | Provenance tables generated into `DATA.md`; five Clipperton facts from a primary report; a freshness check. |
+| Product | Arabic interface, educator sheets, shareable field reports, public read only API, offline shell, lazy globe bundle, Lighthouse budget in CI. |
+| Operations | Scheduled uptime and freshness checks, documented in [OPERATIONS.md](OPERATIONS.md). |
 
 ## Shipped in 1.1.0
 
@@ -18,7 +28,10 @@ Last reviewed 28 October 2026.
 
 | Item | What it needs |
 |---|---|
-| Data report | A script that prints source and confidence composition into `docs/DATA.md`, and primary sources to replace Wikipedia only facts where one exists. |
-| Second annotator | A second person labelling gold fact IDs for the retrieval set, to report agreement. |
+| Real questions | Collected with consent and labelled by two human readers, to replace the synthetic sealed set. |
+| Climate route | Re run the keep rule for the climate route on a fresh question set, now that the unknown place defect is fixed. |
+| More islands | New islands and creatures, each fact backed by a source fetched at the time; the interface, tests and evaluation sets assume seven islands. |
+| Climate change indicators | NOAA OISST and a NASA POWER trend with its interval, labelled observational and not attribution. Not started. |
+| Educator PDFs | A script that writes the educator sheets to PDF; the sheets print to PDF from the browser today. |
 | Judge run | Run `eval/judge.py` with a model large enough to grade answers. |
-| Larger local model | Repeat the baselines on a 7B model to see whether the validator's false refusals shrink. |
+| Typing | Bring `eval/` and `scripts/` under mypy. |

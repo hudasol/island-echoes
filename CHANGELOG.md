@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.2.0 (in progress)
+## 1.2.0 (3 November 2026)
 
 Moved published numbers (all regenerated from stored runs by code):
 
@@ -14,8 +14,15 @@ Moved published numbers (all regenerated from stored runs by code):
 - RESULTS.md, retrieval table: the headline hybrid hit@5 on the 58 held out questions is unchanged at 0.90; hybrid hit@3 moves from
   0.81 to 0.79 and some interval ends move by 0.01 after the library grew. The stored sealed runs used the 469 fact library and keep it.
 
-Added so far: Arabic interface, shareable field report, educator sheets, public read only API under `/api/v1`, offline
-shell updates, climate tool and lossless validation fallback behind settings (off by default), scheduled uptime and freshness checks.
+Added:
+
+- Arabic interface with right to left layout; interface text is translated, facts and citations keep their source language.
+- Shareable field report page and image card for each creature; one page educator sheet per island.
+- Public read only API under `/api/v1` with an OpenAPI description (`docs/openapi.json`).
+- Offline shell, lazy loaded globe bundle, and a Lighthouse mobile budget in CI.
+- Sealed synthetic evaluation (150 questions) with a preregistration, a development set, a second model labeller, 1.5B, 3B and 7B runs, and closed book and always refuse baselines.
+- Behind settings, off by default because the preregistered rules were not met: a source sentence fallback for rejected sentences, a deterministic climate route (with a fix for questions about places outside the library), and an optional entailment check.
+- Scheduled uptime and freshness checks (`.github/workflows/ops.yml`), `docs/OPERATIONS.md`, generated provenance tables in `docs/DATA.md`, `docs/KNOWN_ISSUES.md` and `docs/NASA_PROPOSAL.md`.
 
 ## 1.1.0
 
