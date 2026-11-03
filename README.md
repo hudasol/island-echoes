@@ -78,6 +78,18 @@ Frozen 30 question set, one local model (Qwen2.5 3B, 4 bit), hybrid retrieval wh
 | Retrieval and model, no validator | 25 of 30 | 0 | 4 |
 | Retrieval, model and validator | 19 of 30 | 8 | 5 |
 
+Sealed synthetic set (version 1.2): 150 questions written by a local model, 140 scored for Qwen2.5 3B. The model rows differ from the frozen 30 in how the questions were made, so the two tables are not comparable.
+
+| System | Passed | False refusals | Refusal accuracy |
+|---|---|---|---|
+| Always refuse | 25% (38 of 150) | 100% | 100% |
+| Model alone, no sources (50 question subset) | 14% (7 of 50) | 82% | 70% |
+| Retrieval and model, no validator | 65% (91 of 140) | 10% | 100% |
+| Retrieval, model and validator (default) | 54% (75 of 140) | 40% | 100% |
+| Validator with the source sentence fallback (off by default) | 58% (81 of 140) | 34% | 100% |
+
+The fallback and the deterministic climate route did not meet their preregistered keep rules, so both are off by default. Qwen2.5 7B matched 3B on the 27 questions both completed; 1.5B did not. Questions, hashes, predictions and misses are in [docs/EVALUATION.md](docs/EVALUATION.md) and [docs/research/PREREGISTRATION_3.md](docs/research/PREREGISTRATION_3.md).
+
 Retrieval on 58 held out paraphrased questions, hit@5 with 95% intervals:
 
 | Ranking | hit@5 |
