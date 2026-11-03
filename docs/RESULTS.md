@@ -126,6 +126,8 @@ Ten of the 150 questions errored in the 3B run because the model returned malfor
 | Validator, rejected sentences replaced by the cited source sentence | 58% (81/140) [50-66] | 34% (35/102) [26-44] | 100% (38/38) [91-100] | 45% (61/136) [37-53] | 0% (0/67) [0-5] |
 | Dropped, with the climate route | 64% (90/140) [56-72] | 29% (30/102) [21-39] | 89% (34/38) [76-96] | 62% (85/136) [54-70] | 5% (4/76) [2-13] |
 | Replaced, with the climate route | 67% (94/140) [59-74] | 25% (25/102) [17-34] | 89% (34/38) [76-96] | 65% (89/136) [57-73] | 5% (4/81) [2-12] |
+| Qwen2.5 1.5B, full pipeline, fixed 50 question subset | 9% (4/46) [3-20] | 98% (39/40) [87-100] | 50% (3/6) [19-81] | 38% (20/53) [26-51] | 0% (0/1) [0-79] |
+| Qwen2.5 7B, full pipeline, fixed 30 question subset | 50% (15/30) [33-67] | 23% (5/22) [10-43] | 100% (8/8) [68-100] | 37% (11/30) [22-54] | 0% (0/17) [0-18] |
 | Dropped, climate route with the unknown place fix (post hoc) | 67% (94/140) [59-74] | 29% (30/102) [21-39] | 100% (38/38) [91-100] | 62% (85/136) [54-70] | 6% (4/72) [2-13] |
 | Replaced, climate route with the unknown place fix (post hoc) | 70% (98/140) [62-77] | 25% (25/102) [17-34] | 100% (38/38) [91-100] | 65% (89/136) [57-73] | 5% (4/77) [2-13] |
 
@@ -140,6 +142,8 @@ Ten of the 150 questions errored in the 3B run because the model returned malfor
 | Validator, rejected sentences replaced by the cited source sentence | 11 | 0 | 9 | 2 | 15 | 19 | 10 | 15 |
 | Dropped, with the climate route | 28 | 0 | 9 | 2 | 11 | 16 | 9 | 15 |
 | Replaced, with the climate route | 28 | 0 | 9 | 2 | 11 | 19 | 10 | 15 |
+| Qwen2.5 1.5B, full pipeline, fixed 50 question subset | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 3 |
+| Qwen2.5 7B, full pipeline, fixed 30 question subset | 3 | 0 | 2 | 0 | 3 | 2 | 2 | 3 |
 | Dropped, climate route with the unknown place fix (post hoc) | 28 | 0 | 9 | 2 | 15 | 16 | 9 | 15 |
 | Replaced, climate route with the unknown place fix (post hoc) | 28 | 0 | 9 | 2 | 15 | 19 | 10 | 15 |
 
@@ -150,6 +154,8 @@ Questions the 3B run errored on are left out of both sides. Intervals on 30 to 5
 | Run | Questions | Passed | 3B default passed | Only this run passes | Only 3B passes | p |
 |---|---|---|---|---|---|---|
 | Model alone, no sources | 46 | 15% (7/46) [8-28] | 50% (23/46) [36-64] | 0 | 16 | 0.000 |
+| Qwen2.5 1.5B, full pipeline, fixed 50 question subset | 42 | 10% (4/42) [4-22] | 45% (19/42) [31-60] | 0 | 15 | 0.000 |
+| Qwen2.5 7B, full pipeline, fixed 30 question subset | 27 | 52% (14/27) [34-69] | 52% (14/27) [34-69] | 1 | 1 | 1.000 |
 
 ### Paired comparisons (exact McNemar on passes; second system better / worse)
 

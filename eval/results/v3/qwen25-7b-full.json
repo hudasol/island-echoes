@@ -1,0 +1,1959 @@
+{
+ "meta": {
+  "timestamp": "2026-11-03T21:02:26+00:00",
+  "commit": "6af2910",
+  "answer_model": "llamacpp:qwen2.5-7b-instruct-q4_k_m-00001-of-00002",
+  "provider": "llamacpp",
+  "model": "qwen2.5-7b-instruct-q4_k_m-00001-of-00002",
+  "system": "full",
+  "retrieval_mode": "hybrid",
+  "retrieval_k": 8,
+  "flags": {
+   "fallback": "drop",
+   "climate_tool": false,
+   "month_names_ok": false
+  },
+  "facts_hash": "491e9b1e2b6592e8",
+  "wall_seconds": 5497.8,
+  "judge_model": null,
+  "questions_file": "test.jsonl",
+  "split": null,
+  "errored": 0,
+  "label": "v3-qwen25-7b-full"
+ },
+ "summary": {
+  "questions": 30,
+  "judged_questions": 0,
+  "fact_sentences_judged": 0,
+  "groundedness": {
+   "k": 0,
+   "n": 0
+  },
+  "partially_supported": {
+   "k": 0,
+   "n": 0
+  },
+  "hallucination_rate": {
+   "k": 0,
+   "n": 0
+  },
+  "answers_with_hallucination": {
+   "k": 0,
+   "n": 30
+  },
+  "refusal_accuracy": {
+   "k": 8,
+   "n": 8
+  },
+  "false_refusals": {
+   "k": 5,
+   "n": 22
+  },
+  "key_fact_recall": {
+   "k": 11,
+   "n": 30
+  },
+  "expected_source_recall": {
+   "k": 17,
+   "n": 26
+  },
+  "validator_first_pass_failures": {
+   "k": 4,
+   "n": 28
+  },
+  "repaired_answers": {
+   "k": 4,
+   "n": 30
+  },
+  "conflicts_reported": {
+   "k": 0,
+   "n": 0
+  },
+  "questions_passed": {
+   "k": 15,
+   "n": 30
+  }
+ },
+ "records": [
+  {
+   "id": "T005",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "Pitcairn is the only inhabited island of its territory.",
+     "kind": "fact",
+     "cites": [
+      "PIT-003"
+     ]
+    }
+   ],
+   "missing": "The specific land area of Pitcairn Island is not provided in the evidence.",
+   "cited_ids": [
+    "PIT-003"
+   ],
+   "retrieved_ids": [
+    "PIT-004",
+    "PIT-224",
+    "PIT-003",
+    "PIT-024",
+    "PIT-001",
+    "PIT-223",
+    "PIT-216",
+    "PIT-033"
+   ],
+   "raw_sentences": [
+    {
+     "text": "Pitcairn Island has about 47 km2 of land in total.",
+     "kind": "fact",
+     "cites": [
+      "PIT-001"
+     ]
+    }
+   ],
+   "raw_issues": [
+    {
+     "text": "Pitcairn Island has about 47 km2 of land in total.",
+     "issues": [
+      "numbers not in cited evidence: 47"
+     ]
+    }
+   ],
+   "rejected": [],
+   "repaired": true,
+   "second_sentences": [
+    {
+     "text": "Pitcairn is the only inhabited island of its territory.",
+     "kind": "fact",
+     "cites": [
+      "PIT-003"
+     ],
+     "issues": []
+    }
+   ],
+   "replaced": 0,
+   "first_answered": true,
+   "model_answered": false,
+   "notes": [],
+   "llm_called": true,
+   "seconds": 237.05,
+   "retrieval_ms": 1472.0,
+   "llm_ms": 235579.1,
+   "tokens_in": 2735,
+   "tokens_out": 144
+  },
+  {
+   "id": "T010",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "The CCAMLR ecosystem-monitoring site was established at Nyrøysa on an expedition running from 9 December 1996 to 22 February 1997.",
+     "kind": "fact",
+     "cites": [
+      "BOU-021"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "BOU-021"
+   ],
+   "retrieved_ids": [
+    "BOU-021",
+    "BOU-034",
+    "BOU-204",
+    "BOU-224",
+    "BOU-222",
+    "BOU-212",
+    "BOU-038",
+    "BOU-205",
+    "BOU-028",
+    "BOU-029",
+    "BOU-027"
+   ],
+   "raw_sentences": [
+    {
+     "text": "The CCAMLR ecosystem-monitoring site was established at Nyrøysa on an expedition running from 9 December 1996 to 22 February 1997.",
+     "kind": "fact",
+     "cites": [
+      "BOU-021"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "second_sentences": [
+    {
+     "text": "The CCAMLR ecosystem-monitoring site was established at Nyrøysa on an expedition running from 9 December 1996 to 22 February 1997.",
+     "kind": "fact",
+     "cites": [
+      "BOU-021"
+     ],
+     "issues": []
+    }
+   ],
+   "replaced": 0,
+   "first_answered": true,
+   "model_answered": true,
+   "notes": [],
+   "llm_called": true,
+   "seconds": 196.39,
+   "retrieval_ms": 20.3,
+   "llm_ms": 196372.4,
+   "tokens_in": 1586,
+   "tokens_out": 79
+  },
+  {
+   "id": "T015",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "American workers were removed on 13 December 1897.",
+     "kind": "fact",
+     "cites": [
+      "CLI-017"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "CLI-017"
+   ],
+   "retrieved_ids": [
+    "CLI-017",
+    "CLI-225",
+    "CLI-016",
+    "CLI-221",
+    "CLI-207",
+    "CLI-026",
+    "CLI-216",
+    "CLI-015"
+   ],
+   "raw_sentences": [
+    {
+     "text": "American workers were removed on 13 December 1897.",
+     "kind": "fact",
+     "cites": [
+      "CLI-017"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "second_sentences": [
+    {
+     "text": "American workers were removed on 13 December 1897.",
+     "kind": "fact",
+     "cites": [
+      "CLI-017"
+     ],
+     "issues": []
+    }
+   ],
+   "replaced": 0,
+   "first_answered": true,
+   "model_answered": true,
+   "notes": [],
+   "llm_called": true,
+   "seconds": 161.26,
+   "retrieval_ms": 15.5,
+   "llm_ms": 161241.3,
+   "tokens_in": 1325,
+   "tokens_out": 53
+  },
+  {
+   "id": "T020",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "The authors urged rat eradication and tighter control of landings.",
+     "kind": "fact",
+     "cites": [
+      "CLI-211"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "CLI-211"
+   ],
+   "retrieved_ids": [
+    "CLI-016",
+    "CLI-216",
+    "CLI-015",
+    "CLI-211",
+    "CLI-032",
+    "CLI-012",
+    "CLI-205",
+    "CLI-021"
+   ],
+   "raw_sentences": [
+    {
+     "text": "The authors urged rat eradication and tighter control of landings.",
+     "kind": "fact",
+     "cites": [
+      "CLI-211"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "second_sentences": [
+    {
+     "text": "The authors urged rat eradication and tighter control of landings.",
+     "kind": "fact",
+     "cites": [
+      "CLI-211"
+     ],
+     "issues": []
+    }
+   ],
+   "replaced": 0,
+   "first_answered": true,
+   "model_answered": true,
+   "notes": [],
+   "llm_called": true,
+   "seconds": 102.87,
+   "retrieval_ms": 12.9,
+   "llm_ms": 102857.0,
+   "tokens_in": 1286,
+   "tokens_out": 51
+  },
+  {
+   "id": "T025",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "Bouvet Island lies at roughly 54°25′S, 3°20′E in the South Atlantic Ocean.",
+     "kind": "fact",
+     "cites": [
+      "BOU-001"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "BOU-001"
+   ],
+   "retrieved_ids": [
+    "BOU-002",
+    "BOU-213",
+    "BOU-023",
+    "BOU-004",
+    "BOU-017",
+    "BOU-214",
+    "BOU-216",
+    "BOU-036",
+    "BOU-003",
+    "BOU-001"
+   ],
+   "raw_sentences": [
+    {
+     "text": "Bouvet Island lies at roughly 54°25′S, 3°20′E in the South Atlantic Ocean.",
+     "kind": "fact",
+     "cites": [
+      "BOU-001"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "second_sentences": [
+    {
+     "text": "Bouvet Island lies at roughly 54°25′S, 3°20′E in the South Atlantic Ocean.",
+     "kind": "fact",
+     "cites": [
+      "BOU-001"
+     ],
+     "issues": []
+    }
+   ],
+   "replaced": 0,
+   "first_answered": true,
+   "model_answered": true,
+   "notes": [],
+   "llm_called": true,
+   "seconds": 161.25,
+   "retrieval_ms": 11.0,
+   "llm_ms": 161238.4,
+   "tokens_in": 1290,
+   "tokens_out": 68
+  },
+  {
+   "id": "T030",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "The Socotra buzzard (Buteo socotraensis) occurs only on Socotra, Yemen.",
+     "kind": "fact",
+     "cites": [
+      "SOC-032"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "SOC-032"
+   ],
+   "retrieved_ids": [
+    "SOC-207",
+    "SOC-204",
+    "SOC-201",
+    "SOC-205",
+    "SOC-226",
+    "SOC-032",
+    "SOC-202",
+    "SOC-206"
+   ],
+   "raw_sentences": [
+    {
+     "text": "The Socotra buzzard (Buteo socotraensis) occurs only on Socotra, Yemen.",
+     "kind": "fact",
+     "cites": [
+      "SOC-032"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "second_sentences": [
+    {
+     "text": "The Socotra buzzard (Buteo socotraensis) occurs only on Socotra, Yemen.",
+     "kind": "fact",
+     "cites": [
+      "SOC-032"
+     ],
+     "issues": []
+    }
+   ],
+   "replaced": 0,
+   "first_answered": true,
+   "model_answered": true,
+   "notes": [],
+   "llm_called": true,
+   "seconds": 157.07,
+   "retrieval_ms": 15.7,
+   "llm_ms": 157058.3,
+   "tokens_in": 1369,
+   "tokens_out": 62
+  },
+  {
+   "id": "T035",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "About 95.41% of recorded items are plastic.",
+     "kind": "fact",
+     "cites": [
+      "COC-210"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "COC-210"
+   ],
+   "retrieved_ids": [
+    "COC-210",
+    "COC-209",
+    "COC-211",
+    "COC-019",
+    "COC-010",
+    "COC-001",
+    "COC-208",
+    "COC-022"
+   ],
+   "raw_sentences": [
+    {
+     "text": "About 95.41% of recorded items are plastic.",
+     "kind": "fact",
+     "cites": [
+      "COC-210"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "second_sentences": [
+    {
+     "text": "About 95.41% of recorded items are plastic.",
+     "kind": "fact",
+     "cites": [
+      "COC-210"
+     ],
+     "issues": []
+    }
+   ],
+   "replaced": 0,
+   "first_answered": true,
+   "model_answered": true,
+   "notes": [],
+   "llm_called": true,
+   "seconds": 146.97,
+   "retrieval_ms": 14.9,
+   "llm_ms": 146957.0,
+   "tokens_in": 1376,
+   "tokens_out": 51
+  },
+  {
+   "id": "T040",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "The Galápagos Islands form Ecuador's Galápagos Province, with Puerto Baquerizo Moreno as capital and three cantons: Isabela, San Cristóbal and Santa Cruz.",
+     "kind": "fact",
+     "cites": [
+      "GAL-021"
+     ]
+    }
+   ],
+   "missing": "The evidence does not provide the source of the Galápagos Islands' location information.",
+   "cited_ids": [
+    "GAL-021"
+   ],
+   "retrieved_ids": [
+    "GAL-021",
+    "GAL-220",
+    "GAL-018",
+    "GAL-207",
+    "GAL-211",
+    "GAL-205",
+    "GAL-214",
+    "GAL-215"
+   ],
+   "raw_sentences": [
+    {
+     "text": "The Galápagos Islands form Ecuador's Galápagos Province, with Puerto Baquerizo Moreno as capital and three cantons: Isabela, San Cristóbal and Santa Cruz.",
+     "kind": "fact",
+     "cites": [
+      "GAL-021"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "second_sentences": [
+    {
+     "text": "The Galápagos Islands form Ecuador's Galápagos Province, with Puerto Baquerizo Moreno as capital and three cantons: Isabela, San Cristóbal and Santa Cruz.",
+     "kind": "fact",
+     "cites": [
+      "GAL-021"
+     ],
+     "issues": []
+    }
+   ],
+   "replaced": 0,
+   "first_answered": false,
+   "model_answered": false,
+   "notes": [],
+   "llm_called": true,
+   "seconds": 179.68,
+   "retrieval_ms": 20.7,
+   "llm_ms": 179659.2,
+   "tokens_in": 1335,
+   "tokens_out": 96
+  },
+  {
+   "id": "T045",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "The seawater reverse osmosis plant is located on West Island, Cocos (Keeling) Islands.",
+     "kind": "fact",
+     "cites": [
+      "COC-212"
+     ]
+    },
+    {
+     "text": "West Island is the only island with permanent residents.",
+     "kind": "fact",
+     "cites": [
+      "COC-003"
+     ]
+    }
+   ],
+   "missing": "none",
+   "cited_ids": [
+    "COC-212",
+    "COC-003"
+   ],
+   "retrieved_ids": [
+    "COC-212",
+    "COC-223",
+    "COC-214",
+    "COC-002",
+    "COC-211",
+    "COC-001",
+    "COC-225",
+    "COC-027",
+    "COC-226",
+    "COC-026",
+    "COC-024",
+    "COC-003",
+    "COC-004"
+   ],
+   "raw_sentences": [
+    {
+     "text": "The seawater reverse osmosis plant is located on West Island, Cocos (Keeling) Islands.",
+     "kind": "fact",
+     "cites": [
+      "COC-212"
+     ]
+    },
+    {
+     "text": "West Island is the only island with permanent residents.",
+     "kind": "fact",
+     "cites": [
+      "COC-003"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "second_sentences": [
+    {
+     "text": "The seawater reverse osmosis plant is located on West Island, Cocos (Keeling) Islands.",
+     "kind": "fact",
+     "cites": [
+      "COC-212"
+     ],
+     "issues": []
+    },
+    {
+     "text": "West Island is the only island with permanent residents.",
+     "kind": "fact",
+     "cites": [
+      "COC-003"
+     ],
+     "issues": []
+    }
+   ],
+   "replaced": 0,
+   "first_answered": true,
+   "model_answered": true,
+   "notes": [],
+   "llm_called": true,
+   "seconds": 213.04,
+   "retrieval_ms": 12.3,
+   "llm_ms": 213022.5,
+   "tokens_in": 1720,
+   "tokens_out": 93
+  },
+  {
+   "id": "T050",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "The flightless cormorant (Phalacrocorax harrisi) is listed as Vulnerable (IUCN 3.1) with a range limited to Fernandina and the northern and western coasts of Isabela.",
+     "kind": "fact",
+     "cites": [
+      "GAL-203"
+     ]
+    },
+    {
+     "text": "The Galápagos Islands site was removed from the danger list on 26 June 2007.",
+     "kind": "fact",
+     "cites": [
+      "GAL-020"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "GAL-203",
+    "GAL-020"
+   ],
+   "retrieved_ids": [
+    "GBIF-GAL-pinta-island-tortoise-SPECIES",
+    "GBIF-GAL-pinta-island-tortoise-OCC",
+    "GBIF-GAL-pinta-island-tortoise-IUCN",
+    "GAL-203",
+    "GAL-207",
+    "GAL-032",
+    "GAL-210",
+    "GAL-201",
+    "GAL-224",
+    "GAL-020",
+    "GAL-205",
+    "GAL-002",
+    "GAL-004",
+    "GAL-003",
+    "GAL-029",
+    "GAL-028"
+   ],
+   "raw_sentences": [
+    {
+     "text": "The flightless cormorant (Phalacrocorax harrisi) is listed as Vulnerable (IUCN 3.1) with a range limited to Fernandina and the northern and western coasts of Isabela.",
+     "kind": "fact",
+     "cites": [
+      "GAL-203"
+     ]
+    },
+    {
+     "text": "The Galápagos Islands site was removed from the danger list on 26 June 2007.",
+     "kind": "fact",
+     "cites": [
+      "GAL-020"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "second_sentences": [
+    {
+     "text": "The flightless cormorant (Phalacrocorax harrisi) is listed as Vulnerable (IUCN 3.1) with a range limited to Fernandina and the northern and western coasts of Isabela.",
+     "kind": "fact",
+     "cites": [
+      "GAL-203"
+     ],
+     "issues": []
+    },
+    {
+     "text": "The Galápagos Islands site was removed from the danger list on 26 June 2007.",
+     "kind": "fact",
+     "cites": [
+      "GAL-020"
+     ],
+     "issues": []
+    }
+   ],
+   "replaced": 0,
+   "first_answered": true,
+   "model_answered": true,
+   "notes": [],
+   "llm_called": true,
+   "seconds": 318.95,
+   "retrieval_ms": 32.6,
+   "llm_ms": 318922.0,
+   "tokens_in": 2158,
+   "tokens_out": 171
+  },
+  {
+   "id": "T055",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "The IUCN Red List status of the Socotra buzzard is Vulnerable.",
+     "kind": "fact",
+     "cites": [
+      "SOC-034"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "SOC-034"
+   ],
+   "retrieved_ids": [
+    "GBIF-SOC-socotra-buzzard-SPECIES",
+    "GBIF-SOC-socotra-buzzard-OCC",
+    "GBIF-SOC-socotra-buzzard-IUCN",
+    "SOC-023",
+    "SOC-034",
+    "SOC-207",
+    "SOC-032",
+    "SOC-202",
+    "SOC-018",
+    "SOC-201",
+    "SOC-019"
+   ],
+   "raw_sentences": [
+    {
+     "text": "The Southern Transitional Council seized the archipelago in June 2020.",
+     "kind": "fact",
+     "cites": [
+      "SOC-034"
+     ]
+    },
+    {
+     "text": "The IUCN Red List status of the Socotra buzzard is Vulnerable.",
+     "kind": "fact",
+     "cites": [
+      "SOC-034"
+     ]
+    }
+   ],
+   "raw_issues": [
+    {
+     "text": "The Southern Transitional Council seized the archipelago in June 2020.",
+     "issues": [
+      "numbers not in cited evidence: 2020",
+      "name not in cited evidence: June"
+     ]
+    }
+   ],
+   "rejected": [
+    {
+     "text": "The Southern Transitional Council seized the archipelago in June 2020.",
+     "issues": [
+      "numbers not in cited evidence: 2020",
+      "name not in cited evidence: June"
+     ]
+    }
+   ],
+   "repaired": true,
+   "second_sentences": [
+    {
+     "text": "The Southern Transitional Council seized the archipelago in June 2020.",
+     "kind": "fact",
+     "cites": [
+      "SOC-034"
+     ],
+     "issues": [
+      "numbers not in cited evidence: 2020",
+      "name not in cited evidence: June"
+     ]
+    },
+    {
+     "text": "The IUCN Red List status of the Socotra buzzard is Vulnerable.",
+     "kind": "fact",
+     "cites": [
+      "SOC-034"
+     ],
+     "issues": []
+    }
+   ],
+   "replaced": 0,
+   "first_answered": true,
+   "model_answered": true,
+   "notes": [],
+   "llm_called": true,
+   "seconds": 303.65,
+   "retrieval_ms": 24.5,
+   "llm_ms": 303626.8,
+   "tokens_in": 3578,
+   "tokens_out": 186
+  },
+  {
+   "id": "T060",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "The stratified water layer on Clipperton Island is around 15 m deep.",
+     "kind": "fact",
+     "cites": [
+      "CLI-011"
+     ]
+    }
+   ],
+   "missing": "Depth range for the dominant coral species on Clipperton Island is not provided.",
+   "cited_ids": [
+    "CLI-011"
+   ],
+   "retrieved_ids": [
+    "CLI-213",
+    "CLI-212",
+    "CLI-205",
+    "CLI-210",
+    "CLI-214",
+    "CLI-211",
+    "CLI-209",
+    "CLI-011"
+   ],
+   "raw_sentences": [
+    {
+     "text": "The lagoon on Clipperton is stratified with an oxygenated brackish layer above and an oxygen-free sulfurous layer below around 15 m.",
+     "kind": "fact",
+     "cites": [
+      "CLI-011"
+     ]
+    },
+    {
+     "text": "The dominant coral species on Clipperton, such as massive Porites, are found at depths of 4 to 100 m.",
+     "kind": "fact",
+     "cites": [
+      "CLI-205"
+     ]
+    }
+   ],
+   "raw_issues": [
+    {
+     "text": "The dominant coral species on Clipperton, such as massive Porites, are found at depths of 4 to 100 m.",
+     "issues": [
+      "numbers not in cited evidence: 4",
+      "name not in cited evidence: Porites"
+     ]
+    }
+   ],
+   "rejected": [],
+   "repaired": true,
+   "second_sentences": [
+    {
+     "text": "The stratified water layer on Clipperton Island is around 15 m deep.",
+     "kind": "fact",
+     "cites": [
+      "CLI-011"
+     ],
+     "issues": []
+    }
+   ],
+   "replaced": 0,
+   "first_answered": false,
+   "model_answered": false,
+   "notes": [],
+   "llm_called": true,
+   "seconds": 323.59,
+   "retrieval_ms": 34.0,
+   "llm_ms": 323560.0,
+   "tokens_in": 2994,
+   "tokens_out": 233
+  },
+  {
+   "id": "T065",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "JUL 82.94",
+     "kind": "fact",
+     "cites": [
+      "POWER-CLI-HUMID"
+     ]
+    }
+   ],
+   "missing": "No other months' humidity values are provided in the evidence.",
+   "cited_ids": [
+    "POWER-CLI-HUMID"
+   ],
+   "retrieved_ids": [
+    "POWER-CLI-HUMID",
+    "CLI-216",
+    "CLI-218",
+    "CLI-012",
+    "CLI-016",
+    "CLI-005",
+    "CLI-205",
+    "CLI-020",
+    "CLI-220"
+   ],
+   "raw_sentences": [
+    {
+     "text": "JUL 82.94",
+     "kind": "fact",
+     "cites": [
+      "POWER-CLI-HUMID"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "second_sentences": [
+    {
+     "text": "JUL 82.94",
+     "kind": "fact",
+     "cites": [
+      "POWER-CLI-HUMID"
+     ],
+     "issues": []
+    }
+   ],
+   "replaced": 0,
+   "first_answered": true,
+   "model_answered": true,
+   "notes": [],
+   "llm_called": true,
+   "seconds": 129.81,
+   "retrieval_ms": 32.6,
+   "llm_ms": 129780.0,
+   "tokens_in": 1542,
+   "tokens_out": 60
+  },
+  {
+   "id": "T070",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "JAN is the least humid month with a value of 65.94 %.",
+     "kind": "fact",
+     "cites": [
+      "POWER-SOC-HUMID"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "POWER-SOC-HUMID"
+   ],
+   "retrieved_ids": [
+    "POWER-SOC-HUMID",
+    "SOC-206",
+    "SOC-221",
+    "SOC-002",
+    "SOC-205",
+    "SOC-204",
+    "SOC-207",
+    "SOC-032",
+    "SOC-014"
+   ],
+   "raw_sentences": [
+    {
+     "text": "JAN is the least humid month with a value of 65.94 %.",
+     "kind": "fact",
+     "cites": [
+      "POWER-SOC-HUMID"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "second_sentences": [
+    {
+     "text": "JAN is the least humid month with a value of 65.94 %.",
+     "kind": "fact",
+     "cites": [
+      "POWER-SOC-HUMID"
+     ],
+     "issues": []
+    }
+   ],
+   "replaced": 0,
+   "first_answered": true,
+   "model_answered": true,
+   "notes": [],
+   "llm_called": true,
+   "seconds": 172.64,
+   "retrieval_ms": 27.6,
+   "llm_ms": 172617.0,
+   "tokens_in": 1533,
+   "tokens_out": 58
+  },
+  {
+   "id": "T075",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "JUNE has the least humidity at 81.29 %.",
+     "kind": "fact",
+     "cites": [
+      "POWER-TDC-HUMID"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "POWER-TDC-HUMID"
+   ],
+   "retrieved_ids": [
+    "POWER-TDC-HUMID",
+    "TDC-217",
+    "TDC-021",
+    "TDC-005",
+    "TDC-219",
+    "TDC-008",
+    "TDC-210",
+    "TDC-221",
+    "TDC-216"
+   ],
+   "raw_sentences": [
+    {
+     "text": "JUNE has the least humidity at 81.29 %.",
+     "kind": "fact",
+     "cites": [
+      "POWER-TDC-HUMID"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "second_sentences": [
+    {
+     "text": "JUNE has the least humidity at 81.29 %.",
+     "kind": "fact",
+     "cites": [
+      "POWER-TDC-HUMID"
+     ],
+     "issues": []
+    }
+   ],
+   "replaced": 0,
+   "first_answered": true,
+   "model_answered": true,
+   "notes": [],
+   "llm_called": true,
+   "seconds": 166.46,
+   "retrieval_ms": 25.2,
+   "llm_ms": 166430.1,
+   "tokens_in": 1539,
+   "tokens_out": 54
+  },
+  {
+   "id": "T080",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "The average air temperature at 2 meters in October on Tristan da Cunha is 12.88 C.",
+     "kind": "fact",
+     "cites": [
+      "POWER-TDC-TEMP"
+     ]
+    },
+    {
+     "text": "This value is the monthly mean for October as reported by NASA POWER.",
+     "kind": "fact",
+     "cites": [
+      "POWER-TDC-TEMP"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "POWER-TDC-TEMP"
+   ],
+   "retrieved_ids": [
+    "POWER-TDC-TEMP",
+    "TDC-005",
+    "TDC-219",
+    "TDC-210",
+    "TDC-021",
+    "TDC-008",
+    "TDC-007",
+    "TDC-214",
+    "TDC-027"
+   ],
+   "raw_sentences": [
+    {
+     "text": "The average air temperature at 2 meters in October on Tristan da Cunha is 12.88 C.",
+     "kind": "fact",
+     "cites": [
+      "POWER-TDC-TEMP"
+     ]
+    },
+    {
+     "text": "This value is the monthly mean for October as reported by NASA POWER.",
+     "kind": "fact",
+     "cites": [
+      "POWER-TDC-TEMP"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "second_sentences": [
+    {
+     "text": "The average air temperature at 2 meters in October on Tristan da Cunha is 12.88 C.",
+     "kind": "fact",
+     "cites": [
+      "POWER-TDC-TEMP"
+     ],
+     "issues": []
+    },
+    {
+     "text": "This value is the monthly mean for October as reported by NASA POWER.",
+     "kind": "fact",
+     "cites": [
+      "POWER-TDC-TEMP"
+     ],
+     "issues": []
+    }
+   ],
+   "replaced": 0,
+   "first_answered": true,
+   "model_answered": true,
+   "notes": [],
+   "llm_called": true,
+   "seconds": 165.47,
+   "retrieval_ms": 23.5,
+   "llm_ms": 165441.3,
+   "tokens_in": 1696,
+   "tokens_out": 101
+  },
+  {
+   "id": "T085",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "The annual air temperature at 2 meters on Pitcairn Island is 23.11 °C.",
+     "kind": "fact",
+     "cites": [
+      "POWER-PIT-TEMP"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "POWER-PIT-TEMP"
+   ],
+   "retrieved_ids": [
+    "POWER-PIT-TEMP",
+    "PIT-217",
+    "PIT-007",
+    "PIT-008",
+    "PIT-005",
+    "PIT-219",
+    "PIT-009",
+    "PIT-001",
+    "PIT-033"
+   ],
+   "raw_sentences": [
+    {
+     "text": "The annual air temperature at 2 meters on Pitcairn Island is 23.11 °C.",
+     "kind": "fact",
+     "cites": [
+      "POWER-PIT-TEMP"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "second_sentences": [
+    {
+     "text": "The annual air temperature at 2 meters on Pitcairn Island is 23.11 °C.",
+     "kind": "fact",
+     "cites": [
+      "POWER-PIT-TEMP"
+     ],
+     "issues": []
+    }
+   ],
+   "replaced": 0,
+   "first_answered": true,
+   "model_answered": true,
+   "notes": [],
+   "llm_called": true,
+   "seconds": 197.66,
+   "retrieval_ms": 26.8,
+   "llm_ms": 197630.2,
+   "tokens_in": 1854,
+   "tokens_out": 62
+  },
+  {
+   "id": "T090",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "My kind's annual air temperature is 26.28 C according to NASA POWER.",
+     "kind": "fact",
+     "cites": [
+      "POWER-SOC-TEMP"
+     ]
+    }
+   ],
+   "missing": "The evidence does not provide a comparison with Cocos (Keeling) Islands or their annual air temperature.",
+   "cited_ids": [
+    "POWER-SOC-TEMP"
+   ],
+   "retrieved_ids": [
+    "POWER-SOC-TEMP",
+    "SOC-218",
+    "SOC-006",
+    "SOC-002",
+    "SOC-212",
+    "SOC-003",
+    "SOC-205",
+    "SOC-010",
+    "SOC-214"
+   ],
+   "raw_sentences": [
+    {
+     "text": "My kind's annual air temperature is 26.28 C according to NASA POWER.",
+     "kind": "fact",
+     "cites": [
+      "POWER-SOC-TEMP"
+     ]
+    },
+    {
+     "text": "The evidence does not provide a comparison with Cocos (Keeling) Islands.",
+     "kind": "fact",
+     "cites": []
+    }
+   ],
+   "raw_issues": [
+    {
+     "text": "The evidence does not provide a comparison with Cocos (Keeling) Islands.",
+     "issues": [
+      "fact sentence has no citation"
+     ]
+    }
+   ],
+   "rejected": [],
+   "repaired": true,
+   "second_sentences": [
+    {
+     "text": "My kind's annual air temperature is 26.28 C according to NASA POWER.",
+     "kind": "fact",
+     "cites": [
+      "POWER-SOC-TEMP"
+     ],
+     "issues": []
+    }
+   ],
+   "replaced": 0,
+   "first_answered": false,
+   "model_answered": false,
+   "notes": [],
+   "llm_called": true,
+   "seconds": 297.05,
+   "retrieval_ms": 21.9,
+   "llm_ms": 297028.9,
+   "tokens_in": 3707,
+   "tokens_out": 175
+  },
+  {
+   "id": "T095",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "GBIF holds 153 occurrence records worldwide for the Pitcairn reed warbler.",
+     "kind": "fact",
+     "cites": [
+      "GBIF-PIT-pitcairn-reed-warbler-OCC"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "GBIF-PIT-pitcairn-reed-warbler-OCC"
+   ],
+   "retrieved_ids": [
+    "GBIF-PIT-pitcairn-reed-warbler-SPECIES",
+    "GBIF-PIT-pitcairn-reed-warbler-OCC",
+    "GBIF-PIT-pitcairn-reed-warbler-IUCN",
+    "PIT-036",
+    "PIT-035",
+    "PIT-033",
+    "PIT-034",
+    "PIT-224",
+    "PIT-205",
+    "PIT-223",
+    "PIT-040"
+   ],
+   "raw_sentences": [
+    {
+     "text": "GBIF holds 153 occurrence records worldwide for the Pitcairn reed warbler.",
+     "kind": "fact",
+     "cites": [
+      "GBIF-PIT-pitcairn-reed-warbler-OCC"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "second_sentences": [
+    {
+     "text": "GBIF holds 153 occurrence records worldwide for the Pitcairn reed warbler.",
+     "kind": "fact",
+     "cites": [
+      "GBIF-PIT-pitcairn-reed-warbler-OCC"
+     ],
+     "issues": []
+    }
+   ],
+   "replaced": 0,
+   "first_answered": true,
+   "model_answered": true,
+   "notes": [],
+   "llm_called": true,
+   "seconds": 207.63,
+   "retrieval_ms": 12.9,
+   "llm_ms": 207614.0,
+   "tokens_in": 1792,
+   "tokens_out": 69
+  },
+  {
+   "id": "T100",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "GBIF records the IUCN Red List category of the Tristan albatross as Critically Endangered (CR).",
+     "kind": "fact",
+     "cites": [
+      "GBIF-TDC-tristan-albatross-IUCN"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "GBIF-TDC-tristan-albatross-IUCN"
+   ],
+   "retrieved_ids": [
+    "GBIF-TDC-tristan-albatross-SPECIES",
+    "GBIF-TDC-tristan-albatross-OCC",
+    "GBIF-TDC-tristan-albatross-IUCN",
+    "TDC-039",
+    "TDC-034",
+    "TDC-033",
+    "TDC-027",
+    "TDC-035",
+    "TDC-040",
+    "TDC-207",
+    "TDC-038"
+   ],
+   "raw_sentences": [
+    {
+     "text": "GBIF records the IUCN Red List category of the Tristan albatross as Critically Endangered (CR).",
+     "kind": "fact",
+     "cites": [
+      "GBIF-TDC-tristan-albatross-IUCN"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "second_sentences": [
+    {
+     "text": "GBIF records the IUCN Red List category of the Tristan albatross as Critically Endangered (CR).",
+     "kind": "fact",
+     "cites": [
+      "GBIF-TDC-tristan-albatross-IUCN"
+     ],
+     "issues": []
+    }
+   ],
+   "replaced": 0,
+   "first_answered": true,
+   "model_answered": true,
+   "notes": [],
+   "llm_called": true,
+   "seconds": 195.39,
+   "retrieval_ms": 22.5,
+   "llm_ms": 195362.5,
+   "tokens_in": 1646,
+   "tokens_out": 70
+  },
+  {
+   "id": "T105",
+   "answered": true,
+   "sentences": [
+    {
+     "text": "Pitcairn is about 4.5 km2 in size.",
+     "kind": "fact",
+     "cites": [
+      "PIT-012"
+     ]
+    }
+   ],
+   "missing": "",
+   "cited_ids": [
+    "PIT-012"
+   ],
+   "retrieved_ids": [
+    "PIT-216",
+    "PIT-003",
+    "PIT-012",
+    "PIT-004",
+    "PIT-033",
+    "PIT-010",
+    "PIT-001",
+    "PIT-224"
+   ],
+   "raw_sentences": [
+    {
+     "text": "Pitcairn is about 4.5 km2 in size.",
+     "kind": "fact",
+     "cites": [
+      "PIT-012"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "second_sentences": [
+    {
+     "text": "Pitcairn is about 4.5 km2 in size.",
+     "kind": "fact",
+     "cites": [
+      "PIT-012"
+     ],
+     "issues": []
+    }
+   ],
+   "replaced": 0,
+   "first_answered": true,
+   "model_answered": true,
+   "notes": [],
+   "llm_called": true,
+   "seconds": 145.94,
+   "retrieval_ms": 18.0,
+   "llm_ms": 145918.4,
+   "tokens_in": 1276,
+   "tokens_out": 55
+  },
+  {
+   "id": "T110",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "My sensors hold nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "Number of mobile phone subscriptions on Cocos (Keeling) Islands.",
+   "cited_ids": [],
+   "retrieved_ids": [
+    "COC-019",
+    "COC-001",
+    "COC-034",
+    "COC-010",
+    "COC-224",
+    "COC-208",
+    "COC-022",
+    "COC-023"
+   ],
+   "raw_sentences": [
+    {
+     "text": "My sensors hold nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "second_sentences": [
+    {
+     "text": "My sensors hold nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": [],
+     "issues": []
+    }
+   ],
+   "replaced": 0,
+   "first_answered": false,
+   "model_answered": false,
+   "notes": [],
+   "llm_called": true,
+   "seconds": 149.03,
+   "retrieval_ms": 23.4,
+   "llm_ms": 149008.0,
+   "tokens_in": 1284,
+   "tokens_out": 57
+  },
+  {
+   "id": "T115",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "My sensors hold nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "Number of students attending school on Pitcairn Island.",
+   "cited_ids": [],
+   "retrieved_ids": [
+    "PIT-004",
+    "PIT-020",
+    "PIT-224",
+    "PIT-003",
+    "PIT-008",
+    "PIT-001",
+    "PIT-223",
+    "PIT-017"
+   ],
+   "raw_sentences": [
+    {
+     "text": "My sensors hold nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "second_sentences": [
+    {
+     "text": "My sensors hold nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": [],
+     "issues": []
+    }
+   ],
+   "replaced": 0,
+   "first_answered": false,
+   "model_answered": false,
+   "notes": [],
+   "llm_called": true,
+   "seconds": 151.92,
+   "retrieval_ms": 11.8,
+   "llm_ms": 151906.4,
+   "tokens_in": 1385,
+   "tokens_out": 55
+  },
+  {
+   "id": "T120",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "My sensors hold nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "Maximum recorded age of a Pitcairn reed warbler in captivity",
+   "cited_ids": [],
+   "retrieved_ids": [
+    "PIT-033",
+    "PIT-035",
+    "PIT-036",
+    "PIT-205",
+    "PIT-034",
+    "PIT-220",
+    "PIT-224",
+    "PIT-028"
+   ],
+   "raw_sentences": [
+    {
+     "text": "My sensors hold nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "second_sentences": [
+    {
+     "text": "My sensors hold nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": [],
+     "issues": []
+    }
+   ],
+   "replaced": 0,
+   "first_answered": false,
+   "model_answered": false,
+   "notes": [],
+   "llm_called": true,
+   "seconds": 102.72,
+   "retrieval_ms": 12.5,
+   "llm_ms": 102710.0,
+   "tokens_in": 1346,
+   "tokens_out": 58
+  },
+  {
+   "id": "T125",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "My sensors hold nothing on South Georgia, so I won't guess.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "evidence about South Georgia",
+   "cited_ids": [],
+   "retrieved_ids": [
+    "POWER-PIT-TEMP",
+    "PIT-005",
+    "PIT-008",
+    "PIT-220",
+    "PIT-007",
+    "PIT-001",
+    "PIT-217",
+    "PIT-009",
+    "PIT-219"
+   ],
+   "raw_sentences": [
+    {
+     "text": "My sensors hold nothing on South Georgia, so I won't guess.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "second_sentences": [
+    {
+     "text": "My sensors hold nothing on South Georgia, so I won't guess.",
+     "kind": "voice",
+     "cites": [],
+     "issues": []
+    }
+   ],
+   "replaced": 0,
+   "first_answered": false,
+   "model_answered": false,
+   "notes": [],
+   "llm_called": true,
+   "seconds": 145.58,
+   "retrieval_ms": 21.9,
+   "llm_ms": 145555.4,
+   "tokens_in": 1874,
+   "tokens_out": 49
+  },
+  {
+   "id": "T130",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "My sensors hold nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "No information about birds on Kerguelen.",
+   "cited_ids": [],
+   "retrieved_ids": [
+    "SOC-208",
+    "SOC-201",
+    "SOC-202",
+    "SOC-205",
+    "SOC-204",
+    "SOC-203",
+    "SOC-209",
+    "SOC-207",
+    "SOC-022",
+    "SOC-020",
+    "SOC-021"
+   ],
+   "raw_sentences": [
+    {
+     "text": "My sensors hold nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "second_sentences": [
+    {
+     "text": "My sensors hold nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": [],
+     "issues": []
+    }
+   ],
+   "replaced": 0,
+   "first_answered": false,
+   "model_answered": false,
+   "notes": [],
+   "llm_called": true,
+   "seconds": 173.66,
+   "retrieval_ms": 18.1,
+   "llm_ms": 173639.9,
+   "tokens_in": 1652,
+   "tokens_out": 53
+  },
+  {
+   "id": "T135",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "My sensors hold nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "Information about the number of people living on Kerguelen.",
+   "cited_ids": [],
+   "retrieved_ids": [
+    "COC-022",
+    "COC-207",
+    "COC-025",
+    "COC-225",
+    "COC-203",
+    "COC-003",
+    "COC-023",
+    "COC-039",
+    "COC-021"
+   ],
+   "raw_sentences": [
+    {
+     "text": "My sensors hold nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "second_sentences": [
+    {
+     "text": "My sensors hold nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": [],
+     "issues": []
+    }
+   ],
+   "replaced": 0,
+   "first_answered": false,
+   "model_answered": false,
+   "notes": [],
+   "llm_called": true,
+   "seconds": 157.09,
+   "retrieval_ms": 10.0,
+   "llm_ms": 157080.8,
+   "tokens_in": 1419,
+   "tokens_out": 56
+  },
+  {
+   "id": "T140",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "My sensors hold nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "Number of mobile phone subscriptions on Cocos (Keeling) Islands.",
+   "cited_ids": [],
+   "retrieved_ids": [
+    "COC-206",
+    "COC-019",
+    "COC-208",
+    "COC-010",
+    "COC-224",
+    "COC-034",
+    "COC-022",
+    "COC-001"
+   ],
+   "raw_sentences": [
+    {
+     "text": "My sensors hold nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "second_sentences": [
+    {
+     "text": "My sensors hold nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": [],
+     "issues": []
+    }
+   ],
+   "replaced": 0,
+   "first_answered": false,
+   "model_answered": false,
+   "notes": [],
+   "llm_called": true,
+   "seconds": 102.89,
+   "retrieval_ms": 16.0,
+   "llm_ms": 102872.8,
+   "tokens_in": 1339,
+   "tokens_out": 57
+  },
+  {
+   "id": "T145",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "My sensors hold nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "missing": "Weight of the heaviest Pitcairn reed warbler ever weighed",
+   "cited_ids": [],
+   "retrieved_ids": [
+    "PIT-035",
+    "PIT-033",
+    "PIT-036",
+    "PIT-205",
+    "PIT-034",
+    "PIT-208",
+    "PIT-224",
+    "PIT-028"
+   ],
+   "raw_sentences": [
+    {
+     "text": "My sensors hold nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": []
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "second_sentences": [
+    {
+     "text": "My sensors hold nothing on that, so I won't guess.",
+     "kind": "voice",
+     "cites": [],
+     "issues": []
+    }
+   ],
+   "replaced": 0,
+   "first_answered": false,
+   "model_answered": false,
+   "notes": [],
+   "llm_called": true,
+   "seconds": 149.66,
+   "retrieval_ms": 15.0,
+   "llm_ms": 149647.9,
+   "tokens_in": 1327,
+   "tokens_out": 58
+  },
+  {
+   "id": "T150",
+   "answered": false,
+   "sentences": [
+    {
+     "text": "My kind is listed as Critically Endangered.",
+     "kind": "fact",
+     "cites": [
+      "TDC-034"
+     ]
+    }
+   ],
+   "missing": "The question asks for the name of the albatross species, but the evidence does not provide a name for the specific albatross that was recategorised as Critically Endangered.",
+   "cited_ids": [
+    "TDC-034"
+   ],
+   "retrieved_ids": [
+    "TDC-033",
+    "TDC-034",
+    "TDC-202",
+    "TDC-201",
+    "TDC-206",
+    "TDC-204",
+    "TDC-203",
+    "TDC-207"
+   ],
+   "raw_sentences": [
+    {
+     "text": "My kind is listed as Critically Endangered.",
+     "kind": "fact",
+     "cites": [
+      "TDC-034"
+     ]
+    }
+   ],
+   "raw_issues": [],
+   "rejected": [],
+   "repaired": false,
+   "second_sentences": [
+    {
+     "text": "My kind is listed as Critically Endangered.",
+     "kind": "fact",
+     "cites": [
+      "TDC-034"
+     ],
+     "issues": []
+    }
+   ],
+   "replaced": 0,
+   "first_answered": false,
+   "model_answered": false,
+   "notes": [],
+   "llm_called": true,
+   "seconds": 185.45,
+   "retrieval_ms": 26.3,
+   "llm_ms": 185422.8,
+   "tokens_in": 1471,
+   "tokens_out": 85
+  }
+ ]
+}
