@@ -143,7 +143,7 @@
     $("console-empty").hidden = true; $("console-body").hidden = false;
     const con = $("console"); con.classList.add("open"); con.classList.remove("min");
     $("island-name").textContent = isl.name;
-    $("island-territory").textContent = isl.territory; $("pin-note").textContent = isl.pin_note; $("educator-link").href = `/educator/${isl.slug}`;
+    $("island-territory").textContent = isl.territory; $("pin-note").textContent = isl.pin_note; $("educator-link").href = `/educator/${isl.slug}`; 
     flyTo(isl);
     const tabs = $("creature-tabs"); tabs.replaceChildren();
     isl.creatures.forEach((c) => {
@@ -160,6 +160,7 @@
     document.querySelectorAll("#creature-tabs button").forEach((b) => b.setAttribute("aria-selected", String(b.dataset.slug === slug)));
     syncTabStops($("creature-tabs"));
     $("creature-name").textContent = c.common_name;
+    $("report-link").href = `/report/${S.island.slug}/${c.slug}`;
     const code = statusCode(c.iucn_status), chip = $("status-chip");
     chip.textContent = STATUS[code] || c.iucn_status; chip.dataset.s = code;
     $("status-detail").textContent = `Status as reported: ${c.iucn_status}. ${c.status_note || ""}`;

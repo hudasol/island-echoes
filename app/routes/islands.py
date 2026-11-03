@@ -3,9 +3,10 @@ from __future__ import annotations
 from pathlib import Path
 
 from fastapi import APIRouter, HTTPException, Request
-from fastapi.responses import FileResponse, HTMLResponse
+from fastapi.responses import FileResponse, HTMLResponse, Response
 
 from ..data.sources import SourceUnavailable
+from .. import fieldreport
 from ..deps import Deps
 from ..educator import build_sheet, render_html
 from ..narration import narration_for
@@ -84,5 +85,17 @@ def router(d: Deps) -> APIRouter:
                 raise HTTPException(404, "No PDF has been built for this island.")
             return FileResponse(pdf, media_type="application/pdf")
         return HTMLResponse(render_html(build_sheet(d.island(slug), d.islands, d.sources)))
+
+    @r.get("/report/{slug}/{creature}.svg")
+    def report_card(slug: str, creature: str):
+        isl = d.island(slug)
+        rep = fieldreport.build_report(isl, creature_of(isl, creature), d.islands, d.sources, d.saved_narrations)
+        return Response(fieldreport.render_svg(rep), media_type="image/svg+xml")
+
+    @r.get("/report/{slug}/{creature}", response_class=HTMLResponse)
+    def report_page(slug: str, creature: str):
+        isl = d.island(slug)
+        rep = fieldreport.build_report(isl, creature_of(isl, creature), d.islands, d.sources, d.saved_narrations)
+        return HTMLResponse(fieldreport.render_html(rep))
 
     return r
