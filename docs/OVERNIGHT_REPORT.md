@@ -75,6 +75,7 @@ Sealed question hashes: `eval/v3/SHA256SUMS`.
 * New islands and creatures: none added (see section 4).
 * Frozen 30 re-run on the new models: not repeated.
 * Local container build and a Lighthouse run on a free machine: not run locally; the CI container job and Lighthouse job passed on the runner.
+* Tag `v1.2.0` and the GitHub release: both were attempted and refused by the environment (HTTP 403 for tag pushes and for release creation). The release notes are the 1.2.0 section of `CHANGELOG.md`; the version in `app/__init__.py` and `docs/openapi.json` is 1.2.0.
 * Entailment check on 200 or more sentences: 117 measured.
 * mypy on `eval/` and `scripts/`: 14 errors, not gated (KI-9).
 
