@@ -494,7 +494,24 @@
       if (h.chat_enabled && $("chat-model")) $("chat-model").textContent = `Model: ${h.llm}. Retrieval: ${h.retrieval_mode}.`;
     }).catch(() => {});
     const [h, t] = location.hash.slice(1).split("/"); if (h && S.islands.some((i) => i.slug === h)) select(h, undefined, t, false);
-    if ("serviceWorker" in navigator && location.protocol !== "file:") navigator.serviceWorker.register("/sw.js").catch(() => {});
+    if ("serviceWorker" in navigator && location.protocol !== "file:") registerWorker();
+  }
+  // A new service worker waits until the person chooses to reload, so a page is never swapped mid use.
+  function registerWorker() {
+    const banner = $("update-banner");
+    const offer = (worker) => {
+      banner.hidden = false;
+      $("update-reload").onclick = () => worker.postMessage({ type: "SKIP_WAITING" });
+    };
+    navigator.serviceWorker.register("/sw.js").then((reg) => {
+      if (reg.waiting && navigator.serviceWorker.controller) offer(reg.waiting);
+      reg.addEventListener("updatefound", () => {
+        const w = reg.installing;
+        if (w) w.addEventListener("statechange", () => { if (w.state === "installed" && navigator.serviceWorker.controller) offer(w); });
+      });
+    }).catch(() => {});
+    let reloaded = false;
+    navigator.serviceWorker.addEventListener("controllerchange", () => { if (!reloaded) { reloaded = true; location.reload(); } });
   }
   boot();
 })();

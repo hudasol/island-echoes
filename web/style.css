@@ -251,3 +251,7 @@ mark { background: #f4b63f55; color: inherit; border-radius: 2px; }
 .ledger .num { padding-right: 0; }
 .ledger tbody tr.group + tr td { border-top: 0; padding-top: 0; }
 .ledger-note { max-width: 46ch; }
+
+.update-banner { position: fixed; left: 50%; bottom: 14px; transform: translateX(-50%); z-index: 60; background: var(--ink); color: var(--on-dark); border: 1px solid #3d6676; border-radius: 8px; padding: 8px 12px; font-size: 14px; display: flex; gap: 10px; align-items: center; box-shadow: 0 4px 18px rgba(0,0,0,.35); }
+.update-banner .quiet { color: var(--on-dark); border-color: #3d6676; }
+.agent-head #educator-link { display: inline-block; padding: 4px 0; min-height: 24px; }

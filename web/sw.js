@@ -1,13 +1,18 @@
 // Cache the app shell so the PWA opens offline; API responses are network-first with cache fallback.
-const SHELL = "island-echoes-shell-v10";
-const API = "island-echoes-api-v1";
+const SHELL = "island-echoes-shell-v11";
+const API = "island-echoes-api-v2";
 const ASSETS = ["/", "/index.html", "/fonts.css", "/style.css", "/app.js", "/creatures.js", "/vendor/globe.bundle.js",
   "/fonts/newsreader-latin-400-normal.woff2", "/fonts/newsreader-latin-500-normal.woff2", "/fonts/newsreader-latin-400-italic.woff2",
   "/fonts/ibm-plex-sans-latin-400-normal.woff2", "/fonts/ibm-plex-sans-latin-500-normal.woff2", "/fonts/ibm-plex-sans-latin-600-normal.woff2",
-  "/manifest.webmanifest", "/icons/icon-192.png", "/icons/icon-512.png"];
+  "/educator.css", "/manifest.webmanifest", "/icons/icon-192.png", "/icons/icon-512.png"];
 
 self.addEventListener("install", (e) => {
-  e.waitUntil(caches.open(SHELL).then((c) => c.addAll(ASSETS)).then(() => self.skipWaiting()));
+  // no skipWaiting here: the page offers the update and asks this worker to take over (see the message handler)
+  e.waitUntil(caches.open(SHELL).then((c) => c.addAll(ASSETS)));
+});
+
+self.addEventListener("message", (e) => {
+  if (e.data && e.data.type === "SKIP_WAITING") self.skipWaiting();
 });
 
 self.addEventListener("activate", (e) => {
@@ -22,8 +27,8 @@ self.addEventListener("fetch", (e) => {
   const req = e.request;
   const url = new URL(req.url);
   if (req.method !== "GET" || url.origin !== location.origin) return; // satellite tiles go straight to NASA
-  if (url.pathname.startsWith("/api/")) {
-    if (url.pathname === "/api/health") return;
+  if (url.pathname.startsWith("/api/") || url.pathname.startsWith("/educator/")) {
+    if (url.pathname === "/api/health" || url.pathname === "/api/v1/health") return;
     e.respondWith(
       fetch(req).then((res) => {
         if (res.ok) { const copy = res.clone(); caches.open(API).then((c) => c.put(req, copy)); }
