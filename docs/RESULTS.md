@@ -120,16 +120,16 @@ Ten of the 150 questions errored in the 3B run because the model returned malfor
 | System | Passed | False refusals (of answerable) | Refusal accuracy (of should refuse) | Key fact recall | Answers with a claim outside the sources |
 |---|---|---|---|---|---|
 | Always refuse | 25% (38/150) [19-33] | 100% (112/112) [97-100] | 100% (38/38) [91-100] | 0% (0/148) [0-3] | n/a |
-| Model alone, no sources | 14% (7/50) [7-26] | 29% (33/112) [22-38] | 18% (7/38) [9-33] | 0% (0/53) [0-7] | 40% (4/10) [17-69] |
-| Retrieval and model, no validator | 65% (91/140) [57-72] | 9% (10/112) [5-16] | 100% (38/38) [91-100] | 52% (71/136) [44-60] | 1% (1/92) [0-6] |
-| Validator, rejected sentences dropped (1.1 behaviour) | 54% (75/140) [45-62] | 37% (41/112) [28-46] | 100% (38/38) [91-100] | 40% (55/136) [33-49] | 0% (0/61) [0-6] |
-| Validator, rejected sentences replaced by the cited source sentence | 58% (81/140) [50-66] | 31% (35/112) [23-40] | 100% (38/38) [91-100] | 45% (61/136) [37-53] | 0% (0/67) [0-5] |
-| Dropped, with the climate route | 64% (90/140) [56-72] | 27% (30/112) [19-36] | 89% (34/38) [76-96] | 62% (85/136) [54-70] | 5% (4/76) [2-13] |
-| Replaced, with the climate route | 67% (94/140) [59-74] | 22% (25/112) [16-31] | 89% (34/38) [76-96] | 65% (89/136) [57-73] | 5% (4/81) [2-12] |
-| Dropped, climate route with the unknown place fix (post hoc) | 67% (94/140) [59-74] | 27% (30/112) [19-36] | 100% (38/38) [91-100] | 62% (85/136) [54-70] | 6% (4/72) [2-13] |
-| Replaced, climate route with the unknown place fix (post hoc) | 70% (98/140) [62-77] | 22% (25/112) [16-31] | 100% (38/38) [91-100] | 65% (89/136) [57-73] | 5% (4/77) [2-13] |
+| Model alone, no sources | 14% (7/50) [7-26] | 82% (33/40) [68-91] | 70% (7/10) [40-89] | 0% (0/53) [0-7] | 40% (4/10) [17-69] |
+| Retrieval and model, no validator | 65% (91/140) [57-72] | 10% (10/102) [5-17] | 100% (38/38) [91-100] | 52% (71/136) [44-60] | 1% (1/92) [0-6] |
+| Validator, rejected sentences dropped (1.1 behaviour) | 54% (75/140) [45-62] | 40% (41/102) [31-50] | 100% (38/38) [91-100] | 40% (55/136) [33-49] | 0% (0/61) [0-6] |
+| Validator, rejected sentences replaced by the cited source sentence | 58% (81/140) [50-66] | 34% (35/102) [26-44] | 100% (38/38) [91-100] | 45% (61/136) [37-53] | 0% (0/67) [0-5] |
+| Dropped, with the climate route | 64% (90/140) [56-72] | 29% (30/102) [21-39] | 89% (34/38) [76-96] | 62% (85/136) [54-70] | 5% (4/76) [2-13] |
+| Replaced, with the climate route | 67% (94/140) [59-74] | 25% (25/102) [17-34] | 89% (34/38) [76-96] | 65% (89/136) [57-73] | 5% (4/81) [2-12] |
+| Dropped, climate route with the unknown place fix (post hoc) | 67% (94/140) [59-74] | 29% (30/102) [21-39] | 100% (38/38) [91-100] | 62% (85/136) [54-70] | 6% (4/72) [2-13] |
+| Replaced, climate route with the unknown place fix (post hoc) | 70% (98/140) [62-77] | 25% (25/102) [17-34] | 100% (38/38) [91-100] | 65% (89/136) [57-73] | 5% (4/77) [2-13] |
 
-### Passes by question type
+### Passes by question type (subset runs cover only their own questions)
 
 | System | climate (30) | conflict (5) | injection (12) | multi (15) | not_in_library (15) | single (48) | species (10) | unanswerable (15) |
 |---|---|---|---|---|---|---|---|---|
@@ -142,6 +142,14 @@ Ten of the 150 questions errored in the 3B run because the model returned malfor
 | Replaced, with the climate route | 28 | 0 | 9 | 2 | 11 | 19 | 10 | 15 |
 | Dropped, climate route with the unknown place fix (post hoc) | 28 | 0 | 9 | 2 | 15 | 16 | 9 | 15 |
 | Replaced, climate route with the unknown place fix (post hoc) | 28 | 0 | 9 | 2 | 15 | 19 | 10 | 15 |
+
+### Subset runs against the 3B default on the same questions
+
+Questions the 3B run errored on are left out of both sides. Intervals on 30 to 50 questions are wide.
+
+| Run | Questions | Passed | 3B default passed | Only this run passes | Only 3B passes | p |
+|---|---|---|---|---|---|---|
+| Model alone, no sources | 46 | 15% (7/46) [8-28] | 50% (23/46) [36-64] | 0 | 16 | 0.000 |
 
 ### Paired comparisons (exact McNemar on passes; second system better / worse)
 

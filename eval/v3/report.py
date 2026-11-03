@@ -23,6 +23,8 @@ ARMS = [
     ("Validator, rejected sentences replaced by the cited source sentence", "arm-extractive.json", "Qwen2.5 3B"),
     ("Dropped, with the climate route", "arm-drop-climate.json", "Qwen2.5 3B"),
     ("Replaced, with the climate route", "arm-extractive-climate.json", "Qwen2.5 3B"),
+    ("Qwen2.5 1.5B, full pipeline, fixed 50 question subset", "qwen25-1.5b-full.json", "Qwen2.5 1.5B"),
+    ("Qwen2.5 7B, full pipeline, fixed 30 question subset", "qwen25-7b-full.json", "Qwen2.5 7B"),
     ("Dropped, climate route with the unknown place fix (post hoc)", "arm-drop-climate-fixed.json", "Qwen2.5 3B"),
     ("Replaced, climate route with the unknown place fix (post hoc)", "arm-extractive-climate-fixed.json", "Qwen2.5 3B"),
 ]
@@ -96,10 +98,12 @@ def section() -> str:
         kh = sum(s.key_hits for s in sc.values() if not s.should_refuse)
         kt = sum(s.key_total for s in sc.values() if not s.should_refuse)
         o = baselines.outside_sources_summary(run, qs, pools)["answers"]
-        out.append(f"| {label} | {ci(passed, len(sc))} | {ci(fr, n_ans)} | {ci(ra, n_ref)} | {ci(kh, kt)} | {ci(o['k'], o['n'])} |")
+        n_a = sum(1 for s in sc.values() if not s.should_refuse)
+        n_r = len(sc) - n_a
+        out.append(f"| {label} | {ci(passed, len(sc))} | {ci(fr, n_a)} | {ci(ra, n_r)} | {ci(kh, kt)} | {ci(o['k'], o['n'])} |")
 
     types = sorted({q["type"] for q in qs.values()})
-    out += ["", "### Passes by question type", "", "| System | " + " | ".join(f"{t} ({sum(q['type'] == t for q in qs.values())})" for t in types) + " |", "|---|" + "---|" * len(types)]
+    out += ["", "### Passes by question type (subset runs cover only their own questions)", "", "| System | " + " | ".join(f"{t} ({sum(q['type'] == t for q in qs.values())})" for t in types) + " |", "|---|" + "---|" * len(types)]
     for label, name, _ in have:
         sc = per[name]
         out.append(f"| {label} | " + " | ".join(str(sum(1 for s in sc.values() if s.type == t and s.passed)) for t in types) + " |")
@@ -124,6 +128,21 @@ def section() -> str:
         if a in per and b in per:
             better, worse, p, n = paired(a, b, only)
             rows.append(f"| {name} | {n} | {better} | {worse} | {p:.3f} |")
+    sub_rows = []
+    base = per.get("arm-drop.json")
+    for label, name, _ in have:
+        if name in ("qwen25-3b-closed.json", "qwen25-1.5b-full.json", "qwen25-7b-full.json") and base:
+            sc = per[name]
+            ids = [i for i in sc if i in base]
+            k_o = sum(sc[i].passed for i in ids)
+            k_3 = sum(base[i].passed for i in ids)
+            better = sum(1 for i in ids if sc[i].passed and not base[i].passed)
+            worse = sum(1 for i in ids if base[i].passed and not sc[i].passed)
+            sub_rows.append(f"| {label} | {len(ids)} | {ci(k_o, len(ids))} | {ci(k_3, len(ids))} | {better} | {worse} | {mcnemar_exact(better, worse):.3f} |")
+    if sub_rows:
+        out += ["", "### Subset runs against the 3B default on the same questions", "",
+                "Questions the 3B run errored on are left out of both sides. Intervals on 30 to 50 questions are wide.", "",
+                "| Run | Questions | Passed | 3B default passed | Only this run passes | Only 3B passes | p |", "|---|---|---|---|---|---|---|", *sub_rows]
     if rows:
         out += ["", "### Paired comparisons (exact McNemar on passes; second system better / worse)", "",
                 "| Comparison | Questions | Only second passes | Only first passes | p |", "|---|---|---|---|---|", *rows]
