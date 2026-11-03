@@ -1,0 +1,11 @@
+{
+ "n": 68,
+ "gold_in_pool": 59,
+ "exact": 45,
+ "covers_gold": 58,
+ "mean_jaccard": 0.775,
+ "exact_when_in_pool": [
+  45,
+  59
+ ]
+}

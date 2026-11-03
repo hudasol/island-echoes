@@ -377,7 +377,7 @@ def build_items(split: str, rng: random.Random, store: IslandStore, drafts: dict
     return items
 
 
-PLAN_TEST = dict(single=45, multi=15, climate=30, species=10, conflict=8, unanswerable=15, absent=15, injection=12)
+PLAN_TEST = dict(single=48, multi=15, climate=30, species=10, conflict=6, unanswerable=15, absent=15, injection=12)
 PLAN_DEV = dict(single=15, multi=5, climate=12, species=4, conflict=3, unanswerable=6, absent=5, injection=5)
 
 
@@ -396,7 +396,7 @@ def assemble() -> None:
             d = drafts.get("C:" + item["conflict_note"][:60])
             item["question"] = d["question"] if d else ""
     for name, items in (("test", test), ("dev", dev)):
-        items = [i for i in items if i["question"]]
+        items = [i for i in items if i["question"] and not re.search(r"wikipedia|fishbase", i["question"], re.I)]
         for n, it in enumerate(items, 1):
             it["id"] = f"{'T' if name == 'test' else 'V'}{n:03d}"
         out = V3 / f"{name}.jsonl"

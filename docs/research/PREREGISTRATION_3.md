@@ -134,4 +134,10 @@ reproduce the stored answers, so there is no estimate of generation variance.
 
 ## Addenda
 
-(none yet)
+Addendum 1, 3 November 2026, before any system was run on the sealed set. The sealed and development question files, the
+second labeller output and their SHA256 hashes (`eval/v3/SHA256SUMS`) are committed in the commit that adds this addendum;
+the draft of this file had been committed earlier, before the hashes existed. No answering system has been run on either
+file at this point. Second labeller result, recorded here because it is a measured quantity of the sets and not of any
+system: of 68 retrieval type items, the labeller's set equals the constructed gold in 45 (66%), covers it in 58 (85%), and the mean Jaccard
+overlap is 0.775; in 9 items the gold fact was not among the 12 candidates it was shown. This is a miss on P10 (at least
+85% exact match) and is reported as such; it does not change any other prediction.
