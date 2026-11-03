@@ -207,6 +207,11 @@ def build() -> str:
             rows = [r for r in held if r["meta"].get("split") == split]
             if rows:
                 parts += [f"**{title}**", "", generation_table(rows, with_check=True), ""]
+    from eval.v3.report import section as v3_section
+
+    v3 = v3_section()
+    if v3:
+        parts += [v3, ""]
     notes = RESULTS / "NOTES.md"
     if notes.exists():
         parts += [notes.read_text(encoding="utf-8").strip(), ""]
