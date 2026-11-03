@@ -156,3 +156,13 @@ questions is unchanged.
 Comparisons with the 3B model for these runs use the same questions from the 3B run, as paired tests on that subset.
 With 30 and 50 questions the intervals are wide, and P11 and P12 will be reported with that caveat. If time runs out, runs
 are stopped in the order 7B, then 1.5B, and what was completed is reported with the exact count.
+
+Addendum 3, 3 November 2026, written after the 3B run on the sealed set finished and its results were read. This is post
+hoc. The sealed results showed that the climate route answered four questions about a place that is not in the library
+(South Georgia and Mauritius, items T125, T128, T131, T133) by reading the table of the island the person had selected.
+That is a wrong island answer, a defect in the route and not a tuning matter, so it is fixed in
+`app/data/climate_tool.py` (a question that names a capitalised place matching no library island is not routed) with a
+unit test (`tests/test_climate_unknown_place.py`). The preregistered arms are reported exactly as run. Two further rows
+labelled "post hoc" repeat the climate arms with the fix, derived offline from the same stored generation. The keep rule
+for the climate route is judged on the preregistered rows, and the post hoc rows are reported as such, because the fix
+was written after the sealed set had been read.

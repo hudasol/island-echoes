@@ -23,6 +23,8 @@ ARMS = [
     ("Validator, rejected sentences replaced by the cited source sentence", "arm-extractive.json", "Qwen2.5 3B"),
     ("Dropped, with the climate route", "arm-drop-climate.json", "Qwen2.5 3B"),
     ("Replaced, with the climate route", "arm-extractive-climate.json", "Qwen2.5 3B"),
+    ("Dropped, climate route with the unknown place fix (post hoc)", "arm-drop-climate-fixed.json", "Qwen2.5 3B"),
+    ("Replaced, climate route with the unknown place fix (post hoc)", "arm-extractive-climate-fixed.json", "Qwen2.5 3B"),
 ]
 
 
@@ -75,6 +77,11 @@ def section() -> str:
         f"All {len(qs)} questions are **synthetic**: written by a local model from the fact files, with gold constructed from the same facts "
         f"({n_ans} answerable, {n_ref} that should be refused). Brackets are 95% Wilson intervals. Sources of the plan, the hashes and the "
         "predictions are in `docs/research/PREREGISTRATION_3.md`. These numbers are not comparable with the frozen 30, which were written by hand.", "",
+        "Ten of the 150 questions errored in the 3B run because the model returned malformed JSON; they are excluded from the "
+        "model rows (140 scored) and counted in the always refuse row (150). The \"claim outside the sources\" column is a mechanical check "
+        "against the facts of the question's own island. In the climate route rows its four hits are checker limits, not "
+        "invented numbers: three comparison answers quote the second island's table value, and one names a month that the "
+        "table itself supplies. Each of these sentences is produced by the route directly from the stored POWER tables.", "",
         "| System | Passed | False refusals (of answerable) | Refusal accuracy (of should refuse) | Key fact recall | Answers with a claim outside the sources |",
         "|---|---|---|---|---|---|",
     ]
