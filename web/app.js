@@ -142,7 +142,7 @@
     $("console-empty").hidden = true; $("console-body").hidden = false;
     const con = $("console"); con.classList.add("open"); con.classList.remove("min");
     $("island-name").textContent = isl.name;
-    $("island-territory").textContent = isl.territory; $("pin-note").textContent = isl.pin_note;
+    $("island-territory").textContent = isl.territory; $("pin-note").textContent = isl.pin_note; $("educator-link").href = `/educator/${isl.slug}`;
     flyTo(isl);
     const tabs = $("creature-tabs"); tabs.replaceChildren();
     isl.creatures.forEach((c) => {
