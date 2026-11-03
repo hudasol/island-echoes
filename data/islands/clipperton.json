@@ -814,6 +814,66 @@
       "evidence_note": "Presentation note for a public consultation (20 October to 10 November 2016); the page is a draft, and whether it was adopted was not confirmed. Word-file converted locally to read.",
       "confidence": "high",
       "subject": "island"
+    },
+    {
+      "id": "CLI-301",
+      "category": "history",
+      "statement": "A 2016 report of the French National Assembly records a public act of possession of Clipperton on 17 November 1858 by naval lieutenant Victor Le Coat de Kervéguen, which supports 1858 over the 1855 date given by Britannica.",
+      "source_url": "https://www.assemblee-nationale.fr/14/pdf/rapports/r4219.pdf",
+      "source_title": "Rapport n° 4219 fait au nom de la Commission des lois sur la proposition de loi n° 4102 visant à donner un statut à l'île de Clipperton (rapporteur Philippe Folliot)",
+      "publisher": "Assemblée nationale (France)",
+      "retrieved": "2026-11-03",
+      "evidence_note": "Page 5: 'prise de possession publique intervenue le 17 novembre 1858 par le lieutenant de vaisseau Victor le Coat de Kervéguen'.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "CLI-302",
+      "category": "history",
+      "statement": "The French-Mexican dispute over Clipperton was submitted to arbitration by an agreement of 2 March 1909, and King Victor Emmanuel III of Italy gave his award on 28 January 1931, according to the French National Assembly report.",
+      "source_url": "https://www.assemblee-nationale.fr/14/pdf/rapports/r4219.pdf",
+      "source_title": "Rapport n° 4219 fait au nom de la Commission des lois sur la proposition de loi n° 4102 visant à donner un statut à l'île de Clipperton (rapporteur Philippe Folliot)",
+      "publisher": "Assemblée nationale (France)",
+      "retrieved": "2026-11-03",
+      "evidence_note": "Page 6: 'arbitrage ... décidé le 2 mars 1909 et rendu par le roi d'Italie, Victor-Emmanuel III, le 28 janvier 1931'.",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "CLI-303",
+      "category": "terrain",
+      "statement": "The French National Assembly report gives Clipperton a total area of 9 km2, of which only 1.7 km2 is emerged land.",
+      "source_url": "https://www.assemblee-nationale.fr/14/pdf/rapports/r4219.pdf",
+      "source_title": "Rapport n° 4219 fait au nom de la Commission des lois sur la proposition de loi n° 4102 visant à donner un statut à l'île de Clipperton (rapporteur Philippe Folliot)",
+      "publisher": "Assemblée nationale (France)",
+      "retrieved": "2026-11-03",
+      "evidence_note": "Page 8: 'D'une superficie totale de 9 km2 mais de seulement 1,7 km2 de terres émergées.'",
+      "confidence": "high",
+      "subject": "island"
+    },
+    {
+      "id": "CLI-304",
+      "category": "location",
+      "statement": "The French National Assembly report places Clipperton 1,110 km west of the Mexican coast, a different figure from the roughly 1,080 km southwest of mainland Mexico given elsewhere in the library.",
+      "source_url": "https://www.assemblee-nationale.fr/14/pdf/rapports/r4219.pdf",
+      "source_title": "Rapport n° 4219 fait au nom de la Commission des lois sur la proposition de loi n° 4102 visant à donner un statut à l'île de Clipperton (rapporteur Philippe Folliot)",
+      "publisher": "Assemblée nationale (France)",
+      "retrieved": "2026-11-03",
+      "evidence_note": "Page 7: 'située à 1 110 km à l'ouest des côtes mexicaines'. Different measuring points explain part of the gap; the report does not say.",
+      "confidence": "medium",
+      "subject": "island"
+    },
+    {
+      "id": "CLI-305",
+      "category": "history",
+      "statement": "The French National Assembly report dates Michel Dubocage's arrival at Clipperton to Good Friday, but gives it as 3 April 1711 on one page, 4 April 1711 on another and 1712 on a third.",
+      "source_url": "https://www.assemblee-nationale.fr/14/pdf/rapports/r4219.pdf",
+      "source_title": "Rapport n° 4219 fait au nom de la Commission des lois sur la proposition de loi n° 4102 visant à donner un statut à l'île de Clipperton (rapporteur Philippe Folliot)",
+      "publisher": "Assemblée nationale (France)",
+      "retrieved": "2026-11-03",
+      "evidence_note": "Pages 31, 5 and 23. The report does not reconcile the dates.",
+      "confidence": "low",
+      "subject": "island"
     }
   ],
   "sources": [
@@ -866,6 +926,11 @@
       "url": "https://en.wikipedia.org/wiki/Silvertip_shark",
       "title": "Silvertip shark",
       "publisher": "Wikipedia (Wikimedia Foundation)"
+    },
+    {
+      "url": "https://www.assemblee-nationale.fr/14/pdf/rapports/r4219.pdf",
+      "title": "Rapport n° 4219 fait au nom de la Commission des lois sur la proposition de loi n° 4102 visant à donner un statut à l'île de Clipperton (rapporteur Philippe Folliot)",
+      "publisher": "Assemblée nationale (France)"
     }
   ],
   "gaps": [
@@ -879,6 +944,7 @@
     "Annexation: Wikipedia says 1858, Britannica says 1855",
     "Arbitration ruling: Wikipedia says 1931, Britannica says 1930",
     "Silvertip assessment year: FishBase says 8 June 2023, Wikipedia cites 2016",
-    "Clipperton Rock height: 29 m (Wikipedia, GlobalSecurity), Britannica says a promontory of 21 m"
+    "Clipperton Rock height: 29 m (Wikipedia, GlobalSecurity), Britannica says a promontory of 21 m",
+    "Discovery date: the French National Assembly report gives 3 April 1711, 4 April 1711 and 1712 on different pages"
   ]
 }
