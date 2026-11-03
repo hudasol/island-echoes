@@ -46,8 +46,8 @@
   function applyLayer(l) {
     S.layer = l;
     document.querySelectorAll("#layer-buttons button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.id === l.id)));
-    $("layer-note").textContent = l.note.replace("{d}", l.time || "") + " Source: NASA GIBS.";
-    $("attribution").textContent = `Imagery: ${l.label}${l.time ? `, ${l.time}` : ""}, NASA GIBS. Climate: NASA POWER. Species records: GBIF.`;
+    $("layer-note").textContent = T("layer_" + l.id + "_note", l.note).replace("{d}", l.time || "") + " " + T("src_gibs", "Source: NASA GIBS.");
+    $("attribution").textContent = `${T("imagery", "Imagery")}: ${T("layer_" + l.id, l.label)}${l.time ? `, ${l.time}` : ""}, NASA GIBS. ${T("climate_src", "Climate")}: NASA POWER. ${T("species_src", "Species records")}: GBIF.`;
     if (globe) { globe.globeTileEngineClearCache?.(); globe.globeTileEngineMaxLevel(Math.min(l.matrix - 1, 8)); globe.globeTileEngineUrl(tileUrl(l)); }
   }
   // The 2 MB globe bundle loads after the page is usable, and only on request when the device signals low power.
@@ -150,7 +150,7 @@
     });
     const lb = $("layer-buttons");
     LAYERS.forEach((l) => {
-      const b = el("button", null, l.label); b.type = "button"; b.dataset.id = l.id; b.setAttribute("aria-pressed", "false");
+      const b = el("button", null, T("layer_" + l.id, l.label)); b.type = "button"; b.dataset.id = l.id; b.setAttribute("aria-pressed", "false");
       b.addEventListener("click", () => applyLayer(l)); lb.append(b);
     });
   }
@@ -184,7 +184,7 @@
     $("creature-name").textContent = c.common_name;
     $("report-link").href = `/report/${S.island.slug}/${c.slug}`;
     const code = statusCode(c.iucn_status), chip = $("status-chip");
-    chip.textContent = STATUS[code] || c.iucn_status; chip.dataset.s = code;
+    chip.textContent = STATUS[code] ? T("st_" + code, STATUS[code]) : c.iucn_status; chip.dataset.s = code;
     $("status-detail").textContent = `Status as reported: ${c.iucn_status}. ${c.status_note || ""}`;
     loadOfficialStatus(S.island, slug);
     const cv = $("creature-canvas");
@@ -507,6 +507,11 @@
     document.addEventListener("visibilitychange", () => { if (document.hidden) speechSynthesis?.cancel?.(); });
   }
 
+  document.addEventListener("ie-lang", () => {
+    document.querySelectorAll("#layer-buttons button").forEach((b) => { const l = LAYERS.find((x) => x.id === b.dataset.id); if (l) b.textContent = T("layer_" + l.id, l.label); });
+    if (S.layer) applyLayer(S.layer);
+    if (S.creature) { const code = statusCode(S.creature.iucn_status); $("status-chip").textContent = STATUS[code] ? T("st_" + code, STATUS[code]) : S.creature.iucn_status; }
+  });
   async function boot() {
     wire();
     try { S.islands = await api("/api/islands"); }

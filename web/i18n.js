@@ -37,6 +37,11 @@
     lib_fail: "The library could not be loaded.",
     server_fail: "Could not reach the Island Echoes server.",
     entry_one: "entry", entry_many: "entries",
+    st_CR: "Critically endangered", st_EN: "Endangered", st_VU: "Vulnerable", st_EX: "Extinct", st_EW: "Extinct in the wild", st_NT: "Near threatened", st_LC: "Least concern", st_DD: "Data deficient",
+    layer_truecolor: "True colour", layer_relief: "Relief", layer_night: "Night lights", layer_sst: "Sea temperature",
+    layer_truecolor_note: "VIIRS true colour from the Suomi NPP satellite, {d}.", layer_relief_note: "Blue Marble shaded relief with sea-floor bathymetry.",
+    layer_night_note: "VIIRS Black Marble night lights, 2016. Few lights on these islands.", layer_sst_note: "GHRSST MUR sea surface temperature, {d}.",
+    src_gibs: "Source: NASA GIBS.", imagery: "Imagery", climate_src: "Climate", species_src: "Species records",
     switch_label: "Switch language to English", switch_text: "English",
   };
   const AR = {
@@ -73,6 +78,11 @@
     lib_fail: "تعذر تحميل المكتبة.",
     server_fail: "تعذر الوصول إلى خادم Island Echoes.",
     entry_one: "مدخل", entry_many: "مدخلات",
+    st_CR: "مهدد بالانقراض بشدة", st_EN: "مهدد بالانقراض", st_VU: "معرّض للخطر", st_EX: "منقرض", st_EW: "منقرض في البرية", st_NT: "قريب من التهديد", st_LC: "أقل إثارة للقلق", st_DD: "بيانات غير كافية",
+    layer_truecolor: "الألوان الحقيقية", layer_relief: "التضاريس", layer_night: "أضواء الليل", layer_sst: "حرارة البحر",
+    layer_truecolor_note: "ألوان حقيقية من القمر الصناعي سومي إن بي بي (VIIRS)، {d}.", layer_relief_note: "تضاريس مظللة من Blue Marble مع أعماق قاع البحر.",
+    layer_night_note: "أضواء الليل من VIIRS Black Marble، 2016. أضواء قليلة على هذه الجزر.", layer_sst_note: "حرارة سطح البحر من GHRSST MUR، {d}.",
+    src_gibs: "المصدر: ناسا GIBS.", imagery: "الصور", climate_src: "المناخ", species_src: "سجلات الأنواع",
     switch_label: "تغيير اللغة إلى الإنجليزية", switch_text: "English",
   };
   const TABLES = { en: EN, ar: AR };
