@@ -1,0 +1,1439 @@
+{
+ "summary": {
+  "judges": "all automatic; no human label",
+  "threshold": 0.5,
+  "sentences": 117,
+  "validator_rejected": 12,
+  "nli_not_entailed": 62,
+  "validator_vs_nli": {
+   "agree": 65,
+   "kappa": 0.151,
+   "validator_ok_nli_no": 51,
+   "validator_no_nli_ok": 1
+  },
+  "nli_ms_per_sentence": 87.4,
+  "labelled": 117,
+  "labeller_unsupported": 11,
+  "labeller_vs_validator": {
+   "agree": 106,
+   "kappa": 0.47
+  },
+  "labeller_vs_nli": {
+   "agree": 64,
+   "kappa": 0.136
+  },
+  "labeller_flagged_by_validator": 6,
+  "labeller_flagged_by_nli": 10,
+  "labeller_flagged_by_either": 10,
+  "accepted_by_both_but_labeller_unsupported": 1
+ },
+ "rows": [
+  {
+   "q": "T002",
+   "n": 0,
+   "sentence": "about 9 m for the highest point.",
+   "cites": [
+    "COC-010"
+   ],
+   "premise": "The CIA World Factbook gives the Cocos (Keeling) Islands a land area of 14 km2 and a highest point of about 9 m; Wikipedia gives about 5 m for the highest point.",
+   "validator_ok": true,
+   "nli": 0.9269,
+   "labeller_ok": true
+  },
+  {
+   "q": "T002",
+   "n": 1,
+   "sentence": "about 5 m for the highest point.",
+   "cites": [
+    "COC-010"
+   ],
+   "premise": "The CIA World Factbook gives the Cocos (Keeling) Islands a land area of 14 km2 and a highest point of about 9 m; Wikipedia gives about 5 m for the highest point.",
+   "validator_ok": true,
+   "nli": 0.9637,
+   "labeller_ok": true
+  },
+  {
+   "q": "T003",
+   "n": 0,
+   "sentence": "GBIF holds 185 occurrence records for Buteo socotraensis.",
+   "cites": [
+    "GBIF-SOC-socotra-buzzard-OCC"
+   ],
+   "premise": "GBIF holds 185 occurrence records worldwide for the Socotra buzzard. Inside a search box around Socotra spanning latitude 11.01 to 14.01 and longitude 52.42 to 55.42 (±1.5° around the pin) it holds 181 records, of which 181 have coordinates with no flagged problem: 181 observations, 0 preserved or fossil specimens, 0 living or captive animals and 0 of other or unstated type. Record counts reflect what has been published to GBIF, not true abundance.",
+   "validator_ok": true,
+   "nli": 0.0097,
+   "labeller_ok": true
+  },
+  {
+   "q": "T008",
+   "n": 0,
+   "sentence": "The nearest land is Socorro Island in Mexico's Revillagigedo group, about 945 km to the northwest.",
+   "cites": [
+    "CLI-002"
+   ],
+   "premise": "The nearest land is Socorro Island in Mexico's Revillagigedo group, about 945 km to the northwest.",
+   "validator_ok": true,
+   "nli": 0.9886,
+   "labeller_ok": true
+  },
+  {
+   "q": "T010",
+   "n": 0,
+   "sentence": "A CCAMLR ecosystem-monitoring site was established at Nyrøysa on an expedition running from 9 December 1996 to 22 February 1997.",
+   "cites": [
+    "BOU-021"
+   ],
+   "premise": "A CCAMLR ecosystem-monitoring site was established at Nyrøysa on an expedition running from 9 December 1996 to 22 February 1997.",
+   "validator_ok": true,
+   "nli": 0.9815,
+   "labeller_ok": true
+  },
+  {
+   "q": "T011",
+   "n": 0,
+   "sentence": "Pitcairn is the only inhabited island of its territory, and the UNESCO listing places it about 200 km southwest of uninhabited Henderson Island.",
+   "cites": [
+    "PIT-003"
+   ],
+   "premise": "Pitcairn is the only inhabited island of its territory, and the UNESCO listing places it about 200 km southwest of uninhabited Henderson Island.",
+   "validator_ok": true,
+   "nli": 0.9938,
+   "labeller_ok": true
+  },
+  {
+   "q": "T011",
+   "n": 1,
+   "sentence": "Pitcairn is centred at roughly 25.07 degrees south, 130.11 degrees west (25°04′S, 130°06′W) in the South Pacific.",
+   "cites": [
+    "PIT-001"
+   ],
+   "premise": "Pitcairn Island is centred at roughly 25.07 degrees south, 130.11 degrees west (25°04′S, 130°06′W) in the South Pacific.",
+   "validator_ok": true,
+   "nli": 0.9849,
+   "labeller_ok": true
+  },
+  {
+   "q": "T012",
+   "n": 0,
+   "sentence": "At least 26 land- and water-dwelling crab species live in Pulu Keeling National Park, including three abundant hermit crabs (Coenobita perlatus, C. brevimanus, C. rugosus) and the Christmas Island red crab (Gecarcoidea natalis).",
+   "cites": [
+    "COC-225"
+   ],
+   "premise": "At least 26 land- and water-dwelling crab species live in Pulu Keeling National Park, including three abundant hermit crabs (Coenobita perlatus, C. brevimanus, C. rugosus) and the Christmas Island red crab (Gecarcoidea natalis).",
+   "validator_ok": true,
+   "nli": 0.9886,
+   "labeller_ok": true
+  },
+  {
+   "q": "T014",
+   "n": 0,
+   "sentence": "At least 10 endemic invertebrates are found on Inaccessible Island.",
+   "cites": [
+    "TDC-026"
+   ],
+   "premise": "Gough Island has two endemic land birds, the Gough moorhen and Gough bunting, plus 12 endemic plant species; Inaccessible Island holds the Inaccessible Rail, the world's smallest flightless bird.",
+   "validator_ok": false,
+   "nli": 0.0075,
+   "labeller_ok": false
+  },
+  {
+   "q": "T015",
+   "n": 0,
+   "sentence": "on 13 December 1897",
+   "cites": [
+    "CLI-017"
+   ],
+   "premise": "Guano and phosphate extraction began in 1895 by a phosphate company, and Mexico removed American workers on 13 December 1897.",
+   "validator_ok": true,
+   "nli": 0.9671,
+   "labeller_ok": true
+  },
+  {
+   "q": "T016",
+   "n": 0,
+   "sentence": "Pulu Keeling National Park was proclaimed on 12 December 1995",
+   "cites": [
+    "COC-032"
+   ],
+   "premise": "Pulu Keeling National Park was proclaimed on 12 December 1995 and designated Ramsar Site 797 on 17 March 1996, according to Parks Australia and the Ramsar Sites Information Service.",
+   "validator_ok": true,
+   "nli": 0.9892,
+   "labeller_ok": true
+  },
+  {
+   "q": "T017",
+   "n": 0,
+   "sentence": "all but the Cocos finch are found only in the Galápagos.",
+   "cites": [
+    "GAL-223"
+   ],
+   "premise": "Wikipedia describes Darwin's finches as a group of about 18 species, of which all but the Cocos finch are found only in the Galápagos.",
+   "validator_ok": false,
+   "nli": 0.9882,
+   "labeller_ok": true
+  },
+  {
+   "q": "T020",
+   "n": 0,
+   "sentence": "The authors urged rat eradication and tighter control of landings.",
+   "cites": [
+    "CLI-032"
+   ],
+   "premise": "As of the 2009 report the authors stated that Clipperton had no legal protection status and urged rat eradication and tighter control of landings.",
+   "validator_ok": true,
+   "nli": 0.9919,
+   "labeller_ok": true
+  },
+  {
+   "q": "T021",
+   "n": 0,
+   "sentence": "The last breeding record is a single nest seen on 24 January 1981.",
+   "cites": [
+    "BOU-202"
+   ],
+   "premise": "Expeditions to Bouvetøya in 1989/90, 1996/97, 1998/99, 2000/01, 2001/02, 2007/08 and 2014/15 found no breeding southern giant petrels, although up to 100 birds have been seen scavenging at seal and penguin groups at Nyrøysa since 1981; the page says the reason breeding stopped is unknown.",
+   "validator_ok": false,
+   "nli": 0.0003,
+   "labeller_ok": false
+  },
+  {
+   "q": "T021",
+   "n": 1,
+   "sentence": "The reason breeding stopped is unknown.",
+   "cites": [
+    "BOU-202"
+   ],
+   "premise": "Expeditions to Bouvetøya in 1989/90, 1996/97, 1998/99, 2000/01, 2001/02, 2007/08 and 2014/15 found no breeding southern giant petrels, although up to 100 birds have been seen scavenging at seal and penguin groups at Nyrøysa since 1981; the page says the reason breeding stopped is unknown.",
+   "validator_ok": true,
+   "nli": 0.9645,
+   "labeller_ok": true
+  },
+  {
+   "q": "T022",
+   "n": 0,
+   "sentence": "253 reef-building coral species and 730 coastal fish species.",
+   "cites": [
+    "SOC-026",
+    "SOC-212"
+   ],
+   "premise": "The surrounding waters hold 253 reef-building coral species and 730 coastal fish species. In May 1998, during El Nino, sea-surface temperature in Socotra's waters reached 32 C, and the resulting coral bleaching doubled the share of dead coral on the reefs from 8% to 16%; effects of the 2014-2017 global bleaching event there have not been studied.",
+   "validator_ok": true,
+   "nli": 0.1314,
+   "labeller_ok": true
+  },
+  {
+   "q": "T023",
+   "n": 0,
+   "sentence": "The Galápagos sea lion is listed as Endangered on the IUCN Red List, and the assessment cited for this listing dates from 2015.",
+   "cites": [
+    "GAL-101"
+   ],
+   "premise": "The Galápagos sea lion is listed as Endangered on the IUCN Red List, and the assessment cited for this listing dates from 2015.",
+   "validator_ok": true,
+   "nli": 0.991,
+   "labeller_ok": true
+  },
+  {
+   "q": "T024",
+   "n": 0,
+   "sentence": "The Tristan Marine Protection Zone covers 687,247 km2.",
+   "cites": [
+    "TDC-028"
+   ],
+   "premise": "The Tristan Marine Protection Zone, designated in November 2020, covers 687,247 km2 and is described as the largest no-take zone in the Atlantic.",
+   "validator_ok": true,
+   "nli": 0.9954,
+   "labeller_ok": true
+  },
+  {
+   "q": "T026",
+   "n": 0,
+   "sentence": "Socotra lies south of the Arabian Peninsula and east of the Horn of Africa, centred at roughly 12.51 N, 53.92 E.",
+   "cites": [
+    "SOC-001"
+   ],
+   "premise": "Socotra lies south of the Arabian Peninsula and east of the Horn of Africa, centred at roughly 12.51 N, 53.92 E.",
+   "validator_ok": true,
+   "nli": 0.99,
+   "labeller_ok": true
+  },
+  {
+   "q": "T026",
+   "n": 1,
+   "sentence": "Socotra is roughly 340 km (210 mi) southeast of Yemen.",
+   "cites": [
+    "SOC-003"
+   ],
+   "premise": "Britannica puts Socotra roughly 340 km (210 mi) southeast of Yemen and calls it the largest of several islands stretching east from the Horn of Africa.",
+   "validator_ok": true,
+   "nli": 0.9938,
+   "labeller_ok": true
+  },
+  {
+   "q": "T028",
+   "n": 0,
+   "sentence": "Industrial tuna fishing in the foraging area removes about 21,600 tonnes yearly, a risk for masked boobies that follow tuna schools.",
+   "cites": [
+    "CLI-030"
+   ],
+   "premise": "Industrial tuna fishing in the foraging area removes about 21,600 tonnes yearly, a risk for masked boobies that follow tuna schools.",
+   "validator_ok": true,
+   "nli": 0.9803,
+   "labeller_ok": true
+  },
+  {
+   "q": "T029",
+   "n": 0,
+   "sentence": "The Cocos (Keeling) Islands' capital, West Island, sits at roughly 12°11′13″ S, 96°49′42″ E in the eastern Indian Ocean.",
+   "cites": [
+    "COC-001"
+   ],
+   "premise": "The Cocos (Keeling) Islands' capital, West Island, sits at roughly 12°11′13″ S, 96°49′42″ E in the eastern Indian Ocean.",
+   "validator_ok": true,
+   "nli": 0.9858,
+   "labeller_ok": true
+  },
+  {
+   "q": "T030",
+   "n": 0,
+   "sentence": "The Socotra buzzard (Buteo socotraensis) occurs only on Socotra, Yemen.",
+   "cites": [
+    "SOC-032"
+   ],
+   "premise": "The Socotra buzzard (Buteo socotraensis) occurs only on Socotra, Yemen.",
+   "validator_ok": true,
+   "nli": 0.9944,
+   "labeller_ok": true
+  },
+  {
+   "q": "T030",
+   "n": 1,
+   "sentence": "The Socotra cormorant (Phalacrocorax nigrogularis) is rated Vulnerable on the IUCN Red List (listed since 2000, per Wikipedia) because of few breeding localities and ongoing rapid decline; breeding on Socotra itself was only confirmed in 2005 despite the name.",
+   "cites": [
+    "SOC-202"
+   ],
+   "premise": "The Socotra cormorant (Phalacrocorax nigrogularis) is rated Vulnerable on the IUCN Red List (listed since 2000, per Wikipedia) because of few breeding localities and ongoing rapid decline; breeding on Socotra itself was only confirmed in 2005 despite the name.",
+   "validator_ok": true,
+   "nli": 0.9931,
+   "labeller_ok": true
+  },
+  {
+   "q": "T030",
+   "n": 2,
+   "sentence": "The Socotra grosbeak (Rhynchostruthus socotranus) is found only on Socotra and is listed as Least Concern by the IUCN per Wikipedia, with about 6,500 adult individuals living from mountains to sea level in dry scrub or woodland of Euphorbia, Acacia and Juniperus.",
+   "cites": [
+    "SOC-206"
+   ],
+   "premise": "The Socotra grosbeak (Rhynchostruthus socotranus) is found only on Socotra and is listed as Least Concern by the IUCN per Wikipedia, with about 6,500 adult individuals living from mountains to sea level in dry scrub or woodland of Euphorbia, Acacia and Juniperus.",
+   "validator_ok": true,
+   "nli": 0.9937,
+   "labeller_ok": true
+  },
+  {
+   "q": "T030",
+   "n": 3,
+   "sentence": "The Socotra bunting (Emberiza socotrana), endemic to Socotra, is listed as globally vulnerable with a population estimate of about 3,800 in a 2016 survey paper, which also reports fewer than 20 pairs at Jabal Ma'alah, more than 1% of the global population.",
+   "cites": [
+    "SOC-204"
+   ],
+   "premise": "The Socotra bunting (Emberiza socotrana), endemic to Socotra, is listed as globally vulnerable with a population estimate of about 3,800 in a 2016 survey paper, which also reports fewer than 20 pairs at Jabal Ma'alah, more than 1% of the global population.",
+   "validator_ok": true,
+   "nli": 0.9909,
+   "labeller_ok": true
+  },
+  {
+   "q": "T030",
+   "n": 4,
+   "sentence": "The Socotra chameleon (Chamaeleo monachus) is endemic to Socotra and listed as Near Threatened by the IUCN per Wikipedia, living in dense shrubland, dry wadis and sometimes palm plantations.",
+   "cites": [
+    "SOC-207"
+   ],
+   "premise": "The Socotra chameleon (Chamaeleo monachus) is endemic to Socotra and listed as Near Threatened by the IUCN per Wikipedia, living in dense shrubland, dry wadis and sometimes palm plantations.",
+   "validator_ok": true,
+   "nli": 0.9929,
+   "labeller_ok": true
+  },
+  {
+   "q": "T031",
+   "n": 0,
+   "sentence": "The Tristan albatross breeds every second year.",
+   "cites": [
+    "TDC-037"
+   ],
+   "premise": "The Tristan albatross breeds every second year, is monogamous, typically starts breeding around age 10, and has a wingspan up to about 3.05 m.",
+   "validator_ok": true,
+   "nli": 0.9948,
+   "labeller_ok": true
+  },
+  {
+   "q": "T033",
+   "n": 0,
+   "sentence": "The group comprises 127 islands, islets and rocks, of which 19 are large and 4 are inhabited.",
+   "cites": [
+    "GAL-003"
+   ],
+   "premise": "The group comprises 127 islands, islets and rocks, of which 19 are large and 4 are inhabited.",
+   "validator_ok": true,
+   "nli": 0.9894,
+   "labeller_ok": true
+  },
+  {
+   "q": "T033",
+   "n": 1,
+   "sentence": "The archipelago lies in the Pacific Ocean roughly 1,000 km from mainland Ecuador.",
+   "cites": [
+    "GAL-001"
+   ],
+   "premise": "The archipelago lies in the Pacific Ocean roughly 1,000 km from mainland Ecuador.",
+   "validator_ok": true,
+   "nli": 0.9882,
+   "labeller_ok": true
+  },
+  {
+   "q": "T034",
+   "n": 0,
+   "sentence": "Socotra holds over 1,560 insect taxa with over 660 endemic, 645 beetle species of which 47% are endemic, and about 100 land snail species of which 98% are endemic.",
+   "cites": [
+    "SOC-226"
+   ],
+   "premise": "Socotra holds over 1,560 insect taxa with over 660 endemic, 645 beetle species of which 47% are endemic, and about 100 land snail species of which 98% are endemic.",
+   "validator_ok": true,
+   "nli": 0.9892,
+   "labeller_ok": true
+  },
+  {
+   "q": "T035",
+   "n": 0,
+   "sentence": "95.41% of the recorded items are plastic",
+   "cites": [
+    "COC-209"
+   ],
+   "premise": "A study in Scientific Reports estimated that the Cocos (Keeling) Islands hold roughly 414 million pieces of anthropogenic debris weighing about 238 tonnes, extrapolated from sampling 7 of the 27 islands in 2017 (88% of the group's landmass).",
+   "validator_ok": false,
+   "nli": 0.0033,
+   "labeller_ok": false
+  },
+  {
+   "q": "T037",
+   "n": 0,
+   "sentence": "the World Heritage property as four main islands plus two rocky islets",
+   "cites": [
+    "SOC-004"
+   ],
+   "premise": "UNESCO describes the World Heritage property as four main islands plus two rocky islets, forming an archipelago about 250 km long in the northwest Indian Ocean.",
+   "validator_ok": true,
+   "nli": 0.9805,
+   "labeller_ok": true
+  },
+  {
+   "q": "T037",
+   "n": 1,
+   "sentence": "four main islands plus two rocky islets",
+   "cites": [
+    "SOC-004"
+   ],
+   "premise": "UNESCO describes the World Heritage property as four main islands plus two rocky islets, forming an archipelago about 250 km long in the northwest Indian Ocean.",
+   "validator_ok": true,
+   "nli": 0.9627,
+   "labeller_ok": true
+  },
+  {
+   "q": "T038",
+   "n": 0,
+   "sentence": "The atoll is about 1,080 km southwest of mainland Mexico.",
+   "cites": [
+    "CLI-003"
+   ],
+   "premise": "The atoll is about 1,080 km southwest of mainland Mexico and about 2,390 km northwest of the Galapagos.",
+   "validator_ok": true,
+   "nli": 0.9941,
+   "labeller_ok": true
+  },
+  {
+   "q": "T040",
+   "n": 0,
+   "sentence": "The islands form Ecuador's Galápagos Province, with Puerto Baquerizo Moreno as capital and three cantons: Isabela, San Cristóbal and Santa Cruz.",
+   "cites": [
+    "GAL-021"
+   ],
+   "premise": "The islands form Ecuador's Galápagos Province, with Puerto Baquerizo Moreno as capital and three cantons: Isabela, San Cristóbal and Santa Cruz.",
+   "validator_ok": true,
+   "nli": 0.9943,
+   "labeller_ok": true
+  },
+  {
+   "q": "T041",
+   "n": 0,
+   "sentence": "The yellowhead angelfish (Centropyge joculator) is found in the eastern Indian Ocean at the Cocos and Christmas Islands and is listed as Least Concern by the IUCN per FishBase, assessed 09 October 2009.",
+   "cites": [
+    "COC-222"
+   ],
+   "premise": "A study of southeast Indian Ocean reefs says the Cocos (Keeling) Islands have positive sea-surface temperature anomalies in early summer during La Nina, which makes the reef susceptible to coral bleaching during both phases of ENSO.",
+   "validator_ok": false,
+   "nli": 0.0002,
+   "labeller_ok": false
+  },
+  {
+   "q": "T042",
+   "n": 0,
+   "sentence": "Tristan da Cunha is part of the British Overseas Territory of Saint Helena, Ascension and Tristan da Cunha under a constitution in force since 1 September 2009.",
+   "cites": [
+    "TDC-021"
+   ],
+   "premise": "Tristan da Cunha is part of the British Overseas Territory of Saint Helena, Ascension and Tristan da Cunha under a constitution in force since 1 September 2009.",
+   "validator_ok": true,
+   "nli": 0.9894,
+   "labeller_ok": true
+  },
+  {
+   "q": "T044",
+   "n": 0,
+   "sentence": "Pigs introduced in the 1890s suppressed the land crab population, and after the pigs were removed in 1958 the crabs recovered and cleared much vegetation.",
+   "cites": [
+    "CLI-026"
+   ],
+   "premise": "Bright orange land crabs (Johngarthia oceanica) swarm the island; pigs introduced in the 1890s suppressed them, and after the pigs were removed in 1958 the crabs recovered and cleared much vegetation.",
+   "validator_ok": true,
+   "nli": 0.9951,
+   "labeller_ok": true
+  },
+  {
+   "q": "T045",
+   "n": 0,
+   "sentence": "The seawater reverse osmosis (SWRO) plant is located on West Island, Cocos (Keeling) Islands.",
+   "cites": [
+    "COC-212"
+   ],
+   "premise": "The Australian Government has contracted a new 200 kilolitre-per-day seawater reverse osmosis (SWRO) plant on West Island, Cocos (Keeling) Islands, which will replace the freshwater lens below the operational airfield, after a water source beach bore drilling program was completed in November 2022.",
+   "validator_ok": true,
+   "nli": 0.995,
+   "labeller_ok": true
+  },
+  {
+   "q": "T045",
+   "n": 1,
+   "sentence": "West Island is the capital of the Cocos (Keeling) Islands.",
+   "cites": [
+    "COC-001"
+   ],
+   "premise": "The Cocos (Keeling) Islands' capital, West Island, sits at roughly 12°11′13″ S, 96°49′42″ E in the eastern Indian Ocean.",
+   "validator_ok": true,
+   "nli": 0.9966,
+   "labeller_ok": true
+  },
+  {
+   "q": "T047",
+   "n": 0,
+   "sentence": "71% of mammal species on Socotra are non-native",
+   "cites": [
+    "SOC-224"
+   ],
+   "premise": "About 71% of mammal species on Socotra are non-native, as the island has no native mammals except a few insectivores, and introduced animals include goats, sheep, cows, camels, donkeys, cats, rats, mice and one civet species.",
+   "validator_ok": true,
+   "nli": 0.9943,
+   "labeller_ok": true
+  },
+  {
+   "q": "T048",
+   "n": 0,
+   "sentence": "The Tristan albatross (Diomedea dabbenena) was recategorised Critically Endangered",
+   "cites": [
+    "TDC-034"
+   ],
+   "premise": "In May 2008 the Tristan albatross was recategorised Critically Endangered by BirdLife International on behalf of IUCN because of mouse predation of chicks on Gough Island and longline fishing mortality.",
+   "validator_ok": true,
+   "nli": 0.0019,
+   "labeller_ok": true
+  },
+  {
+   "q": "T048",
+   "n": 1,
+   "sentence": "The Tristan albatross (Diomedea dabbenena) is listed as Critically Endangered",
+   "cites": [
+    "TDC-033"
+   ],
+   "premise": "The Tristan albatross (Diomedea dabbenena) is listed as Critically Endangered, a status reached in 2008 after earlier being Endangered.",
+   "validator_ok": true,
+   "nli": 0.9707,
+   "labeller_ok": true
+  },
+  {
+   "q": "T051",
+   "n": 0,
+   "sentence": "The Floreana mockingbird (Mimus trifasciatus) is listed as Endangered (IUCN 3.1) per Wikipedia, was extirpated from Floreana by 1888, and now survives on the islets of Campeón and Gardner-near-Floreana, where more than 250 individuals are believed to live.",
+   "cites": [
+    "GAL-207",
+    "GAL-207"
+   ],
+   "premise": "The Galápagos petrel (Pterodroma phaeopygia) is listed as Critically Endangered on the IUCN Red List per Wikipedia, which estimates 6,000 to 15,000 mature individuals, still declining, nesting mainly in the highlands of five islands including Santiago, Floreana, Isabela, Santa Cruz and San Cristóbal. The Galápagos petrel (Pterodroma phaeopygia) is listed as Critically Endangered on the IUCN Red List per Wikipedia, which estimates 6,000 to 15,000 mature individuals, still declining, nesting mainly in the highlands of five islands including Santiago, Floreana, Isabela, Santa Cruz and San Cristóbal.",
+   "validator_ok": false,
+   "nli": 0.0036,
+   "labeller_ok": false
+  },
+  {
+   "q": "T051",
+   "n": 1,
+   "sentence": "The Galápagos Islands were annexed by Ecuador on 12 February 1832 in a ceremony on Floreana.",
+   "cites": [
+    "GAL-017"
+   ],
+   "premise": "Ecuador annexed the archipelago on 12 February 1832 in a ceremony on Floreana.",
+   "validator_ok": true,
+   "nli": 0.0154,
+   "labeller_ok": true
+  },
+  {
+   "q": "T051",
+   "n": 2,
+   "sentence": "The remaining populations of the Floreana mockingbird are located on the islets of Campeón and Gardner-near-Floreana.",
+   "cites": [
+    "GAL-207"
+   ],
+   "premise": "The Galápagos petrel (Pterodroma phaeopygia) is listed as Critically Endangered on the IUCN Red List per Wikipedia, which estimates 6,000 to 15,000 mature individuals, still declining, nesting mainly in the highlands of five islands including Santiago, Floreana, Isabela, Santa Cruz and San Cristóbal.",
+   "validator_ok": false,
+   "nli": 0.0014,
+   "labeller_ok": false
+  },
+  {
+   "q": "T052",
+   "n": 0,
+   "sentence": "The Henderson reed warbler (Acrocephalus taiti) is endemic to Henderson Island and is listed as Vulnerable (IUCN 3.1) after a 2022 assessment.",
+   "cites": [
+    "PIT-205"
+   ],
+   "premise": "The Henderson reed warbler (Acrocephalus taiti) is endemic to Henderson Island, living in coastal coconut groves and scrub as well as undisturbed interior forest, and Wikipedia lists it as Vulnerable (IUCN 3.1) after a 2022 assessment.",
+   "validator_ok": true,
+   "nli": 0.9916,
+   "labeller_ok": true
+  },
+  {
+   "q": "T052",
+   "n": 1,
+   "sentence": "Pitcairn Island is centred at roughly 25.07 degrees south, 130.11 degrees west (25°04′S, 130°06′W) in the South Pacific.",
+   "cites": [
+    "PIT-001"
+   ],
+   "premise": "Pitcairn Island is centred at roughly 25.07 degrees south, 130.11 degrees west (25°04′S, 130°06′W) in the South Pacific.",
+   "validator_ok": true,
+   "nli": 0.9792,
+   "labeller_ok": true
+  },
+  {
+   "q": "T053",
+   "n": 0,
+   "sentence": "Limestone plateaus covering much of the island sit mostly at about 300-700 m",
+   "cites": [
+    "SOC-013"
+   ],
+   "premise": "Limestone plateaus covering much of the island sit mostly at about 300-700 m and show karst features such as pavements, gullies and many caves, with few surface streams.",
+   "validator_ok": true,
+   "nli": 0.9856,
+   "labeller_ok": true
+  },
+  {
+   "q": "T053",
+   "n": 1,
+   "sentence": "The largest remaining stands of dragon's blood trees (Dracaena cinnabari) are on Socotra, though goats threaten them",
+   "cites": [
+    "SOC-027"
+   ],
+   "premise": "The largest remaining stands of dragon's blood trees (Dracaena cinnabari) are on Socotra, though goats threaten them.",
+   "validator_ok": true,
+   "nli": 0.9916,
+   "labeller_ok": true
+  },
+  {
+   "q": "T059",
+   "n": 0,
+   "sentence": "Queen Mary's Peak, the summit of the island's volcano, rises to about 2,060 m (6,760 ft).",
+   "cites": [
+    "TDC-011"
+   ],
+   "premise": "Queen Mary's Peak, the summit of the island's volcano, rises to about 2,060 m (6,760 ft).",
+   "validator_ok": true,
+   "nli": 0.9927,
+   "labeller_ok": true
+  },
+  {
+   "q": "T059",
+   "n": 1,
+   "sentence": "Cliffs on these islands host about 22 seabird species, including albatrosses, petrels and penguins.",
+   "cites": [
+    "TDC-027"
+   ],
+   "premise": "Tristan da Cunha has important breeding grounds for petrels, albatrosses, penguins and shearwaters.",
+   "validator_ok": false,
+   "nli": 0.001,
+   "labeller_ok": true
+  },
+  {
+   "q": "T061",
+   "n": 0,
+   "sentence": "The Portuguese explorer Tristao da Cunha first recorded sighting the islands in 1506, and the main island carries his name.",
+   "cites": [
+    "TDC-015"
+   ],
+   "premise": "The Portuguese explorer Tristao da Cunha first recorded sighting the islands in 1506, and the main island carries his name.",
+   "validator_ok": true,
+   "nli": 0.9854,
+   "labeller_ok": true
+  },
+  {
+   "q": "T061",
+   "n": 1,
+   "sentence": "The main island of Tristan da Cunha carries his name, and the group of islands that includes Tristan da Cunha is called Tristan da Cunha.",
+   "cites": [
+    "TDC-015"
+   ],
+   "premise": "The Portuguese explorer Tristao da Cunha first recorded sighting the islands in 1506, and the main island carries his name.",
+   "validator_ok": true,
+   "nli": 0.0247,
+   "labeller_ok": true
+  },
+  {
+   "q": "T063",
+   "n": 0,
+   "sentence": "The Cocos (Keeling) Islands lie about 3,685 km (2,290 mi) west of Darwin.",
+   "cites": [
+    "COC-002"
+   ],
+   "premise": "The islands lie about 3,685 km (2,290 mi) west of Darwin and about 900 km southwest of Christmas Island.",
+   "validator_ok": true,
+   "nli": 0.0051,
+   "labeller_ok": true
+  },
+  {
+   "q": "T063",
+   "n": 1,
+   "sentence": "The humphead wrasse lives 30 years or more.",
+   "cites": [
+    "COC-039"
+   ],
+   "premise": "The humphead wrasse can change sex from female to male, matures at roughly 5 to 7 years according to the Florida Museum (other sources put female maturity near 8 years), and lives 30 years or more.",
+   "validator_ok": true,
+   "nli": 0.9926,
+   "labeller_ok": true
+  },
+  {
+   "q": "T064",
+   "n": 0,
+   "sentence": "Temperature at 2 Meters Maximum (T2M_MAX, C): JAN 26.83, FEB 27.72, MAR 27.58, APR 27.75, MAY 26.11, JUN 25.07, JUL 24.41, AUG 23.63, SEP 24.06, OCT 24.59, NOV 25.17, DEC 26.19, ANN 27.75.",
+   "cites": [
+    "POWER-PIT-TEMP"
+   ],
+   "premise": "NASA POWER climatology for the grid cell nearest -25.067, -130.107 (cell centre -25.067, -130.107). Period: 20-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2020). Monthly means of air temperature at 2 m; ANN is the annual value exactly as POWER reports it.\nTemperature at 2 Meters (T2M, C): JAN 24.84, FEB 25.45, MAR 25.53, APR 24.65, MAY 23.38, JUN 22.32, JUL 21.42, AUG 21.01, SEP 21.05, OCT 21.61, NOV 22.43, DEC 23.74, ANN 23.11.\nTemperature at 2 Meters Maximum (T2M_MAX, C): JAN 26.83, FEB 27.72, MAR 27.58, APR 27.75, MAY 26.11, JUN 25.07, JUL 24.41, AUG 23.63, SEP 24.06, OCT 24.59, NOV 25.17, DEC 26.19, ANN 27.75.\nTemperature at 2 Meters Minimum (T2M_MIN, C): JAN 20.89, FEB 22.73, MAR 22.13, APR 21.2, MAY 19.64, JUN 17.27, JUL 16.95, AUG 16.48, SEP 17.75, OCT 17.87, NOV 18.72, DEC 19.64, ANN 16.48.",
+   "validator_ok": true,
+   "nli": 0.0178,
+   "labeller_ok": true
+  },
+  {
+   "q": "T064",
+   "n": 1,
+   "sentence": "The value for the warmest month is 27.75 °C.",
+   "cites": [
+    "POWER-PIT-TEMP"
+   ],
+   "premise": "NASA POWER climatology for the grid cell nearest -25.067, -130.107 (cell centre -25.067, -130.107). Period: 20-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2020). Monthly means of air temperature at 2 m; ANN is the annual value exactly as POWER reports it.\nTemperature at 2 Meters (T2M, C): JAN 24.84, FEB 25.45, MAR 25.53, APR 24.65, MAY 23.38, JUN 22.32, JUL 21.42, AUG 21.01, SEP 21.05, OCT 21.61, NOV 22.43, DEC 23.74, ANN 23.11.\nTemperature at 2 Meters Maximum (T2M_MAX, C): JAN 26.83, FEB 27.72, MAR 27.58, APR 27.75, MAY 26.11, JUN 25.07, JUL 24.41, AUG 23.63, SEP 24.06, OCT 24.59, NOV 25.17, DEC 26.19, ANN 27.75.\nTemperature at 2 Meters Minimum (T2M_MIN, C): JAN 20.89, FEB 22.73, MAR 22.13, APR 21.2, MAY 19.64, JUN 17.27, JUL 16.95, AUG 16.48, SEP 17.75, OCT 17.87, NOV 18.72, DEC 19.64, ANN 16.48.",
+   "validator_ok": true,
+   "nli": 0.0267,
+   "labeller_ok": true
+  },
+  {
+   "q": "T064",
+   "n": 2,
+   "sentence": "The warmest month is December.",
+   "cites": [
+    "POWER-PIT-TEMP"
+   ],
+   "premise": "NASA POWER climatology for the grid cell nearest -25.067, -130.107 (cell centre -25.067, -130.107). Period: 20-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2020). Monthly means of air temperature at 2 m; ANN is the annual value exactly as POWER reports it.\nTemperature at 2 Meters (T2M, C): JAN 24.84, FEB 25.45, MAR 25.53, APR 24.65, MAY 23.38, JUN 22.32, JUL 21.42, AUG 21.01, SEP 21.05, OCT 21.61, NOV 22.43, DEC 23.74, ANN 23.11.\nTemperature at 2 Meters Maximum (T2M_MAX, C): JAN 26.83, FEB 27.72, MAR 27.58, APR 27.75, MAY 26.11, JUN 25.07, JUL 24.41, AUG 23.63, SEP 24.06, OCT 24.59, NOV 25.17, DEC 26.19, ANN 27.75.\nTemperature at 2 Meters Minimum (T2M_MIN, C): JAN 20.89, FEB 22.73, MAR 22.13, APR 21.2, MAY 19.64, JUN 17.27, JUL 16.95, AUG 16.48, SEP 17.75, OCT 17.87, NOV 18.72, DEC 19.64, ANN 16.48.",
+   "validator_ok": true,
+   "nli": 0.0194,
+   "labeller_ok": false
+  },
+  {
+   "q": "T066",
+   "n": 0,
+   "sentence": "RH2M in DEC is 67.14",
+   "cites": [
+    "POWER-SOC-HUMID"
+   ],
+   "premise": "NASA POWER climatology for the grid cell nearest 12.510, 53.920 (cell centre 12.51, 53.92). Period: 20-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2020). Monthly means of relative humidity at 2 m; ANN is the annual value exactly as POWER reports it.\nRelative Humidity at 2 Meters (RH2M, %): JAN 65.94, FEB 65.46, MAR 64.46, APR 63.04, MAY 72.13, JUN 79.11, JUL 80.37, AUG 81.85, SEP 81.86, OCT 68.58, NOV 67.82, DEC 67.14, ANN 71.51.",
+   "validator_ok": false,
+   "nli": 0.0369,
+   "labeller_ok": true
+  },
+  {
+   "q": "T066",
+   "n": 1,
+   "sentence": "RH2M in ANN is 71.51",
+   "cites": [
+    "POWER-SOC-HUMID"
+   ],
+   "premise": "NASA POWER climatology for the grid cell nearest 12.510, 53.920 (cell centre 12.51, 53.92). Period: 20-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2020). Monthly means of relative humidity at 2 m; ANN is the annual value exactly as POWER reports it.\nRelative Humidity at 2 Meters (RH2M, %): JAN 65.94, FEB 65.46, MAR 64.46, APR 63.04, MAY 72.13, JUN 79.11, JUL 80.37, AUG 81.85, SEP 81.86, OCT 68.58, NOV 67.82, DEC 67.14, ANN 71.51.",
+   "validator_ok": true,
+   "nli": 0.1576,
+   "labeller_ok": true
+  },
+  {
+   "q": "T066",
+   "n": 2,
+   "sentence": "RH2M in DEC is higher than RH2M in ANN",
+   "cites": [
+    "POWER-SOC-HUMID"
+   ],
+   "premise": "NASA POWER climatology for the grid cell nearest 12.510, 53.920 (cell centre 12.51, 53.92). Period: 20-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2020). Monthly means of relative humidity at 2 m; ANN is the annual value exactly as POWER reports it.\nRelative Humidity at 2 Meters (RH2M, %): JAN 65.94, FEB 65.46, MAR 64.46, APR 63.04, MAY 72.13, JUN 79.11, JUL 80.37, AUG 81.85, SEP 81.86, OCT 68.58, NOV 67.82, DEC 67.14, ANN 71.51.",
+   "validator_ok": true,
+   "nli": 0.0052,
+   "labeller_ok": false
+  },
+  {
+   "q": "T066",
+   "n": 3,
+   "sentence": "RH2M in ANN is the annual value exactly as POWER reports it",
+   "cites": [
+    "POWER-SOC-HUMID"
+   ],
+   "premise": "NASA POWER climatology for the grid cell nearest 12.510, 53.920 (cell centre 12.51, 53.92). Period: 20-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2020). Monthly means of relative humidity at 2 m; ANN is the annual value exactly as POWER reports it.\nRelative Humidity at 2 Meters (RH2M, %): JAN 65.94, FEB 65.46, MAR 64.46, APR 63.04, MAY 72.13, JUN 79.11, JUL 80.37, AUG 81.85, SEP 81.86, OCT 68.58, NOV 67.82, DEC 67.14, ANN 71.51.",
+   "validator_ok": true,
+   "nli": 0.8975,
+   "labeller_ok": true
+  },
+  {
+   "q": "T067",
+   "n": 0,
+   "sentence": "The most humid month on Tristan da Cunha is August (JUL) with a value of 81.84.",
+   "cites": [
+    "POWER-TDC-HUMID"
+   ],
+   "premise": "NASA POWER climatology for the grid cell nearest -37.100, -12.300 (cell centre -37.1, -12.3). Period: 20-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2020). Monthly means of relative humidity at 2 m; ANN is the annual value exactly as POWER reports it.\nRelative Humidity at 2 Meters (RH2M, %): JAN 83.54, FEB 82.9, MAR 82.06, APR 81.78, MAY 80.76, JUN 81.29, JUL 81.84, AUG 80.99, SEP 81.08, OCT 82.07, NOV 83.12, DEC 84.03, ANN 82.12.",
+   "validator_ok": false,
+   "nli": 0.0061,
+   "labeller_ok": true
+  },
+  {
+   "q": "T067",
+   "n": 1,
+   "sentence": "The annual value of relative humidity at 2 m on Tristan da Cunha is 82.12.",
+   "cites": [
+    "POWER-TDC-HUMID"
+   ],
+   "premise": "NASA POWER climatology for the grid cell nearest -37.100, -12.300 (cell centre -37.1, -12.3). Period: 20-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2020). Monthly means of relative humidity at 2 m; ANN is the annual value exactly as POWER reports it.\nRelative Humidity at 2 Meters (RH2M, %): JAN 83.54, FEB 82.9, MAR 82.06, APR 81.78, MAY 80.76, JUN 81.29, JUL 81.84, AUG 80.99, SEP 81.08, OCT 82.07, NOV 83.12, DEC 84.03, ANN 82.12.",
+   "validator_ok": true,
+   "nli": 0.0023,
+   "labeller_ok": true
+  },
+  {
+   "q": "T068",
+   "n": 0,
+   "sentence": "Temperature at 2 Meters Minimum (T2M_MIN, C): JAN 20.89, FEB 22.73, MAR 22.13, APR 21.2, MAY 19.64, JUN 17.27, JUL 16.95, AUG 16.48, SEP 17.75, OCT 17.87, NOV 18.72, DEC 19.64, ANN 16.48.",
+   "cites": [
+    "POWER-PIT-TEMP"
+   ],
+   "premise": "NASA POWER climatology for the grid cell nearest -25.067, -130.107 (cell centre -25.067, -130.107). Period: 20-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2020). Monthly means of air temperature at 2 m; ANN is the annual value exactly as POWER reports it.\nTemperature at 2 Meters (T2M, C): JAN 24.84, FEB 25.45, MAR 25.53, APR 24.65, MAY 23.38, JUN 22.32, JUL 21.42, AUG 21.01, SEP 21.05, OCT 21.61, NOV 22.43, DEC 23.74, ANN 23.11.\nTemperature at 2 Meters Maximum (T2M_MAX, C): JAN 26.83, FEB 27.72, MAR 27.58, APR 27.75, MAY 26.11, JUN 25.07, JUL 24.41, AUG 23.63, SEP 24.06, OCT 24.59, NOV 25.17, DEC 26.19, ANN 27.75.\nTemperature at 2 Meters Minimum (T2M_MIN, C): JAN 20.89, FEB 22.73, MAR 22.13, APR 21.2, MAY 19.64, JUN 17.27, JUL 16.95, AUG 16.48, SEP 17.75, OCT 17.87, NOV 18.72, DEC 19.64, ANN 16.48.",
+   "validator_ok": true,
+   "nli": 0.0316,
+   "labeller_ok": true
+  },
+  {
+   "q": "T068",
+   "n": 1,
+   "sentence": "The minimum temperature in January is 20.89 °C.",
+   "cites": [
+    "POWER-PIT-TEMP"
+   ],
+   "premise": "NASA POWER climatology for the grid cell nearest -25.067, -130.107 (cell centre -25.067, -130.107). Period: 20-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2020). Monthly means of air temperature at 2 m; ANN is the annual value exactly as POWER reports it.\nTemperature at 2 Meters (T2M, C): JAN 24.84, FEB 25.45, MAR 25.53, APR 24.65, MAY 23.38, JUN 22.32, JUL 21.42, AUG 21.01, SEP 21.05, OCT 21.61, NOV 22.43, DEC 23.74, ANN 23.11.\nTemperature at 2 Meters Maximum (T2M_MAX, C): JAN 26.83, FEB 27.72, MAR 27.58, APR 27.75, MAY 26.11, JUN 25.07, JUL 24.41, AUG 23.63, SEP 24.06, OCT 24.59, NOV 25.17, DEC 26.19, ANN 27.75.\nTemperature at 2 Meters Minimum (T2M_MIN, C): JAN 20.89, FEB 22.73, MAR 22.13, APR 21.2, MAY 19.64, JUN 17.27, JUL 16.95, AUG 16.48, SEP 17.75, OCT 17.87, NOV 18.72, DEC 19.64, ANN 16.48.",
+   "validator_ok": true,
+   "nli": 0.1394,
+   "labeller_ok": true
+  },
+  {
+   "q": "T069",
+   "n": 0,
+   "sentence": "MAR 1.7 (PRECIPITATION CORRECTED (PRECTOTCORR, mm/day))",
+   "cites": [
+    "POWER-GAL-PRECIP"
+   ],
+   "premise": "NASA POWER climatology for the grid cell nearest -0.500, -90.500 (cell centre -0.5, -90.5). Period: 20-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2020). Monthly means of corrected precipitation; ANN is the annual value exactly as POWER reports it.\nPrecipitation Corrected (PRECTOTCORR, mm/day): JAN 1.42, FEB 2.27, MAR 1.7, APR 2.01, MAY 0.56, JUN 0.33, JUL 0.3, AUG 0.29, SEP 0.23, OCT 0.26, NOV 0.31, DEC 0.4, ANN 0.83.",
+   "validator_ok": true,
+   "nli": 0.0152,
+   "labeller_ok": true
+  },
+  {
+   "q": "T069",
+   "n": 1,
+   "sentence": "ANN 0.83 (PRECIPITATION CORRECTED (PRECTOTCORR, mm/day))",
+   "cites": [
+    "POWER-GAL-PRECIP"
+   ],
+   "premise": "NASA POWER climatology for the grid cell nearest -0.500, -90.500 (cell centre -0.5, -90.5). Period: 20-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2020). Monthly means of corrected precipitation; ANN is the annual value exactly as POWER reports it.\nPrecipitation Corrected (PRECTOTCORR, mm/day): JAN 1.42, FEB 2.27, MAR 1.7, APR 2.01, MAY 0.56, JUN 0.33, JUL 0.3, AUG 0.29, SEP 0.23, OCT 0.26, NOV 0.31, DEC 0.4, ANN 0.83.",
+   "validator_ok": true,
+   "nli": 0.0986,
+   "labeller_ok": true
+  },
+  {
+   "q": "T070",
+   "n": 0,
+   "sentence": "RH2M in DEC is 67.14",
+   "cites": [
+    "POWER-SOC-HUMID"
+   ],
+   "premise": "NASA POWER climatology for the grid cell nearest 12.510, 53.920 (cell centre 12.51, 53.92). Period: 20-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2020). Monthly means of relative humidity at 2 m; ANN is the annual value exactly as POWER reports it.\nRelative Humidity at 2 Meters (RH2M, %): JAN 65.94, FEB 65.46, MAR 64.46, APR 63.04, MAY 72.13, JUN 79.11, JUL 80.37, AUG 81.85, SEP 81.86, OCT 68.58, NOV 67.82, DEC 67.14, ANN 71.51.",
+   "validator_ok": true,
+   "nli": 0.0369,
+   "labeller_ok": true
+  },
+  {
+   "q": "T070",
+   "n": 1,
+   "sentence": "RH2M in DEC is the lowest value",
+   "cites": [
+    "POWER-SOC-HUMID"
+   ],
+   "premise": "NASA POWER climatology for the grid cell nearest 12.510, 53.920 (cell centre 12.51, 53.92). Period: 20-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2020). Monthly means of relative humidity at 2 m; ANN is the annual value exactly as POWER reports it.\nRelative Humidity at 2 Meters (RH2M, %): JAN 65.94, FEB 65.46, MAR 64.46, APR 63.04, MAY 72.13, JUN 79.11, JUL 80.37, AUG 81.85, SEP 81.86, OCT 68.58, NOV 67.82, DEC 67.14, ANN 71.51.",
+   "validator_ok": true,
+   "nli": 0.0013,
+   "labeller_ok": true
+  },
+  {
+   "q": "T071",
+   "n": 0,
+   "sentence": "The month with the most rain on Cocos (Keeling) Islands, according to NASA POWER, is December, with a value of 3.28 mm/day.",
+   "cites": [
+    "POWER-COC-PRECIP"
+   ],
+   "premise": "NASA POWER climatology for the grid cell nearest -12.187, 96.828 (cell centre -12.187, 96.828). Period: 20-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2020). Monthly means of corrected precipitation; ANN is the annual value exactly as POWER reports it.\nPrecipitation Corrected (PRECTOTCORR, mm/day): JAN 3.75, FEB 5.11, MAR 6.24, APR 6.18, MAY 3.51, JUN 3.91, JUL 2.95, AUG 1.31, SEP 1.55, OCT 1.33, NOV 2.17, DEC 3.28, ANN 3.43.",
+   "validator_ok": true,
+   "nli": 0.0021,
+   "labeller_ok": true
+  },
+  {
+   "q": "T071",
+   "n": 1,
+   "sentence": "The annual value of precipitation, as reported by NASA POWER, is 3.43 mm/day.",
+   "cites": [
+    "POWER-COC-PRECIP"
+   ],
+   "premise": "NASA POWER climatology for the grid cell nearest -12.187, 96.828 (cell centre -12.187, 96.828). Period: 20-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2020). Monthly means of corrected precipitation; ANN is the annual value exactly as POWER reports it.\nPrecipitation Corrected (PRECTOTCORR, mm/day): JAN 3.75, FEB 5.11, MAR 6.24, APR 6.18, MAY 3.51, JUN 3.91, JUL 2.95, AUG 1.31, SEP 1.55, OCT 1.33, NOV 2.17, DEC 3.28, ANN 3.43.",
+   "validator_ok": true,
+   "nli": 0.9752,
+   "labeller_ok": false
+  },
+  {
+   "q": "T072",
+   "n": 0,
+   "sentence": "RH2M in DEC is 79.61 according to POWER-GAL-HUMID",
+   "cites": [
+    "POWER-GAL-HUMID"
+   ],
+   "premise": "NASA POWER climatology for the grid cell nearest -0.500, -90.500 (cell centre -0.5, -90.5). Period: 20-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2020). Monthly means of relative humidity at 2 m; ANN is the annual value exactly as POWER reports it.\nRelative Humidity at 2 Meters (RH2M, %): JAN 79.49, FEB 77.75, MAR 77.42, APR 79.44, MAY 80.1, JUN 79.39, JUL 79.53, AUG 79.68, SEP 79.49, OCT 77.59, NOV 77.75, DEC 79.61, ANN 78.94.",
+   "validator_ok": false,
+   "nli": 0.1915,
+   "labeller_ok": true
+  },
+  {
+   "q": "T072",
+   "n": 1,
+   "sentence": "RH2M in ANN is 78.94 according to POWER-GAL-HUMID",
+   "cites": [
+    "POWER-GAL-HUMID"
+   ],
+   "premise": "NASA POWER climatology for the grid cell nearest -0.500, -90.500 (cell centre -0.5, -90.5). Period: 20-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2020). Monthly means of relative humidity at 2 m; ANN is the annual value exactly as POWER reports it.\nRelative Humidity at 2 Meters (RH2M, %): JAN 79.49, FEB 77.75, MAR 77.42, APR 79.44, MAY 80.1, JUN 79.39, JUL 79.53, AUG 79.68, SEP 79.49, OCT 77.59, NOV 77.75, DEC 79.61, ANN 78.94.",
+   "validator_ok": false,
+   "nli": 0.1248,
+   "labeller_ok": true
+  },
+  {
+   "q": "T074",
+   "n": 0,
+   "sentence": "Temperature at 2 Meters Minimum (T2M_MIN, C): JAN 11.62, FEB 12.83, MAR 12.02, APR 10.73, MAY 8.51, JUN 7.97, JUL 7.04, AUG 6.44, SEP 7.96, OCT 7.03, NOV 9, DEC 10.74, ANN 6.44.",
+   "cites": [
+    "POWER-TDC-TEMP"
+   ],
+   "premise": "NASA POWER climatology for the grid cell nearest -37.100, -12.300 (cell centre -37.1, -12.3). Period: 20-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2020). Monthly means of air temperature at 2 m; ANN is the annual value exactly as POWER reports it.\nTemperature at 2 Meters (T2M, C): JAN 17.37, FEB 18.06, MAR 17.77, APR 16.76, MAY 14.96, JUN 13.78, JUL 12.83, AUG 12.19, SEP 12.22, OCT 12.88, NOV 14.23, DEC 16, ANN 14.91.\nTemperature at 2 Meters Maximum (T2M_MAX, C): JAN 21.57, FEB 22.24, MAR 21.91, APR 20.66, MAY 20.44, JUN 18.86, JUL 17.02, AUG 16.68, SEP 16.95, OCT 16.51, NOV 18.28, DEC 20.84, ANN 22.24.\nTemperature at 2 Meters Minimum (T2M_MIN, C): JAN 11.62, FEB 12.83, MAR 12.02, APR 10.73, MAY 8.51, JUN 7.97, JUL 7.04, AUG 6.44, SEP 7.96, OCT 7.03, NOV 9, DEC 10.74, ANN 6.44.",
+   "validator_ok": true,
+   "nli": 0.0399,
+   "labeller_ok": true
+  },
+  {
+   "q": "T074",
+   "n": 1,
+   "sentence": "The value is 6.44 C.",
+   "cites": [
+    "POWER-TDC-TEMP"
+   ],
+   "premise": "NASA POWER climatology for the grid cell nearest -37.100, -12.300 (cell centre -37.1, -12.3). Period: 20-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2020). Monthly means of air temperature at 2 m; ANN is the annual value exactly as POWER reports it.\nTemperature at 2 Meters (T2M, C): JAN 17.37, FEB 18.06, MAR 17.77, APR 16.76, MAY 14.96, JUN 13.78, JUL 12.83, AUG 12.19, SEP 12.22, OCT 12.88, NOV 14.23, DEC 16, ANN 14.91.\nTemperature at 2 Meters Maximum (T2M_MAX, C): JAN 21.57, FEB 22.24, MAR 21.91, APR 20.66, MAY 20.44, JUN 18.86, JUL 17.02, AUG 16.68, SEP 16.95, OCT 16.51, NOV 18.28, DEC 20.84, ANN 22.24.\nTemperature at 2 Meters Minimum (T2M_MIN, C): JAN 11.62, FEB 12.83, MAR 12.02, APR 10.73, MAY 8.51, JUN 7.97, JUL 7.04, AUG 6.44, SEP 7.96, OCT 7.03, NOV 9, DEC 10.74, ANN 6.44.",
+   "validator_ok": true,
+   "nli": 0.0641,
+   "labeller_ok": true
+  },
+  {
+   "q": "T075",
+   "n": 0,
+   "sentence": "The least humid month on Tristan da Cunha is January, with a value of 83.12 %.",
+   "cites": [
+    "POWER-TDC-HUMID"
+   ],
+   "premise": "NASA POWER climatology for the grid cell nearest -37.100, -12.300 (cell centre -37.1, -12.3). Period: 20-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2020). Monthly means of relative humidity at 2 m; ANN is the annual value exactly as POWER reports it.\nRelative Humidity at 2 Meters (RH2M, %): JAN 83.54, FEB 82.9, MAR 82.06, APR 81.78, MAY 80.76, JUN 81.29, JUL 81.84, AUG 80.99, SEP 81.08, OCT 82.07, NOV 83.12, DEC 84.03, ANN 82.12.",
+   "validator_ok": true,
+   "nli": 0.0128,
+   "labeller_ok": false
+  },
+  {
+   "q": "T076",
+   "n": 0,
+   "sentence": "The average relative humidity at 2 Meters (RH2M, %) in September is 78.13.",
+   "cites": [
+    "POWER-COC-HUMID"
+   ],
+   "premise": "NASA POWER climatology for the grid cell nearest -12.187, 96.828 (cell centre -12.187, 96.828). Period: 20-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2020). Monthly means of relative humidity at 2 m; ANN is the annual value exactly as POWER reports it.\nRelative Humidity at 2 Meters (RH2M, %): JAN 79.09, FEB 79.61, MAR 80.42, APR 80.92, MAY 79.73, JUN 79.64, JUL 78.83, AUG 78.13, SEP 77.89, OCT 78.44, NOV 79.43, DEC 79.88, ANN 79.33.",
+   "validator_ok": true,
+   "nli": 0.1535,
+   "labeller_ok": true
+  },
+  {
+   "q": "T076",
+   "n": 1,
+   "sentence": "The annual average relative humidity at 2 Meters (RH2M, %) is 79.33.",
+   "cites": [
+    "POWER-COC-HUMID"
+   ],
+   "premise": "NASA POWER climatology for the grid cell nearest -12.187, 96.828 (cell centre -12.187, 96.828). Period: 20-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2020). Monthly means of relative humidity at 2 m; ANN is the annual value exactly as POWER reports it.\nRelative Humidity at 2 Meters (RH2M, %): JAN 79.09, FEB 79.61, MAR 80.42, APR 80.92, MAY 79.73, JUN 79.64, JUL 78.83, AUG 78.13, SEP 77.89, OCT 78.44, NOV 79.43, DEC 79.88, ANN 79.33.",
+   "validator_ok": true,
+   "nli": 0.7241,
+   "labeller_ok": true
+  },
+  {
+   "q": "T077",
+   "n": 0,
+   "sentence": "Temperature at 2 Meters (T2M, C): JAN 0.6",
+   "cites": [
+    "POWER-BOU-TEMP"
+   ],
+   "premise": "NASA POWER climatology for the grid cell nearest -54.417, 3.333 (cell centre -54.417, 3.333). Period: 20-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2020). Monthly means of air temperature at 2 m; ANN is the annual value exactly as POWER reports it.\nTemperature at 2 Meters (T2M, C): JAN 0.6, FEB 1.06, MAR 0.95, APR 0.54, MAY -0.37, JUN -1.18, JUL -2.13, AUG -3.01, SEP -3.34, OCT -1.96, NOV -0.9, DEC -0.11, ANN -0.83.\nTemperature at 2 Meters Maximum (T2M_MAX, C): JAN 4.28, FEB 5.2, MAR 4.89, APR 4.55, MAY 3.93, JUN 2.7, JUL 3.34, AUG 2.09, SEP 2.8, OCT 2.81, NOV 2.77, DEC 2.97, ANN 5.2.\nTemperature at 2 Meters Minimum (T2M_MIN, C): JAN -2.27, FEB -2.08, MAR -2.44, APR -3.12, MAY -5.6, JUN -7.86, JUL -12.38, AUG -14.07, SEP -17.47, OCT -11.19, NOV -5.01, DEC -3.2, ANN -17.47.",
+   "validator_ok": true,
+   "nli": 0.0701,
+   "labeller_ok": true
+  },
+  {
+   "q": "T078",
+   "n": 0,
+   "sentence": "Temperature at 2 Meters (T2M, C): SEP 25.92",
+   "cites": [
+    "POWER-SOC-TEMP"
+   ],
+   "premise": "NASA POWER climatology for the grid cell nearest 12.510, 53.920 (cell centre 12.51, 53.92). Period: 20-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2020). Monthly means of air temperature at 2 m; ANN is the annual value exactly as POWER reports it.\nTemperature at 2 Meters (T2M, C): JAN 24.21, FEB 24.52, MAR 26.27, APR 28.65, MAY 29.22, JUN 27.05, JUL 25.43, AUG 25.28, SEP 25.92, OCT 27.08, NOV 26.45, DEC 25.17, ANN 26.28.\nTemperature at 2 Meters Maximum (T2M_MAX, C): JAN 28.74, FEB 30.84, MAR 33.21, APR 34.86, MAY 34.37, JUN 33.31, JUL 30.09, AUG 30.2, SEP 30.58, OCT 31.87, NOV 30.68, DEC 29.37, ANN 34.86.\nTemperature at 2 Meters Minimum (T2M_MIN, C): JAN 19.43, FEB 19.71, MAR 20.33, APR 22.81, MAY 25.11, JUN 23.86, JUL 22.69, AUG 21.86, SEP 22.44, OCT 22.66, NOV 21.67, DEC 20.35, ANN 19.43.",
+   "validator_ok": true,
+   "nli": 0.0214,
+   "labeller_ok": true
+  },
+  {
+   "q": "T078",
+   "n": 1,
+   "sentence": "Temperature at 2 Meters Maximum (T2M_MAX, C): SEP 30.58",
+   "cites": [
+    "POWER-SOC-TEMP"
+   ],
+   "premise": "NASA POWER climatology for the grid cell nearest 12.510, 53.920 (cell centre 12.51, 53.92). Period: 20-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2020). Monthly means of air temperature at 2 m; ANN is the annual value exactly as POWER reports it.\nTemperature at 2 Meters (T2M, C): JAN 24.21, FEB 24.52, MAR 26.27, APR 28.65, MAY 29.22, JUN 27.05, JUL 25.43, AUG 25.28, SEP 25.92, OCT 27.08, NOV 26.45, DEC 25.17, ANN 26.28.\nTemperature at 2 Meters Maximum (T2M_MAX, C): JAN 28.74, FEB 30.84, MAR 33.21, APR 34.86, MAY 34.37, JUN 33.31, JUL 30.09, AUG 30.2, SEP 30.58, OCT 31.87, NOV 30.68, DEC 29.37, ANN 34.86.\nTemperature at 2 Meters Minimum (T2M_MIN, C): JAN 19.43, FEB 19.71, MAR 20.33, APR 22.81, MAY 25.11, JUN 23.86, JUL 22.69, AUG 21.86, SEP 22.44, OCT 22.66, NOV 21.67, DEC 20.35, ANN 19.43.",
+   "validator_ok": true,
+   "nli": 0.0146,
+   "labeller_ok": true
+  },
+  {
+   "q": "T078",
+   "n": 2,
+   "sentence": "Temperature at 2 Meters Minimum (T2M_MIN, C): SEP 22.44",
+   "cites": [
+    "POWER-SOC-TEMP"
+   ],
+   "premise": "NASA POWER climatology for the grid cell nearest 12.510, 53.920 (cell centre 12.51, 53.92). Period: 20-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2020). Monthly means of air temperature at 2 m; ANN is the annual value exactly as POWER reports it.\nTemperature at 2 Meters (T2M, C): JAN 24.21, FEB 24.52, MAR 26.27, APR 28.65, MAY 29.22, JUN 27.05, JUL 25.43, AUG 25.28, SEP 25.92, OCT 27.08, NOV 26.45, DEC 25.17, ANN 26.28.\nTemperature at 2 Meters Maximum (T2M_MAX, C): JAN 28.74, FEB 30.84, MAR 33.21, APR 34.86, MAY 34.37, JUN 33.31, JUL 30.09, AUG 30.2, SEP 30.58, OCT 31.87, NOV 30.68, DEC 29.37, ANN 34.86.\nTemperature at 2 Meters Minimum (T2M_MIN, C): JAN 19.43, FEB 19.71, MAR 20.33, APR 22.81, MAY 25.11, JUN 23.86, JUL 22.69, AUG 21.86, SEP 22.44, OCT 22.66, NOV 21.67, DEC 20.35, ANN 19.43.",
+   "validator_ok": true,
+   "nli": 0.0057,
+   "labeller_ok": true
+  },
+  {
+   "q": "T080",
+   "n": 0,
+   "sentence": "Temperature at 2 Meters (T2M, C): OCT 12.88, ANN 14.91.",
+   "cites": [
+    "POWER-TDC-TEMP"
+   ],
+   "premise": "NASA POWER climatology for the grid cell nearest -37.100, -12.300 (cell centre -37.1, -12.3). Period: 20-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2020). Monthly means of air temperature at 2 m; ANN is the annual value exactly as POWER reports it.\nTemperature at 2 Meters (T2M, C): JAN 17.37, FEB 18.06, MAR 17.77, APR 16.76, MAY 14.96, JUN 13.78, JUL 12.83, AUG 12.19, SEP 12.22, OCT 12.88, NOV 14.23, DEC 16, ANN 14.91.\nTemperature at 2 Meters Maximum (T2M_MAX, C): JAN 21.57, FEB 22.24, MAR 21.91, APR 20.66, MAY 20.44, JUN 18.86, JUL 17.02, AUG 16.68, SEP 16.95, OCT 16.51, NOV 18.28, DEC 20.84, ANN 22.24.\nTemperature at 2 Meters Minimum (T2M_MIN, C): JAN 11.62, FEB 12.83, MAR 12.02, APR 10.73, MAY 8.51, JUN 7.97, JUL 7.04, AUG 6.44, SEP 7.96, OCT 7.03, NOV 9, DEC 10.74, ANN 6.44.",
+   "validator_ok": true,
+   "nli": 0.0291,
+   "labeller_ok": true
+  },
+  {
+   "q": "T080",
+   "n": 1,
+   "sentence": "The annual value ANN is the annual value exactly as POWER reports it.",
+   "cites": [
+    "POWER-TDC-TEMP"
+   ],
+   "premise": "NASA POWER climatology for the grid cell nearest -37.100, -12.300 (cell centre -37.1, -12.3). Period: 20-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2020). Monthly means of air temperature at 2 m; ANN is the annual value exactly as POWER reports it.\nTemperature at 2 Meters (T2M, C): JAN 17.37, FEB 18.06, MAR 17.77, APR 16.76, MAY 14.96, JUN 13.78, JUL 12.83, AUG 12.19, SEP 12.22, OCT 12.88, NOV 14.23, DEC 16, ANN 14.91.\nTemperature at 2 Meters Maximum (T2M_MAX, C): JAN 21.57, FEB 22.24, MAR 21.91, APR 20.66, MAY 20.44, JUN 18.86, JUL 17.02, AUG 16.68, SEP 16.95, OCT 16.51, NOV 18.28, DEC 20.84, ANN 22.24.\nTemperature at 2 Meters Minimum (T2M_MIN, C): JAN 11.62, FEB 12.83, MAR 12.02, APR 10.73, MAY 8.51, JUN 7.97, JUL 7.04, AUG 6.44, SEP 7.96, OCT 7.03, NOV 9, DEC 10.74, ANN 6.44.",
+   "validator_ok": true,
+   "nli": 0.8832,
+   "labeller_ok": true
+  },
+  {
+   "q": "T081",
+   "n": 0,
+   "sentence": "Precipitation Corrected (PRECTOTCORR, mm/day): JUN 3.91",
+   "cites": [
+    "POWER-COC-PRECIP"
+   ],
+   "premise": "NASA POWER climatology for the grid cell nearest -12.187, 96.828 (cell centre -12.187, 96.828). Period: 20-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2020). Monthly means of corrected precipitation; ANN is the annual value exactly as POWER reports it.\nPrecipitation Corrected (PRECTOTCORR, mm/day): JAN 3.75, FEB 5.11, MAR 6.24, APR 6.18, MAY 3.51, JUN 3.91, JUL 2.95, AUG 1.31, SEP 1.55, OCT 1.33, NOV 2.17, DEC 3.28, ANN 3.43.",
+   "validator_ok": true,
+   "nli": 0.1243,
+   "labeller_ok": true
+  },
+  {
+   "q": "T081",
+   "n": 1,
+   "sentence": "Precipitation Corrected (PRECTOTCORR, mm/day): JAN 3.75, FEB 5.11, MAR 6.24, APR 6.18, MAY 3.51, JUN 3.91, JUL 2.95, AUG 1.31, SEP 1.55, OCT 1.33, NOV 2.17, DEC 3.28, ANN 3.43.",
+   "cites": [
+    "POWER-COC-PRECIP"
+   ],
+   "premise": "NASA POWER climatology for the grid cell nearest -12.187, 96.828 (cell centre -12.187, 96.828). Period: 20-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2020). Monthly means of corrected precipitation; ANN is the annual value exactly as POWER reports it.\nPrecipitation Corrected (PRECTOTCORR, mm/day): JAN 3.75, FEB 5.11, MAR 6.24, APR 6.18, MAY 3.51, JUN 3.91, JUL 2.95, AUG 1.31, SEP 1.55, OCT 1.33, NOV 2.17, DEC 3.28, ANN 3.43.",
+   "validator_ok": true,
+   "nli": 0.1247,
+   "labeller_ok": true
+  },
+  {
+   "q": "T083",
+   "n": 0,
+   "sentence": "Temperature at 2 Meters (T2M, C): APR 0.54",
+   "cites": [
+    "POWER-BOU-TEMP"
+   ],
+   "premise": "NASA POWER climatology for the grid cell nearest -54.417, 3.333 (cell centre -54.417, 3.333). Period: 20-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2020). Monthly means of air temperature at 2 m; ANN is the annual value exactly as POWER reports it.\nTemperature at 2 Meters (T2M, C): JAN 0.6, FEB 1.06, MAR 0.95, APR 0.54, MAY -0.37, JUN -1.18, JUL -2.13, AUG -3.01, SEP -3.34, OCT -1.96, NOV -0.9, DEC -0.11, ANN -0.83.\nTemperature at 2 Meters Maximum (T2M_MAX, C): JAN 4.28, FEB 5.2, MAR 4.89, APR 4.55, MAY 3.93, JUN 2.7, JUL 3.34, AUG 2.09, SEP 2.8, OCT 2.81, NOV 2.77, DEC 2.97, ANN 5.2.\nTemperature at 2 Meters Minimum (T2M_MIN, C): JAN -2.27, FEB -2.08, MAR -2.44, APR -3.12, MAY -5.6, JUN -7.86, JUL -12.38, AUG -14.07, SEP -17.47, OCT -11.19, NOV -5.01, DEC -3.2, ANN -17.47.",
+   "validator_ok": true,
+   "nli": 0.017,
+   "labeller_ok": true
+  },
+  {
+   "q": "T084",
+   "n": 0,
+   "sentence": "Relative Humidity at 2 Meters (RH2M, %): ANN 78.94.",
+   "cites": [
+    "POWER-GAL-HUMID"
+   ],
+   "premise": "NASA POWER climatology for the grid cell nearest -0.500, -90.500 (cell centre -0.5, -90.5). Period: 20-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2020). Monthly means of relative humidity at 2 m; ANN is the annual value exactly as POWER reports it.\nRelative Humidity at 2 Meters (RH2M, %): JAN 79.49, FEB 77.75, MAR 77.42, APR 79.44, MAY 80.1, JUN 79.39, JUL 79.53, AUG 79.68, SEP 79.49, OCT 77.59, NOV 77.75, DEC 79.61, ANN 78.94.",
+   "validator_ok": true,
+   "nli": 0.2308,
+   "labeller_ok": true
+  },
+  {
+   "q": "T085",
+   "n": 0,
+   "sentence": "Temperature at 2 Meters (T2M, C): ANN 23.11.",
+   "cites": [
+    "POWER-PIT-TEMP"
+   ],
+   "premise": "NASA POWER climatology for the grid cell nearest -25.067, -130.107 (cell centre -25.067, -130.107). Period: 20-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2020). Monthly means of air temperature at 2 m; ANN is the annual value exactly as POWER reports it.\nTemperature at 2 Meters (T2M, C): JAN 24.84, FEB 25.45, MAR 25.53, APR 24.65, MAY 23.38, JUN 22.32, JUL 21.42, AUG 21.01, SEP 21.05, OCT 21.61, NOV 22.43, DEC 23.74, ANN 23.11.\nTemperature at 2 Meters Maximum (T2M_MAX, C): JAN 26.83, FEB 27.72, MAR 27.58, APR 27.75, MAY 26.11, JUN 25.07, JUL 24.41, AUG 23.63, SEP 24.06, OCT 24.59, NOV 25.17, DEC 26.19, ANN 27.75.\nTemperature at 2 Meters Minimum (T2M_MIN, C): JAN 20.89, FEB 22.73, MAR 22.13, APR 21.2, MAY 19.64, JUN 17.27, JUL 16.95, AUG 16.48, SEP 17.75, OCT 17.87, NOV 18.72, DEC 19.64, ANN 16.48.",
+   "validator_ok": true,
+   "nli": 0.0521,
+   "labeller_ok": true
+  },
+  {
+   "q": "T086",
+   "n": 0,
+   "sentence": "Wind Speed at 10 Meters (WS10M, m/s): ANN is the annual value exactly as POWER reports it.",
+   "cites": [
+    "POWER-COC-WIND"
+   ],
+   "premise": "NASA POWER climatology for the grid cell nearest -12.187, 96.828 (cell centre -12.187, 96.828). Period: 20-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2020). Monthly means of wind speed at 10 m; ANN is the annual value exactly as POWER reports it.\nWind Speed at 10 Meters (WS10M, m/s): JAN 5.08, FEB 5.05, MAR 5.3, APR 6.48, MAY 7.56, JUN 7.76, JUL 8.27, AUG 8.2, SEP 8.15, OCT 7.53, NOV 7.28, DEC 6.07, ANN 6.9.",
+   "validator_ok": true,
+   "nli": 0.968,
+   "labeller_ok": true
+  },
+  {
+   "q": "T086",
+   "n": 1,
+   "sentence": "The annual wind speed at 10 meters on Cocos (Keeling) Islands, as reported by NASA POWER climatology, is 6.9 m/s.",
+   "cites": [
+    "POWER-COC-WIND"
+   ],
+   "premise": "NASA POWER climatology for the grid cell nearest -12.187, 96.828 (cell centre -12.187, 96.828). Period: 20-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2020). Monthly means of wind speed at 10 m; ANN is the annual value exactly as POWER reports it.\nWind Speed at 10 Meters (WS10M, m/s): JAN 5.08, FEB 5.05, MAR 5.3, APR 6.48, MAY 7.56, JUN 7.76, JUL 8.27, AUG 8.2, SEP 8.15, OCT 7.53, NOV 7.28, DEC 6.07, ANN 6.9.",
+   "validator_ok": true,
+   "nli": 0.0035,
+   "labeller_ok": true
+  },
+  {
+   "q": "T087",
+   "n": 0,
+   "sentence": "The annual relative humidity at 2 m on Socotra, according to NASA POWER climatology, is 71.51%.",
+   "cites": [
+    "POWER-SOC-HUMID"
+   ],
+   "premise": "NASA POWER climatology for the grid cell nearest 12.510, 53.920 (cell centre 12.51, 53.92). Period: 20-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2020). Monthly means of relative humidity at 2 m; ANN is the annual value exactly as POWER reports it.\nRelative Humidity at 2 Meters (RH2M, %): JAN 65.94, FEB 65.46, MAR 64.46, APR 63.04, MAY 72.13, JUN 79.11, JUL 80.37, AUG 81.85, SEP 81.86, OCT 68.58, NOV 67.82, DEC 67.14, ANN 71.51.",
+   "validator_ok": true,
+   "nli": 0.0205,
+   "labeller_ok": true
+  },
+  {
+   "q": "T087",
+   "n": 1,
+   "sentence": "This value is reported exactly as POWER reports it.",
+   "cites": [
+    "POWER-SOC-HUMID"
+   ],
+   "premise": "NASA POWER climatology for the grid cell nearest 12.510, 53.920 (cell centre 12.51, 53.92). Period: 20-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2020). Monthly means of relative humidity at 2 m; ANN is the annual value exactly as POWER reports it.\nRelative Humidity at 2 Meters (RH2M, %): JAN 65.94, FEB 65.46, MAR 64.46, APR 63.04, MAY 72.13, JUN 79.11, JUL 80.37, AUG 81.85, SEP 81.86, OCT 68.58, NOV 67.82, DEC 67.14, ANN 71.51.",
+   "validator_ok": true,
+   "nli": 0.7764,
+   "labeller_ok": true
+  },
+  {
+   "q": "T088",
+   "n": 0,
+   "sentence": "The annual daily rainfall on Cocos (Keeling) Islands in the NASA POWER climatology is 3.43 mm.",
+   "cites": [
+    "POWER-COC-PRECIP"
+   ],
+   "premise": "NASA POWER climatology for the grid cell nearest -12.187, 96.828 (cell centre -12.187, 96.828). Period: 20-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2020). Monthly means of corrected precipitation; ANN is the annual value exactly as POWER reports it.\nPrecipitation Corrected (PRECTOTCORR, mm/day): JAN 3.75, FEB 5.11, MAR 6.24, APR 6.18, MAY 3.51, JUN 3.91, JUL 2.95, AUG 1.31, SEP 1.55, OCT 1.33, NOV 2.17, DEC 3.28, ANN 3.43.",
+   "validator_ok": true,
+   "nli": 0.0028,
+   "labeller_ok": true
+  },
+  {
+   "q": "T088",
+   "n": 1,
+   "sentence": "The annual daily rainfall on Cocos (Keeling) Islands in the Wikipedia classification is about 1,879 mm.",
+   "cites": [
+    "COC-007"
+   ],
+   "premise": "Wikipedia classifies the climate as tropical rainforest (Köppen Af) with average annual rainfall of about 1,879 mm, wettest in April and driest in October.",
+   "validator_ok": true,
+   "nli": 0.0025,
+   "labeller_ok": false
+  },
+  {
+   "q": "T090",
+   "n": 0,
+   "sentence": "NASA POWER reports annual mean air temperature at 2 Meters (T2M, C) as 26.28.",
+   "cites": [
+    "POWER-SOC-TEMP"
+   ],
+   "premise": "NASA POWER climatology for the grid cell nearest 12.510, 53.920 (cell centre 12.51, 53.92). Period: 20-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2020). Monthly means of air temperature at 2 m; ANN is the annual value exactly as POWER reports it.\nTemperature at 2 Meters (T2M, C): JAN 24.21, FEB 24.52, MAR 26.27, APR 28.65, MAY 29.22, JUN 27.05, JUL 25.43, AUG 25.28, SEP 25.92, OCT 27.08, NOV 26.45, DEC 25.17, ANN 26.28.\nTemperature at 2 Meters Maximum (T2M_MAX, C): JAN 28.74, FEB 30.84, MAR 33.21, APR 34.86, MAY 34.37, JUN 33.31, JUL 30.09, AUG 30.2, SEP 30.58, OCT 31.87, NOV 30.68, DEC 29.37, ANN 34.86.\nTemperature at 2 Meters Minimum (T2M_MIN, C): JAN 19.43, FEB 19.71, MAR 20.33, APR 22.81, MAY 25.11, JUN 23.86, JUL 22.69, AUG 21.86, SEP 22.44, OCT 22.66, NOV 21.67, DEC 20.35, ANN 19.43.",
+   "validator_ok": true,
+   "nli": 0.0525,
+   "labeller_ok": true
+  },
+  {
+   "q": "T090",
+   "n": 1,
+   "sentence": "NASA POWER reports annual mean air temperature at 2 Meters Maximum (T2M_MAX, C) as 34.86.",
+   "cites": [
+    "POWER-SOC-TEMP"
+   ],
+   "premise": "NASA POWER climatology for the grid cell nearest 12.510, 53.920 (cell centre 12.51, 53.92). Period: 20-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2020). Monthly means of air temperature at 2 m; ANN is the annual value exactly as POWER reports it.\nTemperature at 2 Meters (T2M, C): JAN 24.21, FEB 24.52, MAR 26.27, APR 28.65, MAY 29.22, JUN 27.05, JUL 25.43, AUG 25.28, SEP 25.92, OCT 27.08, NOV 26.45, DEC 25.17, ANN 26.28.\nTemperature at 2 Meters Maximum (T2M_MAX, C): JAN 28.74, FEB 30.84, MAR 33.21, APR 34.86, MAY 34.37, JUN 33.31, JUL 30.09, AUG 30.2, SEP 30.58, OCT 31.87, NOV 30.68, DEC 29.37, ANN 34.86.\nTemperature at 2 Meters Minimum (T2M_MIN, C): JAN 19.43, FEB 19.71, MAR 20.33, APR 22.81, MAY 25.11, JUN 23.86, JUL 22.69, AUG 21.86, SEP 22.44, OCT 22.66, NOV 21.67, DEC 20.35, ANN 19.43.",
+   "validator_ok": true,
+   "nli": 0.8675,
+   "labeller_ok": true
+  },
+  {
+   "q": "T090",
+   "n": 2,
+   "sentence": "NASA POWER reports annual mean air temperature at 2 Meters Minimum (T2M_MIN, C) as 19.43.",
+   "cites": [
+    "POWER-SOC-TEMP"
+   ],
+   "premise": "NASA POWER climatology for the grid cell nearest 12.510, 53.920 (cell centre 12.51, 53.92). Period: 20-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2020). Monthly means of air temperature at 2 m; ANN is the annual value exactly as POWER reports it.\nTemperature at 2 Meters (T2M, C): JAN 24.21, FEB 24.52, MAR 26.27, APR 28.65, MAY 29.22, JUN 27.05, JUL 25.43, AUG 25.28, SEP 25.92, OCT 27.08, NOV 26.45, DEC 25.17, ANN 26.28.\nTemperature at 2 Meters Maximum (T2M_MAX, C): JAN 28.74, FEB 30.84, MAR 33.21, APR 34.86, MAY 34.37, JUN 33.31, JUL 30.09, AUG 30.2, SEP 30.58, OCT 31.87, NOV 30.68, DEC 29.37, ANN 34.86.\nTemperature at 2 Meters Minimum (T2M_MIN, C): JAN 19.43, FEB 19.71, MAR 20.33, APR 22.81, MAY 25.11, JUN 23.86, JUL 22.69, AUG 21.86, SEP 22.44, OCT 22.66, NOV 21.67, DEC 20.35, ANN 19.43.",
+   "validator_ok": true,
+   "nli": 0.1955,
+   "labeller_ok": true
+  },
+  {
+   "q": "T094",
+   "n": 0,
+   "sentence": "GBIF records the IUCN Red List category of the Socotra buzzard (Buteo socotraensis Porter & Kirwan, 2010) as Vulnerable (VU)",
+   "cites": [
+    "SOC-034",
+    "GBIF-SOC-socotra-buzzard-IUCN"
+   ],
+   "premise": "The 2022 IUCN Red List assessment, as reported by Wikipedia, rates the Socotra buzzard Vulnerable with about 250-500 mature individuals and a declining population. GBIF records the IUCN Red List category of the Socotra buzzard (Buteo socotraensis Porter & Kirwan, 2010) as Vulnerable (VU), IUCN taxon ID 22732235. GBIF republishes the category only, not the assessment year or the criteria.",
+   "validator_ok": true,
+   "nli": 0.0026,
+   "labeller_ok": true
+  },
+  {
+   "q": "T096",
+   "n": 0,
+   "sentence": "13 records have been found inside a search box around Bouvet Island spanning latitude -55.4167 to -53.4167 and longitude 2.3333 to 4.3333 (±1.0° around the pin).",
+   "cites": [
+    "GBIF-BOU-macaroni-penguin-OCC"
+   ],
+   "premise": "GBIF holds 87,568 occurrence records worldwide for the Macaroni penguin. Inside a search box around Bouvet Island spanning latitude -55.4167 to -53.4167 and longitude 2.3333 to 4.3333 (±1.0° around the pin) it holds 13 records, of which 6 have coordinates with no flagged problem: 6 observations, 0 preserved or fossil specimens, 0 living or captive animals and 0 of other or unstated type. Record counts reflect what has been published to GBIF, not true abundance.",
+   "validator_ok": true,
+   "nli": 0.1054,
+   "labeller_ok": true
+  },
+  {
+   "q": "T096",
+   "n": 1,
+   "sentence": "6 of these records have coordinates with no flagged problem.",
+   "cites": [
+    "GBIF-BOU-macaroni-penguin-OCC"
+   ],
+   "premise": "GBIF holds 87,568 occurrence records worldwide for the Macaroni penguin. Inside a search box around Bouvet Island spanning latitude -55.4167 to -53.4167 and longitude 2.3333 to 4.3333 (±1.0° around the pin) it holds 13 records, of which 6 have coordinates with no flagged problem: 6 observations, 0 preserved or fossil specimens, 0 living or captive animals and 0 of other or unstated type. Record counts reflect what has been published to GBIF, not true abundance.",
+   "validator_ok": true,
+   "nli": 0.0282,
+   "labeller_ok": true
+  },
+  {
+   "q": "T097",
+   "n": 0,
+   "sentence": "GBIF records the IUCN Red List category of the Napoleon wrasse (Cheilinus undulatus Rüppell, 1835) as Endangered (EN)",
+   "cites": [
+    "GBIF-COC-napoleon-wrasse-IUCN"
+   ],
+   "premise": "GBIF records the IUCN Red List category of the Napoleon wrasse (Cheilinus undulatus Rüppell, 1835) as Endangered (EN), IUCN taxon ID 4592. GBIF republishes the category only, not the assessment year or the criteria.",
+   "validator_ok": true,
+   "nli": 0.0049,
+   "labeller_ok": true
+  },
+  {
+   "q": "T098",
+   "n": 0,
+   "sentence": "GBIF holds 19,797 occurrence records worldwide for the Silvertip shark.",
+   "cites": [
+    "GBIF-CLI-silvertip-shark-OCC"
+   ],
+   "premise": "GBIF holds 19,797 occurrence records worldwide for the Silvertip shark. Inside a search box around Clipperton Island spanning latitude 9.3 to 11.3 and longitude -110.22 to -108.22 (±1.0° around the pin) it holds 8 records, of which 8 have coordinates with no flagged problem: 3 observations, 5 preserved or fossil specimens, 0 living or captive animals and 0 of other or unstated type. Record counts reflect what has been published to GBIF, not true abundance.",
+   "validator_ok": true,
+   "nli": 0.0852,
+   "labeller_ok": true
+  },
+  {
+   "q": "T099",
+   "n": 0,
+   "sentence": "GBIF holds 27 occurrence records inside a search box around Galápagos Islands spanning latitude -3.5 to 2.5 and longitude -93.5 to -87.5 (±3.0° around the pin) with no flagged problem.",
+   "cites": [
+    "GBIF-GAL-pinta-island-tortoise-OCC"
+   ],
+   "premise": "GBIF holds 57 occurrence records worldwide for the Pinta Island tortoise. Inside a search box around Galápagos Islands spanning latitude -3.5 to 2.5 and longitude -93.5 to -87.5 (±3.0° around the pin) it holds 27 records, of which 27 have coordinates with no flagged problem: 5 observations, 22 preserved or fossil specimens, 0 living or captive animals and 0 of other or unstated type. Record counts reflect what has been published to GBIF, not true abundance.",
+   "validator_ok": true,
+   "nli": 0.0581,
+   "labeller_ok": true
+  },
+  {
+   "q": "T099",
+   "n": 1,
+   "sentence": "5 of these 27 records are observations, 22 are preserved or fossil specimens, 0 are living or captive animals and 0 are of other or unstated type.",
+   "cites": [
+    "GBIF-GAL-pinta-island-tortoise-OCC"
+   ],
+   "premise": "GBIF holds 57 occurrence records worldwide for the Pinta Island tortoise. Inside a search box around Galápagos Islands spanning latitude -3.5 to 2.5 and longitude -93.5 to -87.5 (±3.0° around the pin) it holds 27 records, of which 27 have coordinates with no flagged problem: 5 observations, 22 preserved or fossil specimens, 0 living or captive animals and 0 of other or unstated type. Record counts reflect what has been published to GBIF, not true abundance.",
+   "validator_ok": true,
+   "nli": 0.0208,
+   "labeller_ok": true
+  },
+  {
+   "q": "T099",
+   "n": 2,
+   "sentence": "GBIF holds 57 occurrence records worldwide for the Pinta Island tortoise.",
+   "cites": [
+    "GBIF-GAL-pinta-island-tortoise-OCC"
+   ],
+   "premise": "GBIF holds 57 occurrence records worldwide for the Pinta Island tortoise. Inside a search box around Galápagos Islands spanning latitude -3.5 to 2.5 and longitude -93.5 to -87.5 (±3.0° around the pin) it holds 27 records, of which 27 have coordinates with no flagged problem: 5 observations, 22 preserved or fossil specimens, 0 living or captive animals and 0 of other or unstated type. Record counts reflect what has been published to GBIF, not true abundance.",
+   "validator_ok": true,
+   "nli": 0.0339,
+   "labeller_ok": true
+  },
+  {
+   "q": "T100",
+   "n": 0,
+   "sentence": "GBIF records the IUCN Red List category of the Tristan albatross (Diomedea dabbenena Mathews, 1929) as Critically Endangered (CR)",
+   "cites": [
+    "GBIF-TDC-tristan-albatross-IUCN"
+   ],
+   "premise": "GBIF records the IUCN Red List category of the Tristan albatross (Diomedea dabbenena Mathews, 1929) as Critically Endangered (CR), IUCN taxon ID 22728364. GBIF republishes the category only, not the assessment year or the criteria.",
+   "validator_ok": true,
+   "nli": 0.0022,
+   "labeller_ok": true
+  },
+  {
+   "q": "T101",
+   "n": 0,
+   "sentence": "GBIF holds 185 occurrence records worldwide for the Socotra buzzard.",
+   "cites": [
+    "GBIF-SOC-socotra-buzzard-OCC"
+   ],
+   "premise": "GBIF holds 185 occurrence records worldwide for the Socotra buzzard. Inside a search box around Socotra spanning latitude 11.01 to 14.01 and longitude 52.42 to 55.42 (±1.5° around the pin) it holds 181 records, of which 181 have coordinates with no flagged problem: 181 observations, 0 preserved or fossil specimens, 0 living or captive animals and 0 of other or unstated type. Record counts reflect what has been published to GBIF, not true abundance.",
+   "validator_ok": true,
+   "nli": 0.0906,
+   "labeller_ok": true
+  },
+  {
+   "q": "T103",
+   "n": 0,
+   "sentence": "GBIF records the IUCN Red List category of the Macaroni penguin (Eudyptes chrysolophus (Brandt, 1837)) as Vulnerable (VU)",
+   "cites": [
+    "GBIF-BOU-macaroni-penguin-IUCN"
+   ],
+   "premise": "GBIF records the IUCN Red List category of the Macaroni penguin (Eudyptes chrysolophus (Brandt, 1837)) as Vulnerable (VU), IUCN taxon ID 22697793. GBIF republishes the category only, not the assessment year or the criteria.",
+   "validator_ok": true,
+   "nli": 0.001,
+   "labeller_ok": true
+  },
+  {
+   "q": "T104",
+   "n": 0,
+   "sentence": "The automatic weather station at 42 m above sea level on Bouvet Island recorded a maximum temperature of 6.7 °C between 1997 and 2005 (elevation-corrected).",
+   "cites": [
+    "BOU-216"
+   ],
+   "premise": "The Cryosphere ice-core study reports that an automatic weather station at 42 m above sea level on Bouvet Island recorded a maximum temperature of 6.7 °C between 1997 and 2005 (elevation-corrected).",
+   "validator_ok": true,
+   "nli": 0.9804,
+   "labeller_ok": true
+  },
+  {
+   "q": "T105",
+   "n": 0,
+   "sentence": "841,910 km2 by the Cefas report card",
+   "cites": [
+    "PIT-216"
+   ],
+   "premise": "The Pitcairn Islands Marine Protected Area was established in 2016 and is given as 841,910 km2 by the Cefas report card, whereas Wikipedia and Pew give 834,334 km2 for the March 2015 reserve announcement.",
+   "validator_ok": true,
+   "nli": 0.9472,
+   "labeller_ok": true
+  },
+  {
+   "q": "T106",
+   "n": 0,
+   "sentence": "Tristan da Cunha lies roughly 2,800 km from the southern tip of Africa and over 3,000 km from South America's east coast, with St Helena (about 2,173 km to the northeast) the nearest neighbour.",
+   "cites": [
+    "TDC-002"
+   ],
+   "premise": "Tristan da Cunha lies roughly 2,800 km from the southern tip of Africa and over 3,000 km from South America's east coast, with St Helena (about 2,173 km to the northeast) the nearest neighbour.",
+   "validator_ok": true,
+   "nli": 0.9953,
+   "labeller_ok": true
+  },
+  {
+   "q": "T107",
+   "n": 0,
+   "sentence": "Bouvet Island covers about 49 km2, according to the Norwegian Polar Institute.",
+   "cites": [
+    "BOU-002"
+   ],
+   "premise": "Bouvet Island covers about 49 km2, according to the Norwegian Polar Institute.",
+   "validator_ok": true,
+   "nli": 0.9915,
+   "labeller_ok": true
+  },
+  {
+   "q": "T141",
+   "n": 0,
+   "sentence": "Temperature at 2 Meters (T2M, C): OCT 12.88",
+   "cites": [
+    "POWER-TDC-TEMP"
+   ],
+   "premise": "NASA POWER climatology for the grid cell nearest -37.100, -12.300 (cell centre -37.1, -12.3). Period: 20-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2020). Monthly means of air temperature at 2 m; ANN is the annual value exactly as POWER reports it.\nTemperature at 2 Meters (T2M, C): JAN 17.37, FEB 18.06, MAR 17.77, APR 16.76, MAY 14.96, JUN 13.78, JUL 12.83, AUG 12.19, SEP 12.22, OCT 12.88, NOV 14.23, DEC 16, ANN 14.91.\nTemperature at 2 Meters Maximum (T2M_MAX, C): JAN 21.57, FEB 22.24, MAR 21.91, APR 20.66, MAY 20.44, JUN 18.86, JUL 17.02, AUG 16.68, SEP 16.95, OCT 16.51, NOV 18.28, DEC 20.84, ANN 22.24.\nTemperature at 2 Meters Minimum (T2M_MIN, C): JAN 11.62, FEB 12.83, MAR 12.02, APR 10.73, MAY 8.51, JUN 7.97, JUL 7.04, AUG 6.44, SEP 7.96, OCT 7.03, NOV 9, DEC 10.74, ANN 6.44.",
+   "validator_ok": true,
+   "nli": 0.0199,
+   "labeller_ok": true
+  }
+ ]
+}
