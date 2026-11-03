@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import json
 import sys
+import tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -98,7 +99,8 @@ REFERENCE_RUNS = ("extractive-top-evidence-bm25.json", "qwen25-3b-ollama-bm25.js
 
 def _pool_inputs() -> tuple[dict, dict]:
     """The sources each island may be quoted from, read from the committed snapshots only (never the network)."""
-    settings = Settings(anthropic_api_key=None, telemetry=False, source_ttl_days=36500)
+    # Committed snapshots only: a developer's live cache in data/cache must not change a published number.
+    settings = Settings(anthropic_api_key=None, telemetry=False, source_ttl_days=36500, cache_dir=Path(tempfile.mkdtemp(prefix="ie-report-")))
     islands = IslandStore.load(settings.islands_dir)
     return baselines.build_pools(islands, SourceStore(settings, islands, http=object())), {}
 

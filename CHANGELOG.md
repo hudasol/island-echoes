@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.2.0 (in progress)
+
+Moved published numbers (all regenerated from stored runs by code):
+
+- RESULTS.md, "retrieval only, quotes the top sources": unsupported content 3% (1/29) becomes 0% (0/29). The earlier figure was computed
+  against a developer's live local cache of NASA POWER and GBIF responses; the report now reads only the committed snapshots, so
+  the number can be reproduced from a fresh clone and in continuous integration.
+
+Added so far: Arabic interface, shareable field report, educator sheets, public read only API under `/api/v1`, offline
+shell updates, climate tool and lossless validation fallback behind settings (off by default), scheduled uptime and freshness checks.
+
 ## 1.1.0
 
 - Day and night layer on the globe from the real sun position, with a readout of the sub solar point. The globe bundle is built from source.

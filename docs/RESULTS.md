@@ -79,7 +79,7 @@ Reference rows from an earlier session (Ollama serving), included for context on
 
 | system | model | retrieval | passed | false refusals | refusal accuracy | key-fact recall | answers with a number or name found in no source | median / p95 time |
 |---|---|---|---|---|---|---|---|---|
-| retrieval only, quotes the top sources | extractive:top-evidence | bm25 (12) | 50% (15/30) [33-67] | 0% (0/25) [0-13] | 20% (1/5) [4-62] | 63% (26/41) [48-76] | 3% (1/29) [1-17] | 0 / 0 s |
+| retrieval only, quotes the top sources | extractive:top-evidence | bm25 (12) | 50% (15/30) [33-67] | 0% (0/25) [0-13] | 20% (1/5) [4-62] | 63% (26/41) [48-76] | 0% (0/29) [0-12] | 0 / 0 s |
 | retrieval + model + validator | ollama:qwen2.5:3b-instruct | bm25 (8) | 77% (23/30) [59-88] | 16% (4/25) [6-35] | 100% (5/5) [57-100] | 76% (31/41) [61-86] | 0% (0/21) [0-15] | 81 / 147 s |
 
 ## Development set (tuned against: not a held out result)
