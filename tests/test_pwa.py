@@ -8,7 +8,8 @@ WEB = Path(__file__).resolve().parents[1] / "web"
 def test_worker_waits_for_the_person_before_taking_over():
     sw = (WEB / "sw.js").read_text(encoding="utf-8")
     install = sw.split('addEventListener("install"')[1].split("});")[0]
-    assert "skipWaiting" not in install
+    code = "\n".join(line for line in install.splitlines() if not line.strip().startswith("//"))
+    assert "skipWaiting" not in code
     assert 'type === "SKIP_WAITING"' in sw
 
 
