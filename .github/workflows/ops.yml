@@ -1,0 +1,30 @@
+name: Operations
+on:
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  uptime:
+    runs-on: ubuntu-latest
+    steps:
+      - name: The live health check answers
+        run: |
+          for i in 1 2 3 4 5; do
+            if curl -fsS --max-time 60 https://island-echoes.onrender.com/api/health | tee /tmp/health.json | grep -q '"status":"ok"'; then exit 0; fi
+            sleep 30
+          done
+          cat /tmp/health.json || true
+          exit 1
+      - name: The public API answers
+        run: curl -fsS --max-time 60 https://island-echoes.onrender.com/api/v1/islands | grep -q slug
+  freshness:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Snapshots are not older than 120 days
+        run: python scripts/check_freshness.py --max-days 120
