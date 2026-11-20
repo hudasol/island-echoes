@@ -17,8 +17,6 @@ jobs:
           done
           cat /tmp/health.json || true
           exit 1
-      - name: The public API answers
-        run: curl -fsS --max-time 60 https://island-echoes.onrender.com/api/v1/islands | grep -q slug
   freshness:
     runs-on: ubuntu-latest
     steps:

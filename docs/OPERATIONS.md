@@ -7,7 +7,6 @@
 | Check | What it does | Fails when |
 |---|---|---|
 | Uptime | Requests `/api/health` on the live site, up to five tries thirty seconds apart to allow for a cold start on the free tier | the response is not `"status":"ok"` |
-| Public API | Requests `/api/v1/islands` | the response has no island entries |
 | Data freshness | Runs `scripts/check_freshness.py --max-days 120` on the committed snapshots | any snapshot in `data/snapshots/` is older than 120 days |
 
 A failed scheduled run appears in the Actions tab and GitHub emails the repository owner. The freshness limit is a
